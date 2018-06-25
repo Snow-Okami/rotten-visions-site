@@ -1,0 +1,14 @@
+.footer {
+	z-index: 3;
+	position: fixed;
+	color: white;
+	bottom: 0;
+	height: auto;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.8);
+}
+
+footer>div>img {
+	margin: 2px;
+	cursor: pointer;
+}

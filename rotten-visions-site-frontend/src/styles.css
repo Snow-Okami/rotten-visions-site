@@ -2,3 +2,27 @@
 body {
 	margin: 0px;
 }
+
+@font-face {
+    font-family: 'Nasalization';
+    src:url('assets/rotten-vision-design/Source/Webfonts/nasalization/Nasalization.ttf.eot') format('woff'),
+        url('assets/rotten-vision-design/Source/Webfonts/nasalization/Nasalization.ttf.svg#Nasalization') format('svg'),
+        url('assets/rotten-vision-design/Source/Webfonts/nasalization/Nasalization.ttf.woff'),
+        url('assets/rotten-vision-design/Source/Webfonts/nasalization/Nasalization.ttf.eot?#iefix') format('embedded-opentype'); 
+}
+
+@font-face {
+    font-family: 'Norwester';
+    src:url('assets/rotten-vision-design/Source/Webfonts/norwester/Norwester.ttf.woff') format('woff'),
+        url('assets/rotten-vision-design/Source/Webfonts/norwester/Norwester.ttf.svg#Norwester') format('svg'),
+        url('assets/rotten-vision-design/Source/Webfonts/norwester/Norwester.ttf.eot'),
+        url('assets/rotten-vision-design/Source/Webfonts/norwester/Norwester.ttf.eot?#iefix') format('embedded-opentype'); 
+        font-weight: normal;
+        font-style: normal;
+}
+
+@font-face{ 
+	font-family: 'NovecentosansWideboldMacroman';
+	src: url('assets/rotten-vision-design/Source/Webfonts/novecentosans_widebold_macroman/Novecentosanswide-Bold-webfont.woff') format('woff');
+	     
+}
