@@ -6,18 +6,61 @@
 	</div>
 
 	<header>
-		<a href="/">
-			<img src="assets/Rotten-vision-design/Source/Logo/RV_Logo Final.png" height="100" width="100">
-			<span class="heading">Rotten Vision</span>
-		</a>
-		
+		<div class="site-logo">
+			<a href="/">
+				<img src="{{image_url_base + src}}Logo/RV_Logo Final.png" height="100" width="100">
+			</a>
+		</div>
+		<div class="search-bar">
+			<img class="search-ele" src="{{image_url_base + desk}}/RV-Web-Search.png" alt="search">
+			<input class="search-input-box" type="text" name="search">
+			<!-- <img class="search-icon" src="{{image_url_base + desk}}/RV-Web-Search-icon.png" alt="search"> -->
+		</div>
 	</header>
 	
-	<!-- <div class="container-fluid main-container">
-	  <div>
-	  	<router-outlet></router-outlet>
+	<div class="container-fluid main-container">
+	  <div class="row">
+	  	<div class="col-lg-3 col-md-3 col-sm-3 menu">
+	  		
+	  		<div class="menu-dropdown dropdown dropright" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<img class="dropdown-text-img" src="assets/Rotten-vision-design/Desktop_version_elements/RV-Web-MENU-element.png">
+			</div>
+			<div class="menu-active menu-dropdown-item-active">
+				{{activeMenu}}
+			</div>
+
+			<div class="dropdown-menu menu-custom text-center" style="left: 75px;">
+		      <div class="menu-dropdown-item">
+				Home
+			  </div>
+			  <div class="menu-dropdown-item">
+				About Us
+			  </div>
+			  <div class="menu-dropdown-item">
+				Our Projects
+			  </div>
+			  <div class="menu-dropdown-item">
+				Blog
+			  </div>
+			  <div class="menu-dropdown-item">
+				Contact Us
+			  </div>			  
+		    </div>
+
+	  	</div>
+	  	<div class="col-lg-6 col-md-6 col-sm-6 text-center main-content"></div>
+	  	<div class="col-lg-3 col-md-3 col-sm-3 join-now">
+	  		<div class="">
+	  			<form class="join-now-inputbox" autocomplete="off">
+	  				<input type="text" name="email" placeholder="Enter Your Email">
+	  				<button class="join-button">
+	  					<img class="join-btn-img" src="assets/Rotten-vision-design/Desktop_version_elements/RV-Web-element_JOIN.png">
+	  				</button>
+	  			</form>
+	  		</div>
+	  	</div>
 	  </div>
-	</div> -->
+	</div>
 
 	<app-footer></app-footer>
 

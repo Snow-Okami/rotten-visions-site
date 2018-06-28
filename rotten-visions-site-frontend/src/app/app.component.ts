@@ -8,6 +8,10 @@ import * as $ from 'jquery';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  title = 'Rotten Vision Company Website!';
-  
+  image_url_base:String = 'assets/Rotten-vision-design/';
+  mob:String = "Mobile_version_elements/";
+  desk:String = "Desktop_version_elements/";
+  src:String = "Source/";
+
+  activeMenu:String = "About Us";
 }
