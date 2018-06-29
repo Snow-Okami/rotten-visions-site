@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+//Services 
+import { DataService } from '../../services/data.service';
+
 @Component({
   selector: 'app-about-us',
   templateUrl: './about-us.component.html',
@@ -7,8 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutUsComponent implements OnInit {
 
-  constructor() { 
-  	document.title = "Rotten Visions | About Us"
+  currentMenu:string = "About Us";
+
+  constructor( private dataService: DataService ) {
   }
 
   ngOnInit() {

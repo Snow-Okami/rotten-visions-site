@@ -1,0 +1,23 @@
+/*
+    Downloaded fonts: 
+
+    Nasalization
+    Norwester
+    NovecentosansWideboldMacroman
+*/
+.about-us-content {
+	padding: 10px;
+}
+
+.heading {
+	font-family: 'Nasalization';
+    font-size: 50px;
+    text-decoration: underline;
+    color: #931928;
+}
+
+.bio-text>div>p, .bio-text>p{
+	color: #c7c7c7;
+	display: inline-block;
+	background-color: black;
+}

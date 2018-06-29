@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { DataService } from '../../services/data.service';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectsComponent implements OnInit {
 
-  constructor() { }
+  currentMenu:string = "Our Projects";
+
+  constructor( private dataService: DataService ) {
+  }
 
   ngOnInit() {
   }

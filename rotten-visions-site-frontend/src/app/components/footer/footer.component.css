@@ -1,6 +1,6 @@
 .footer {
 	z-index: 3;
-	position: absolute;
+	position: fixed;
 	color: white;
 	bottom: 0;
 	height: auto;

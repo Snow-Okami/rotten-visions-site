@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { DataService } from '../../services/data.service';
 @Component({
   selector: 'app-contact-us',
   templateUrl: './contact-us.component.html',
@@ -7,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactUsComponent implements OnInit {
 
-  constructor() { 
-  	document.title = "Rotten Visions | Contact Us"
+  currentMenu:string = "Contact Us";
+
+  constructor( private dataService: DataService ) {
   }
 
   ngOnInit() {

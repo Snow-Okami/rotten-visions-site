@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+//Services
+import { DataService } from './services/data.service';
+
 import * as $ from 'jquery';
 
 @Component({
@@ -13,5 +16,14 @@ export class AppComponent{
   desk:String = "Desktop_version_elements/";
   src:String = "Source/";
 
-  activeMenu:String = "About Us";
+  activeMenu:String;
+
+  constructor( private dataService: DataService ){
+  }
+
+  routeNavigation (event) {
+  	this.activeMenu = event.currentMenu;
+  	document.title = "Rotten Visions | " + event.currentMenu;
+  }
+
 }

@@ -11,6 +11,7 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
 
 import { RoutesModule } from './modules/routes/routes.module';
 import { HomeComponent } from './components/home/home.component';
+import { DataService } from './services/data.service'
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { HomeComponent } from './components/home/home.component';
     RoutesModule
   ],
   exports: [ RouterModule ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ DataService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
