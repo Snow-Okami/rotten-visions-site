@@ -1,0 +1,19 @@
+/*
+    Downloaded fonts: 
+
+    Nasalization
+    Norwester
+    NovecentosansWideboldMacroman
+*/
+
+.home-container {
+	font-family: 'NovecentosansWideboldMacroman';
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.home-container>span {
+	color: #931928;
+	font-size: 45px;
+}

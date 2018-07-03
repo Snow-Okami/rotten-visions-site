@@ -1,3 +1,29 @@
-<p>
-  contact-us works!
-</p>
+<div class="contact-us-container">
+	<div class="heading">Contact Us</div>
+	<div class="contact-us-form-container" >
+		<form class="contact-us-form" autocomplete="off">
+			<div class="form-group msg-body">
+			  <textarea class="form-control message-box" placeholder="Type your message here.."
+			  	(focus) = "textFocus()"
+			  ></textarea>
+			</div>
+			<div class="msg-sender"  [@slideInOut]="state">
+				<div class="form-group">
+				  <input type="text" class="form-control" placeholder="Type your name here..">
+				</div>
+				<div class="form-group">
+				  <input type="text" class="form-control" placeholder="Type your email here..">
+				</div>
+				<div>
+					<button class="msg-send-button" type="button">
+						<i class="material-icons">send</i>
+					</button>
+					<button class="msg-send-button" type="button" (click) = "textFocusOut()">
+						<i class="material-icons">cancel</i>
+					</button>
+
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

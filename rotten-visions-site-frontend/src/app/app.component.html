@@ -7,13 +7,15 @@
 
 	<header>
 		<div class="site-logo">
-			<a href="/">
+			<a [routerLink]="['']" tooltip="Rottent Vision | Home" placement="right" show-delay="50">
 				<img src="{{image_url_base + src}}Logo/RV_Logo Final.png" height="100" width="100">
 			</a>
 		</div>
 		<div class="search-bar">
-			<img class="search-ele" src="{{image_url_base + desk}}/RV-Web-Search.png" alt="search">
-			<input class="search-input-box" type="text" name="search">
+			<!-- <img class="search-ele" src="{{image_url_base + desk}}/RV-Web-Search.png" alt="search"> -->
+			<input class="search-input-box" type="text" name="search" placeholder="Search" 
+				tooltip="Click here to search something" placement="bottom" show-delay="50"
+			>
 			<!-- <img class="search-icon" src="{{image_url_base + desk}}/RV-Web-Search-icon.png" alt="search"> -->
 		</div>
 	</header>
@@ -21,8 +23,10 @@
 	<div class="container-fluid main-container">
 	  <div class="row">
 	  	<div class="col-lg-3 col-md-3 col-sm-3 menu">
-	  		
-	  		<div class="menu-dropdown dropdown dropright" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+	  		<div class="menu-dropdown dropdown dropright" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+	  			tooltip="Menu" placement="top" show-delay="50"
+	  		>
 				<img class="dropdown-text-img" src="assets/Rotten-vision-design/Desktop_version_elements/RV-Web-MENU-element.png">
 			</div>
 			<div class="menu-active menu-dropdown-item-active">
@@ -45,9 +49,9 @@
 	  	</div>
 	  	<div class="col-lg-3 col-md-3 col-sm-3 join-now">
 	  		<div class="">
-	  			<form class="join-now-inputbox" autocomplete="off">
-	  				<input type="text" name="email" placeholder="Enter Your Email">
-	  				<button class="join-button">
+	  			<form class="join-now-inputbox" autocomplete="off" tooltip="Submit your email to subscribe our site" placement="bottom" show-delay="50">
+	  				<input type="text" name="email" placeholder="Enter Your Email" >
+	  				<button class="join-button" type="button">
 	  					<img class="join-btn-img" src="assets/Rotten-vision-design/Desktop_version_elements/RV-Web-element_JOIN.png">
 	  				</button>
 	  			</form>

@@ -11,7 +11,14 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
 
 import { RoutesModule } from './modules/routes/routes.module';
 import { HomeComponent } from './components/home/home.component';
-import { DataService } from './services/data.service'
+import { DataService } from './services/data.service';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+//import {TooltipModule} from "ngx-tooltip";
+
+import { TooltipModule } from 'ng2-tooltip-directive';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -21,10 +28,13 @@ import { DataService } from './services/data.service'
     FooterComponent,
     BlogsComponent,
     ContactUsComponent,
-    HomeComponent
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    TooltipModule,
     RoutesModule
   ],
   exports: [ RouterModule ],

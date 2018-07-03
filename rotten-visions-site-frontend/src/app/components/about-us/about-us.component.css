@@ -19,5 +19,12 @@
 .bio-text>div>p, .bio-text>p{
 	color: #c7c7c7;
 	display: inline-block;
-	background-color: black;
+	background-color: rgba(0, 0, 0, 0.7);
+    font-family: 'Norwester';
+}
+
+@media screen and (max-width: 800px) {
+    .about-us-content {
+        text-align: center;
+    }
 }

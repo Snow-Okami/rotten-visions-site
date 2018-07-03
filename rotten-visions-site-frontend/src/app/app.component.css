@@ -45,11 +45,12 @@ header>.search-bar {
     transition: width 0.4s ease-in-out;
     outline: none;
     font-weight: bold;
+    font-size: 20px;
     color: #931928;
 }
 
 .search-input-box[type=text]:focus {
-    width: 125px;
+    width: 200px;
     border-radius: 4%;
 }
 
@@ -209,6 +210,10 @@ header>.search-bar {
     background-color: rgba(0,0,0,0);
     margin:0 0 0 5px;
     cursor: pointer;
+}
+
+.tooltip-class-custom {
+    color: red;
 }
 
 @media screen and (max-width: 576px) {
