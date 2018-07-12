@@ -26,4 +26,8 @@ export class AppComponent{
   	document.title = "Rotten Visions | " + event.currentMenu;
   }
 
+  openBlog() {
+    window.open("http://localhost:4000", "_blank");
+  }
+
 }

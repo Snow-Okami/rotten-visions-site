@@ -1,3 +1,4 @@
 #Ignore node modules
 rotten-visions-site-frontend/node_modules
+blog-admin/node_modules
 .DS_Store
