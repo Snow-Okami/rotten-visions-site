@@ -13,7 +13,15 @@
 	text-align: center;
 }
 
-.home-container>span {
+.home-container span {
+	display: inline-block;
+}
+
+.home-container span.site-name, span.site-seperator {
+	margin-right: 7px;
+}
+
+.home-container > span.site-name {
 	color: #931928;
 	font-size: 45px;
 }
