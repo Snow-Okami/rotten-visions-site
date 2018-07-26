@@ -5,9 +5,6 @@
     Norwester
     NovecentosansWideboldMacroman
 */
-.about-us-content {
-	padding: 10px;
-}
 
 .heading {
 	font-family: 'Nasalization';
@@ -23,7 +20,7 @@
     font-family: 'Norwester';
 }
 
-@media screen and (max-width: 800px) {
+@media (max-width: 800px) {
     .about-us-content {
         text-align: center;
     }
