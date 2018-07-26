@@ -5,10 +5,14 @@
 	bottom: 0;
 	height: auto;
 	width: 100%;
-	background: rgba(0, 0, 0, 0.8);
 }
 
 footer>div>img {
 	margin: 2px;
 	cursor: pointer;
+}
+
+.share-icon-cover {
+	text-align: right;
+	margin-right: 10px;
 }
