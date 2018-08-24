@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "rotten-visions-site-frontend": {
+    "socketio-app": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/rotten-visions-site-frontend",
+            "outputPath": "dist/socketio-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "rotten-visions-site-frontend:build"
+            "browserTarget": "socketio-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "rotten-visions-site-frontend:build:production"
+              "browserTarget": "socketio-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "rotten-visions-site-frontend:build"
+            "browserTarget": "socketio-app:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
         }
       }
     },
-    "rotten-visions-site-frontend-e2e": {
+    "socketio-app-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "rotten-visions-site-frontend:serve"
+            "devServerTarget": "socketio-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "rotten-visions-site-frontend:serve:production"
+              "devServerTarget": "socketio-app:serve:production"
             }
           }
         },
@@ -123,5 +123,5 @@
       }
     }
   },
-  "defaultProject": "rotten-visions-site-frontend"
+  "defaultProject": "socketio-app"
 }

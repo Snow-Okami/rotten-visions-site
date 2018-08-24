@@ -1,44 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule }  from "@angular/common/http";
 
 import { AppComponent } from './app.component';
-import { AboutUsComponent } from './components/about-us/about-us.component';
-import { ProjectsComponent } from './components/projects/projects.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { BlogsComponent } from './components/blogs/blogs.component';
-import { ContactUsComponent } from './components/contact-us/contact-us.component';
-
-import { RoutesModule } from './modules/routes/routes.module';
-import { HomeComponent } from './components/home/home.component';
-import { DataService } from './services/data.service';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-//import {TooltipModule} from "ngx-tooltip";
-
-import { TooltipModule } from 'ng2-tooltip-directive';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AboutUsComponent,
-    ProjectsComponent,
-    FooterComponent,
-    BlogsComponent,
-    ContactUsComponent,
-    HomeComponent,
-    PageNotFoundComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    TooltipModule,
-    RoutesModule
+    FormsModule,
+    HttpClientModule,
+    AppRoutingModule
   ],
-  exports: [ RouterModule ],
-  providers: [ DataService ],
-  bootstrap: [ AppComponent ]
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

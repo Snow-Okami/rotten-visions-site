@@ -1,0 +1,14 @@
+<div id="socketio-chat">
+  <div id="chat-window">
+    <ul id="output" class="list-container">
+      <li class="list-item" *ngFor="let o of msgarray">
+        <span class="item-handle">{{ o.handle }} : </span>
+        <span class="item-message">{{ o.message }}</span>
+      </li>
+      <li class="list-item" *ngIf="typing.status"><span>{{ typing.handle }} is typing... </span></li>
+    </ul>
+  </div>
+  <input type="text" [(ngModel)]="user.handle" placeholder="Handle" />
+  <input type="text" [(ngModel)]="user.message" (keydown)="onKey($event)" (focusout)="onFocusout($event)" placeholder="Message" />
+  <button (click)="send($event)">Send</button>
+</div>
