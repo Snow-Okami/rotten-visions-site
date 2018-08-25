@@ -16,7 +16,7 @@ export class MessageService {
   emit(type, params) {
     this.socket.emit(type, { url: this.baseUrl + '/message', options: { method: 'POST', data: params, headers: {
       'Content-Type':  'application/json',
-      'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGlzZWsxNDg2IiwiZW1haWwiOiJhYmhpc2VrQGNhcGl0YWxudW1iZXJzLmNvbSIsImNyZWF0ZWRBdCI6IjIwMTgtMDgtMjNUMDQ6NDU6MjEuNjkwWiIsImp3dFZhbGlkYXRlZEF0IjoiMjAxOC0wOC0yM1QwNDo0NToyMS42OTBaIiwiaWF0IjoxNTM0OTk5NTIyfQ.nWqwjCqrwL5aGRLc-r-8znuuqQmXc5z76wtVX65OmWo'
+      'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGlzZWsxNDg2IiwiZW1haWwiOiJhYmhpc2VrQGNhcGl0YWxudW1iZXJzLmNvbSIsImNyZWF0ZWRBdCI6IjIwMTgtMDgtMjVUMTc6NTE6NTkuMDEyWiIsImp3dFZhbGlkYXRlZEF0IjoiMjAxOC0wOC0yNVQxNzo1MTo1OS4wMTJaIiwiaWF0IjoxNTM1MjE5NTIxfQ.2jRRPG7SDjo8sE8NH9lar54Rk77S29NO_SUxPN55R3k'
     }}});
   }
 

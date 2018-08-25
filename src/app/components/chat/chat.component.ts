@@ -65,6 +65,8 @@ export class ChatComponent implements OnInit {
     this.socket.on('chat', this.onChat);
     this.socket.on('started typing', this.onTypingStart);
     this.socket.on('completed typing', this.onTypingStop);
+
+    this.socket.emit('new connection', 'abhisek507');
   }
 
   onKey(event: KeyboardEvent) {
