@@ -36,32 +36,12 @@ export class ChatComponent implements OnInit {
     to: 'abhisek507'
   };
 
-  /**
-   * @description will be used for 3rd way
-   */
-  // constructor(private socket: Socket, private http: HttpService) {
-  // }
-
-  /**
-   * @description is in use for 2nd way
-   */
   constructor(private socket: Socket, private SocketIO: MessageService) {
   }
 
   ngOnInit() {
     that = this;
-    /**
-     * @description will be used for 3rd way
-     */
-    /* this.socket.on('chat', this.onchat);
-    this.socket.on('started typing', this.ontypingstart);
-    this.socket.on('completed typing', this.ontypingstop);
-    */
 
-    /**
-     * @description will be used for 2nd way
-     */
-    // this.SocketIO.init();
     this.socket.on('chat', this.onChat);
     this.socket.on('started typing', this.onTypingStart);
     this.socket.on('completed typing', this.onTypingStop);
@@ -77,25 +57,6 @@ export class ChatComponent implements OnInit {
     this.socket.emit('completed typing', this.user.handle);
   }
 
-  /**
-   * @description will be used for 3rd way
-   * @param event 
-   */
-  /* send(event: MouseEvent) {
-    this.msgarray.push(Object.assign({}, this.user));
-    const chat = Object.assign({}, this.user);
-    this.http.sendMessage(Object.assign(this.message, {text: chat.message, to: chat.handle}))
-    .subscribe(post => {
-      if(post.error) { return; }
-      this.socket.emit('chat', chat);
-    });
-    this.user.message = '';
-  } */
-
-  /**
-   * @description will be used for 2nd way
-   * @param event 
-   */
   send(event: MouseEvent) {
     this.msgarray.push(Object.assign({}, this.user));
     const chat = Object.assign({}, this.user);
@@ -103,10 +64,6 @@ export class ChatComponent implements OnInit {
     this.user.message = '';
   }
 
-  /**
-   * @description will be used for 3rd way
-   * @param event 
-   */
   /**
    * callback for chat send
    * @param data 
@@ -125,9 +82,6 @@ export class ChatComponent implements OnInit {
     that.typing.status = false;
   } */
 
-  /**
-   * @description will be used for 2nd way
-   */
   onChat(data) {
     that.msgarray.push(Object.assign({}, data));
   }
