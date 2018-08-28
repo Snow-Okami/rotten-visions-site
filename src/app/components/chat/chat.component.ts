@@ -46,6 +46,10 @@ export class ChatComponent implements OnInit {
     this.socket.on('started typing', this.onTypingStart);
     this.socket.on('completed typing', this.onTypingStop);
 
+    /**
+     * @default username is the loggedin username
+     * @default group will have all the available group chat id for this user
+     */
     let data = {
       username: 'abhisek507',
       group: ['5b7f7dc326a1ea051cf57b32']
