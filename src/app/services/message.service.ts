@@ -5,9 +5,7 @@ import * as _ from "lodash";
 
 let that = this;
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class MessageService {
   private baseUrl = 'http://localhost:3333/api';
 
