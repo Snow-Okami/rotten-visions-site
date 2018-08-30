@@ -1,0 +1,16 @@
+<div class="dashboard">
+  <div class="form-container">
+    <div class="row">
+      <input type="text" [(ngModel)]="auth.user" />
+    </div>
+    <div class="row">
+      <input type="password" [(ngModel)]="auth.password" />
+    </div>
+    <div class="row">
+      <button class="form-submit" (click)="login()"> Login </button>
+    </div>
+    <div class="row">
+      <button class="form-submit" (click)="send()"> Send </button>
+    </div>
+  </div>
+</div>
