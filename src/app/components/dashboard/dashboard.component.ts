@@ -16,11 +16,6 @@ export class DashboardComponent implements OnInit {
     emaillogin: false
   };
 
-  message = {
-    text: "What's up! I'm from dashboard",
-    to: "abhisek507"
-  };
-
   headers = {};
   config = {};
 
@@ -45,11 +40,6 @@ export class DashboardComponent implements OnInit {
       this.http.setCookie('r-v-user', this.auth['user'], 1);
       this.router.navigate(['/chat']);
     });
-  }
-
-  send() {
-    this.http.sendMessage(this.message)
-    .subscribe(message => console.log(message));
   }
 
 }
