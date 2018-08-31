@@ -8,13 +8,15 @@ let that = this;
 @Injectable({ providedIn: 'root' })
 export class MessageService {
   private baseUrl = 'http://localhost:3333/api';
+  private token;
 
   constructor(private socket: Socket) { }
 
   emit(type, params) {
+    this.token = this.getCookie('r-v-token').replace('Bearer ', '');
     this.socket.emit(type, { url: this.baseUrl + '/message', options: { method: 'POST', data: params, headers: {
       'Content-Type':  'application/json',
-      'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGlzZWsxNDg2IiwiZW1haWwiOiJhYmhpc2VrQGNhcGl0YWxudW1iZXJzLmNvbSIsImNyZWF0ZWRBdCI6IjIwMTgtMDgtMjNUMDQ6NDU6MjEuNjkwWiIsImp3dFZhbGlkYXRlZEF0IjoiMjAxOC0wOC0yOFQwOToyNDowNi44NzZaIiwiaWF0IjoxNTM1NDQ4MjQ3fQ.qWJ7W7wYgP8HxDeBOr2nZz2-sLUKomv2uJyTyEb-zjo'
+      'Authorization': this.token
     }}});
   }
 
@@ -26,5 +28,21 @@ export class MessageService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
+  }
+
+  getCookie(cname) {
+    var name = cname + '=';
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return '';
   }
 }

@@ -65,7 +65,7 @@ export class ChatComponent implements OnInit {
   send(event: MouseEvent) {
     this.msgarray.push(Object.assign({}, this.user));
     const chat = Object.assign({}, this.user);
-    this.SocketIO.emit('chat', Object.assign(this.message, {text: chat.message, to: chat.handle}))
+    this.SocketIO.emit('chat', Object.assign(this.message, {text: chat.message, from: chat.handle, to: chat.recepient}))
     this.user.message = '';
   }
 
