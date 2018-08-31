@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import * as _ from "lodash"
 
 @Injectable({ providedIn: 'root' })
@@ -23,8 +23,10 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  login(data): Observable<any> {
+  login(data): Observable<HttpResponse<any>> {
     let url = this.baseUrl + '/auth/login';
+
+    // return this.http.post<any>(url, data, { observe: 'response' });
     return this.http.post<any>(url, data, this.normalHttpOptions).pipe(
       tap(message => message),
       catchError(this.handleError('login', {}))

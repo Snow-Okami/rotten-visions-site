@@ -18,7 +18,10 @@ export class DashboardComponent implements OnInit {
   message = {
     text: "What's up! I'm from dashboard",
     to: "abhisek507"
-  }
+  };
+
+  headers = {};
+  config = {};
 
   constructor(private http: HttpService) { }
 
@@ -27,7 +30,18 @@ export class DashboardComponent implements OnInit {
 
   login() {
     this.http.login(this.auth)
-    .subscribe(message => console.log(message));
+    .subscribe(resp => {
+      /* const keys = resp.headers.keys();
+      this.headers = keys.map(key =>
+        `${key}: ${resp.headers.get(key)}`);
+
+      // access the body directly, which is typed as `Config`.
+      this.config = { ... resp.body };
+
+      console.log(resp, this.headers, this.config); */
+
+      console.log(resp);
+    });
   }
 
   send() {
