@@ -47,11 +47,11 @@ export class ChatComponent implements OnInit {
      * @default username is the loggedin username
      * @default group will have all the available group chat id for this user
      */
-    let data = {
-      username: this.user.handle,
-      group: ['5b7f7dc326a1ea051cf57b32']
-    };
-    this.socket.emit('new connection', data);
+    this.http.getChats(this.user.handle)
+    .subscribe(resp => {
+      let data = { username: this.user.handle, group: resp['list'], chats: resp['modifiedList'] };
+      this.socket.emit('new connection', data);
+    });
   }
 
   onKey(event: KeyboardEvent) {

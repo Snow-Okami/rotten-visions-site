@@ -41,6 +41,21 @@ export class HttpService {
     );
   }
 
+  getChats(username): Observable<HttpResponse<any>> {
+    let url = this.baseUrl + '/user/' + username + '/chats';
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': this.getCookie('r-v-token').replace('Bearer ', '')
+      })
+    };
+
+    return this.http.get<any>(url, this.httpOptions).pipe(
+      tap(message => message),
+      catchError(this.handleError('get chats', {}))
+    );
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // TODO: better job of transforming error for user consumption
