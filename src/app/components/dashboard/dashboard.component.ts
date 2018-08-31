@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 
 @Component({
@@ -23,7 +24,7 @@ export class DashboardComponent implements OnInit {
   headers = {};
   config = {};
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -40,36 +41,15 @@ export class DashboardComponent implements OnInit {
 
       console.log(resp, this.headers, this.config); */
 
-      this.setCookie('r-v-token', resp['token'], 1);
+      this.http.setCookie('r-v-token', resp['token'], 1);
+      this.http.setCookie('r-v-user', this.auth['user'], 1);
+      this.router.navigate(['/chat']);
     });
   }
 
   send() {
     this.http.sendMessage(this.message)
     .subscribe(message => console.log(message));
-  }
-
-  setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = 'expires=' + d.toUTCString();
-    document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
-  }
-
-  getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
   }
 
 }

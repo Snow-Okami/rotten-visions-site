@@ -2,14 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { User } from '../../classes/user';
 
-/**
- * @description will be used for 3rd way
- */
-// import { HttpService } from '../../services/http.service';
-
-/**
- * @description is in use for 2nd way
- */
+import { HttpService } from '../../services/http.service';
 import { MessageService } from '../../services/message.service';
 
 let that;
@@ -18,13 +11,14 @@ let that;
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css'],
-  providers: [MessageService]
+  providers: [HttpService, MessageService]
 })
 export class ChatComponent implements OnInit {
 
   msgarray: any[] = [];
   user: User = {
     handle: '',
+    recepient: '',
     message: ''
   };
   typing = {
@@ -36,11 +30,14 @@ export class ChatComponent implements OnInit {
     to: 'abhisek507'
   };
 
-  constructor(private socket: Socket, private SocketIO: MessageService) {
+  constructor(private socket: Socket, private http: HttpService, private SocketIO: MessageService) {
   }
 
   ngOnInit() {
     that = this;
+
+    this.typing.handle = this.http.getCookie('r-v-user');
+    this.user.handle = that.typing.handle;
 
     this.socket.on('chat', this.onChat);
     this.socket.on('started typing', this.onTypingStart);
@@ -51,7 +48,7 @@ export class ChatComponent implements OnInit {
      * @default group will have all the available group chat id for this user
      */
     let data = {
-      username: 'abhisek507',
+      username: this.user.handle,
       group: ['5b7f7dc326a1ea051cf57b32']
     };
     this.socket.emit('new connection', data);

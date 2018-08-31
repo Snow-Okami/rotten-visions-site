@@ -9,6 +9,7 @@
     </ul>
   </div>
   <input type="text" [(ngModel)]="user.handle" placeholder="Handle" />
+  <input type="text" [(ngModel)]="user.recepient" placeholder="Recepient" />
   <input type="text" [(ngModel)]="user.message" (keydown)="onKey($event)" (focusout)="onFocusout($event)" placeholder="Message" />
   <button (click)="send($event)">Send</button>
 </div>
