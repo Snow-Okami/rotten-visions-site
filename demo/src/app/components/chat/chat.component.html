@@ -23,7 +23,7 @@
               <p class="recent-msg-text">Good morning Abhisek!</p>
             </div>
           </li>
-          <li class="row">
+          <li class="row" (click)="user.fname='Subhojit';user.lname='Mondal';msgview=true">
             <div class="profile-cover col">
               <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
             </div>
@@ -32,7 +32,7 @@
               <p class="recent-msg-text">Good morning Abhisek!</p>
             </div>
           </li>
-          <li class="row">
+          <li class="row" (click)="user.fname='Rajat';user.lname='Sasmal';msgview=true">
             <div class="profile-cover col">
               <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
             </div>
@@ -50,9 +50,7 @@
       </div>
       <div class="message-list" *ngIf="!msgview">
         <ul class="all-chats no-user">
-          <li>
-
-          </li>
+          <li class="no-user-text">No user choosen!</li>
         </ul>
       </div>
       <div class="message-list" *ngIf="msgview">

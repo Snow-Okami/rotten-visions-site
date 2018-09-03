@@ -45,6 +45,7 @@ p {
   min-height: 400px;
   max-height: 400px;
   overflow-y: auto;
+  position: relative;
 }
 .message-list .all-chats {
   background: #f1f1f1;
@@ -82,4 +83,10 @@ p {
 }
 .message .header.extrapadding {
   padding-top: 35px;
+}
+.no-user-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
 }
