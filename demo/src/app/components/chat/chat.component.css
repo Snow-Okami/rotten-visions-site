@@ -49,6 +49,10 @@ p {
 .message-list .all-chats {
   background: #f1f1f1;
 }
+.message-list .all-chats.no-user {
+  min-height: 475px;
+  max-height: 475px;
+}
 .user-img {
   display: block;
 }
@@ -72,4 +76,10 @@ p {
   min-height: 69px;
   padding: 1px 15px;
   outline: none;
+}
+.message .header:not(.extrapadding) {
+  cursor: pointer;
+}
+.message .header.extrapadding {
+  padding-top: 35px;
 }
