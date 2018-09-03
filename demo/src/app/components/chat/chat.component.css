@@ -1,0 +1,60 @@
+.chat-window {
+  border: 1px solid #0f9d58;
+  width: fit-content;
+  margin: auto;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.row {
+  position: relative;
+  padding: 5px 10px;
+  padding-right: 25px;
+  cursor: pointer;
+}
+.row:hover {
+  background: #f1f1f1;
+}
+.col {
+  display: inline-block;
+  vertical-align: top;
+}
+h3, h4 {
+  margin: 0;
+  font-weight: 400;
+}
+p {
+  margin: 0;
+}
+.header {
+  padding: 1em;
+  background: #0f9d58;
+  color: #fff;
+}
+.message-list {
+  min-height: 400px;
+  min-width: 500px;
+  background: #f1f1f1;
+}
+.user-list {
+  max-width: 350px;
+  border-right: 1px solid #bdbdbd;
+}
+.all-chats {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  min-height: 400px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.user-img {
+  display: block;
+}
+.recent-msg {
+  padding: 12px 0;
+}
+.recent-msg-text {
+  padding: 1px 0;
+  color: #6d6d6d;
+  font-size: 14px;
+}

@@ -28,12 +28,16 @@ export class LoginComponent implements OnInit {
 
     this.http.login(this.auth)
     .subscribe(resp => {
-      /**
-     * @param store.setCookie(name, value, duration in days)
-     */
-      this.store.setCookie('r-v-token', this.auth['password'], 1);
-      this.store.setCookie('r-v-user', this.auth['user'], 1);
-      this.router.navigate(['/chat']);
+      if(resp['message']['type'] != 'error') {
+        /**
+         * @param store.setCookie(name, value, duration in days)
+         */
+        this.store.setCookie('r-v-token', this.auth['password'], 1);
+        this.store.setCookie('r-v-user', this.auth['user'], 1);
+        this.router.navigate(['/chat']);
+      } else {
+        alert(resp['message']['text']);
+      }
     });
   }
 
