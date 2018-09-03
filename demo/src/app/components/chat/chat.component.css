@@ -31,9 +31,8 @@ p {
   color: #fff;
 }
 .message-list {
-  min-height: 400px;
+  /* min-height: 400px; */
   min-width: 500px;
-  background: #f1f1f1;
 }
 .user-list {
   max-width: 350px;
@@ -47,14 +46,30 @@ p {
   max-height: 400px;
   overflow-y: auto;
 }
+.message-list .all-chats {
+  background: #f1f1f1;
+}
 .user-img {
   display: block;
 }
 .recent-msg {
   padding: 12px 0;
 }
+.search .recent-msg {
+  padding: 22px 0;
+}
 .recent-msg-text {
   padding: 1px 0;
   color: #6d6d6d;
   font-size: 14px;
+}
+.search {
+  border-bottom: 1px solid #bdbdbd;
+}
+.chat-input {
+  width: -webkit-fill-available;
+  border: 2px solid #bdbdbd;
+  min-height: 69px;
+  padding: 1px 15px;
+  outline: none;
 }
