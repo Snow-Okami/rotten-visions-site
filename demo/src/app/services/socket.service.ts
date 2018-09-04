@@ -17,10 +17,5 @@ export class SocketService {
       token: this.store.getCookie('r-v-token')
     }
     this.socket.emit('login', auth);
-    // this.http.getChats(username)
-    // .subscribe(resp => {
-      // let data = { username: username, group: resp['list'], chats: resp['modifiedList'] };
-    //   console.log(data);
-    // });
   }
 }
