@@ -12,12 +12,15 @@ export class SocketService {
   constructor(private socket: Socket, private store: StoreService, private http: HttpService) { }
 
   login() {
-    let username = this.store.getCookie('r-v-user');
-    this.http.getChats(username)
-    .subscribe(resp => {
-      let data = { username: username, group: resp['list'], chats: resp['modifiedList'] };
-      this.socket.emit('login', 'Hi! there.');
-      console.log(data);
-    });
+    let auth = {
+      username: this.store.getCookie('r-v-user'),
+      token: this.store.getCookie('r-v-token')
+    }
+    this.socket.emit('login', auth);
+    // this.http.getChats(username)
+    // .subscribe(resp => {
+      // let data = { username: username, group: resp['list'], chats: resp['modifiedList'] };
+    //   console.log(data);
+    // });
   }
 }
