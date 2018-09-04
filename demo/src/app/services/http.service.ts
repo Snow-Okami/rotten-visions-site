@@ -3,13 +3,15 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
+import { StoreService } from './store.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
   private apiurl = 'http://localhost:3333/api';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private store: StoreService) { }
 
   login(data): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/auth/login';
@@ -17,6 +19,21 @@ export class HttpService {
     return this.http.post<any>(url, data).pipe(
       tap(message => message),
       catchError(this.handleError('login', {}))
+    );
+  }
+
+  getChats(username): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/user/' + username + '/chats';
+    let http = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': this.store.getCookie('r-v-token')
+      })
+    };
+
+    return this.http.get<any>(url, http).pipe(
+      tap(message => message),
+      catchError(this.handleError('get chats', {}))
     );
   }
 
