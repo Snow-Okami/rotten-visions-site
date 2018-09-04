@@ -24,8 +24,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    // console.log(this.auth);
-
     this.http.login(this.auth)
     .subscribe(resp => {
       if(resp['message']['type'] != 'error') {

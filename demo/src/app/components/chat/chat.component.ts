@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
+
+import { StoreService } from '../../services/store.service';
+import { HttpService } from '../../services/http.service';
+import { SocketService } from '../../services/socket.service';
+
+let that;
 
 @Component({
   selector: 'app-chat',
@@ -12,9 +19,12 @@ export class ChatComponent implements OnInit {
     lname: ''
   };
 
-  constructor() { }
+  constructor(private socket: Socket, private store: StoreService, private http: HttpService, private socketio: SocketService) { }
 
   ngOnInit() {
+    that = this;
+
+    this.socket.emit('login', 'Hello!');
   }
 
 }
