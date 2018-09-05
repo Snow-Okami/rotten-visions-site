@@ -13,12 +13,38 @@ export class HttpService {
 
   constructor(private http: HttpClient, private store: StoreService) { }
 
+  private getHttp() {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': this.store.getCookie('r-v-token')
+      })
+    };
+  }
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      Object.assign(result, {'message': error.error})
+      return of(result as T);
+    };
+  }
+
   login(data): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/auth/login';
 
     return this.http.post<any>(url, data).pipe(
       tap(message => message),
       catchError(this.handleError('login', {}))
+    );
+  }
+
+  getUser(username): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/user/' + username;
+    let http = this.getHttp();
+
+    return this.http.get<any>(url, http).pipe(
+      tap(message => message),
+      catchError(this.handleError('get user', {}))
     );
   }
 
@@ -35,12 +61,5 @@ export class HttpService {
       tap(message => message),
       catchError(this.handleError('get chats', {}))
     );
-  }
-
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      Object.assign(result, {'message': error.error})
-      return of(result as T);
-    };
   }
 }

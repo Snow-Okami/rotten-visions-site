@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 
-// import { StoreService } from '../../services/store.service';
-// import { HttpService } from '../../services/http.service';
+import { StoreService } from '../../services/store.service';
+import { HttpService } from '../../services/http.service';
 import { SocketService } from '../../services/socket.service';
+
+import { User } from '../../interfaces/user';
 
 let that;
 
@@ -14,16 +16,30 @@ let that;
 })
 export class ChatComponent implements OnInit {
   public msgview = false;
-  public user = {
+  public user: User = {
     fname: '',
-    lname: ''
+    lname: '',
+    username: '',
+    filename: '',
+    email: '',
+    status: 'online'
   };
 
-  constructor(private socket: Socket, private socketio: SocketService) { }
+  constructor(private socket: Socket, private http: HttpService, private store: StoreService, private socketio: SocketService) { }
 
   ngOnInit() {
     that = this;
-    this.socketio.login();
+    let username = this.store.getCookie('r-v-user');
+    
+    this.http.getUser(username)
+    .subscribe(resp => {
+      if(resp['message']['type'] != 'error') {
+        this.user = resp['data'];
+        this.socketio.login();
+      } else {
+        alert(resp['message']['text']);
+      }
+    });
   }
 
 }
