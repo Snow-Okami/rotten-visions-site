@@ -40,9 +40,7 @@ export class HttpService {
 
   getUser(username): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/user/' + username;
-    let http = this.getHttp();
-
-    return this.http.get<any>(url, http).pipe(
+    return this.http.get<any>(url, this.getHttp()).pipe(
       tap(message => message),
       catchError(this.handleError('get user', {}))
     );
@@ -50,14 +48,7 @@ export class HttpService {
 
   getChats(username): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/user/' + username + '/chats';
-    let http = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': this.store.getCookie('r-v-token')
-      })
-    };
-
-    return this.http.get<any>(url, http).pipe(
+    return this.http.get<any>(url, this.getHttp()).pipe(
       tap(message => message),
       catchError(this.handleError('get chats', {}))
     );

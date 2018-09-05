@@ -24,6 +24,11 @@ export class ChatComponent implements OnInit {
     email: '',
     status: 'online'
   };
+  public chatList = [];
+  public recepient = {
+    fname: '',
+    lname: ''
+  };
 
   constructor(private socket: Socket, private http: HttpService, private store: StoreService, private socketio: SocketService) { }
 
@@ -36,6 +41,15 @@ export class ChatComponent implements OnInit {
       if(resp['message']['type'] != 'error') {
         this.user = resp['data'];
         this.socketio.login();
+
+        this.http.getChats(username)
+        .subscribe(r => {
+          if(r['message']['type'] != 'error') {
+            this.chatList = r['data']['chatList'];
+          } else {
+            alert(r['message']['text']);
+          }
+        }) 
       } else {
         alert(resp['message']['text']);
       }

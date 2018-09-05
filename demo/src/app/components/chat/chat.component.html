@@ -14,30 +14,12 @@
           </div>
         </div>
         <ul class="all-chats">
-          <li class="row" (click)="user.fname='Alfred';user.lname='Burns';msgview=true">
+          <li class="row" *ngFor="let o of chatList" (click)="recepient.fname=o.fname;recepient.lname=o.lname;msgview=true">
             <div class="profile-cover col">
               <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
             </div>
             <div class="recent-msg col">
-              <h4>Alfred Burns</h4>
-              <p class="recent-msg-text">Good morning Abhisek!</p>
-            </div>
-          </li>
-          <li class="row" (click)="user.fname='Subhojit';user.lname='Mondal';msgview=true">
-            <div class="profile-cover col">
-              <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
-            </div>
-            <div class="recent-msg col">
-              <h4>Subhojit Mondal</h4>
-              <p class="recent-msg-text">Good morning Abhisek!</p>
-            </div>
-          </li>
-          <li class="row" (click)="user.fname='Rajat';user.lname='Sasmal';msgview=true">
-            <div class="profile-cover col">
-              <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
-            </div>
-            <div class="recent-msg col">
-              <h4>Rajat Sasmal</h4>
+              <h4>{{o.fname}} {{o.lname}}</h4>
               <p class="recent-msg-text">Good morning Abhisek!</p>
             </div>
           </li>
@@ -46,7 +28,7 @@
     </div>
     <div class="message col">
       <div class="header" (click)="msgview = false" [ngClass]="{'extrapadding': !msgview}">
-        <h3 *ngIf="msgview">{{user.fname}} {{user.lname}}</h3>
+        <h3 *ngIf="msgview">{{recepient.fname}} {{recepient.lname}}</h3>
       </div>
       <div class="message-list" *ngIf="!msgview">
         <ul class="all-chats no-user">
