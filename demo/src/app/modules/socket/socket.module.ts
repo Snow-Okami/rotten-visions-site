@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { ChatComponent } from '../../components/chat/chat.component';
+import { TrimwordPipe } from '../../pipes/trimword.pipe';
 
 export const routes: Routes = [
   { path: '', component: ChatComponent },
@@ -16,7 +17,8 @@ export const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    ChatComponent
+    ChatComponent,
+    TrimwordPipe
   ]
 })
 export class SocketModule { }

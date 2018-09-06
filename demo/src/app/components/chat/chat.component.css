@@ -5,11 +5,14 @@
   border-radius: 5px;
   overflow: hidden;
 }
-.row {
+.row, .text-message {
   position: relative;
   padding: 5px 10px;
   padding-right: 25px;
   cursor: pointer;
+}
+.row.selected {
+  background: #f1f1f1;
 }
 .row:hover {
   background: #f1f1f1;
@@ -90,3 +93,25 @@ p {
   left: 50%;
   transform: translate(-50%);
 }
+
+/*
+ * Styles for messages in chats
+ */
+  .text-message-list {
+    margin: 10px;
+    height: 100%;
+    overflow: hidden;
+  }
+  .text-message {
+    padding: 10px;
+    border: 1px solid #cfd8dc;
+    background: #cfd8dc;
+    width: fit-content;
+    border-radius: 5px;
+    float: right;
+  }
+  .text-message.left {
+    border: 1px solid #fff;
+    background: #fff;
+    float: left;
+  }

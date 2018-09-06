@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
+import * as _ from 'lodash';
 
 import { StoreService } from '../../services/store.service';
 import { HttpService } from '../../services/http.service';
@@ -25,35 +26,60 @@ export class ChatComponent implements OnInit {
     status: 'online'
   };
   public chatList = [];
-  public recepient = {
+  public recipient = {
     fname: '',
-    lname: ''
+    lname: '',
+    username: ''
   };
+  public messages = [];
 
   constructor(private socket: Socket, private http: HttpService, private store: StoreService, private socketio: SocketService) { }
 
   ngOnInit() {
     that = this;
     let username = this.store.getCookie('r-v-user');
-    
+
     this.http.getUser(username)
     .subscribe(resp => {
       if(resp['message']['type'] != 'error') {
-        this.user = resp['data'];
+        this.user = resp['data']['user'];
+        this.chatList = resp['data']['chatList'];
         this.socketio.login();
-
-        this.http.getChats(username)
-        .subscribe(r => {
-          if(r['message']['type'] != 'error') {
-            this.chatList = r['data']['chatList'];
-          } else {
-            alert(r['message']['text']);
-          }
-        }) 
       } else {
         alert(resp['message']['text']);
       }
     });
+  }
+
+  closeMessageView() {
+    this.msgview = false;
+    _.forEach(this.chatList, (li) => {
+      li.selected = false;
+    });
+  }
+
+  getMessage(o) {
+    if(o.selected === true) { return; }
+    if(!o.messages.length) {
+      this.http.getMessages(o.chatId)
+      .subscribe(resp => {
+        if(resp['message']['type'] != 'error') {
+          o.messages = _.concat(o.messages, resp['data']);
+          this.messages = o.messages;
+        }
+      });
+    }
+    this.recipient = {
+      fname: o.fname,
+      lname: o.lname,
+      username: o.member
+    };
+    this.messages = o.messages;
+    _.forEach(this.chatList, (li) => {
+      li.selected = false;
+    });
+    o.selected = true;
+    this.msgview = true;
   }
 
 }
