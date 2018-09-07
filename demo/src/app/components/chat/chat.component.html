@@ -42,9 +42,14 @@
               {{m.text}}
             </div>
           </li>
+          <li *ngIf="showTyping.status" [ngClass]="{'left': true, 'text-message-list': true}">
+            <div [ngClass]="{'left': true, 'text-message': true, 'text-typing': true}">
+              {{showTyping.text}}
+            </div>
+          </li>
         </ul>
         <div class="input">
-          <input type="text" placeholder="Send a message" class="chat-input" />
+          <input type="text" [(ngModel)]="text" (keydown)="onKey($event)" (keyup)="onEnter($event)" (focusout)="onFocusout($event)" placeholder="Send a message" class="chat-input" />
         </div>
       </div>
     </div>

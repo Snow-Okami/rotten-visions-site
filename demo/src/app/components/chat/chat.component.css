@@ -35,7 +35,8 @@ p {
 }
 .message-list {
   /* min-height: 400px; */
-  min-width: 500px;
+  /* min-width: 500px; */
+  min-width: 410px;
 }
 .user-list {
   max-width: 350px;
@@ -114,4 +115,9 @@ p {
     border: 1px solid #fff;
     background: #fff;
     float: left;
+  }
+  .text-message.left.text-typing {
+    background: #303030;
+    border: 1px solid #303030;
+    color: #fff;
   }

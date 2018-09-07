@@ -15,7 +15,26 @@ export class SocketService {
     let auth = {
       username: this.store.getCookie('r-v-user'),
       token: this.store.getCookie('r-v-token')
-    }
+    };
     this.socket.emit('login', auth);
   }
+
+  typing(recipient) {
+    let auth = Object.assign(recipient, {token: this.store.getCookie('r-v-token')});
+    this.socket.emit('typing', auth);
+  }
+
+  stoppedTyping(recipient) {
+    let auth = Object.assign(recipient, {token: this.store.getCookie('r-v-token')});
+    this.socket.emit('stopped typing', auth);
+  }
+
+  sendMessage(recipient) {
+    let auth = Object.assign(recipient, {
+      token: this.store.getCookie('r-v-token'),
+      createdBy: this.store.getCookie('r-v-user')
+    });
+    if(recipient.type === 'private') { this.socket.emit('private message', auth); }
+  }
+
 }
