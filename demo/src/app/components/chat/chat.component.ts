@@ -120,6 +120,14 @@ export class ChatComponent implements OnInit {
     });
     this.text = '';
     this.socketio.stoppedTyping(this.recipient);
+
+    /**
+     * @description : auto scroll to end event.
+     */
+    setTimeout(() => {
+      let item = document.getElementById('bottom-element');
+      item.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }, 500);
   }
 
   onTyping(text) {

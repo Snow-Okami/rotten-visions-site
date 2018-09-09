@@ -62,10 +62,10 @@ p {
   display: block;
 }
 .recent-msg {
-  padding: 12px 0;
+  padding: 12px 0 12px 70px;
 }
 .search .recent-msg {
-  padding: 22px 0;
+  padding: 22px 0 22px 40px;
 }
 .recent-msg-text {
   padding: 1px 0;
@@ -94,6 +94,15 @@ p {
   left: 50%;
   transform: translate(-50%);
 }
+
+/*
+ * Icon Image Alignment Fixed
+ */
+  .img-col {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
 /*
  * Styles for messages in chats

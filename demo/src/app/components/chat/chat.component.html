@@ -6,7 +6,7 @@
       </div>
       <div class="user-list">
         <div class="search row">
-          <div class="col">
+          <div class="col img-col">
             <img src="http://127.0.0.1:3333/upload/avatar/add-user.png" alt="user" class="user-img" />
           </div>
           <div class="recent-msg col">
@@ -15,7 +15,7 @@
         </div>
         <ul class="all-chats">
           <li class="row" *ngFor="let o of chatList" (click)="getMessage(o)" [ngClass]="{'selected': o.selected}">
-            <div class="profile-cover col">
+            <div class="img-col col">
               <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
             </div>
             <div class="recent-msg col">
@@ -47,6 +47,7 @@
               {{showTyping.text}}
             </div>
           </li>
+          <li [ngClass]="{'left': true, 'text-message-list': true}" id="bottom-element"></li>
         </ul>
         <div class="input">
           <input type="text" [(ngModel)]="text" (keydown)="onKey($event)" (keyup)="onEnter($event)" (focusout)="onFocusout($event)" placeholder="Send a message" class="chat-input" />
