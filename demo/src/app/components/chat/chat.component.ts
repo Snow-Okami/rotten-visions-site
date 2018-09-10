@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import * as _ from 'lodash';
 
@@ -15,7 +15,7 @@ let that;
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
   public msgview = false;
   public user: User = {
     fname: '',
@@ -39,7 +39,10 @@ export class ChatComponent implements OnInit {
     text: '',
     status: false,
     actualText: false
-  }
+  };
+  private bottomItem;
+  private chatPos = {};
+  private topTextPos = {};
 
   constructor(private socket: Socket, private http: HttpService, private store: StoreService, private socketio: SocketService) { }
 
@@ -62,21 +65,42 @@ export class ChatComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {}
+
+  ngAfterViewChecked() {
+    this.bottomItem = document.getElementById('bottom-element');
+    let item = document.getElementsByClassName('all-chats');
+    if(item.length > 0) {
+      this.chatPos = item[1].getBoundingClientRect();
+    }
+    item = document.getElementsByClassName('text-message-list');
+    if(item.length > 0) {
+      this.topTextPos = item[0].getBoundingClientRect();
+    }
+  }
+
   closeMessageView() {
     this.msgview = false;
-    _.forEach(this.chatList, (li) => {
-      li.selected = false;
-    });
+    let li = _.find(this.chatList, 'selected');
+    li.selected = false;
+  }
+
+  smoothScroll(type) {
+    /**
+     * @description : auto scroll to end event.
+     */
+    setTimeout(() => {
+      this.bottomItem.scrollIntoView({ behavior: type, block: 'end' });
+    }, 500);
   }
 
   getMessage(o) {
     if(o.selected === true) { return; }
     if(!o.messages.length || o.mcache) {
-      this.http.getMessages(o.chatId)
+      this.http.getMessages(o.chatId, o.messages.length)
       .subscribe(resp => {
         if(resp['message']['type'] != 'error') {
-          if(o.mcache) { o.messages = resp['data']; }
-          else { o.messages = _.concat(o.messages, resp['data']); }
+          o.messages = _.concat(resp['data'], o.messages);
           this.messages = o.messages;
           o.mcache = false;
         }
@@ -90,11 +114,15 @@ export class ChatComponent implements OnInit {
       chatId: o.chatId
     };
     this.messages = o.messages;
-    _.forEach(this.chatList, (li) => {
-      li.selected = false;
-    });
+    let li = _.find(this.chatList, 'selected');
+    if(li != undefined) { li.selected = false; }
     o.selected = true;
     this.msgview = true;
+    this.smoothScroll('instant');
+  }
+
+  loadMoreMessage(event: any) {
+    console.log('scroll detected...');
   }
 
   onKey(event: KeyboardEvent) {
@@ -120,19 +148,13 @@ export class ChatComponent implements OnInit {
     });
     this.text = '';
     this.socketio.stoppedTyping(this.recipient);
-
-    /**
-     * @description : auto scroll to end event.
-     */
-    setTimeout(() => {
-      let item = document.getElementById('bottom-element');
-      item.scrollIntoView({ behavior: 'smooth', block: 'end' });
-    }, 500);
+    this.smoothScroll('smooth');
   }
 
   onTyping(text) {
     that.showTyping.text = text;
     that.showTyping.status = true;
+    if(this.msgview) { that.smoothScroll('instant'); }
   }
 
   onFocusout(event: any) {
@@ -148,6 +170,7 @@ export class ChatComponent implements OnInit {
     let recipient = _.find(that.chatList, ['member', data.createdBy]);
     recipient.lastText = data.text;
     recipient.messages.push(data);
+    if(this.msgview) { that.smoothScroll('smooth'); }
   }
 
 }

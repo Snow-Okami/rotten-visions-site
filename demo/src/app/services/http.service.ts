@@ -54,8 +54,8 @@ export class HttpService {
     );
   }
 
-  getMessages(chatId): Observable<HttpResponse<any>> {
-    let url = this.apiurl + '/message/' + chatId;
+  getMessages(chatId, skip): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/message/' + chatId + '?skip=' + skip;
     return this.http.get<any>(url, this.getHttp()).pipe(
       tap(message => message),
       catchError(this.handleError('get messages', {}))

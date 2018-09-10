@@ -27,8 +27,10 @@
       </div>
     </div>
     <div class="message col">
-      <div class="header" (click)="closeMessageView()" [ngClass]="{'extrapadding': !msgview}">
+      <div class="header" [ngClass]="{'extrapadding': !msgview}">
         <h3 *ngIf="msgview">{{recipient.fname}} {{recipient.lname}}</h3>
+        <img *ngIf="msgview" (click)="showTyping.actualText = !showTyping.actualText" class="show-text-logo" [src]="!showTyping.actualText ? '../../assets/images/hide.png' : '../../assets/images/view.png'" alt="missing logo" />
+        <img *ngIf="msgview" (click)="closeMessageView()" class="cancel-logo" src="../../assets/images/cancel.png" alt="missing logo" />
       </div>
       <div class="message-list" *ngIf="!msgview">
         <ul class="all-chats no-user">
@@ -36,7 +38,7 @@
         </ul>
       </div>
       <div class="message-list" *ngIf="msgview">
-        <ul class="all-chats">
+        <ul class="all-chats" (scroll)="loadMoreMessage($event)">
           <li *ngFor="let m of messages" [ngClass]="{'left': m.createdBy === recipient.username, 'text-message-list': true}">
             <div [ngClass]="{'left': m.createdBy === recipient.username, 'text-message': true}">
               {{m.text}}

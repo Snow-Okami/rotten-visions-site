@@ -84,6 +84,7 @@ p {
 }
 .message .header:not(.extrapadding) {
   cursor: pointer;
+  position: relative;
 }
 .message .header.extrapadding {
   padding-top: 35px;
@@ -94,6 +95,21 @@ p {
   left: 50%;
   transform: translate(-50%);
 }
+
+/*
+ * Show Text To Recipient Logo Alignment
+ */
+  .show-text-logo, .cancel-logo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .show-text-logo {
+    right: 60px;
+  }
+  .cancel-logo {
+    right: 10px;
+  }
 
 /*
  * Icon Image Alignment Fixed
@@ -117,8 +133,10 @@ p {
     border: 1px solid #cfd8dc;
     background: #cfd8dc;
     width: fit-content;
+    max-width: 320px;
     border-radius: 5px;
     float: right;
+    overflow-wrap: break-word;
   }
   .text-message.left {
     border: 1px solid #fff;
