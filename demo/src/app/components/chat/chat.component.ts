@@ -154,7 +154,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
   onTyping(text) {
     that.showTyping.text = text;
     that.showTyping.status = true;
-    if(this.msgview) { that.smoothScroll('instant'); }
+    if(that.msgview) { that.smoothScroll('instant'); }
   }
 
   onFocusout(event: any) {
@@ -170,7 +170,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     let recipient = _.find(that.chatList, ['member', data.createdBy]);
     recipient.lastText = data.text;
     recipient.messages.push(data);
-    if(this.msgview) { that.smoothScroll('smooth'); }
+    if(that.msgview) { that.smoothScroll('smooth'); }
   }
 
 }
