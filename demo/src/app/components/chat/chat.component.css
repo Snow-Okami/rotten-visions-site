@@ -54,6 +54,9 @@ p {
 .message-list .all-chats {
   background: #f1f1f1;
 }
+.message-list .all-chats.no-background {
+  background: #fff;
+}
 .message-list .all-chats.no-user {
   min-height: 475px;
   max-height: 475px;
@@ -146,5 +149,16 @@ p {
   .text-message.left.text-typing {
     background: #303030;
     border: 1px solid #303030;
+    color: #fff;
+  }
+
+/*
+ * Styles For New Conversation Template
+ */
+  .user-list-heading {
+    padding: 5px 10px;
+    margin: 0;
+    text-align: center;
+    background: #229d58;
     color: #fff;
   }
