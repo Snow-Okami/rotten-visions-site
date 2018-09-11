@@ -151,6 +151,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     this.selectuserview = true;
     let li = _.find(this.chatList, 'selected');
     if(li != undefined) { li.selected = false; }
+    
   }
 
   onKey(event: KeyboardEvent) {
