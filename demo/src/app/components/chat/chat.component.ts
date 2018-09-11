@@ -16,7 +16,12 @@ let that;
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
+  /* public msgview = false;
+  public noneview = true;
+  public selectuserview = false; */
   public msgview = false;
+  public noneview = false;
+  public selectuserview = true;
   public user: User = {
     fname: '',
     lname: '',
@@ -70,7 +75,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
   ngAfterViewChecked() {
     this.bottomItem = document.getElementById('bottom-element');
     let item = document.getElementsByClassName('all-chats');
-    if(item.length > 0) {
+    if(item.length > 1) {
       this.chatPos = item[1].getBoundingClientRect();
     }
     item = document.getElementsByClassName('text-message-list');
@@ -80,7 +85,12 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
   }
 
   closeMessageView() {
+    /**
+     * Change Template Views As Required
+     */
     this.msgview = false;
+    this.noneview = true;
+    this.selectuserview = false;
     let li = _.find(this.chatList, 'selected');
     li.selected = false;
   }
@@ -117,12 +127,30 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     let li = _.find(this.chatList, 'selected');
     if(li != undefined) { li.selected = false; }
     o.selected = true;
+
+    /**
+     * Change Template Views As Required
+     */
     this.msgview = true;
+    this.noneview = false;
+    this.selectuserview = false;
     this.smoothScroll('instant');
   }
 
   loadMoreMessage(event: any) {
     console.log('scroll detected...');
+  }
+
+  showSearchSection() {
+    if(this.selectuserview) { return; }
+    /**
+     * Change Template Views As Required
+     */
+    this.msgview = false;
+    this.noneview = false;
+    this.selectuserview = true;
+    let li = _.find(this.chatList, 'selected');
+    if(li != undefined) { li.selected = false; }
   }
 
   onKey(event: KeyboardEvent) {

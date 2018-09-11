@@ -5,12 +5,12 @@
         <h3>{{user.fname}} {{user.lname}}</h3>
       </div>
       <div class="user-list">
-        <div class="search row">
+        <div class="search row" (click)="showSearchSection()">
           <div class="col img-col">
             <img src="http://127.0.0.1:3333/upload/avatar/add-user.png" alt="user" class="user-img" />
           </div>
           <div class="recent-msg col">
-            <h4>New Conversation</h4>
+            <h4> New Conversation </h4>
           </div>
         </div>
         <ul class="all-chats">
@@ -27,12 +27,13 @@
       </div>
     </div>
     <div class="message col">
-      <div class="header" [ngClass]="{'extrapadding': !msgview}">
+      <div class="header" [ngClass]="{'extrapadding': noneview}">
         <h3 *ngIf="msgview">{{recipient.fname}} {{recipient.lname}}</h3>
+        <h3 *ngIf="selectuserview"> New Conversation </h3>
         <img *ngIf="msgview" (click)="showTyping.actualText = !showTyping.actualText" class="show-text-logo" [src]="!showTyping.actualText ? '../../assets/images/hide.png' : '../../assets/images/view.png'" alt="missing logo" />
         <img *ngIf="msgview" (click)="closeMessageView()" class="cancel-logo" src="../../assets/images/cancel.png" alt="missing logo" />
       </div>
-      <div class="message-list" *ngIf="!msgview">
+      <div class="message-list" *ngIf="noneview">
         <ul class="all-chats no-user">
           <li class="no-user-text">No user choosen!</li>
         </ul>
@@ -54,6 +55,14 @@
         <div class="input">
           <input type="text" [(ngModel)]="text" (keydown)="onKey($event)" (keyup)="onEnter($event)" (focusout)="onFocusout($event)" placeholder="Send a message" class="chat-input" />
         </div>
+      </div>
+      <div class="message-list" *ngIf="selectuserview">
+        <div class="input">
+          <input type="text" name="" >
+        </div>
+        <ul class="all-chats">
+          <li [ngClass]="{'row': true}"></li>
+        </ul>
       </div>
     </div>
   </div>
