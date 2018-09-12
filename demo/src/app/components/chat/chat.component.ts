@@ -61,6 +61,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
         this.socket.on('typing', this.onTyping);
         this.socket.on('stopped typing', this.stoppedTyping);
         this.socket.on('private message', this.privateMessage);
+        this.socket.on('available users', this.showAvailableUsers);
       } else {
         alert(resp['message']['text']);
       }
@@ -199,6 +200,10 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     recipient.lastText = data.text;
     recipient.messages.push(data);
     if(that.msgview) { that.smoothScroll('smooth'); }
+  }
+
+  showAvailableUsers(data) {
+    console.log(data);
   }
 
 }
