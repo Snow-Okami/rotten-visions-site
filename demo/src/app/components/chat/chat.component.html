@@ -31,7 +31,7 @@
         <h3 *ngIf="msgview">{{recipient.fname}} {{recipient.lname}}</h3>
         <h3 *ngIf="selectuserview"> New Conversation </h3>
         <img *ngIf="msgview" (click)="showTyping.actualText = !showTyping.actualText" class="show-text-logo" [src]="!showTyping.actualText ? '../../assets/images/hide.png' : '../../assets/images/view.png'" alt="missing logo" />
-        <img *ngIf="msgview" (click)="closeMessageView()" class="cancel-logo" src="../../assets/images/cancel.png" alt="missing logo" />
+        <img *ngIf="msgview || selectuserview" (click)="showNoneView()" class="cancel-logo" src="../../assets/images/cancel.png" alt="missing logo" />
       </div>
       <div class="message-list" *ngIf="noneview">
         <ul class="all-chats no-user">

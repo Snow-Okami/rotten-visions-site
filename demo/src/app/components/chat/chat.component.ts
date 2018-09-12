@@ -86,7 +86,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     }
   }
 
-  closeMessageView() {
+  showNoneView() {
     /**
      * Change Template Views As Required
      */
@@ -94,7 +94,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     this.noneview = true;
     this.selectuserview = false;
     let li = _.find(this.chatList, 'selected');
-    li.selected = false;
+    if(li != undefined) { li.selected = false; }
   }
 
   smoothScroll(type) {
