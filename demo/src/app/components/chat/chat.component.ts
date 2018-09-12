@@ -43,6 +43,10 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     actualText: false
   };
   private bottomItem;
+  public availUserList = {
+    recommended: [],
+    all: []
+  };
   private chatPos = {};
   private topTextPos = {};
 
@@ -202,8 +206,8 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     if(that.msgview) { that.smoothScroll('smooth'); }
   }
 
-  showAvailableUsers(data) {
-    console.log(data);
+  showAvailableUsers(res) {
+    that.availUserList = res.data;
   }
 
 }

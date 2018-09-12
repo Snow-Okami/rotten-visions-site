@@ -62,69 +62,21 @@
         </div>
         <ul class="all-chats no-background">
           <p class="user-list-heading"> Recommended Users </p>
-          <li class="row">
+          <li class="row" *ngFor="let o of availUserList.recommended">
             <div class="img-col col">
               <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
             </div>
             <div class="recent-msg col">
-              <h4> Abhisek Dutta </h4>
-            </div>
-          </li>
-          <li class="row">
-            <div class="img-col col">
-              <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
-            </div>
-            <div class="recent-msg col">
-              <h4> Abhisek Dutta </h4>
-            </div>
-          </li>
-          <li class="row">
-            <div class="img-col col">
-              <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
-            </div>
-            <div class="recent-msg col">
-              <h4> Abhisek Dutta </h4>
-            </div>
-          </li>
-          <li class="row">
-            <div class="img-col col">
-              <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
-            </div>
-            <div class="recent-msg col">
-              <h4> Abhisek Dutta </h4>
+              <h4> {{o.fname}} {{o.lname}} </h4>
             </div>
           </li>
           <p class="user-list-heading"> All Users </p>
-          <li class="row">
+          <li class="row" *ngFor="let o of availUserList.all">
             <div class="img-col col">
               <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
             </div>
             <div class="recent-msg col">
-              <h4> Abhisek Dutta </h4>
-            </div>
-          </li>
-          <li class="row">
-            <div class="img-col col">
-              <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
-            </div>
-            <div class="recent-msg col">
-              <h4> Abhisek Dutta </h4>
-            </div>
-          </li>
-          <li class="row">
-            <div class="img-col col">
-              <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
-            </div>
-            <div class="recent-msg col">
-              <h4> Abhisek Dutta </h4>
-            </div>
-          </li>
-          <li class="row">
-            <div class="img-col col">
-              <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
-            </div>
-            <div class="recent-msg col">
-              <h4> Abhisek Dutta </h4>
+              <h4> {{o.fname}} {{o.lname}} </h4>
             </div>
           </li>
         </ul>
