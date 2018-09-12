@@ -16,12 +16,9 @@ let that;
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
-  /* public msgview = false;
-  public noneview = true;
-  public selectuserview = false; */
   public msgview = false;
-  public noneview = false;
-  public selectuserview = true;
+  public noneview = true;
+  public selectuserview = false;
   public user: User = {
     fname: '',
     lname: '',
@@ -141,7 +138,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     console.log('scroll detected...');
   }
 
-  showSearchSection() {
+  showSearchSection(event: any) {
     if(this.selectuserview) { return; }
     /**
      * Change Template Views As Required
@@ -149,9 +146,11 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     this.msgview = false;
     this.noneview = false;
     this.selectuserview = true;
+
     let li = _.find(this.chatList, 'selected');
     if(li != undefined) { li.selected = false; }
-    
+
+    this.socketio.getAvailableUsers();
   }
 
   onKey(event: KeyboardEvent) {

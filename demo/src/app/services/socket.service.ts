@@ -29,6 +29,14 @@ export class SocketService {
     this.socket.emit('stopped typing', auth);
   }
 
+  getAvailableUsers() {
+    let auth = {
+      username: this.store.getCookie('r-v-user'),
+      token: this.store.getCookie('r-v-token')
+    };
+    this.socket.emit('get available users', auth);
+  }
+
   sendMessage(recipient) {
     let auth = Object.assign(recipient, {
       token: this.store.getCookie('r-v-token'),
