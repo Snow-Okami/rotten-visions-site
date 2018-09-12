@@ -14,6 +14,15 @@
           </div>
         </div>
         <ul class="all-chats">
+          <li class="row" *ngIf="newChat.selected" [ngClass]="{'selected': newChat.selected}">
+            <div class="img-col col">
+              <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
+            </div>
+            <div class="recent-msg col">
+              <h4>{{newChat.fname}} {{newChat.lname}}</h4>
+              <p class="recent-msg-text">{{newChat.lastText | trimword: 20}}</p>
+            </div>
+          </li>
           <li class="row" *ngFor="let o of chatList" (click)="getMessage(o)" [ngClass]="{'selected': o.selected}">
             <div class="img-col col">
               <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
@@ -61,8 +70,8 @@
           <input type="text" placeholder="Enter name, username or email address." class="chat-input" >
         </div>
         <ul class="all-chats no-background">
-          <p class="user-list-heading"> Recommended Users </p>
-          <li class="row" *ngFor="let o of availUserList.recommended">
+          <p class="user-list-heading" *ngIf="availUserList.recommended.length > 0"> Recommended Users </p>
+          <li class="row" *ngFor="let o of availUserList.recommended" (click)="getMessageForThis(o)">
             <div class="img-col col">
               <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
             </div>
@@ -70,8 +79,8 @@
               <h4> {{o.fname}} {{o.lname}} </h4>
             </div>
           </li>
-          <p class="user-list-heading"> All Users </p>
-          <li class="row" *ngFor="let o of availUserList.all">
+          <p class="user-list-heading" *ngIf="availUserList.all.length > 0"> All Users </p>
+          <li class="row" *ngFor="let o of availUserList.all" (click)="getMessageForThis(o)">
             <div class="img-col col">
               <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
             </div>

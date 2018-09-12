@@ -35,6 +35,13 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     type: '',
     chatId: ''
   };
+  public newChat = {
+    selected: false,
+    fname: '',
+    lname: '',
+    messages: [],
+    lastText: ''
+  };
   public messages = [];
   public text = '';
   public showTyping = {
@@ -93,6 +100,8 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     this.msgview = false;
     this.noneview = true;
     this.selectuserview = false;
+
+    this.newChat.selected = false;
     let li = _.find(this.chatList, 'selected');
     if(li != undefined) { li.selected = false; }
   }
@@ -126,6 +135,8 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
       chatId: o.chatId
     };
     this.messages = o.messages;
+
+    this.newChat.selected = false;
     let li = _.find(this.chatList, 'selected');
     if(li != undefined) { li.selected = false; }
     o.selected = true;
@@ -152,10 +163,24 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     this.noneview = false;
     this.selectuserview = true;
 
+    this.newChat.selected = false;
+
     let li = _.find(this.chatList, 'selected');
     if(li != undefined) { li.selected = false; }
 
     this.socketio.getAvailableUsers();
+  }
+
+  getMessageForThis(o) {
+    let m = _.find(this.chatList, ['member', o.member]);
+    if(m === undefined) {
+      this.newChat = Object.assign({}, o, {selected: true, messages: [], lastText: '', type: 'private'});
+      this.recipient = {fname: o.fname, lname: o.lname, username: o.member, type: this.newChat['type'], chatId: undefined};
+      this.messages = [];
+      this.msgview = true;
+      this.noneview = false;
+      this.selectuserview = false;
+    } else { this.getMessage(m); }
   }
 
   onKey(event: KeyboardEvent) {
