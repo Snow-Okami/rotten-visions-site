@@ -75,6 +75,10 @@ p {
   color: #6d6d6d;
   font-size: 14px;
 }
+.error-connection {
+  text-align: center;
+  background: #f1ed71;
+}
 .search {
   border-bottom: 1px solid #bdbdbd;
 }

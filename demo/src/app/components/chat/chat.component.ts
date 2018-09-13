@@ -16,6 +16,10 @@ let that;
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
+  public connection = {
+    status: false,
+    text: 'Connecting...'
+  };
   public msgview = false;
   public noneview = true;
   public selectuserview = false;
@@ -69,6 +73,8 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
         this.user = resp['data']['user'];
         this.chatList = resp['data']['chatList'];
         this.socketio.login();
+        this.socket.on('logged in', this.loggedIn);
+        this.socket.on('logged out', this.loggedOut);
         this.socket.on('typing', this.onTyping);
         this.socket.on('stopped typing', this.stoppedTyping);
         this.socket.on('private message', this.privateMessage);
@@ -101,6 +107,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     this.noneview = true;
     this.selectuserview = false;
 
+    this.messages = [];
     this.newChat.selected = false;
     let li = _.find(this.chatList, 'selected');
     if(li != undefined) { li.selected = false; }
@@ -124,6 +131,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
           o.messages = _.concat(resp['data'], o.messages);
           this.messages = o.messages;
           o.mcache = false;
+          this.smoothScroll('instant');
         }
       });
     }
@@ -164,6 +172,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     this.selectuserview = true;
 
     this.newChat.selected = false;
+    this.messages = [];
 
     let li = _.find(this.chatList, 'selected');
     if(li != undefined) { li.selected = false; }
@@ -217,6 +226,17 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   onFocusout(event: any) {
     this.socketio.stoppedTyping(this.recipient);
+  }
+
+  loggedIn() {
+    that.connection.status = true;
+  }
+
+  loggedOut() {
+    that.connection = {
+      status: false,
+      text: 'Connection Error!'
+    }
   }
 
   stoppedTyping() {

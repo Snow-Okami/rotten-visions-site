@@ -5,6 +5,7 @@
         <h3>{{user.fname}} {{user.lname}}</h3>
       </div>
       <div class="user-list">
+        <div class="row error-connection" *ngIf="!connection.status"> {{connection.text}} </div>
         <div class="search row" (click)="showSearchSection($event)">
           <div class="col img-col">
             <img src="http://127.0.0.1:3333/upload/avatar/add-user.png" alt="user" class="user-img" />
@@ -44,11 +45,12 @@
       </div>
       <div class="message-list" *ngIf="noneview">
         <ul class="all-chats no-user">
-          <li class="no-user-text">No user choosen!</li>
+          <li class="no-user-text"> No user choosen! </li>
         </ul>
       </div>
       <div class="message-list" *ngIf="msgview">
         <ul class="all-chats" (scroll)="loadMoreMessage($event)">
+          <li class="no-user-text" *ngIf="!messages.length"> Loading messages... </li>
           <li *ngFor="let m of messages" [ngClass]="{'left': m.createdBy === recipient.username, 'text-message-list': true}">
             <div [ngClass]="{'left': m.createdBy === recipient.username, 'text-message': true}">
               {{m.text}}
@@ -70,6 +72,7 @@
           <input type="text" placeholder="Enter name, username or email address." class="chat-input" >
         </div>
         <ul class="all-chats no-background">
+          <li class="no-user-text" *ngIf="!availUserList.recommended.length || !availUserList.all.length"> We are loading... </li>
           <p class="user-list-heading" *ngIf="availUserList.recommended.length > 0"> Recommended Users </p>
           <li class="row" *ngFor="let o of availUserList.recommended" (click)="getMessageForThis(o)">
             <div class="img-col col">
