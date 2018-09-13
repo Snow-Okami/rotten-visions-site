@@ -79,6 +79,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
         this.socket.on('stopped typing', this.stoppedTyping);
         this.socket.on('private message', this.privateMessage);
         this.socket.on('available users', this.showAvailableUsers);
+        this.socket.on('message sent', this.messageSent);
       } else {
         alert(resp['message']['text']);
       }
@@ -185,7 +186,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     if(m === undefined) {
       this.newChat = Object.assign({}, o, {selected: true, messages: [], lastText: '', type: 'private'});
       this.recipient = {fname: o.fname, lname: o.lname, username: o.member, type: this.newChat['type'], chatId: undefined};
-      this.messages = [];
+      this.messages = this.newChat.messages;
       this.msgview = true;
       this.noneview = false;
       this.selectuserview = false;
@@ -207,12 +208,21 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     if(event.code != 'Enter') { return; }
     this.socketio.sendMessage(Object.assign({}, this.recipient, {text: this.text}));
     let recipient = _.find(this.chatList, ['member', this.recipient.username]);
-    recipient.lastText = this.text;
-    recipient.messages.push({
-      createdBy: this.user.username,
-      to: this.recipient.username,
-      text: this.text
-    });
+    if(recipient != undefined) {
+      recipient.lastText = this.text;
+      recipient.messages.push({
+        createdBy: this.user.username,
+        to: this.recipient.username,
+        text: this.text
+      });
+    } else {
+      this.newChat.lastText = this.text;
+      this.newChat.messages.push({
+        createdBy: this.user.username,
+        to: this.recipient.username,
+        text: this.text
+      });
+    }
     this.text = '';
     this.socketio.stoppedTyping(this.recipient);
     this.smoothScroll('smooth');
@@ -236,7 +246,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     that.connection = {
       status: false,
       text: 'Connection Error!'
-    }
+    };
   }
 
   stoppedTyping() {
@@ -249,6 +259,43 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     recipient.lastText = data.text;
     recipient.messages.push(data);
     if(that.msgview) { that.smoothScroll('smooth'); }
+  }
+
+  messageSent(data) {
+    let recipient = _.find(that.chatList, ['member', data.to]);
+    if(recipient != undefined) { return; }
+    let o = {
+      chatId: data.chatId,
+      roomId: 'r_v_' + data.chatId,
+      fname: data['touser']['fname'],
+      lname: data['touser']['lname'],
+      type: data.type,
+      selected: true,
+      lastText: data.text,
+      member: data.to,
+      messages: []
+    };
+    o.messages.push(data);
+
+    that.recipient = {
+      fname: o.fname,
+      lname: o.lname,
+      username: o.member,
+      type: o.type,
+      chatId: o.chatId
+    };
+    that.chatList.push(o);
+
+    that.messages = o.messages;
+    that.newChat.selected = false;
+
+    /**
+     * Change Template Views As Required
+     */
+    that.msgview = true;
+    that.noneview = false;
+    that.selectuserview = false;
+    that.smoothScroll('instant');
   }
 
   showAvailableUsers(res) {

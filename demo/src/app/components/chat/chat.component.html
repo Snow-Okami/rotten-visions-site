@@ -50,7 +50,7 @@
       </div>
       <div class="message-list" *ngIf="msgview">
         <ul class="all-chats" (scroll)="loadMoreMessage($event)">
-          <li class="no-user-text" *ngIf="!messages.length"> Loading messages... </li>
+          <li class="no-user-text" *ngIf="!messages.length && !newChat.selected"> Loading messages... </li>
           <li *ngFor="let m of messages" [ngClass]="{'left': m.createdBy === recipient.username, 'text-message-list': true}">
             <div [ngClass]="{'left': m.createdBy === recipient.username, 'text-message': true}">
               {{m.text}}
@@ -72,7 +72,7 @@
           <input type="text" placeholder="Enter name, username or email address." class="chat-input" >
         </div>
         <ul class="all-chats no-background">
-          <li class="no-user-text" *ngIf="!availUserList.recommended.length || !availUserList.all.length"> We are loading... </li>
+          <li class="no-user-text" *ngIf="!availUserList.recommended.length && !availUserList.all.length"> We are loading... </li>
           <p class="user-list-heading" *ngIf="availUserList.recommended.length > 0"> Recommended Users </p>
           <li class="row" *ngFor="let o of availUserList.recommended" (click)="getMessageForThis(o)">
             <div class="img-col col">
