@@ -163,6 +163,10 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     console.log('scroll detected...');
   }
 
+  showAddGroupOption() {
+    console.log('click detected');
+  }
+
   showSearchSection(event: any) {
     if(this.selectuserview) { return; }
     /**

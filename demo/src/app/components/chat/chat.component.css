@@ -126,6 +126,13 @@ p {
     top: 50%;
     transform: translateY(-50%);
   }
+  .img-col.padding {
+    padding: 12px;
+  }
+  .img-col.padding .user-img {
+    width: 42px;
+  }
+
 
 /*
  * Styles for messages in chats
