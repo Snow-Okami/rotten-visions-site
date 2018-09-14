@@ -7,8 +7,8 @@
       <div class="user-list">
         <div class="row error-connection" *ngIf="!connection.status"> {{connection.text}} </div>
         <div class="search row" (click)="showSearchSection($event)">
-          <div class="col img-col">
-            <img src="http://127.0.0.1:3333/upload/avatar/add-user.png" alt="user" class="user-img" />
+          <div class="col img-col" style="padding: 12px;">
+            <img src="../../assets/images/plus.png" alt="user" class="user-img" style="width: 42px;" />
           </div>
           <div class="recent-msg col">
             <h4> New Conversation </h4>
@@ -72,6 +72,14 @@
           <input type="text" placeholder="Enter name, username or email address." class="chat-input" >
         </div>
         <ul class="all-chats no-background">
+          <li class="row" *ngIf="availUserList.all.length">
+            <div class="col img-col">
+              <img src="../../assets/images/plus.png" alt="user" class="user-img" />
+            </div>
+            <div class="recent-msg col">
+              <h4> New group </h4>
+            </div>
+          </li>
           <li class="no-user-text" *ngIf="!availUserList.recommended.length && !availUserList.all.length"> We are loading... </li>
           <p class="user-list-heading" *ngIf="availUserList.recommended.length > 0"> Recommended Users </p>
           <li class="row" *ngFor="let o of availUserList.recommended" (click)="getMessageForThis(o)">
