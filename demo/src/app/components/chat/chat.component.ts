@@ -59,6 +59,8 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     recommended: [],
     all: []
   };
+  public selectedUserList = [];
+  public selectedUserWidth = '0px';
   private chatPos = {};
   private topTextPos = {};
 
@@ -99,6 +101,8 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     if(item.length > 0) {
       this.topTextPos = item[0].getBoundingClientRect();
     }
+
+    this.manageWith();
   }
 
   showNoneView() {
@@ -121,6 +125,20 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
      */
     setTimeout(() => {
       this.bottomItem.scrollIntoView({ behavior: type, block: 'end' });
+    }, 500);
+  }
+
+  manageWith() {
+    /**
+     * Set Scroll With For Selected User Names
+     */
+    setTimeout(() => {
+      let width = 0;
+      let allUsers = document.querySelectorAll('.selected-user');
+      _.forEach(allUsers, (o, i) => {
+        width = width + o.getBoundingClientRect().width + 4;
+      });
+      this.selectedUserWidth = width + 'px';
     }, 500);
   }
 
@@ -174,6 +192,12 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     if(allmember !== undefined) { allmember.checked = o.checked; }
     let recomember = _.find(this.availUserList.recommended, ['member', o.member]);
     if(recomember !== undefined) { recomember.checked = o.checked; }
+
+    if(!o.checked) {
+      _.pullAllBy(this.selectedUserList, [{ 'member': o.member }], 'member');
+    } else {
+      this.selectedUserList.push(o);
+    }
   }
 
   showSearchSection(event: any) {

@@ -184,7 +184,7 @@ p {
  * Selected User Styles
  */
   .selected-user-container {
-    width: 940px;
+    padding: 0;
   }
   .selected-user {
     border: 1px solid #bdbdbd;

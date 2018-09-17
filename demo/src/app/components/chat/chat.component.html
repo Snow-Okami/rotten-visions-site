@@ -73,15 +73,10 @@
           <input type="text" placeholder="Enter name, username or email address." class="chat-input" >
         </div>
         <ul class="all-chats no-background">
-          <li class="row scroll-fixed" *ngIf="availUserList.all.length" (click)="showAddGroupOption()">
-            <div class="selected-user-container">
-              <div class="selected-user col">Abhisek Dutta</div>
-              <div class="selected-user col">Abhisek Dutta</div>
-              <div class="selected-user col">Abhisek Dutta</div>
-              <div class="selected-user col">Abhisek Dutta</div>
-              <div class="selected-user col">Abhisek Dutta</div>
-              <div class="selected-user col">Abhisek Dutta</div>
-            </div>
+          <li class="row scroll-fixed" *ngIf="selectedUserList.length">
+            <ul class="selected-user-container" [ngStyle]="{'width': selectedUserWidth}">
+              <li class="selected-user col" *ngFor="let o of selectedUserList"> {{o.fname}} {{o.lname}} </li>
+            </ul>
           </li>
           <li class="no-user-text" *ngIf="!availUserList.recommended.length && !availUserList.all.length"> We are loading... </li>
           <p class="user-list-heading" *ngIf="availUserList.recommended.length > 0"> Recommended Users </p>
