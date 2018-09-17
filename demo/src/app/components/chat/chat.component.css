@@ -188,7 +188,7 @@ p {
   }
   .selected-user {
     border: 1px solid #bdbdbd;
-    padding: 5px 25px 5px 10px;
+    padding: 5px 10px;
     border-radius: 30px;
     margin: 2px;
   }

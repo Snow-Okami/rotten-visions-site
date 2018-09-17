@@ -75,7 +75,10 @@
         <ul class="all-chats no-background">
           <li class="row scroll-fixed" *ngIf="selectedUserList.length">
             <ul class="selected-user-container" [ngStyle]="{'width': selectedUserWidth}">
-              <li class="selected-user col" *ngFor="let o of selectedUserList"> {{o.fname}} {{o.lname}} </li>
+              <li class="selected-user col" *ngFor="let o of selectedUserList">
+                {{o.fname}} {{o.lname}}
+                <img src="../../assets/images/close.png" alt="missing logo" [ngStyle]="{'width': '10px'}" />
+              </li>
             </ul>
           </li>
           <li class="no-user-text" *ngIf="!availUserList.recommended.length && !availUserList.all.length"> We are loading... </li>
