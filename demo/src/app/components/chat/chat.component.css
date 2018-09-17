@@ -106,12 +106,12 @@ p {
 /*
  * Show Text To Recipient Logo Alignment
  */
-  .show-text-logo, .cancel-logo {
+  .show-text-logo, .cancel-logo, .enable-select-user-logo {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
   }
-  .show-text-logo {
+  .show-text-logo, .enable-select-user-logo {
     right: 60px;
   }
   .cancel-logo {
@@ -172,4 +172,27 @@ p {
     text-align: center;
     background: #229d58;
     color: #fff;
+  }
+  .avail-user-check {
+    position: absolute;
+    right: 20px;
+    top: 44%;
+    transform: translateY(-50%);
+  }
+
+/*
+ * Selected User Styles
+ */
+  .selected-user-container {
+    width: 940px;
+  }
+  .selected-user {
+    border: 1px solid #bdbdbd;
+    padding: 5px 25px 5px 10px;
+    border-radius: 30px;
+    margin: 2px;
+  }
+  .scroll-fixed {
+    max-width: 375px;
+    overflow-x: auto;
   }

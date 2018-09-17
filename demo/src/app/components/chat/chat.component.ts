@@ -31,6 +31,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     email: '',
     status: 'online'
   };
+  public enableAddUserToGroup = false;
   public chatList = [];
   public recipient = {
     fname: '',
@@ -164,7 +165,15 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
   }
 
   showAddGroupOption() {
-    console.log('click detected');
+    this.enableAddUserToGroup = !this.enableAddUserToGroup;
+  }
+
+  selectThisUser(o) {
+    o.checked = !o.checked;
+    let allmember = _.find(this.availUserList.all, ['member', o.member]);
+    if(allmember !== undefined) { allmember.checked = o.checked; }
+    let recomember = _.find(this.availUserList.recommended, ['member', o.member]);
+    if(recomember !== undefined) { recomember.checked = o.checked; }
   }
 
   showSearchSection(event: any) {
@@ -186,6 +195,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
   }
 
   getMessageForThis(o) {
+    if(this.enableAddUserToGroup === true) { this.selectThisUser(o); return; }
     let m = _.find(this.chatList, ['member', o.member]);
     if(m === undefined) {
       this.newChat = Object.assign({}, o, {selected: true, messages: [], lastText: '', type: 'private'});
