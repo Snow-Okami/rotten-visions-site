@@ -92,17 +92,19 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
   ngAfterViewInit() {}
 
   ngAfterViewChecked() {
-    this.bottomItem = document.getElementById('bottom-element');
-    let item = document.getElementsByClassName('all-chats');
-    if(item.length > 1) {
-      this.chatPos = item[1].getBoundingClientRect();
-    }
-    item = document.getElementsByClassName('text-message-list');
-    if(item.length > 0) {
-      this.topTextPos = item[0].getBoundingClientRect();
-    }
+  //   console.log('vie init detected!');
 
-    this.manageWith();
+  //   this.bottomItem = document.getElementById('bottom-element');
+  //   let item = document.getElementsByClassName('all-chats');
+  //   if(item.length > 1) {
+  //     this.chatPos = item[1].getBoundingClientRect();
+  //   }
+  //   item = document.getElementsByClassName('text-message-list');
+  //   if(item.length > 0) {
+  //     this.topTextPos = item[0].getBoundingClientRect();
+  //   }
+
+  //   this.manageWith();
   }
 
   showNoneView() {
