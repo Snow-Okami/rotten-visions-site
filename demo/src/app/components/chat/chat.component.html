@@ -76,7 +76,7 @@
           <li class="row scroll-fixed" *ngIf="selectedUserList.length">
             <ul class="selected-user-container" [ngStyle]="{'width': selectedUserWidth}">
               <li class="selected-user col" *ngFor="let o of selectedUserList">
-                {{o.fname}} {{o.lname}}
+                <span>{{o.fname}} {{o.lname}}</span>
                 <img src="../../assets/images/close.png" alt="missing logo" [ngStyle]="{'width': '10px'}" />
               </li>
             </ul>

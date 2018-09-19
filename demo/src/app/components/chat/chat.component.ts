@@ -92,8 +92,6 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
   ngAfterViewInit() {}
 
   ngAfterViewChecked() {
-  //   console.log('vie init detected!');
-
   //   this.bottomItem = document.getElementById('bottom-element');
   //   let item = document.getElementsByClassName('all-chats');
   //   if(item.length > 1) {
@@ -104,7 +102,6 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
   //     this.topTextPos = item[0].getBoundingClientRect();
   //   }
 
-  //   this.manageWith();
   }
 
   showNoneView() {
@@ -200,6 +197,8 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     } else {
       this.selectedUserList.push(o);
     }
+
+    this.manageWith();
   }
 
   showSearchSection(event: any) {

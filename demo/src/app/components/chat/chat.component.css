@@ -185,6 +185,7 @@ p {
  */
   .selected-user-container {
     padding: 0;
+    min-width: 375px;
   }
   .selected-user {
     border: 1px solid #bdbdbd;
