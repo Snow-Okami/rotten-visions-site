@@ -36,6 +36,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
   public recipient = {
     fname: '',
     lname: '',
+    name: '',
     username: '',
     type: '',
     chatId: ''
@@ -157,6 +158,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     this.recipient = {
       fname: o.fname,
       lname: o.lname,
+      name: o.name,
       username: o.member,
       type: o.type,
       chatId: o.chatId
@@ -224,7 +226,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     let m = _.find(this.chatList, ['member', o.member]);
     if(m === undefined) {
       this.newChat = Object.assign({}, o, {selected: true, messages: [], lastText: '', type: 'private'});
-      this.recipient = {fname: o.fname, lname: o.lname, username: o.member, type: this.newChat['type'], chatId: undefined};
+      this.recipient = {fname: o.fname, lname: o.lname, name: o.name, username: o.member, type: this.newChat['type'], chatId: undefined};
       this.messages = this.newChat.messages;
       this.msgview = true;
       this.noneview = false;
