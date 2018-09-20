@@ -92,7 +92,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
   ngAfterViewInit() {}
 
   ngAfterViewChecked() {
-  //   this.bottomItem = document.getElementById('bottom-element');
+    this.bottomItem = document.getElementById('bottom-element');
   //   let item = document.getElementsByClassName('all-chats');
   //   if(item.length > 1) {
   //     this.chatPos = item[1].getBoundingClientRect();
@@ -211,7 +211,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     this.selectuserview = true;
 
     this.newChat.selected = false;
-    this.messages = [];
+    this.messages = this.selectedUserList = [];
 
     let li = _.find(this.chatList, 'selected');
     if(li != undefined) { li.selected = false; }

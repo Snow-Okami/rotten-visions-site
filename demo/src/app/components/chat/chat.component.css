@@ -186,6 +186,7 @@ p {
   .selected-user-container {
     padding: 0;
     min-width: 375px;
+    margin: 5px;
   }
   .selected-user {
     border: 1px solid #bdbdbd;
@@ -196,4 +197,11 @@ p {
   .scroll-fixed {
     max-width: 375px;
     overflow-x: auto;
+  }
+  .create-group-icon {
+    position: absolute;
+    bottom: -18px;
+    z-index: 1;
+    right: 5px;
+    cursor: pointer;
   }

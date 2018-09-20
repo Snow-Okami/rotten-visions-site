@@ -72,15 +72,18 @@
         <div class="input">
           <input type="text" placeholder="Enter name, username or email address." class="chat-input" >
         </div>
+        <div *ngIf="selectedUserList.length" [ngStyle]="{'position': 'relative'}">
+          <img src="../../assets/images/tick.png" alt="missing logo" class="create-group-icon" />
+        </div>
+        <div class="row scroll-fixed" *ngIf="selectedUserList.length" [ngStyle]="{'position': 'relative'}">
+          <ul class="selected-user-container" [ngStyle]="{'width': selectedUserWidth}">             
+            <li class="selected-user col" *ngFor="let o of selectedUserList">
+              <span>{{o.fname}} {{o.lname}}</span>
+              <img src="../../assets/images/close.png" alt="missing logo" [ngStyle]="{'width': '10px'}" />
+            </li>
+          </ul>
+        </div>
         <ul class="all-chats no-background">
-          <li class="row scroll-fixed" *ngIf="selectedUserList.length">
-            <ul class="selected-user-container" [ngStyle]="{'width': selectedUserWidth}">
-              <li class="selected-user col" *ngFor="let o of selectedUserList">
-                <span>{{o.fname}} {{o.lname}}</span>
-                <img src="../../assets/images/close.png" alt="missing logo" [ngStyle]="{'width': '10px'}" />
-              </li>
-            </ul>
-          </li>
           <li class="no-user-text" *ngIf="!availUserList.recommended.length && !availUserList.all.length"> We are loading... </li>
           <p class="user-list-heading" *ngIf="availUserList.recommended.length > 0"> Recommended Users </p>
           <li class="row" *ngFor="let o of availUserList.recommended" (click)="getMessageForThis(o)">
