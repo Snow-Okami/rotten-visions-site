@@ -29,8 +29,13 @@
               <img src="http://127.0.0.1:3333/upload/avatar/female.png" alt="user" class="user-img" />
             </div>
             <div class="recent-msg col">
-              <h4>{{o.fname}} {{o.lname}}</h4>
-              <p class="recent-msg-text">{{o.lastText | trimword: 20}}</p>
+              <h4 *ngIf="o.type === 'private'">{{o.fname}} {{o.lname}}</h4>
+              <p *ngIf="o.type === 'private'" class="recent-msg-text">{{o.lastText | trimword: 20}}</p>
+
+              <!-- <h4 *ngIf="o.type === 'group'">{{o.name}}</h4>
+              <p *ngIf="o.type === 'group'" class="recent-msg-text">{{o.lastText | trimword: 20}}</p> -->
+              <h4 *ngIf="o.type === 'group'">Group Chat</h4>
+              <p *ngIf="o.type === 'group'" class="recent-msg-text">Hello!!</p>
             </div>
           </li>
         </ul>
@@ -72,10 +77,10 @@
         <div class="input">
           <input type="text" placeholder="Enter name, username or email address." class="chat-input" >
         </div>
-        <div *ngIf="selectedUserList.length" [ngStyle]="{'position': 'relative'}">
-          <img src="../../assets/images/tick.png" alt="missing logo" class="create-group-icon" />
+        <div *ngIf="selectedUserList.length && enableAddUserToGroup" [ngStyle]="{'position': 'relative'}">
+          <img src="../../assets/images/tick.png" alt="missing logo" class="create-group-icon" (click)="createGroup()" />
         </div>
-        <div class="row scroll-fixed" *ngIf="selectedUserList.length" [ngStyle]="{'position': 'relative'}">
+        <div class="row scroll-fixed" *ngIf="selectedUserList.length && enableAddUserToGroup" [ngStyle]="{'position': 'relative'}">
           <ul class="selected-user-container" [ngStyle]="{'width': selectedUserWidth}">             
             <li class="selected-user col" *ngFor="let o of selectedUserList">
               <span>{{o.fname}} {{o.lname}}</span>

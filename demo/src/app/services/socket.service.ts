@@ -45,4 +45,12 @@ export class SocketService {
     if(recipient.type === 'private') { this.socket.emit('private message', auth); }
   }
 
+  createGroup(data) {
+    let auth = Object.assign(data, {
+      token: this.store.getCookie('r-v-token'),
+      createdBy: this.store.getCookie('r-v-user')
+    });
+    console.log(auth);
+  }
+
 }
