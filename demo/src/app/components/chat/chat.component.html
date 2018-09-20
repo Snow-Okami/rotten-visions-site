@@ -30,12 +30,8 @@
             </div>
             <div class="recent-msg col">
               <h4 *ngIf="o.type === 'private'">{{o.fname}} {{o.lname}}</h4>
-              <p *ngIf="o.type === 'private'" class="recent-msg-text">{{o.lastText | trimword: 20}}</p>
-
-              <!-- <h4 *ngIf="o.type === 'group'">{{o.name}}</h4>
-              <p *ngIf="o.type === 'group'" class="recent-msg-text">{{o.lastText | trimword: 20}}</p> -->
-              <h4 *ngIf="o.type === 'group'">Group Chat</h4>
-              <p *ngIf="o.type === 'group'" class="recent-msg-text">Hello!!</p>
+              <h4 *ngIf="o.type === 'group'">{{o.name}}</h4>
+              <p class="recent-msg-text">{{o.lastText | trimword: 20}}</p>
             </div>
           </li>
         </ul>
@@ -43,7 +39,8 @@
     </div>
     <div class="message col">
       <div class="header" [ngClass]="{'extrapadding': noneview}">
-        <h3 *ngIf="msgview">{{recipient.fname}} {{recipient.lname}}</h3>
+        <h3 *ngIf="msgview && recipient.type === 'private'">{{recipient.fname}} {{recipient.lname}}</h3>
+        <h3 *ngIf="msgview && recipient.type === 'group'">{{recipient.name}}</h3>
         <h3 *ngIf="selectuserview"> New Conversation </h3>
         <img *ngIf="msgview" (click)="showTyping.actualText = !showTyping.actualText" class="show-text-logo" [src]="!showTyping.actualText ? '../../assets/images/hide.png' : '../../assets/images/view.png'" alt="missing logo" />
         <img *ngIf="selectuserview && availUserList.all.length" (click)="showAddGroupOption()" class="enable-select-user-logo" src="../../assets/images/add-user.png" alt="missing logo" />
