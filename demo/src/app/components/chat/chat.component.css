@@ -89,6 +89,9 @@ p {
   padding: 1px 15px;
   outline: none;
 }
+.chat-input.h40 {
+  min-height: 40px;
+}
 .message .header:not(.extrapadding) {
   cursor: pointer;
   position: relative;

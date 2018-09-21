@@ -71,19 +71,27 @@
         </div>
       </div>
       <div class="message-list" *ngIf="selectuserview">
+        <div *ngIf="selectedUserList.length && enableAddUserToGroup">
+          <div class="input">
+            <input type="text" placeholder="Type group name." class="chat-input h40" >
+          </div>
+          <div class="input">
+            <input type="text" placeholder="Say hello! to your friends." class="chat-input h40" >
+          </div>
+          <div [ngStyle]="{'position': 'relative'}">
+            <img src="../../assets/images/tick.png" alt="missing logo" class="create-group-icon" (click)="createGroup()" />
+          </div>
+          <div class="row scroll-fixed" [ngStyle]="{'position': 'relative'}">
+            <ul class="selected-user-container" [ngStyle]="{'width': selectedUserWidth}">             
+              <li class="selected-user col" *ngFor="let o of selectedUserList">
+                <span>{{o.fname}} {{o.lname}}</span>
+                <img src="../../assets/images/close.png" alt="missing logo" [ngStyle]="{'width': '10px'}" />
+              </li>
+            </ul>
+          </div>
+        </div>
         <div class="input">
-          <input type="text" placeholder="Enter name, username or email address." class="chat-input" >
-        </div>
-        <div *ngIf="selectedUserList.length && enableAddUserToGroup" [ngStyle]="{'position': 'relative'}">
-          <img src="../../assets/images/tick.png" alt="missing logo" class="create-group-icon" (click)="createGroup()" />
-        </div>
-        <div class="row scroll-fixed" *ngIf="selectedUserList.length && enableAddUserToGroup" [ngStyle]="{'position': 'relative'}">
-          <ul class="selected-user-container" [ngStyle]="{'width': selectedUserWidth}">             
-            <li class="selected-user col" *ngFor="let o of selectedUserList">
-              <span>{{o.fname}} {{o.lname}}</span>
-              <img src="../../assets/images/close.png" alt="missing logo" [ngStyle]="{'width': '10px'}" />
-            </li>
-          </ul>
+          <input type="text" placeholder="Enter name, username or email address." class="chat-input h40" >
         </div>
         <ul class="all-chats no-background">
           <li class="no-user-text" *ngIf="!availUserList.recommended.length && !availUserList.all.length"> We are loading... </li>
