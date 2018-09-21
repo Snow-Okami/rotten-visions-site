@@ -73,10 +73,10 @@
       <div class="message-list" *ngIf="selectuserview">
         <div *ngIf="selectedUserList.length && enableAddUserToGroup">
           <div class="input">
-            <input type="text" placeholder="Type group name." class="chat-input h40" >
+            <input type="text" placeholder="Type group name." class="chat-input h40" [(ngModel)]="group.name">
           </div>
           <div class="input">
-            <input type="text" placeholder="Say hello! to your friends." class="chat-input h40" >
+            <input type="text" placeholder="Say hello! to your friends." class="chat-input h40" [(ngModel)]="group.text">
           </div>
           <div [ngStyle]="{'position': 'relative'}">
             <img src="../../assets/images/tick.png" alt="missing logo" class="create-group-icon" (click)="createGroup()" />

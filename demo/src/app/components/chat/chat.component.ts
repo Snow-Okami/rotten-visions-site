@@ -62,6 +62,10 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
   };
   public selectedUserList = [];
   public selectedUserWidth = '0px';
+  public group = {
+    name: '',
+    text: ''
+  };
   private chatPos = {};
   private topTextPos = {};
 
@@ -345,7 +349,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   createGroup() {
     let u = _.map(this.selectedUserList, 'member');
-    this.socketio.createGroup(Object.assign({}, { recipients: u, name: 'Group Chat' }));
+    this.socketio.createGroup(Object.assign({}, this.group, { recipients: u }));
   }
 
 }

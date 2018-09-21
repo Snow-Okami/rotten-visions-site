@@ -50,7 +50,7 @@ export class SocketService {
       token: this.store.getCookie('r-v-token'),
       createdBy: this.store.getCookie('r-v-user')
     });
-    console.log(auth);
+    this.socket.emit('create group', auth);
   }
 
 }
