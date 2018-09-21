@@ -88,6 +88,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
         this.socket.on('private message', this.privateMessage);
         this.socket.on('available users', this.showAvailableUsers);
         this.socket.on('message sent', this.messageSent);
+        this.socket.on('group message', this.groupMessage);
       } else {
         alert(resp['message']['text']);
       }
@@ -350,6 +351,10 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
   createGroup() {
     let u = _.map(this.selectedUserList, 'member');
     this.socketio.createGroup(Object.assign({}, this.group, { recipients: u }));
+  }
+
+  groupMessage(data) {
+    console.log('message is', data);
   }
 
 }
