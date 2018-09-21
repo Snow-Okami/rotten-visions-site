@@ -351,10 +351,11 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
   createGroup() {
     let u = _.map(this.selectedUserList, 'member');
     this.socketio.createGroup(Object.assign({}, this.group, { recipients: u }));
+    this.showNoneView();
   }
 
   groupMessage(data) {
-    console.log('message is', data);
+    that.chatList.push(data);
   }
 
 }
