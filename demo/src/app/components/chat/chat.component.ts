@@ -152,6 +152,9 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     if(!o.messages.length || o.mcache) {
       this.http.getMessages(o.chatId, o.messages.length)
       .subscribe(resp => {
+        /**
+         * @description please fix this response from server
+         */
         if(resp['message']['type'] != 'error') {
           o.messages = _.concat(resp['data'], o.messages);
           this.messages = o.messages;
