@@ -53,7 +53,8 @@
       </div>
       <div class="message-list" *ngIf="msgview">
         <ul class="all-chats" (scroll)="loadMoreMessage($event)">
-          <li class="no-user-text" *ngIf="!messages.length && !newChat.selected"> Loading messages... </li>
+          <li class="no-user-text" *ngIf="acceptinvitation"> Accept Invitation </li>
+          <li class="no-user-text" *ngIf="!messages.length && !newChat.selected && !acceptinvitation"> Loading messages... </li>
           <li *ngFor="let m of messages" [ngClass]="{'left': m.createdBy === recipient.username, 'text-message-list': true}">
             <div [ngClass]="{'left': m.createdBy === recipient.username, 'text-message': true}">
               {{m.text}}

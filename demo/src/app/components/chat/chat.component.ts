@@ -23,6 +23,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
   public msgview = false;
   public noneview = true;
   public selectuserview = false;
+  public acceptinvitation = false;
   public user: User = {
     fname: '',
     lname: '',
@@ -117,6 +118,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     this.msgview = false;
     this.noneview = true;
     this.selectuserview = false;
+    this.acceptinvitation = false;
 
     this.messages = [];
     this.newChat.selected = false;
@@ -159,9 +161,14 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
           o.messages = _.concat(resp['data'], o.messages);
           this.messages = o.messages;
           o.mcache = false;
+          this.acceptinvitation = false;
           this.smoothScroll('instant');
+        } else {
+          this.acceptinvitation = true;
         }
       });
+    } else {
+      this.acceptinvitation = false;
     }
     this.recipient = {
       fname: o.fname,
@@ -219,6 +226,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     this.msgview = false;
     this.noneview = false;
     this.selectuserview = true;
+    this.acceptinvitation = false;
 
     this.newChat.selected = false;
     this.messages = this.selectedUserList = [];
@@ -239,6 +247,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
       this.msgview = true;
       this.noneview = false;
       this.selectuserview = false;
+      this.acceptinvitation = false;
     } else { this.getMessage(m); }
   }
 
