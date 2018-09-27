@@ -12,9 +12,7 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+    CommonModule, FormsModule, ReactiveFormsModule,
     MaterialModule,
     RouterModule.forChild(routes),
   ],
