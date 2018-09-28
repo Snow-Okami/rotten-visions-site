@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../material/material.module';
 
 import { DashboardComponent } from '../../components/dashboard/dashboard.component';
 
@@ -11,8 +12,8 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
+    CommonModule, FormsModule, ReactiveFormsModule,
+    MaterialModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
