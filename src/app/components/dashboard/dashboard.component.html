@@ -1,14 +1,18 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="example-toolbar">
       <mat-toolbar-row>
-        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-        <img src="./assets/logo/small-logo.png" alt="Rotten Visions Logo">
-        <h1 class="example-app-name">Responsive App</h1>
+        <button mat-icon-button [ngClass]="{'hidden': !mobileQuery.matches}" (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+        <img [routerLink]="['/']" src="./assets/logo/clean-logo.png" alt="Rotten Visions Logo" class="site-logo"
+          matTooltip="Rotten Visions | Home" matTooltipPosition="after">
+          <div class="search-holder">
+            <input type="search">
+          </div>
       </mat-toolbar-row>
   </mat-toolbar>
 
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" opened [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" opened
+      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
         <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a>
       </mat-nav-list>

@@ -33,3 +33,39 @@ h1.example-app-name {
 mat-toolbar-row {
   height: 130px;
 }
+
+.mat-icon-button.hidden {
+  visibility: hidden;
+  width: 0;
+}
+
+.site-logo {
+  width: 115px;
+  outline: none;
+  cursor: pointer;
+}
+
+.search-holder {
+  display: flex;
+  justify-content: flex-end;
+  width: -webkit-fill-available;
+}
+
+.search-holder input {
+  color: #333;
+  border: none;
+  border-radius: 100px;
+  background-color: #fafafa;
+  padding: 5px 16px;
+  margin-left: 8px;
+  width: 180px;
+  max-width: 240px;
+  height: 50%;
+  -webkit-appearance: none;
+  outline: 0;
+}
+
+.search-holder input:focus {
+  width: 50%;
+  transition: width .4s ease-in-out;
+}

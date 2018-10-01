@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatNativeDateModule } from '@angular/material';
+
 /**
  * sudo npm i @angular/material-moment-adapter moment --save
  */
@@ -18,6 +19,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   imports: [
@@ -36,7 +39,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatListModule,
     MatIconModule,
     MatToolbarModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatTooltipModule,
+    MatDividerModule
   ],
   exports: [
     MatCardModule,
@@ -53,7 +58,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatListModule,
     MatIconModule,
     MatToolbarModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatTooltipModule,
+    MatDividerModule
   ],
   declarations: []
 })
