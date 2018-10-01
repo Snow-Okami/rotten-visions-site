@@ -78,8 +78,8 @@ mat-toolbar-row {
   outline: 0;
 }
 
-.search-holder input:focus {
-  width: 50%;
+.search-holder input:not(.mobile):focus {
+  width: 255px;
   transition: width .4s ease-in-out;
 }
 

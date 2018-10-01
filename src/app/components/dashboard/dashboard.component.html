@@ -5,7 +5,7 @@
         <img [routerLink]="['/']" src="./assets/logo/clean-logo.png" alt="Rotten Visions Logo" class="site-logo"
           matTooltip="Rotten Visions | Home" matTooltipPosition="after">
           <div class="search-holder">
-            <input type="search" placeholder="Search">
+            <input type="search" placeholder="Search" [ngClass]="{'mobile': mobileQuery.matches}">
           </div>
       </mat-toolbar-row>
   </mat-toolbar>
