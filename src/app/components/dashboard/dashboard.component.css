@@ -98,3 +98,7 @@ mat-toolbar-row {
 .mat-toolbar.mat-primary.default, .mat-drawer-container.default, .mat-drawer.default {
   background: #21212100;
 }
+
+.mat-drawer.default.mobile {
+  background: #000;
+}
