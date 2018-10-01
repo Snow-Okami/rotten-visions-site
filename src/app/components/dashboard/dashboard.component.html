@@ -1,5 +1,5 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary" [ngClass]="{'mobile': mobileQuery.matches, 'example-toolbar': true, 'default': true}">
+<div class="psynapsus-container" [class.psynapsus-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" [ngClass]="{'mobile': mobileQuery.matches, 'psynapsus-toolbar': true, 'default': true}">
       <mat-toolbar-row>
         <button mat-icon-button [ngClass]="{'hidden': !mobileQuery.matches}" (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
         <img [routerLink]="['/']" src="./assets/logo/clean-logo.png" alt="Rotten Visions Logo" class="site-logo"
@@ -10,7 +10,7 @@
       </mat-toolbar-row>
   </mat-toolbar>
 
-  <mat-sidenav-container class="example-sidenav-container default" [style.marginTop.px]="mobileQuery.matches ? 130 : 0">
+  <mat-sidenav-container class="psynapsus-sidenav-container default" [style.marginTop.px]="mobileQuery.matches ? 130 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" opened
       [fixedInViewport]="mobileQuery.matches" fixedTopGap="130" class="default"
       [ngClass]="{'mobile': mobileQuery.matches}">

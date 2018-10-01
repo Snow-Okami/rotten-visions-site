@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuardService } from '../../services/authguard.service'
+import { AuthGuardService } from '../../services/authguard.service';
 
 const routes : Routes = [
   { 
@@ -14,7 +14,11 @@ const routes : Routes = [
     path: 'login',
     canActivate: [ AuthGuardService ],
     loadChildren: '../login/login.module#LoginModule' 
-  }
+  },
+  {
+    path: 'demo',
+    loadChildren: '../demo/demo.module#DemoModule'
+  },
 ];
 
 @NgModule({
