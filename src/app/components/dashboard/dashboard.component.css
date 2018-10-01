@@ -13,7 +13,7 @@
   z-index: -1;
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -104,4 +104,8 @@ mat-toolbar-row {
 
 .mat-drawer.default.mobile {
   background: #000;
+}
+
+.mat-toolbar.mat-primary.default.mobile {
+  background: #212121;
 }
