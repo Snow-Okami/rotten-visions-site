@@ -1,54 +1,31 @@
-<mat-card>
-  <mat-card-content>
-    <h2 class="example-h2">Checkbox configuration</h2>
-    <section class="example-section">
-      <button mat-raised-button>Click me!</button>
-    </section>
-    <section class="example-section">
-      <mat-checkbox class="example-margin">Checked</mat-checkbox>
-      <mat-checkbox class="example-margin">Indeterminate</mat-checkbox>
-    </section>
-    <section class="example-section">
-      <label class="example-margin">Align:</label>
-      <mat-radio-group>
-        <mat-radio-button class="example-margin" value="after">After</mat-radio-button>
-        <mat-radio-button class="example-margin" value="before">Before</mat-radio-button>
-      </mat-radio-group>
-    </section>
-  </mat-card-content>
-</mat-card>
-<mat-card class="result">
-  <mat-card-content>
-    <h2 class="example-h2">Result</h2>
-    <section class="example-section">
-      <mat-checkbox class="example-margin"> I'm a checkbox </mat-checkbox>
-    </section>
-  </mat-card-content>
-</mat-card>
-<mat-card>
-  <mat-card-content>
-    <mat-form-field>
-      <input matInput placeholder="Input">
-    </mat-form-field>
-  </mat-card-content>
-  <mat-card-content>
-    <mat-form-field>
-      <textarea matInput placeholder="Textarea"></textarea>
-    </mat-form-field>
-  </mat-card-content>
-  <mat-card-content> 
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </mat-card-content>
-</mat-card>
-<mat-card>
-  <mat-card-content>
-    <mat-form-field>
-      <input name="form-input" matInput placeholder="Enter your email" [formControl]="email" required>
-      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>
-  </mat-card-content>
-</mat-card>
+<div class="psynapsus-container" [class.psynapsus-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" [ngClass]="{'mobile': mobileQuery.matches, 'psynapsus-toolbar': true, 'default': true}">
+      <mat-toolbar-row>
+        <button mat-icon-button [ngClass]="{'hidden': !mobileQuery.matches}" (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+        <img [routerLink]="['/']" src="./assets/logo/clean-logo.png" alt="Rotten Visions Logo" class="site-logo"
+          matTooltip="Rotten Visions | Home" matTooltipPosition="after">
+          <div class="search-holder">
+            <input type="search" placeholder="Search" [ngClass]="{'mobile': mobileQuery.matches}">
+          </div>
+      </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="psynapsus-sidenav-container default" [style.marginTop.px]="mobileQuery.matches ? 130 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" opened
+      [fixedInViewport]="mobileQuery.matches" fixedTopGap="130" class="default"
+      [ngClass]="{'mobile': mobileQuery.matches}">
+      <mat-nav-list>
+        <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <p *ngFor="let content of fillerContent">{{content}}</p>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+<video autoplay loop [ngClass]="{'mobile': mobileQuery.matches, 'movie': true}">
+  <source src="./assets/video/movie.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<div class="mobile-bg"></div>
