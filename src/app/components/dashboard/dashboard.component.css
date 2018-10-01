@@ -69,3 +69,8 @@ mat-toolbar-row {
   width: 50%;
   transition: width .4s ease-in-out;
 }
+
+.mat-drawer-content {
+  overflow-y: scroll;
+  padding: 30px;
+}
