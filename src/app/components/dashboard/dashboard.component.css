@@ -94,6 +94,9 @@ mat-toolbar-row {
   width: 100%;
   z-index: 0;
 }
+.movie.mobile {
+  margin-top: 130px;
+}
 
 .mat-toolbar.mat-primary.default, .mat-drawer-container.default, .mat-drawer.default {
   background: #21212100;

@@ -24,7 +24,7 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
-<video autoplay loop class="movie">
+<video autoplay loop [ngClass]="{'mobile': mobileQuery.matches, 'movie': true}">
   <source src="./assets/video/movie.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>

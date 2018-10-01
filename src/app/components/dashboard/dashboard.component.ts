@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   public fillerNav = Array.from({length: 5}, (_, i) => `Nav Item ${i + 1}`);
 
-  public fillerContent = Array.from({length: 10}, () =>
+  public fillerContent = Array.from({length: 3}, () =>
       `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
