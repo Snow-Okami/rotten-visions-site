@@ -9,11 +9,11 @@ import { DashboardComponent } from '../../components/dashboard/dashboard.compone
 export const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent
-  },
-  {
-    path: 'about',
-    loadChildren: '../about/about.module#AboutModule'
+    component: DashboardComponent,
+    children: [
+      { path: '', loadChildren: '../home/home.module#HomeModule' },
+      { path: 'about', loadChildren: '../about/about.module#AboutModule' }
+    ]
   },
 ];
 

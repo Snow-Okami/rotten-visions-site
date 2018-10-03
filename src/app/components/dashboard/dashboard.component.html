@@ -17,17 +17,28 @@
       [fixedInViewport]="mobileQuery.matches" fixedTopGap="130" class="default"
       [ngClass]="{'mobile': mobileQuery.matches}">
       <mat-nav-list>
-        <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a>
+
+        <!-- Router Links Should Stay Here -->
+        <a mat-list-item routerLink="/about" *ngFor="let nav of fillerNav">{{nav}}</a>
+
       </mat-nav-list>
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <p *ngFor="let content of fillerContent">{{content}}</p>
+      <!-- Static Contents Shold Stay Here -->
+
+      <!-- Page Will Be Rendered Here -->
+      <router-outlet></router-outlet>
+
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+
+<!-- Background Video -->
 <video autoplay loop [ngClass]="{'mobile': mobileQuery.matches, 'movie': true}">
   <source src="/assets/video/movie.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
+
+<!-- Background Overlay -->
 <div class="mobile-bg"></div>
