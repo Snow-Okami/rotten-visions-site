@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 
 import { DashboardComponent } from '../../components/dashboard/dashboard.component';
+import { HeaderComponent } from '../../components/header/header.component';
 
 export const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -17,7 +18,8 @@ export const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    HeaderComponent
   ],
   providers: []
 })
