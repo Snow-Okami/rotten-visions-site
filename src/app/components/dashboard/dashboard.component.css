@@ -61,21 +61,26 @@ mat-toolbar-row {
 }
 
 .search-holder input {
-  color: #333;
+  color: #fff;
   border: none;
-  border-radius: 100px;
-  background-color: #fafafa;
+  background: #fafafa00;
+  background-image: url(/assets/icon/search-text.png);
+  background-repeat: no-repeat;
   padding: 5px 16px;
-  margin-left: 8px;
-  width: 180px;
+  width: 120px;
   max-width: 240px;
   height: 50%;
   -webkit-appearance: none;
   outline: 0;
 }
 
+.search-icon {
+  width: 30px;
+  height: 25px;
+}
+
 .search-holder input:not(.mobile):focus {
-  width: 255px;
+  width: 170px;
   transition: width .4s ease-in-out;
 }
 
