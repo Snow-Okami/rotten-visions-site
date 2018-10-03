@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from '../../services/authguard.service';
 
 const routes : Routes = [
-  { 
+  {
     path: '',
     canActivate: [ AuthGuardService ],
     loadChildren: '../dashboard/dashboard.module#DashboardModule'
@@ -16,7 +16,7 @@ const routes : Routes = [
     loadChildren: '../login/login.module#LoginModule' 
   },
   {
-    path: 'demo',
+    path: '**',
     loadChildren: '../demo/demo.module#DemoModule'
   },
 

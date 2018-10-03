@@ -7,8 +7,33 @@
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Material+Icons');
 
+@font-face {
+  font-family: 'Nasalization';
+  src: url('assets/font/nasa/nasa.woff');
+}
+
+@font-face {
+  font-family: 'Norwester';
+  src: url('assets/font/norwest/norwest.woff');
+}
+
 * {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   margin: 0;
+}
+
+p {
+  font-family: Norwester;
+  letter-spacing: 1px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Nasalization;
+  letter-spacing: 1px;
+}
+
+div, span {
+  font-family: Norwester;
+  letter-spacing: 1px;
 }
