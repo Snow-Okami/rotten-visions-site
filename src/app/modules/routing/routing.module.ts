@@ -19,6 +19,7 @@ const routes : Routes = [
     path: 'demo',
     loadChildren: '../demo/demo.module#DemoModule'
   },
+
 ];
 
 @NgModule({

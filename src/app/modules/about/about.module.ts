@@ -4,17 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 
-import { DashboardComponent } from '../../components/dashboard/dashboard.component';
+import { AboutComponent } from '../../components/about/about.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: DashboardComponent
-  },
-  {
-    path: 'about',
-    loadChildren: '../about/about.module#AboutModule'
-  },
+  { path: '', component: AboutComponent },
 ];
 
 @NgModule({
@@ -24,8 +17,7 @@ export const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    DashboardComponent
-  ],
-  providers: []
+    AboutComponent
+  ]
 })
-export class DashboardModule { }
+export class AboutModule { }
