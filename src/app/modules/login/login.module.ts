@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 
 import { LoginComponent } from '../../components/login/login.component';
-import { HeaderComponent } from '../../components/header/header.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -18,8 +17,7 @@ export const routes: Routes = [
     RouterModule.forChild(routes),
   ],
   declarations: [
-    LoginComponent,
-    HeaderComponent
+    LoginComponent
   ],
   providers: []
 })
