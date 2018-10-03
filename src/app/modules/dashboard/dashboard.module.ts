@@ -12,7 +12,10 @@ export const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: '', loadChildren: '../home/home.module#HomeModule' },
-      { path: 'about', loadChildren: '../about/about.module#AboutModule' }
+      { path: 'about', loadChildren: '../about/about.module#AboutModule' },
+      { path: 'projects', loadChildren: '../projects/projects.module#ProjectsModule' },
+      { path: 'blogs', loadChildren: '../blogs/blogs.module#BlogsModule' },
+      { path: 'feedback', loadChildren: '../feedback/feedback.module#FeedbackModule' }
     ]
   },
 ];
