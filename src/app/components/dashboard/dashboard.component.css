@@ -31,6 +31,10 @@ mat-toolbar-row {
   height: 130px;
 }
 
+mat-toolbar-row.mobile {
+  height: 60px;
+}
+
 .site-logo {
   width: 115px;
   outline: none;

@@ -1,10 +1,10 @@
 <div class="psynapsus-container" [class.psynapsus-is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" [ngClass]="{'mobile': mobileQuery.matches, 'psynapsus-toolbar': true, 'default': true}">
-      <mat-toolbar-row>
+      <mat-toolbar-row [ngClass]="{'mobile': mobileQuery.matches}">
 
         <!-- Set [ngClass]="{'hidden': true}" to hide mobile nav button. -->
         <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-        <img routerLink="/" src="/assets/logo/clean-logo.png" alt="Rotten Visions Logo" class="site-logo"
+        <img *ngIf="!mobileQuery.matches" routerLink="/" src="/assets/logo/clean-logo.png" alt="Rotten Visions Logo" class="site-logo"
           matTooltip="Rotten Visions | Home" matTooltipPosition="after">
           <div class="search-holder">
             <input type="search" [ngClass]="{'mobile': mobileQuery.matches}">
@@ -14,15 +14,16 @@
       </mat-toolbar-row>
   </mat-toolbar>
 
-  <mat-sidenav-container class="psynapsus-sidenav-container default" [style.marginTop.px]="mobileQuery.matches ? 130 : 0">
+  <mat-sidenav-container class="psynapsus-sidenav-container default" [style.marginTop.px]="mobileQuery.matches ? 60 : 0">
 
     <!-- Remove opened attribute to hide side nav after page load. -->
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-      [fixedInViewport]="mobileQuery.matches" fixedTopGap="130" class="default"
+      [fixedInViewport]="mobileQuery.matches" [fixedTopGap]="mobileQuery.matches ? 60 : 130" class="default"
       [ngClass]="{'mobile': mobileQuery.matches}">
       <mat-nav-list>
 
         <!-- Router Links Should Stay Here -->
+        <a mat-list-item routerLink="/" *ngIf="mobileQuery.matches" (click)="snav.toggle()">Home</a>
         <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="snav.toggle()">About Us</a>
         <a mat-list-item routerLink="/projects" routerLinkActive="active" (click)="snav.toggle()">Our Projects</a>
         <a mat-list-item routerLink="/blog" routerLinkActive="active" (click)="snav.toggle()">Blog</a>
