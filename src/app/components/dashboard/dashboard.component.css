@@ -88,3 +88,20 @@ mat-toolbar-row {
 .mat-toolbar.mat-primary.default.mobile {
   background: #212121;
 }
+
+/*  */
+.mat-nav-list .mat-list-item {
+  background: none;
+  background-image: url(/assets/icon/white-bg.png);
+  transition: 0.2s ease-in-out all;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 30px;
+  width: 250px;
+  margin: 10px 5px;
+}
+
+.mat-nav-list .mat-list-item:hover, .mat-nav-list .mat-list-item.mat-list-item-focus, .mat-nav-list .mat-list-item.active {
+  background-image: url(/assets/icon/red-bg.png);
+  transition: 0.2s ease-in-out all;
+}
