@@ -4,10 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 
-import { BlogsComponent } from '../../components/blogs/blogs.component';
+import { BlogComponent } from '../../components/blog/blog.component';
 
 export const routes: Routes = [
-  { path: '', component: BlogsComponent },
+  { path: '', component: BlogComponent },
 ];
 
 @NgModule({
@@ -17,7 +17,7 @@ export const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    BlogsComponent
+    BlogComponent
   ]
 })
-export class BlogsModule { }
+export class BlogModule { }
