@@ -15,7 +15,7 @@ export class AuthGuardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     let url: string = state.url;
-    if(url === '/login') {
+    if(url === '/common') {
       return this.shouldLogin(url);
     }
     return this.isLoggedin(url);
@@ -39,7 +39,7 @@ export class AuthGuardService implements CanActivate {
       token: this.store.getCookie('r-v-token')
     };
     if(auth.username.length && auth.token.length) { return true; }
-    this.router.navigate(['/login']);
+    this.router.navigate(['/common']);
     return false;
   }
 }
