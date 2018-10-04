@@ -13,7 +13,7 @@ const routes : Routes = [
   {
     path: 'login',
     canActivate: [ AuthGuardService ],
-    loadChildren: '../login/login.module#LoginModule' 
+    loadChildren: '../login/login.module#LoginModule'
   },
   {
     path: '**',
