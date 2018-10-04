@@ -31,11 +31,6 @@ mat-toolbar-row {
   height: 130px;
 }
 
-.mat-icon-button.hidden {
-  visibility: hidden;
-  width: 0;
-}
-
 .site-logo {
   width: 115px;
   outline: none;
@@ -101,7 +96,7 @@ mat-toolbar-row {
   margin: 10px 5px;
 }
 
-.mat-nav-list .mat-list-item:hover, .mat-nav-list .mat-list-item.mat-list-item-focus, .mat-nav-list .mat-list-item.active {
+.mat-nav-list .mat-list-item:hover, .mat-nav-list .mat-list-item.active {
   background-image: url(/assets/icon/red-bg.png);
   transition: 0.2s ease-in-out all;
 }

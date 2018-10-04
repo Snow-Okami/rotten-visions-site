@@ -4,10 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 
-import { FeedbackComponent } from '../../components/feedback/feedback.component';
+import { ContactComponent } from '../../components/contact/contact.component';
 
 export const routes: Routes = [
-  { path: '', component: FeedbackComponent },
+  { path: '', component: ContactComponent },
 ];
 
 @NgModule({
@@ -17,7 +17,7 @@ export const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    FeedbackComponent
+    ContactComponent
   ]
 })
-export class FeedbackModule { }
+export class ContactModule { }
