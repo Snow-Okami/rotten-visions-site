@@ -22,6 +22,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { MatTableModule } from '@angular/material/table';
     MatButtonToggleModule,
     MatTooltipModule,
     MatDividerModule,
-    MatTableModule
+    MatTableModule,
+    MatMenuModule
   ],
   exports: [
     MatCardModule,
@@ -63,7 +65,8 @@ import { MatTableModule } from '@angular/material/table';
     MatButtonToggleModule,
     MatTooltipModule,
     MatDividerModule,
-    MatTableModule
+    MatTableModule,
+    MatMenuModule
   ],
   declarations: []
 })
