@@ -1,0 +1,21 @@
+
+.container {
+  width: 100%;
+}
+
+.head {
+  padding: 10px;
+}
+
+.body {
+  padding: 15px;
+}
+
+.header {
+  font-size: 80px;
+  color: #A82F42;
+}
+
+.row {
+  padding: 10px 0;
+}

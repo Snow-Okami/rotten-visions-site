@@ -1,9 +1,21 @@
 
-.mat-grid-tile .mat-grid-tile-header {
-  font-size: 60px;
+.container {
+  width: 100%;
+}
+
+.head {
+  padding: 10px;
+}
+
+.body {
+  padding: 15px;
+}
+
+.header {
+  font-size: 80px;
   color: #A82F42;
 }
 
-.mat-grid-tile .mat-grid-tile-footer, .mat-grid-tile .mat-grid-tile-header {
-  background: transparent;
+.row {
+  padding: 10px 0;
 }

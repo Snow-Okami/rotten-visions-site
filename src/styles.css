@@ -23,9 +23,14 @@
   margin: 0;
 }
 
-p {
+a, p {
+  text-decoration: none;
   font-family: 'Roboto Mono', monospace;
   letter-spacing: 1px;
+  width: fit-content;
+  padding: 1px;
+  background: #000;
+  color: #fff;
 }
 
 h1, h2, h3, h4, h5, h6 {
