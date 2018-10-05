@@ -5,7 +5,7 @@
 /* @import "~@angular/material/prebuilt-themes/pink-bluegrey.css"; */
 /* @import "~@angular/material/prebuilt-themes/purple-green.css"; */
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Material+Icons');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Material+Icons|Roboto+Mono');
 
 @font-face {
   font-family: 'Nasalization';
@@ -24,7 +24,7 @@
 }
 
 p {
-  font-family: Norwester;
+  font-family: 'Roboto Mono', monospace;
   letter-spacing: 1px;
 }
 
@@ -37,3 +37,24 @@ div, span {
   font-family: Norwester;
   letter-spacing: 1px;
 }
+
+/*
+Red Choice: #b63641;
+Red Dark 1: #6B2525
+Red Lighter 1: #A82F42
+Off White 1: #DADADC
+Grey 1: #4A4A4C
+Dark Grey 1: #757577
+Dark Grey 2: #5E5E60
+Black 1: #1B1B1D
+Off Black 1: #1E1E20
+
+Text = Grey 1
+Tab = Off Black 1
+Tab Text = Grey 1
+
+
+Red Gradient 
+Start: #A93647
+End: #C3233F
+*/

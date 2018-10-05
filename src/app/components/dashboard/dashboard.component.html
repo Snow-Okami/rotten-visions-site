@@ -4,7 +4,7 @@
 
         <!-- Set [ngClass]="{'hidden': true}" to hide mobile nav button. -->
         <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-        <img *ngIf="!mobileQuery.matches" routerLink="/" src="/assets/logo/clean-logo.png" alt="Rotten Visions Logo" class="site-logo"
+        <img *ngIf="!mobileQuery.matches" routerLink="/" src="/assets/logo/final-logo.png" alt="Rotten Visions Logo" class="site-logo"
           matTooltip="Rotten Visions | Home" matTooltipPosition="after">
           <div class="search-holder">
             <input type="search" [ngClass]="{'mobile': mobileQuery.matches}">

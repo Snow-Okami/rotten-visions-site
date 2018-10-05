@@ -1,0 +1,9 @@
+
+.mat-grid-tile .mat-grid-tile-header {
+  font-size: 60px;
+  color: #A82F42;
+}
+
+.mat-grid-tile .mat-grid-tile-footer, .mat-grid-tile .mat-grid-tile-header {
+  background: transparent;
+}
