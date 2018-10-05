@@ -23,7 +23,7 @@
       <mat-nav-list>
 
         <!-- Router Links Should Stay Here -->
-        <a mat-list-item routerLink="/" *ngIf="mobileQuery.matches" (click)="snav.toggle()">Home</a>
+        <a mat-list-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="mobileQuery.matches" (click)="snav.toggle()">Home</a>
         <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="snav.toggle()">About Us</a>
         <a mat-list-item routerLink="/projects" routerLinkActive="active" (click)="snav.toggle()">Our Projects</a>
         <a mat-list-item routerLink="/blog" routerLinkActive="active" (click)="snav.toggle()">Blog</a>
@@ -36,7 +36,7 @@
       <!-- Static Contents Should Stay Here -->
 
       <!-- Page Will Be Rendered Here -->
-      <router-outlet></router-outlet>
+      <router-outlet (activate)="routeChange($event)"></router-outlet>
 
     </mat-sidenav-content>
   </mat-sidenav-container>

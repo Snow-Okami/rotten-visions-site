@@ -23,4 +23,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private _mobileQueryListener: () => void;
 
+  /**
+   * 
+   * @param c is the child route component. All available variables and funtions will be returned.
+   */
+  routeChange(c) {
+    document.title = c.title ? c.title : 'Rotten Visions';
+  }
+
 }
