@@ -109,8 +109,8 @@ mat-toolbar-row.mobile {
   padding: 0;
   min-width: 0;
   width: 40px;
-  height: 30px;
+  height: 40px;
   flex-shrink: 0;
-  line-height: 30px;
+  line-height: 40px;
   border-radius: 50%;
 }
