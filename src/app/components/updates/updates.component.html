@@ -1,6 +1,6 @@
 <div class="container">
   <div class="head">
-    <img src="/assets/icon/Updates.png" alt="Updates Logo">
+    <img [ngClass]="{'mobile': mobileQuery.matches, 'logo': true}" src="/assets/icon/Updates.png" alt="Updates Logo">
   </div>
   <div class="body">
     <div class="row">

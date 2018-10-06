@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-updates',
@@ -7,11 +8,17 @@ import { Component } from '@angular/core';
 })
 export class UpdatesComponent {
   public title = 'Rotten Visions | Updates';
+  public mobileQuery: MediaQueryList;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
   }
+
+  ngOnInit() {}
+
+  private _mobileQueryListener: () => void;
 
 }
 
