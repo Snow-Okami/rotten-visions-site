@@ -10,7 +10,7 @@
           <input type="search" [ngClass]="{'mobile': mobileQuery.matches}">
           <img class="search-icon" src="/assets/icon/search.png" alt="Search Logo"
           matTooltip="Click on SEARCH" matTooltipPosition="after">
-          <button mat-icon-button [matMenuTriggerFor]="menu">
+          <!-- <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
@@ -18,7 +18,7 @@
               <mat-icon>error_outline</mat-icon>
               <span>Play Movie</span>
             </button>
-          </mat-menu>
+          </mat-menu> -->
         </div>
       </mat-toolbar-row>
   </mat-toolbar>
@@ -33,10 +33,10 @@
 
         <!-- Router Links Should Stay Here -->
         <a mat-list-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="mobileQuery.matches" (click)="snav.toggle()">Home</a>
-        <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="snav.toggle()">About Us</a>
-        <a mat-list-item routerLink="/projects" routerLinkActive="active" (click)="snav.toggle()">Our Projects</a>
-        <a mat-list-item routerLink="/blog" routerLinkActive="active" (click)="snav.toggle()">Blog</a>
-        <a mat-list-item routerLink="/contact" routerLinkActive="active" (click)="snav.toggle()">Contact Us</a>
+        <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="snav.toggle()">About</a>
+        <a mat-list-item routerLink="/projects" routerLinkActive="active" (click)="snav.toggle()">Projects</a>
+        <a mat-list-item routerLink="/updates" routerLinkActive="active" (click)="snav.toggle()">Blog</a>
+        <a mat-list-item routerLink="/contact" routerLinkActive="active" (click)="snav.toggle()">Contact</a>
 
       </mat-nav-list>
     </mat-sidenav>

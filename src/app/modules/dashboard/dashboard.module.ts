@@ -14,7 +14,7 @@ export const routes: Routes = [
       { path: '', loadChildren: '../home/home.module#HomeModule' },
       { path: 'about', loadChildren: '../about/about.module#AboutModule' },
       { path: 'projects', loadChildren: '../projects/projects.module#ProjectsModule' },
-      { path: 'blog', loadChildren: '../blog/blog.module#BlogModule' },
+      { path: 'updates', loadChildren: '../updates/updates.module#UpdatesModule' },
       { path: 'contact', loadChildren: '../contact/contact.module#ContactModule' },
       { path: '**', loadChildren: '../notfound/notfound.module#NotfoundModule' }
     ]

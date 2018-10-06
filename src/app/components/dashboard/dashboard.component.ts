@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
@@ -9,8 +9,6 @@ import { MediaMatcher } from '@angular/cdk/layout';
 export class DashboardComponent {
   public title = 'Rotten-Visions';
   public mobileQuery: MediaQueryList;
-
-  @ViewChild('movie') movie: any;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -30,9 +28,7 @@ export class DashboardComponent {
 
   ngAfterContentChecked() {}
 
-  ngAfterViewInit() {
-    
-  }
+  ngAfterViewInit() {}
 
   ngAfterViewChecked() {}
 
@@ -44,11 +40,6 @@ export class DashboardComponent {
    */
   routeChange(c) {
     document.title = c.title ? c.title : 'Rotten Visions';
-  }
-
-  playMovie() {
-    // document.querySelectorAll('.movie')[0].play();
-    // this.movie.nativeElement.play();
   }
 
 }
