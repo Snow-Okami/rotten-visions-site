@@ -1,3 +1,21 @@
+/**
+ * Rotten Visions Google/Custom icons/fonts are here.
+ */
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Material+Icons|Roboto+Mono');
+
+@font-face {
+  font-family: 'Nasalization';
+  src: url('assets/font/nasa/nasa.woff');
+}
+
+@font-face {
+  font-family: 'Norwester';
+  src: url('assets/font/norwest/norwest.woff');
+}
+
+/**
+ * Rotten Visions Theme is here.
+ */
 @import '~@angular/material/theming';
 
 @include mat-core();

@@ -1,22 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* @import "~@angular/material/prebuilt-themes/deeppurple-amber.css"; */
-/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
-/* @import "~@angular/material/prebuilt-themes/pink-bluegrey.css"; */
-/* @import "~@angular/material/prebuilt-themes/purple-green.css"; */
-
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Material+Icons|Roboto+Mono');
-
-@font-face {
-  font-family: 'Nasalization';
-  src: url('assets/font/nasa/nasa.woff');
-}
-
-@font-face {
-  font-family: 'Norwester';
-  src: url('assets/font/norwest/norwest.woff');
-}
-
 * {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
@@ -52,24 +33,3 @@ img.mobile.logo {
   max-width: 200px;
   max-height: 45px;
 }
-
-/*
-Red Choice: #b63641;
-Red Dark 1: #6B2525
-Red Lighter 1: #A82F42
-Off White 1: #DADADC
-Grey 1: #4A4A4C
-Dark Grey 1: #757577
-Dark Grey 2: #5E5E60
-Black 1: #1B1B1D
-Off Black 1: #1E1E20
-
-Text = Grey 1
-Tab = Off Black 1
-Tab Text = Grey 1
-
-
-Red Gradient 
-Start: #A93647
-End: #C3233F
-*/
