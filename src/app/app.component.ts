@@ -23,9 +23,19 @@ export class AppComponent {
   ngAfterContentChecked() {}
 
   ngAfterViewInit() {
-    this.movie.nativeElement.play();
+    // this.movie.nativeElement.play();
+    console.log('1. init called');
   }
 
   ngAfterViewChecked() {}
+
+  /**
+   * 
+   * @param c is the child route component. All available variables and funtions will be returned.
+   */
+  routeChange(c) {
+    // this.movie.nativeElement.play();
+    console.log('2. route called');
+  }
 
 }

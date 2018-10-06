@@ -1,4 +1,4 @@
-<router-outlet></router-outlet>
+<router-outlet (activate)="routeChange($event)"></router-outlet>
 
 <!-- Background Video -->
 <video #movie autoplay loop preload="metadata" class="movie">
