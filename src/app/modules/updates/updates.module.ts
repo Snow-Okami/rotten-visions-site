@@ -21,4 +21,3 @@ export const routes: Routes = [
   ]
 })
 export class UpdatesModule { }
-

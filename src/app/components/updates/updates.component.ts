@@ -9,6 +9,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 export class UpdatesComponent {
   public title = 'Rotten Visions | Updates';
   public mobileQuery: MediaQueryList;
+  public array = Array.from({length: 10}, (_, i) => `Coming soon...`);
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
