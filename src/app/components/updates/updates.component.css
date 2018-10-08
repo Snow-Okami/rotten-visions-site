@@ -14,3 +14,28 @@
 .row {
   padding: 10px 0;
 }
+
+.col {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.col.mobile {
+  display: block;
+}
+
+.col.w40 {
+  width: 40%;
+}
+
+.col.w60 {
+  width: 60%;
+}
+
+.col.w40.mobile, .col.w60.mobile {
+  width: 100%
+}
+
+.post-image {
+  max-width: 100%;
+}

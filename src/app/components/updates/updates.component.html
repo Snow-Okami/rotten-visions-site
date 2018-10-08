@@ -3,9 +3,27 @@
     <img [ngClass]="{'mobile': mobileQuery.matches, 'logo': true}" src="/assets/icon/Updates.png" alt="Updates Logo">
   </div>
   <div class="body">
-    <div class="row" *ngFor="let i of array">
-      <p> {{ i }} </p>
+    <div *ngFor="let i of array">
+      <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w40': true}">
+        <div class="row">
+          <div class="wrapper">
+            <img [ngClass]="{'mobile': mobileQuery.matches, 'post-image': true}" src="http://rottenvisions.com/wp-content/uploads/2014/10/the-corridor.png" alt="missing image">
+          </div>
+        </div>
+      </div>
+      <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w60': true}">
+        <div class="wrapper">
+          <div class="row">
+            <p> {{ i }} </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <mat-divider></mat-divider>
+      </div>
     </div>
-    <div class="row" #loadScroll></div>
+    <div class="row" #loadScroll>
+      <mat-progress-bar class="update-progress" mode="indeterminate" [color]="$mat-light-blue"></mat-progress-bar>
+    </div>
   </div>
 </div>
