@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" #updateContainer>
   <div class="head">
     <img [ngClass]="{'mobile': mobileQuery.matches, 'logo': true}" src="/assets/icon/Updates.png" alt="Updates Logo">
   </div>
@@ -6,5 +6,6 @@
     <div class="row" *ngFor="let i of array">
       <p> {{ i }} </p>
     </div>
+    <div class="row" #loadScroll></div>
   </div>
 </div>

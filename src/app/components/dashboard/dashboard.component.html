@@ -1,4 +1,4 @@
-<div class="psynapsus-container" [class.psynapsus-is-mobile]="mobileQuery.matches">
+<div class="psynapsus-container" [class.psynapsus-is-mobile]="true">
   <mat-toolbar color="primary" [ngClass]="{'mobile': mobileQuery.matches, 'psynapsus-toolbar': true, 'default': true}">
       <mat-toolbar-row [ngClass]="{'mobile': mobileQuery.matches}">
 
@@ -23,11 +23,11 @@
       </mat-toolbar-row>
   </mat-toolbar>
 
-  <mat-sidenav-container class="psynapsus-sidenav-container default" [style.marginTop.px]="mobileQuery.matches ? 60 : 0">
+  <mat-sidenav-container class="psynapsus-sidenav-container default" [style.marginTop.px]="mobileQuery.matches ? 60 : 130">
 
     <!-- Remove opened attribute to hide side nav after page load. -->
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-      [fixedInViewport]="mobileQuery.matches" [fixedTopGap]="mobileQuery.matches ? 60 : 130" class="default"
+      [fixedInViewport]="true" [fixedTopGap]="mobileQuery.matches ? 60 : 130" class="default"
       [ngClass]="{'mobile': mobileQuery.matches}">
       <mat-nav-list>
 
