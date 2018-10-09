@@ -18,7 +18,7 @@ export class UpdatesComponent {
     offset: 100,
     defaultImage: '/assets/logo/small-logo.png'
   };
-  public array = [
+  private array = [
     {
       title: 'UNTITLED SCIFI GAME',
       comment: 'NO COMMENTS',
@@ -38,6 +38,7 @@ export class UpdatesComponent {
       image: 'http://rottenvisions.com/wp-content/uploads/2014/10/Hello-my-name-is.jpg',
     },
   ];
+  public postList = [];
   @ViewChild('loadScroll') loadScroll: any;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
@@ -46,6 +47,8 @@ export class UpdatesComponent {
     this.mobileQuery.addListener(this._mobileQueryListener);
 
     that = this;
+
+    this.postList = Object.assign([], this.array);
   }
 
   ngOnInit() {}
@@ -85,8 +88,7 @@ export class UpdatesComponent {
    * @description Loads data after scroll ends.
    */
   loadMore() {
-    let t = Object.assign([], this.array);
-    this.array = _.concat(this.array, t);
+    this.postList = _.concat(this.postList, this.array);
     window.addEventListener('scroll', this.onScrollDown, false);
   }
 
