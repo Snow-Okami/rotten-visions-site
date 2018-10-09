@@ -18,6 +18,10 @@ export class AboutComponent {
 
   ngOnInit() {}
 
+  ngAfterViewInit() {
+    document.getElementsByClassName('route-progress-bar')[0].classList.add('hidden');
+  }
+
   private _mobileQueryListener: () => void;
 
 }

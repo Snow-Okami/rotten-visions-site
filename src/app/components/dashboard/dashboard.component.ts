@@ -42,4 +42,8 @@ export class DashboardComponent {
     document.title = c.title ? c.title : 'Rotten Visions';
   }
 
+  showRouteProgress() {
+    document.getElementsByClassName('route-progress-bar')[0].classList.remove('hidden');
+  }
+
 }

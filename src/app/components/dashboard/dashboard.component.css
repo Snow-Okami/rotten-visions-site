@@ -114,3 +114,7 @@ mat-toolbar-row.mobile {
   line-height: 40px;
   border-radius: 50%;
 }
+
+mat-progress-bar.mat-progress-bar.mat-primary.route-progress-bar.hidden {
+  display: none;
+}

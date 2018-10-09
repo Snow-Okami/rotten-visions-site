@@ -54,6 +54,7 @@ export class UpdatesComponent {
   ngOnInit() {}
 
   ngAfterViewInit() {
+    document.getElementsByClassName('route-progress-bar')[0].classList.add('hidden');
     window.addEventListener('scroll', this.onScrollDown, false);
   }
 

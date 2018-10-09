@@ -1,17 +1,18 @@
 <div class="psynapsus-container" [class.psynapsus-is-mobile]="true">
   <mat-toolbar color="primary" [ngClass]="{'mobile': mobileQuery.matches, 'psynapsus-toolbar': true, 'default': true}">
-      <mat-toolbar-row [ngClass]="{'mobile': mobileQuery.matches}">
+    <mat-progress-bar mode="indeterminate" class="route-progress-bar hidden" [style.height.px]="2"></mat-progress-bar>
+    <mat-toolbar-row [ngClass]="{'mobile': mobileQuery.matches}">
 
-        <!-- Set [ngClass]="{'hidden': true}" to hide mobile nav button. -->
-        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-        <img *ngIf="!mobileQuery.matches" routerLink="/" src="/assets/logo/final-logo.png" alt="Rotten Visions Logo" class="site-logo"
-          matTooltip="Rotten Visions | Home" matTooltipPosition="after">
-        <div class="search-holder">
-          <input type="search" [ngClass]="{'mobile': mobileQuery.matches}">
-          <img class="search-icon" src="/assets/icon/search.png" alt="Search Logo"
-          matTooltip="Click on SEARCH" matTooltipPosition="after">
-        </div>
-      </mat-toolbar-row>
+      <!-- Set [ngClass]="{'hidden': true}" to hide mobile nav button. -->
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <img *ngIf="!mobileQuery.matches" routerLink="/" src="/assets/logo/final-logo.png" alt="Rotten Visions Logo" class="site-logo"
+        matTooltip="Rotten Visions | Home" matTooltipPosition="after" (click)="showRouteProgress()">
+      <div class="search-holder">
+        <input type="search" [ngClass]="{'mobile': mobileQuery.matches}">
+        <img class="search-icon" src="/assets/icon/search.png" alt="Search Logo"
+        matTooltip="Click on SEARCH" matTooltipPosition="after">
+      </div>
+    </mat-toolbar-row>
   </mat-toolbar>
 
   <mat-sidenav-container class="psynapsus-sidenav-container default" [style.marginTop.px]="mobileQuery.matches ? 60 : 130">
@@ -23,11 +24,11 @@
       <mat-nav-list>
 
         <!-- Router Links Should Stay Here -->
-        <a mat-list-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="mobileQuery.matches" (click)="snav.toggle()">Home</a>
-        <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="snav.toggle()">About</a>
-        <a mat-list-item routerLink="/projects" routerLinkActive="active" (click)="snav.toggle()">Projects</a>
-        <a mat-list-item routerLink="/updates" routerLinkActive="active" (click)="snav.toggle()">Updates</a>
-        <a mat-list-item routerLink="/contact" routerLinkActive="active" (click)="snav.toggle()">Contact</a>
+        <a mat-list-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="mobileQuery.matches" (click)="snav.toggle();showRouteProgress();">Home</a>
+        <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="snav.toggle();showRouteProgress();">About</a>
+        <a mat-list-item routerLink="/projects" routerLinkActive="active" (click)="snav.toggle();showRouteProgress();">Projects</a>
+        <a mat-list-item routerLink="/updates" routerLinkActive="active" (click)="snav.toggle();showRouteProgress();">Updates</a>
+        <a mat-list-item routerLink="/contact" routerLinkActive="active" (click)="snav.toggle();showRouteProgress();">Contact</a>
 
       </mat-nav-list>
     </mat-sidenav>

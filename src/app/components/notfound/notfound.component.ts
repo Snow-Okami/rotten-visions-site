@@ -13,4 +13,8 @@ export class NotfoundComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngAfterViewInit() {
+    document.getElementsByClassName('route-progress-bar')[0].classList.add('hidden');
+  }
+
 }
