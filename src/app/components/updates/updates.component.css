@@ -60,9 +60,31 @@
 }
 
 .wrapper {
-  padding: 15px;
+  padding: 0 15px;
 }
 
 .mobile .wrapper {
   padding: 0px;
+}
+
+.image-wrapper {
+  text-align: right;
+}
+
+.mobile .image-wrapper {
+  text-align: center;
+}
+
+ul.default {
+  list-style-type: none;
+  padding: 0;
+}
+
+p.title {
+  font-size: 25px;
+  color: #C3233F;
+}
+
+.mobile p.title {
+  font-size: 20px;
 }
