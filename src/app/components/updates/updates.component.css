@@ -1,3 +1,17 @@
+/**
+ * @description of classes
+ * .container for whole page wrapper.
+ * .head for wrapper for header in a page.
+ * .body for wrapper for body in a page.
+ * .row keep contains closer in a row.
+ * .col keep contains aligned in columns. Works responsively.
+ * .head for wrapper for header in a page.
+ * .w40 sets width to 40%.
+ * .w60 sets width to 60%.
+ * .m-r-25 sets 25px margin to right.
+ * .wrapper wraps the whole content with 15px padding. Works responsively.
+ */
+
 
 .container {
   width: 100%;
