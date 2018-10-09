@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { TrimwordPipe } from '../../pipes/trimword.pipe';
 
 import { UpdatesComponent } from '../../components/updates/updates.component';
 
@@ -13,11 +15,12 @@ export const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
-    MaterialModule,
+    MaterialModule, LazyLoadImageModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
-    UpdatesComponent
+    UpdatesComponent,
+    TrimwordPipe
   ]
 })
 export class UpdatesModule { }

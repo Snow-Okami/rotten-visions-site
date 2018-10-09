@@ -54,7 +54,8 @@ export class AppComponent {
         '/assets/icon/About.png',
         '/assets/icon/Projects.png',
         '/assets/icon/Updates.png',
-        '/assets/icon/Contact.png'
+        '/assets/icon/Contact.png',
+        '/assets/logo/small-logo.png'
       ], image;
       _.forEach(images, (url, index) => {
         image = new Image();
