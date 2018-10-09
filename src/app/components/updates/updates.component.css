@@ -83,6 +83,7 @@ ul.default {
 p.title {
   font-size: 25px;
   color: #C3233F;
+  font-weight: 700;
 }
 
 .mobile p.title {
