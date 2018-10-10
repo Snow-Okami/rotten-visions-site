@@ -12,10 +12,9 @@ export class AppComponent {
   private preloadImages = {
     cache: []
   };
-
+  public cookiePopup = true;
   constructor() {
     that = this;
-    document.addEventListener('click', this.playMovie);
     this.cacheImages();
   }
 
@@ -41,8 +40,9 @@ export class AppComponent {
    */
   routeChange(c) {}
 
-  playMovie(e) {
-    that.movie.nativeElement.play();
+  playMovie() {
+    this.movie.nativeElement.play();
+    this.cookiePopup = false;
   }
 
   cacheImages() {
