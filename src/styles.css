@@ -33,3 +33,7 @@ img.mobile.logo {
   max-width: 200px;
   max-height: 45px;
 }
+
+mat-form-field div, mat-form-field span {
+  font-family: 'Roboto Mono', monospace;
+}

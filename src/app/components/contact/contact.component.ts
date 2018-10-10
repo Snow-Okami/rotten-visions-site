@@ -1,5 +1,6 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
@@ -9,6 +10,10 @@ import { MediaMatcher } from '@angular/cdk/layout';
 export class ContactComponent {
   public title = 'Rotten Visions | Contact';
   public mobileQuery: MediaQueryList;
+  public emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');

@@ -14,3 +14,12 @@
 .row {
   padding: 10px 0;
 }
+
+.contact-input {
+  width: 100%;
+  max-width: 700px; 
+}
+
+.contact-input.textarea .mat-form-field-infix {
+  height: 150px;
+}
