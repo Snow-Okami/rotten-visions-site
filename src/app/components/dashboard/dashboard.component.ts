@@ -11,6 +11,7 @@ import { Location } from '@angular/common';
 export class DashboardComponent {
   public title: string = 'Rotten-Visions';
   public mobileQuery: MediaQueryList;
+  public searchText: string = '';
 
   constructor(
     public changeDetectorRef: ChangeDetectorRef,

@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { TrimwordPipe } from '../../pipes/trimword.pipe';
+import { UpdatefilterPipe } from '../../pipes/updatefilter.pipe';
 
 import { UpdatesComponent } from '../../components/updates/updates.component';
 
@@ -20,7 +21,8 @@ export const routes: Routes = [
   ],
   declarations: [
     UpdatesComponent,
-    TrimwordPipe
+    TrimwordPipe,
+    UpdatefilterPipe
   ]
 })
 export class UpdatesModule { }

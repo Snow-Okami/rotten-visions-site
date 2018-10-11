@@ -7,7 +7,7 @@
       <li class="row" *ngIf="!mobileQuery.matches">
         <mat-divider></mat-divider>
       </li>
-      <li *ngFor="let post of postList">
+      <li *ngFor="let post of postList | updatefilter: searchText">
         <div class="row">
           <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w40': true}">
             <div class="image-wrapper">

@@ -39,6 +39,7 @@ export class UpdatesComponent {
     },
   ];
   public postList = [];
+  public searchText = '';
   @ViewChild('loadScroll') loadScroll: any;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
