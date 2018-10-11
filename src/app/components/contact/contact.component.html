@@ -4,7 +4,7 @@
   </div>
   <div class="body">
     <div class="row">
-      <form class="contact-form" (ngSubmit)="onShare()" [formGroup]="contactForm">
+      <form #form class="contact-form" (ngSubmit)="onShare()" [formGroup]="contactForm">
         <div class="row">
           <mat-form-field class="contact-input">
             <input matInput placeholder="Type your name" [formControl]="nameFormControl" required>

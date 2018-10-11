@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material';
 export class ContactComponent {
   public title = 'Rotten Visions | Contact';
   public mobileQuery: MediaQueryList;
+  @ViewChild('form') form: any;
 
   /**
    * @description Contact form fields
@@ -44,7 +45,7 @@ export class ContactComponent {
       /**
        * @description Perform form submit actions using HTTP
        */
-      this.contactForm.reset();
+      this.form.nativeElement.reset();
       this.snackBar.open('Thanks! for sharing with us.', '', { duration: 3000 });
     }
   }
