@@ -2,6 +2,8 @@ import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import * as _ from 'lodash';
 
+import { StoreService } from '../../services/store.service';
+
 let that;
 
 @Component({
@@ -42,7 +44,11 @@ export class UpdatesComponent {
   public searchText = '';
   @ViewChild('loadScroll') loadScroll: any;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    private store: StoreService
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -52,7 +58,9 @@ export class UpdatesComponent {
     this.postList = Object.assign([], this.array);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.currentMessage.subscribe(text => this.searchText = text);
+  }
 
   ngAfterViewInit() {
     document.getElementsByClassName('route-progress-bar')[0].classList.add('hidden');

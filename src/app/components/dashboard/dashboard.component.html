@@ -10,7 +10,7 @@
         matTooltip="Rotten Visions | Home" matTooltipPosition="after" (click)="showRouteProgress($event)">
       </div>
       <div class="search-holder">
-        <input type="search" [ngClass]="{'mobile': mobileQuery.matches}" [(ngModel)]="searchText">
+        <input type="search" [ngClass]="{'mobile': mobileQuery.matches}" [(ngModel)]="searchText" (keyup)="search()">
         <img class="search-icon" src="/assets/icon/search.png" alt="Search Logo"
         matTooltip="Click on SEARCH" matTooltipPosition="after">
       </div>

@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoreService {
+  private messageSource = new BehaviorSubject('');
+  public currentMessage = this.messageSource.asObservable();
 
   constructor() { }
 
@@ -28,5 +31,9 @@ export class StoreService {
         }
     }
     return '';
+  }
+
+  changeMessage(message: string) {
+    this.messageSource.next(message);
   }
 }

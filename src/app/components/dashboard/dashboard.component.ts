@@ -1,7 +1,9 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,15 +19,17 @@ export class DashboardComponent {
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
     private route: ActivatedRoute,
-    private router: Router,
-    private location: Location
+    private location: Location,
+    private store: StoreService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.currentMessage.subscribe(text => this.searchText = text);
+  }
 
   ngOnDestroy() {}
 
@@ -56,6 +60,10 @@ export class DashboardComponent {
     if(!classList.includes('active')) {
       document.getElementsByClassName('route-progress-bar')[0].classList.remove('hidden');
     }
+  }
+
+  search() {
+    this.store.changeMessage(this.searchText);
   }
 
 }
