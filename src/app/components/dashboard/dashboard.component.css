@@ -118,3 +118,7 @@ mat-toolbar-row.mobile {
 mat-progress-bar.mat-progress-bar.mat-primary.route-progress-bar.hidden {
   display: none;
 }
+
+.logo-wrapper {
+  outline: none;
+}

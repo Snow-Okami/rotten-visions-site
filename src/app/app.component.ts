@@ -12,7 +12,7 @@ export class AppComponent {
   private preloadImages = {
     cache: []
   };
-  public cookiePopup = true;
+  public cookiePopup = false;
   constructor() {
     that = this;
     this.cacheImages();

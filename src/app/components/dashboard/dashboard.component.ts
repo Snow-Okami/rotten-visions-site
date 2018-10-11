@@ -1,5 +1,7 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,10 +9,16 @@ import { MediaMatcher } from '@angular/cdk/layout';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  public title = 'Rotten-Visions';
+  public title: string = 'Rotten-Visions';
   public mobileQuery: MediaQueryList;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(
+    public changeDetectorRef: ChangeDetectorRef,
+    public media: MediaMatcher,
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -42,8 +50,11 @@ export class DashboardComponent {
     document.title = c.title ? c.title : 'Rotten Visions';
   }
 
-  showRouteProgress() {
-    document.getElementsByClassName('route-progress-bar')[0].classList.remove('hidden');
+  showRouteProgress(e) {
+    let classList = e.target.parentNode.classList.value.split(' ');
+    if(!classList.includes('active')) {
+      document.getElementsByClassName('route-progress-bar')[0].classList.remove('hidden');
+    }
   }
 
 }
