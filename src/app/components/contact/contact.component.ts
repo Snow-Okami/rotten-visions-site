@@ -1,6 +1,7 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-contact',
@@ -10,18 +11,20 @@ import { FormControl, Validators } from '@angular/forms';
 export class ContactComponent {
   public title = 'Rotten Visions | Contact';
   public mobileQuery: MediaQueryList;
-  public emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-  public nameFormControl = new FormControl('', [
-    Validators.required
-  ]);
-  public messageFormControl = new FormControl('', [
-    Validators.required
-  ]);
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  /**
+   * @description Contact form fields
+   */
+  public emailFormControl = new FormControl('', [ Validators.required, Validators.email ]);
+  public nameFormControl = new FormControl('', [ Validators.required ]);
+  public messageFormControl = new FormControl('', [ Validators.required ]);
+  public contactForm = new FormGroup({
+    name: this.nameFormControl,
+    email: this.emailFormControl,
+    message: this.messageFormControl
+  });
+
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public snackBar: MatSnackBar) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -34,5 +37,16 @@ export class ContactComponent {
   }
 
   private _mobileQueryListener: () => void;
+
+  onShare() {
+    if(this.contactForm.valid) {
+      let form = Object.assign({}, this.contactForm.value);
+      /**
+       * @description Perform form submit actions using HTTP
+       */
+      this.contactForm.reset();
+      this.snackBar.open('Thanks! for sharing with us.', '', { duration: 3000 });
+    }
+  }
 
 }

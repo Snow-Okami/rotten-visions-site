@@ -4,10 +4,10 @@
   </div>
   <div class="body">
     <div class="row">
-      <form class="example-form">
+      <form class="contact-form" (ngSubmit)="onShare()" [formGroup]="contactForm">
         <div class="row">
           <mat-form-field class="contact-input">
-            <input matInput placeholder="Type your name" [formControl]="nameFormControl">
+            <input matInput placeholder="Type your name" [formControl]="nameFormControl" required>
             <mat-error *ngIf="nameFormControl.hasError('required')">
               Name is <strong>required</strong>
             </mat-error>
@@ -15,7 +15,7 @@
         </div>
         <div class="row">
           <mat-form-field class="contact-input">
-            <input matInput placeholder="Type your email" [formControl]="emailFormControl">
+            <input matInput placeholder="Type your email" [formControl]="emailFormControl" required>
             <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
               Please enter a valid email address
             </mat-error>
@@ -26,7 +26,7 @@
         </div>
         <div class="row">
           <mat-form-field class="contact-input textarea">
-            <textarea matInput #message matTextareaAutosize maxlength="256" placeholder="Leave a message" [formControl]="messageFormControl"></textarea>
+            <textarea matInput #message matTextareaAutosize maxlength="256" placeholder="Leave a message" [formControl]="messageFormControl" required></textarea>
             <mat-hint align="start" *ngIf="!mobileQuery.matches"><strong>Don't disclose personal info</strong> </mat-hint>
             <mat-hint align="start" *ngIf="mobileQuery.matches"><strong>It's public</strong> </mat-hint>
             <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
@@ -36,7 +36,7 @@
           </mat-form-field>
         </div>
         <div class="row">
-          <button mat-raised-button>
+          <button mat-raised-button type="submit">
             <i class="material-icons send"> send </i>
           </button>
         </div>
