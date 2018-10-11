@@ -14,6 +14,12 @@ export class ContactComponent {
     Validators.required,
     Validators.email,
   ]);
+  public nameFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  public messageFormControl = new FormControl('', [
+    Validators.required
+  ]);
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
