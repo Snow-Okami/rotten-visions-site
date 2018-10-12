@@ -1,0 +1,16 @@
+
+.container {
+  width: 100%;
+}
+
+.head {
+  padding: 15px;
+}
+
+.body {
+  padding: 15px;
+}
+
+.row {
+  padding: 10px 0;
+}
