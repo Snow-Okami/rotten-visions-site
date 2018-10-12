@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -48,14 +49,13 @@ export class RegxFormService extends Validators {
       let regex = /^[A-Za-z]{1,}\s/gm;
 
       // match the control value against the regular expression
-      const matches = regex.test(control.value);
-      const wordList = control.value.split(' ');
-      const word = wordList.length;
-
-      console.log(word);
+      let matches = regex.test(control.value);
+      let wordList = _.filter(_.split(control.value, ' '), (o) => {
+        return o.length > 0;
+      });
 
       // if there are no matches return an object, else return null.
-      return !matches ? { invalid_characters: matches } : null;
+      return wordList.length > 10 ? matches ? null : { invalid_characters: true } : { invalid_length: true };
     } else {
       return null;
     }

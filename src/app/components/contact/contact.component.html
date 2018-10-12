@@ -34,7 +34,7 @@
             <mat-hint align="start" *ngIf="mobileQuery.matches"><strong>It's public</strong> </mat-hint>
             <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
             <mat-error *ngIf="!messageFormControl.hasError('required')">
-              Message must have 10 words
+              Message must have 10 words. Eg.: Hi Alfred! ...
             </mat-error>
             <mat-error *ngIf="messageFormControl.hasError('required')">
               Message is <strong>required</strong>
