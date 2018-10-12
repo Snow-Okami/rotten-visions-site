@@ -50,12 +50,12 @@ export class RegxFormService extends Validators {
 
       // match the control value against the regular expression
       let matches = regex.test(control.value);
-      let wordList = _.filter(_.split(control.value, ' '), (o) => {
+      let wordList = _.filter(_.split(_.replace(control.value, /\n/gm, ' '), ' '), (o) => {
         return o.length > 0;
       });
 
       // if there are no matches return an object, else return null.
-      return wordList.length > 10 ? matches ? null : { invalid_characters: true } : { invalid_length: true };
+      return wordList.length >= 10 ? matches ? null : { invalid_characters: true } : { invalid_length: true };
     } else {
       return null;
     }
