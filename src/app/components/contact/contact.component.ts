@@ -3,6 +3,8 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 
+import { RegxFormService } from '../../services/regx-form.service';
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -16,16 +18,21 @@ export class ContactComponent {
   /**
    * @description Contact form fields
    */
-  public emailFormControl = new FormControl('', [ Validators.required, Validators.email ]);
-  public nameFormControl = new FormControl('', [ Validators.required ]);
-  public messageFormControl = new FormControl('', [ Validators.required ]);
+  public emailFormControl = new FormControl('', [ Validators.required, this.regx.email ]);
+  public nameFormControl = new FormControl('', [ Validators.required, this.regx.name ]);
+  public messageFormControl = new FormControl('', [ Validators.required, this.regx.message ]);
   public contactForm = new FormGroup({
     name: this.nameFormControl,
     email: this.emailFormControl,
     message: this.messageFormControl
   });
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public snackBar: MatSnackBar) {
+  constructor(
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    public snackBar: MatSnackBar,
+    private regx: RegxFormService
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

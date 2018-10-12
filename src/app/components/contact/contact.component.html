@@ -8,6 +8,9 @@
         <div class="row">
           <mat-form-field class="contact-input">
             <input matInput placeholder="Type your name" [formControl]="nameFormControl" required>
+            <mat-error *ngIf="!nameFormControl.hasError('required')">
+              Please enter a valid name
+            </mat-error>
             <mat-error *ngIf="nameFormControl.hasError('required')">
               Name is <strong>required</strong>
             </mat-error>
@@ -16,7 +19,7 @@
         <div class="row">
           <mat-form-field class="contact-input">
             <input matInput placeholder="Type your email" [formControl]="emailFormControl" required>
-            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            <mat-error *ngIf="!emailFormControl.hasError('required')">
               Please enter a valid email address
             </mat-error>
             <mat-error *ngIf="emailFormControl.hasError('required')">
@@ -30,6 +33,9 @@
             <mat-hint align="start" *ngIf="!mobileQuery.matches"><strong>Don't disclose personal info</strong> </mat-hint>
             <mat-hint align="start" *ngIf="mobileQuery.matches"><strong>It's public</strong> </mat-hint>
             <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+            <mat-error *ngIf="!messageFormControl.hasError('required')">
+              Message must have 10 words
+            </mat-error>
             <mat-error *ngIf="messageFormControl.hasError('required')">
               Message is <strong>required</strong>
             </mat-error>
