@@ -1,29 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
-body {
-    margin: 0px;
-    background: #010001;
+* {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  margin: 0;
 }
 
-@font-face {
-    font-family: 'Nasalization';
-    src:url('assets/rotten-vision-design/Source/Webfonts/nasalization/Nasalization.ttf.eot') format('woff'),
-        url('assets/rotten-vision-design/Source/Webfonts/nasalization/Nasalization.ttf.svg#Nasalization') format('svg'),
-        url('assets/rotten-vision-design/Source/Webfonts/nasalization/Nasalization.ttf.woff'),
-        url('assets/rotten-vision-design/Source/Webfonts/nasalization/Nasalization.ttf.eot?#iefix') format('embedded-opentype'); 
+a, p {
+  text-decoration: none;
+  font-family: 'Roboto Mono', monospace;
+  letter-spacing: 1px;
+  width: fit-content;
+  padding: 1px;
+  background: #000;
+  /* opacity: 0.6; */
+  color: #fff;
 }
 
-@font-face {
-    font-family: 'Norwester';
-    src:url('assets/rotten-vision-design/Source/Webfonts/norwester/Norwester.ttf.woff') format('woff'),
-        url('assets/rotten-vision-design/Source/Webfonts/norwester/Norwester.ttf.svg#Norwester') format('svg'),
-        url('assets/rotten-vision-design/Source/Webfonts/norwester/Norwester.ttf.eot'),
-        url('assets/rotten-vision-design/Source/Webfonts/norwester/Norwester.ttf.eot?#iefix') format('embedded-opentype'); 
-        font-weight: normal;
-        font-style: normal;
+h1, h2, h3, h4, h5, h6 {
+  font-family: Nasalization;
+  letter-spacing: 1px;
 }
 
-@font-face{ 
-	font-family: 'NovecentosansWideboldMacroman';
-	src: url('assets/rotten-vision-design/Source/Webfonts/novecentosans_widebold_macroman/Novecentosanswide-Bold-webfont.woff') format('woff');
-	     
+div, span {
+  font-family: Norwester;
+  letter-spacing: 1px;
+}
+
+.container a, .container p {
+  opacity: 0.6;
+}
+
+img.mobile.logo {
+  max-width: 200px;
+  max-height: 45px;
+}
+
+mat-form-field div, mat-form-field span {
+  font-family: 'Roboto Mono', monospace;
 }

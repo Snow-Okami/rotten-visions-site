@@ -1,44 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { AppComponent } from './app.component';
-import { AboutUsComponent } from './components/about-us/about-us.component';
-import { ProjectsComponent } from './components/projects/projects.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { BlogsComponent } from './components/blogs/blogs.component';
-import { ContactUsComponent } from './components/contact-us/contact-us.component';
-
-import { RoutesModule } from './modules/routes/routes.module';
-import { HomeComponent } from './components/home/home.component';
-import { DataService } from './services/data.service';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
+// import { HttpClientModule } from '@angular/common/http';
+// import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-//import {TooltipModule} from "ngx-tooltip";
+import { RoutingModule } from './modules/routing/routing.module';
+import { AppComponent } from './app.component';
 
-import { TooltipModule } from 'ng2-tooltip-directive';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+// const config: SocketIoConfig = { url: 'http://localhost:3333', options: {} };
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AboutUsComponent,
-    ProjectsComponent,
-    FooterComponent,
-    BlogsComponent,
-    ContactUsComponent,
-    HomeComponent,
-    PageNotFoundComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    TooltipModule,
-    RoutesModule
+    RoutingModule,
+    // HttpClientModule,
+    // SocketIoModule.forRoot(config)
   ],
-  exports: [ RouterModule ],
-  providers: [ DataService ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
+

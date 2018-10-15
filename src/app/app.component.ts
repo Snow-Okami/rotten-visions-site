@@ -1,33 +1,68 @@
-import { Component } from '@angular/core';
-
-//Services
-import { DataService } from './services/data.service';
-
-import * as $ from 'jquery';
+import { Component, ViewChild } from '@angular/core';
+import * as _ from 'lodash';
+let that;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent{
-  image_url_base:String = 'assets/Rotten-vision-design/';
-  mob:String = "Mobile_version_elements/";
-  desk:String = "Desktop_version_elements/";
-  src:String = "Source/";
-
-  activeMenu:String;
-
-  constructor( private dataService: DataService ){
+export class AppComponent {
+  @ViewChild('movie') movie: any;
+  private preloadImages = {
+    cache: []
+  };
+  public cookiePopup = true;
+  constructor() {
+    that = this;
+    this.cacheImages();
   }
 
-  routeNavigation (event) {
-  	this.activeMenu = event.currentMenu;
-  	document.title = "Rotten Visions | " + event.currentMenu;
+  ngOnInit() {}
+
+  ngOnDestroy() {}
+
+  ngOnChanges() {}
+
+  ngDoCheck() {}
+
+  ngAfterContentInit() {}
+
+  ngAfterContentChecked() {}
+
+  ngAfterViewInit() {}
+
+  ngAfterViewChecked() {}
+
+  /**
+   * 
+   * @param c is the child route component. All available variables and funtions will be returned.
+   */
+  routeChange(c) {}
+
+  playMovie() {
+    this.movie.nativeElement.play();
+    this.cookiePopup = false;
   }
 
-  openBlog() {
-    window.open("http://localhost:4000", "_blank");
+  cacheImages() {
+    if(!this.preloadImages.cache.length) {
+      let images = [
+        '/assets/icon/white-bg.png',
+        '/assets/icon/red-bg.png',
+        '/assets/icon/Home.png',
+        '/assets/icon/About.png',
+        '/assets/icon/Projects.png',
+        '/assets/icon/Updates.png',
+        '/assets/icon/Contact.png',
+        '/assets/logo/small-logo.png'
+      ], image;
+      _.forEach(images, (url, index) => {
+        image = new Image();
+        image.src = url;
+        this.preloadImages.cache.push(image);
+      });
+    }
   }
 
 }

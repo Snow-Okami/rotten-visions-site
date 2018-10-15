@@ -1,18 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../services/data.service';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-  
-  currentMenu:string = "Home";
+export class HomeComponent {
+  public mobileQuery: MediaQueryList;
+  public title = 'Rotten Visions | Home';
 
-  constructor( private dataService: DataService ) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ngAfterViewInit() {
+    document.getElementsByClassName('route-progress-bar')[0].classList.add('hidden');
   }
+
+  private _mobileQueryListener: () => void;
 
 }
