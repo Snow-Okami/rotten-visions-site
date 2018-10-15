@@ -7,12 +7,11 @@
       <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
       <div class="logo-wrapper" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <img *ngIf="!mobileQuery.matches" src="/assets/logo/final-logo.png" alt="Rotten Visions Logo" class="site-logo"
-        matTooltip="Rotten Visions | Home" matTooltipPosition="after" (click)="showRouteProgress($event)">
+        (click)="showRouteProgress($event)">
       </div>
       <div class="search-holder">
         <input type="search" [ngClass]="{'mobile': mobileQuery.matches}" [(ngModel)]="searchText" (keyup)="search()">
-        <img class="search-icon" src="/assets/icon/search.png" alt="Search Logo"
-        matTooltip="Click on SEARCH" matTooltipPosition="after">
+        <img class="search-icon" src="/assets/icon/search.png" alt="Search Logo">
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
