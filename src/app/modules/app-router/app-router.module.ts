@@ -13,6 +13,7 @@ const routes : Routes = [
   },
   {
     path: 'dashboard',
+    pathMatch: 'prefix',
     canActivate: [ AuthguardService ],
     loadChildren: '../dashboard/dashboard.module#DashboardModule'
   },

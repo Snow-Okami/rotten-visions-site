@@ -9,11 +9,18 @@ import { MediaMatcher } from '@angular/cdk/layout';
 export class DashboardComponent {
 
   public mobileQuery: MediaQueryList;
-  public fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
+  public navList = [
+    { nav: 'Games', url: '/dashboard/games' },
+    { nav: 'Messages', url: '/dashboard/messages' },
+    { nav: 'Updates', url: '/dashboard/updates' }
+  ];
   private _mobileQueryListener: () => void;
   @ViewChild('toolbar') toolbar: any;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

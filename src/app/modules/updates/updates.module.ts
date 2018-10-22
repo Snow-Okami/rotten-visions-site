@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
-import { TrimwordPipe } from '../../pipes/trimword.pipe';
 
 import { UpdatesComponent } from '../../components/updates/updates.component';
 
@@ -18,8 +17,7 @@ export const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    UpdatesComponent,
-    TrimwordPipe
+    UpdatesComponent
   ],
   providers: []
 })

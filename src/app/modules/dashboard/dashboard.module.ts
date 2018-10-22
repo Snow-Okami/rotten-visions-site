@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+import { TrimwordPipe } from '../../pipes/trimword.pipe';
 
 import { DashboardComponent } from '../../components/dashboard/dashboard.component';
 import { FooterComponent } from '../../components/footer/footer.component';
@@ -28,7 +29,8 @@ export const routes: Routes = [
   ],
   declarations: [
     DashboardComponent,
-    FooterComponent
+    FooterComponent,
+    TrimwordPipe
   ],
   providers: []
 })
