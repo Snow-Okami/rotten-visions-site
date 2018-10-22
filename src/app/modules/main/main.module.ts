@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 
 import { MainComponent } from '../../components/main/main.component';
-import { FooterComponent } from '../../components/footer/footer.component';
 
 export const routes: Routes = [
   {
@@ -24,8 +23,7 @@ export const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    MainComponent,
-    FooterComponent
+    MainComponent
   ],
   providers: []
 })

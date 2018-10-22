@@ -12,16 +12,10 @@ const routes : Routes = [
     loadChildren: '../landing/landing.module#LandingModule'
   },
   {
-    path: 'app',
+    path: 'dashboard',
     pathMatch: 'full',
     canActivate: [ AuthguardService ],
-    loadChildren: '../main/main.module#MainModule'
-  },
-  {
-    path: 'login',
-    pathMatch: 'full',
-    canActivate: [ AuthguardService ],
-    loadChildren: '../login/login.module#LoginModule'
+    loadChildren: '../dashboard/dashboard.module#DashboardModule'
   },
   {
     path: '**',

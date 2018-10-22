@@ -10,24 +10,31 @@ import { StoreService } from './store.service'
   providedIn: 'root'
 })
 export class AuthguardService implements CanActivate {
-  private user: string = 'angular-start-user';
-  private token: string = 'angular-start-token';
+  private user: string = 'ps-u-a-p';
+  private token: string = 'ps-t-a-p';
 
   constructor(private store: StoreService, private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     let url: string = state.url;
-    if(url === '/app') {
-      return this.isLoggedin(url);
-    } else if(url === '/login') {
+    let shouldLoginUrl: string[] = [
+      '/'
+    ];
+    let isLoggedinUrl: string[] = [
+      '/dashboard'
+    ];
+
+    if(shouldLoginUrl.includes(url)) {
       return this.shouldLogin(url);
+    } else if(isLoggedinUrl.includes(url)) {
+      return this.isLoggedin(url);
     } else {
       return true;
     }
   }
 
   /**
-   * @description if already logged in then navigate to /app.
+   * @description if already logged in then navigate to dashboard.
    */
   shouldLogin(url: string): boolean {
     let auth = {
@@ -35,14 +42,14 @@ export class AuthguardService implements CanActivate {
       token: this.store.getCookie(this.token)
     };
     if(auth.username.length && auth.token.length) {
-      this.router.navigate(['/app']);
+      this.router.navigate(['/dashboard']);
       return false;
     }
     return true;
   }
 
   /**
-   * @description if not logged in then navigate to /login
+   * @description if not logged in then navigate to root
    */
   isLoggedin(url: string): boolean {
     let auth = {
@@ -50,7 +57,7 @@ export class AuthguardService implements CanActivate {
       token: this.store.getCookie(this.token)
     };
     if(auth.username.length && auth.token.length) { return true; }
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
     return false;
   }
 }

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular6-quick-start-with-angular-material-theme';
+  title = 'Psynapsus Admin Panel';
 }

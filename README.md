@@ -8,7 +8,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Live server
 
-Visit `https://angular-quickstart.netlify.com/`. Application is deployed here.
+Visit `https://example.com/`. Application is deployed here.
 
 ## Code scaffolding
 

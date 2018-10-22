@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+import { TrimwordPipe } from '../../pipes/trimword.pipe';
 
-import { DashboardComponent } from '../../components/dashboard/dashboard.component';
-import { FooterComponent } from '../../components/footer/footer.component';
+import { UpdatesComponent } from '../../components/updates/updates.component';
 
 export const routes: Routes = [
-  { path: '', component: DashboardComponent }
+  { path: '', component: UpdatesComponent }
 ];
 
 @NgModule({
@@ -18,9 +18,11 @@ export const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    DashboardComponent,
-    FooterComponent
+    UpdatesComponent,
+    TrimwordPipe
   ],
   providers: []
 })
-export class DashboardModule { }
+export class UpdatesModule { }
+
+
