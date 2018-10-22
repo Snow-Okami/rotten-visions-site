@@ -8,7 +8,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Live server
 
-Visit `https://practical-benz-6bc9a1.netlify.com//`. Application is deployed here.
+Visit `https://practical-benz-6bc9a1.netlify.com/`. Application is deployed here.
 
 ## Code scaffolding
 
