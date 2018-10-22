@@ -1,21 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
 
-  public fillerContent = Array.from({length: 50}, () =>
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
-  constructor() { }
+  public mobileQuery: MediaQueryList;
+  public fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
+  private _mobileQueryListener: () => void;
+  @ViewChild('toolbar') toolbar: any;
+
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+
+  /**
+   * 
+   * @param c is the child route component. All available variables and funtions will be returned.
+   */
+  routeChange(c) {
+    document.title = c.title ? c.title : 'Angular 6 Quick Start';
+  }
 
   ngOnInit() {
   }
 
+  ngAfterViewInit() {
+  }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
 }
+
