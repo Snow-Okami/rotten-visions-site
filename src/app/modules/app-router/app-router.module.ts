@@ -13,13 +13,11 @@ const routes : Routes = [
   },
   {
     path: 'dashboard',
-    pathMatch: 'full',
     canActivate: [ AuthguardService ],
     loadChildren: '../dashboard/dashboard.module#DashboardModule'
   },
   {
     path: '**',
-    pathMatch: 'full',
     loadChildren: '../notfound/notfound.module#NotfoundModule'
   },
 ];

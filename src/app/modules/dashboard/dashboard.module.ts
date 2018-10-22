@@ -8,7 +8,16 @@ import { DashboardComponent } from '../../components/dashboard/dashboard.compone
 import { FooterComponent } from '../../components/footer/footer.component';
 
 export const routes: Routes = [
-  { path: '', component: DashboardComponent }
+  {
+    path: '',
+    component: DashboardComponent,
+    children: [
+      { path: '', redirectTo: '/dashboard/games', pathMatch: 'full' },
+      { path: 'games', loadChildren: '../games/games.module#GamesModule' },
+      { path: 'updates', loadChildren: '../updates/updates.module#UpdatesModule' },
+      { path: 'messages', loadChildren: '../messages/messages.module#MessagesModule' }
+    ]
+  }
 ];
 
 @NgModule({

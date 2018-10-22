@@ -17,16 +17,11 @@ export class AuthguardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     let url: string = state.url;
-    let shouldLoginUrl: string[] = [
-      '/'
-    ];
-    let isLoggedinUrl: string[] = [
-      '/dashboard'
-    ];
+    let isLoggedinExp = /^\/dashboard/gm;
 
-    if(shouldLoginUrl.includes(url)) {
+    if(url === '/') {
       return this.shouldLogin(url);
-    } else if(isLoggedinUrl.includes(url)) {
+    } else if(isLoggedinExp.test(url)) {
       return this.isLoggedin(url);
     } else {
       return true;
