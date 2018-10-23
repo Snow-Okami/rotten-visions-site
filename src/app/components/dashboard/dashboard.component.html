@@ -1,7 +1,7 @@
 <div class="psynapsus-container" [class.psynapsus-is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="psynapsus-toolbar">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h1 class="psynapsus-app-name">Responsive App</h1>
+    <h1 class="psynapsus-app-name"> Psynapsus </h1>
   </mat-toolbar>
 
   <!-- <div > -->
@@ -20,7 +20,6 @@
         </mat-sidenav>
 
         <mat-sidenav-content>
-          <p *ngFor="let item of finalArea"> x: {{ item.x }}</p>
           <router-outlet (activate)="routeChange($event)"></router-outlet>
         </mat-sidenav-content>
       </mat-sidenav-container>

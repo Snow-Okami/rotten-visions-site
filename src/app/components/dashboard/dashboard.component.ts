@@ -18,6 +18,8 @@ export class DashboardComponent {
     { nav: 'Updates', url: '/dashboard/updates' }
   ];
   private _mobileQueryListener: () => void;
+
+  @ViewChild('snav') sidenav: any;
   
   @ViewChild('container') container: any;
   private mc;
@@ -50,18 +52,31 @@ export class DashboardComponent {
     let containerElement = this.container._element.nativeElement;
     this.mc = new Hammer.Manager(containerElement);
     this.mc.add( new Hammer.Pan({ direction: Hammer.DIRECTION_ALL, threshold: 0 }) );
-    this.mc.on("panright", this.onPan);
+    this.mc.on("panright", this.onPanRight);
+    this.mc.on("panleft", this.onPanLeft);
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  onPan(ev) {
+  onPanRight(ev) {
     that.panArea.push({ x: ev.center.x, y: ev.center.y });
     if(ev.isFinal) {
       that.finalArea = Object.assign([], that.panArea);
       that.panArea = [];
+
+      if(that.finalArea[0].x > 0 && that.finalArea[0].x < 40 && that.sidenav._elementRef.nativeElement.style.visibility === 'hidden') {
+        that.sidenav.toggle();
+      }
+    }
+  }
+
+  onPanLeft(ev) {
+    if(ev.isFinal) {
+      if(that.sidenav._elementRef.nativeElement.style.visibility !== 'hidden') {
+        that.sidenav.toggle();
+      }
     }
   }
 
