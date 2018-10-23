@@ -15,7 +15,6 @@ export class DashboardComponent {
     { nav: 'Updates', url: '/dashboard/updates' }
   ];
   private _mobileQueryListener: () => void;
-  @ViewChild('toolbar') toolbar: any;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
