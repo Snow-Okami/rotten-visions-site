@@ -22,6 +22,7 @@ export class DashboardComponent {
   @ViewChild('container') container: any;
   private mc;
   private panArea = [];
+  public finalArea = [];
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -59,11 +60,9 @@ export class DashboardComponent {
   onPan(ev) {
     that.panArea.push({ x: ev.center.x, y: ev.center.y });
     if(ev.isFinal) {
-      let area = Object.assign([], that.panArea);
+      that.finalArea = Object.assign([], that.panArea);
       that.panArea = [];
-      console.log(area);
     }
-    // console.log(ev);
   }
 
 }

@@ -20,6 +20,7 @@
         </mat-sidenav>
 
         <mat-sidenav-content>
+          <p *ngFor="let item of finalArea"> x: {{ item.x }}</p>
           <router-outlet (activate)="routeChange($event)"></router-outlet>
         </mat-sidenav-content>
       </mat-sidenav-container>
