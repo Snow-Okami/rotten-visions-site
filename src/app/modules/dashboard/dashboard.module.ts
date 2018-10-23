@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { TrimwordPipe } from '../../pipes/trimword.pipe';
+import 'hammerjs';
 
 import { DashboardComponent } from '../../components/dashboard/dashboard.component';
 import { FooterComponent } from '../../components/footer/footer.component';
