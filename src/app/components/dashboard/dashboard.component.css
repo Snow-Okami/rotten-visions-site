@@ -30,6 +30,9 @@ h1.psynapsus-app-name {
   flex: 1 0 auto;
 }
 
-mat-sidenav-container {
+/**
+ * @description SET background color of your choice.
+ */
+/* mat-sidenav, mat-sidenav-container {
   background: #000;
-}
+} */
