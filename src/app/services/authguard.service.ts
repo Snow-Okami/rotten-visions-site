@@ -19,7 +19,10 @@ export class AuthguardService implements CanActivate {
     let url: string = state.url;
     let isLoggedinExp = /^\/dashboard/gm;
 
-    return true;
+    /**
+     * @description Use this for testing. Allows to route without any guard.
+     */
+    // return true;
     
     if(url === '/') {
       return this.shouldLogin(url);

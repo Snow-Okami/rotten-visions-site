@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.container.psynapsus {
+  background: #303030;
+  color: #fff;
+}
+
+.head, .body {
+  padding: 15px;
+  /* margin: 0 auto; */
+}
+
+.row {
+  padding: 10px 0;
+}
+
+.col {
+  display: inline-block;
+  /* padding: 0 5px; */
+  vertical-align: top;
+}
+
+.col.v-al-m {
+  vertical-align: middle;
+}
+
+.mobile .col:not(.inline) {
+  display: block;
+}
+
+.col.w33 {
+  width: 33.3%;
+}
+
+.col.w40 {
+  width: 40%;
+}
+
+.col.w60 {
+  width: 60%;
+}
+
+.mobile .col.w33:not(.inline), .mobile .col.w40:not(.inline), .mobile .col.w60:not(.inline) {
+  width: 100%
+}
+
+.logo {
+  width: 150px;
+}
+
+.t-al-right {
+  text-align: right;
+}
+
+.t-al-center {
+  text-align: center;
+}
+
+.nav {
+  background: url(/assets/icon/login-black.png) 0 0/contain no-repeat;
+  transition: .2s ease-in-out;
+  height: 30px;
+  width: 250px;
+  margin: 10px 5px;
+}
