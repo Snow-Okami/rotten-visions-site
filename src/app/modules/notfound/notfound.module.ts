@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../../../environments/environment';
 
 import { NotfoundComponent } from '../../components/notfound/notfound.component';
 
@@ -16,8 +14,7 @@ export const routes: Routes = [
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
     MaterialModule,
-    RouterModule.forChild(routes),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    RouterModule.forChild(routes)
   ],
   declarations: [
     NotfoundComponent
