@@ -66,17 +66,18 @@ export class DashboardComponent {
       that.finalArea = Object.assign([], that.panArea);
       that.panArea = [];
 
-      if(that.finalArea[0].x > 0 && that.finalArea[0].x < 40 && that.sidenav._elementRef.nativeElement.style.visibility === 'hidden') {
-        that.sidenav.toggle();
+      /**
+       * @description that.sidenav._elementRef.nativeElement.style.visibility is the visibility of the navigation.
+       */
+      if(that.finalArea[0].x > 0 && that.finalArea[0].x < 40) {
+        that.sidenav.open();
       }
     }
   }
 
   onPanLeft(ev) {
     if(ev.isFinal) {
-      if(that.sidenav._elementRef.nativeElement.style.visibility !== 'hidden') {
-        that.sidenav.toggle();
-      }
+      that.sidenav.close();
     }
   }
 
