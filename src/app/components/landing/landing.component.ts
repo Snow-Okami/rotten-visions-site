@@ -24,7 +24,7 @@ export class LandingComponent {
    * 
    * @description Navigation 
    */
-  public navItem = 'login';
+  public navItem = 'register';
 
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
