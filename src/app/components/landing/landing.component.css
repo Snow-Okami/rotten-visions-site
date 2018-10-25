@@ -10,6 +10,11 @@
   color: #fff;
 }
 
+.content-wrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+
 .head, .body {
   padding: 15px;
   /* margin: 0 auto; */
@@ -70,9 +75,7 @@
 }
 
 .wrapper {
-  padding: 10px;
-  min-height: 500px;
-  background: #303030;
+  padding: 0 20px;
 }
 
 .l-h-120 {
@@ -91,28 +94,6 @@
   text-align: center;
 }
 
-/* .nav {
-  transition: .2s ease-in-out;
-  height: 37px;
-  width: 250px;
-  margin: 5px 0;
-  display: inline-block;
-  cursor: pointer;
-  line-height: 32px;
-}
-
-.nav.bg-register {
-  background: url(/assets/background/white-bg.png) 0 0/contain no-repeat;
-}
-
-.nav.bg-login {
-  background: url(/assets/background/white-bg.png) 0 0/contain no-repeat;
-}
-
-.nav:hover, .nav.active {
-  background: url(/assets/background/red-bg.png) 0 0/contain no-repeat;
-} */
-
 /**
  * @description Login Component CSS
  */
@@ -120,8 +101,9 @@
   padding: 16px;
 }
 
-.login-card {
-  max-width: 400px;
+.login-card, .signup-card {
+  max-width: 350px;
+  margin: 0 auto;
 }
 
 .login-header-image {

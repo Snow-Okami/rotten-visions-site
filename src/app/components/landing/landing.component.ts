@@ -22,9 +22,9 @@ export class LandingComponent {
 
   /**
    * 
-   * @description Navigation 
+   * @description Login or Signup Interface. 
    */
-  public navItem = 'register';
+  public login = true;
 
   constructor(
     public changeDetectorRef: ChangeDetectorRef,

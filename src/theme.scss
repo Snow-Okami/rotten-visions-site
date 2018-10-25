@@ -1,13 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Material+Icons|Montserrat:300,400,500');
- 
- @import '~@angular/material/theming';
- 
- @include mat-core();
- 
- $primary: mat-palette($mat-p-red, A700);
- $accent:  mat-palette($mat-p-red, A400);
- $warn:    mat-palette($mat-red);
- 
- $theme: mat-dark-theme($primary, $accent, $warn);
- 
- @include angular-material-theme($theme);
+
+@font-face {
+  font-family: 'Scifly';
+  src: url('assets/font/scifly.woff');
+}
+
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$primary: mat-palette($mat-p-red, A700);
+$accent:  mat-palette($mat-p-red, A400);
+$warn:    mat-palette($mat-red);
+
+$theme: mat-dark-theme($primary, $accent, $warn);
+
+@include angular-material-theme($theme);
