@@ -10,7 +10,7 @@
 }
 
 .container.psynapsus {
-  background: #303030;
+  background: url(/assets/background/theme.png) 0 0/contain;
   color: #fff;
 }
 
@@ -66,9 +66,23 @@
 }
 
 .nav {
-  background: url(/assets/icon/login-black.png) 0 0/contain no-repeat;
   transition: .2s ease-in-out;
-  height: 30px;
+  height: 37px;
   width: 250px;
-  margin: 10px 5px;
+  margin: 5px 0;
+  display: inline-block;
+  cursor: pointer;
+  line-height: 32px;
+}
+
+.nav.bg-register {
+  background: url(/assets/background/white-bg.png) 0 0/contain no-repeat;
+}
+
+.nav.bg-login {
+  background: url(/assets/background/white-bg.png) 0 0/contain no-repeat;
+}
+
+.nav:hover {
+  background: url(/assets/background/red-bg.png) 0 0/contain no-repeat;
 }
