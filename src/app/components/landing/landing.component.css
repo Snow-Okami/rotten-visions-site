@@ -53,6 +53,10 @@
   width: 100%
 }
 
+.l-h-120 {
+  line-height: 120px;
+}
+
 .logo {
   width: 150px;
 }
@@ -83,6 +87,34 @@
   background: url(/assets/background/white-bg.png) 0 0/contain no-repeat;
 }
 
-.nav:hover {
+.nav:hover, .nav.active {
   background: url(/assets/background/red-bg.png) 0 0/contain no-repeat;
+}
+
+/**
+ * @description Login Component CSS
+ */
+.login-container, .signup-container {
+  padding: 16px;
+}
+
+.login-card {
+  max-width: 400px;
+}
+
+.login-header-image {
+  background-image: url('/assets/logo/Onimind_Logo.png');
+  background-size: cover;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-icon {
+  cursor: pointer;
+}
+
+.right {
+  float: right;
 }

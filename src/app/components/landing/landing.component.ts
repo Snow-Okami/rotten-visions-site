@@ -1,5 +1,6 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-landing',
@@ -8,6 +9,22 @@ import { MediaMatcher } from '@angular/cdk/layout';
 })
 export class LandingComponent {
   public mobileQuery: MediaQueryList;
+
+  /**
+   * 
+   * @description 
+   */
+  public email = new FormControl('', [ Validators.required ]);
+  public password = new FormControl('', [ Validators.required ]);
+  public hidePass: boolean = true;
+  public loader: boolean = false;
+  public disableClick: boolean = false;
+
+  /**
+   * 
+   * @description Navigation 
+   */
+  public navItem = 'login';
 
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
