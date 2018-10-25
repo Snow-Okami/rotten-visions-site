@@ -16,6 +16,11 @@ a, p {
   text-align: center;
 }
 
+body {
+  background: url(/assets/background/theme.png) 0 0/contain;
+  background-attachment: fixed;
+}
+
 .mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;

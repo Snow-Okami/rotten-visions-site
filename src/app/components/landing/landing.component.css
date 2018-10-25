@@ -7,10 +7,6 @@
   left: 0;
   right: 0;
   z-index: 1;
-}
-
-.container.psynapsus {
-  background: url(/assets/background/theme.png) 0 0/contain;
   color: #fff;
 }
 
@@ -41,6 +37,10 @@
   width: 20%;
 }
 
+.col.w30 {
+  width: 30%;
+}
+
 .col.w33 {
   width: 33.3%;
 }
@@ -65,8 +65,14 @@
   width: 80%;
 }
 
-.mobile .col.w20:not(.inline), .mobile .col.w33:not(.inline), .mobile .col.w40:not(.inline), .mobile .col.w50:not(.inline), .mobile .col.w60:not(.inline), .mobile .col.w70:not(.inline), .mobile .col.w80:not(.inline) {
+.mobile .col.w20:not(.inline), .mobile .col.w30:not(.inline), .mobile .col.w33:not(.inline), .mobile .col.w40:not(.inline), .mobile .col.w50:not(.inline), .mobile .col.w60:not(.inline), .mobile .col.w70:not(.inline), .mobile .col.w80:not(.inline) {
   width: 100%
+}
+
+.wrapper {
+  padding: 10px;
+  min-height: 500px;
+  background: #303030;
 }
 
 .l-h-120 {
@@ -85,7 +91,7 @@
   text-align: center;
 }
 
-.nav {
+/* .nav {
   transition: .2s ease-in-out;
   height: 37px;
   width: 250px;
@@ -105,7 +111,7 @@
 
 .nav:hover, .nav.active {
   background: url(/assets/background/red-bg.png) 0 0/contain no-repeat;
-}
+} */
 
 /**
  * @description Login Component CSS
@@ -115,7 +121,7 @@
 }
 
 .login-card {
-  /* max-width: 400px; */
+  max-width: 400px;
 }
 
 .login-header-image {
