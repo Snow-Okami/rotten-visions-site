@@ -19,3 +19,14 @@
   padding: 15px;
   /* margin: 0 auto; */
 }
+
+/**
+ * Progress Bar CSS
+ */
+.mat-progress-bar {
+  height: 3px;
+}
+
+.mat-progress-bar.hidden {
+  visibility: hidden;
+}

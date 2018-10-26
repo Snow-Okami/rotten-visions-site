@@ -1,6 +1,5 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-landing',
@@ -9,19 +8,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LandingComponent {
   public mobileQuery: MediaQueryList;
+  
+  @ViewChild('loader') loader;
 
   /**
-   * 
-   * @description 
-   */
-  public email = new FormControl('', [ Validators.required ]);
-  public password = new FormControl('', [ Validators.required ]);
-  public hidePass: boolean = true;
-  public loader: boolean = false;
-  public disableClick: boolean = false;
-
-  /**
-   * 
    * @description Login or Signup Interface. 
    */
   public login = true;
@@ -35,8 +25,9 @@ export class LandingComponent {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
+
+  ngAfterViewInit() { }
 
   private _mobileQueryListener: () => void;
 

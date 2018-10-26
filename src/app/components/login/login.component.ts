@@ -9,16 +9,15 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class LoginComponent {
 
   /**
-   * 
    * @description 
    */
   public email = new FormControl('', [ Validators.required ]);
   public password = new FormControl('', [ Validators.required ]);
   public hidePass: boolean = true;
-  public loader: boolean = false;
   public disableClick: boolean = false;
 
-  @Input() mobileQuery: any;
+  @Input() mobileQuery;
+  @Input() loader;
 
   /**
    * 
@@ -28,8 +27,14 @@ export class LoginComponent {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.mobileQuery);
+  ngOnInit() { }
+
+  ngAfterViewInit() {
+
+    /**
+     * @description Loader is an element generated using Material Theme.
+     */
+    this.loader._elementRef.nativeElement.classList.add('hidden');
   }
 
 }

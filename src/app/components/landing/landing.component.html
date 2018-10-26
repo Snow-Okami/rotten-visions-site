@@ -1,3 +1,4 @@
+<mat-progress-bar #loader aria-label="Horizontal progressbar" mode="indeterminate"></mat-progress-bar>
 <div class="container">
   <div class="content-wrapper">
     <div [ngClass]="{'head': true}">
@@ -43,7 +44,7 @@
         <div class="col w50">
 
           <!-- Login & Register Card Layout Is Here. -->
-          <app-login [mobileQuery]="mobileQuery"></app-login>
+          <app-login [mobileQuery]="mobileQuery" [loader]="loader"></app-login>
 
         </div>
       </div>
