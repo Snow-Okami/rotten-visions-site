@@ -4,9 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 
+/**
+ * @description SharedModule contains the shared Components throughout Psynapsus.
+ */
+import { SharedModule } from '../shared/shared.module';
+
 import { LandingComponent } from '../../components/landing/landing.component';
 import { LoginComponent } from '../../components/login/login.component';
-import { FooterComponent } from '../../components/footer/footer.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent }
@@ -15,13 +19,12 @@ export const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
-    MaterialModule,
-    RouterModule.forChild(routes)
+    MaterialModule, SharedModule,
+    RouterModule.forChild(routes),
   ],
   declarations: [
     LandingComponent,
-    LoginComponent,
-    FooterComponent
+    LoginComponent
   ],
   providers: []
 })
