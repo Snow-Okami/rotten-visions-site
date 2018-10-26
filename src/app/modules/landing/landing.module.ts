@@ -6,6 +6,7 @@ import { MaterialModule } from '../material/material.module';
 
 import { LandingComponent } from '../../components/landing/landing.component';
 import { LoginComponent } from '../../components/login/login.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent }
@@ -19,7 +20,8 @@ export const routes: Routes = [
   ],
   declarations: [
     LandingComponent,
-    LoginComponent
+    LoginComponent,
+    FooterComponent
   ],
   providers: []
 })

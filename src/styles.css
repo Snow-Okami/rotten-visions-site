@@ -13,12 +13,14 @@ h1, h2, h3, h4, h5 {
 }
 
 body {
-  /**
-   * @description Supports mobile view where background image is not supported!
-   */
-  background: #0f1013;
   background: url(/assets/background/theme.png);
   background-attachment: fixed;
+}
+/**
+ * @description Supports mobile view where background image is not supported!
+ */
+body.mobile-view {
+  background: #0f1013;
 }
 
 .mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6 {
@@ -35,4 +37,82 @@ body {
   line-height: 25px;
   padding: 1px;
   margin: 5px 0;
+}
+
+/**
+ * @description Common CSS Stays Here
+ */
+
+ .row {
+  padding: 10px 0;
+}
+
+.col {
+  display: inline-block;
+  /* padding: 0 5px; */
+  vertical-align: top;
+}
+
+.col.v-al-m {
+  vertical-align: middle;
+}
+
+.mobile .col:not(.inline) {
+  display: block;
+}
+
+.col.w20 {
+  width: 20%;
+}
+
+.col.w30 {
+  width: 30%;
+}
+
+.col.w33 {
+  width: 33.3%;
+}
+
+.col.w40 {
+  width: 40%;
+}
+
+.col.w50 {
+  width: 50%;
+}
+
+.col.w60 {
+  width: 60%;
+}
+
+.col.w70 {
+  width: 60%;
+}
+
+.col.w80 {
+  width: 80%;
+}
+
+.mobile .col.w20:not(.inline), .mobile .col.w30:not(.inline), .mobile .col.w33:not(.inline), .mobile .col.w40:not(.inline), .mobile .col.w50:not(.inline), .mobile .col.w60:not(.inline), .mobile .col.w70:not(.inline), .mobile .col.w80:not(.inline) {
+  width: 100%
+}
+
+.wrapper {
+  padding: 0 20px;
+}
+
+.l-h-120 {
+  line-height: 120px;
+}
+
+.logo {
+  width: 150px;
+}
+
+.t-al-right {
+  text-align: right;
+}
+
+.t-al-center {
+  text-align: center;
 }
