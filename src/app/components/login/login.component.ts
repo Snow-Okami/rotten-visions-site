@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +28,10 @@ export class LoginComponent {
    */
   public login = true;
 
-  constructor() { }
+  constructor(
+    private store: StoreService,
+    private router: Router
+  ) { }
 
   ngOnInit() { }
 
@@ -35,6 +41,12 @@ export class LoginComponent {
      * @description Loader is an element generated using Material Theme.
      */
     this.loader._elementRef.nativeElement.classList.add('hidden');
+  }
+
+  loginFun() {
+    this.store.setCookie('ps-u-a-p', 'abhisek507', 1);
+    this.store.setCookie('ps-t-a-p', 'abcd', 1);
+    this.router.navigate(['/dashboard']);
   }
 
 }

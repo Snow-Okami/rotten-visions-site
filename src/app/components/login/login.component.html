@@ -35,7 +35,7 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-button [disabled]="disableClick" (click)="login=!login;"> Create an account </button>
-    <button mat-raised-button color="primary" class="right" [disabled]="disableClick" (click)="disableClick = !disableClick">Login</button>
+    <button mat-raised-button color="primary" class="right" [disabled]="disableClick" (click)="disableClick = !disableClick;loginFun();">Login</button>
   </mat-card-actions>
 </mat-card>
 
