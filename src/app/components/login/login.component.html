@@ -1,3 +1,98 @@
-<p>
-  login works!
-</p>
+
+<!-- Login Card Layout Is Here. -->
+<mat-card class="login-card" *ngIf="login">
+  <mat-card-header>
+    <div mat-card-avatar class="login-header-image"></div>
+    <mat-card-title>Welcome Admin!</mat-card-title>
+    <mat-card-subtitle>Please login here.</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <!-- 
+      Email input field with Regular Expression updated validation checking.
+      -->
+    <div class="row">
+      <mat-form-field class="contact-input">
+        <input matInput placeholder="Enter your email" autocomplete="off" [formControl]="email" required>
+        <mat-error *ngIf="!email.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="email.hasError('required')">
+          Email is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field>
+          <input matInput placeholder="Enter your password" [type]="hidePass ? 'password' : 'text'" [formControl]="password" required>
+          <mat-icon matSuffix (click)="hidePass = !hidePass">{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-error *ngIf="password.hasError('required')">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [disabled]="disableClick" (click)="login=!login;"> Create an account </button>
+    <button mat-raised-button color="primary" class="right" [disabled]="disableClick" (click)="disableClick = !disableClick">Login</button>
+  </mat-card-actions>
+</mat-card>
+
+<!-- Register Card Layout Is Here. -->
+<mat-card class="signup-card" *ngIf="!login">
+  <mat-card-header>
+    <div mat-card-avatar class="login-header-image"></div>
+    <mat-card-title>Hello Visitor!</mat-card-title>
+    <mat-card-subtitle>Register here.</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <div class="row">
+      <mat-form-field class="contact-input">
+        <input matInput placeholder="Enter your first name" autocomplete="off" required>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="contact-input">
+        <input matInput placeholder="Enter your last name" autocomplete="off" required>
+      </mat-form-field>
+    </div>
+
+    <!-- 
+      Email input field with Regular Expression updated validation checking.
+      -->
+    <div class="row">
+      <mat-form-field class="contact-input">
+        <input matInput placeholder="Enter your email" autocomplete="off" [formControl]="email" required>
+        <mat-error *ngIf="!email.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="email.hasError('required')">
+          Email is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field>
+          <input matInput placeholder="Enter your password" [type]="hidePass ? 'password' : 'text'" [formControl]="password" required>
+          <mat-icon matSuffix (click)="hidePass = !hidePass">{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-error *ngIf="password.hasError('required')">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="row" *ngIf="hidePass">
+      <mat-form-field class="contact-input">
+        <input matInput placeholder="Confirm your password" [type]="hidePass ? 'password' : 'text'" required>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [disabled]="disableClick" (click)="login=!login;"> Already have an account? Login </button>
+    <button mat-raised-button color="primary" class="right" [disabled]="disableClick" (click)="disableClick = !disableClick"> Register </button>
+  </mat-card-actions>
+</mat-card>

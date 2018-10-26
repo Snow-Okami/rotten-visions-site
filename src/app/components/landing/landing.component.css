@@ -93,32 +93,3 @@
 .t-al-center {
   text-align: center;
 }
-
-/**
- * @description Login Component CSS
- */
-.login-container, .signup-container {
-  padding: 16px;
-}
-
-.login-card, .signup-card {
-  max-width: 350px;
-  margin: 0 auto;
-}
-
-.login-header-image {
-  background-image: url('/assets/logo/Onimind_Logo.png');
-  background-size: cover;
-}
-
-.mat-form-field {
-  width: 100%;
-}
-
-.mat-icon {
-  cursor: pointer;
-}
-
-.right {
-  float: right;
-}
