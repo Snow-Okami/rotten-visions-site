@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -18,6 +18,8 @@ export class LoginComponent {
   public loader: boolean = false;
   public disableClick: boolean = false;
 
+  @Input() mobileQuery: any;
+
   /**
    * 
    * @description Login or Signup Interface. 
@@ -27,6 +29,7 @@ export class LoginComponent {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.mobileQuery);
   }
 
 }

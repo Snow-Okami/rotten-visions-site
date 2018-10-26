@@ -8,7 +8,7 @@
         <h1 class="l-h-120"> Psynapsus </h1>
       </div>
     </div>
-    <div class="body">
+    <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
       <div class="row">
 
         <!-- Last login users. -->
@@ -34,8 +34,8 @@
         <div class="col w50">
 
           <!-- Login & Register Card Layout Is Here. -->
-          <app-login></app-login>
-          
+          <app-login [mobileQuery]="mobileQuery"></app-login>
+
         </div>
       </div>
     </div>

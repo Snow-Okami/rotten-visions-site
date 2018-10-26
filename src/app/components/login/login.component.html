@@ -92,7 +92,7 @@
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button [disabled]="disableClick" (click)="login=!login;"> Already have an account? Login </button>
+    <button mat-button [disabled]="disableClick" (click)="login=!login;"> {{ mobileQuery.matches ? 'Already admin? Login' : 'Already have an account? Login' }} </button>
     <button mat-raised-button color="primary" class="right" [disabled]="disableClick" (click)="disableClick = !disableClick"> Register </button>
   </mat-card-actions>
 </mat-card>
