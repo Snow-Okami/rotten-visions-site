@@ -26,6 +26,12 @@ export class LandingComponent {
    */
   public login = true;
 
+  /**
+   * 
+   * @description version is the app version.
+   */
+  public version: string = '1.7.0';
+
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,

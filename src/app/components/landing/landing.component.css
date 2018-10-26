@@ -15,7 +15,7 @@
   margin: 0 auto;
 }
 
-.head, .body {
+.head, .body, .footer {
   padding: 15px;
   /* margin: 0 auto; */
 }
