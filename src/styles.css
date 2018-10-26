@@ -12,7 +12,7 @@ h1, h2, h3, h4, h5 {
   font-weight: 400;
 }
 
-body {
+body:not(.mobile-view) {
   background: url(/assets/background/theme.png);
   background-attachment: fixed;
 }
