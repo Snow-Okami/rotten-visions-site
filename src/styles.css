@@ -13,7 +13,11 @@ h1, h2, h3, h4, h5 {
 }
 
 body {
-  background: url(/assets/background/theme.png) 0 0/contain;
+  /**
+   * @description Supports mobile view where background image is not supported!
+   */
+  background: #0f1013;
+  background: url(/assets/background/theme.png);
   background-attachment: fixed;
 }
 
