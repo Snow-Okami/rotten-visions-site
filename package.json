@@ -1,6 +1,6 @@
 {
   "name": "psynapsus-admin-panel",
-  "version": "1.7.3",
+  "version": "1.7.5",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
