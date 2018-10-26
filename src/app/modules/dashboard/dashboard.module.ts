@@ -7,7 +7,6 @@ import { TrimwordPipe } from '../../pipes/trimword.pipe';
 import 'hammerjs';
 
 import { DashboardComponent } from '../../components/dashboard/dashboard.component';
-import { FooterComponent } from '../../components/footer/footer.component';
 
 export const routes: Routes = [
   {
@@ -30,7 +29,6 @@ export const routes: Routes = [
   ],
   declarations: [
     DashboardComponent,
-    FooterComponent,
     TrimwordPipe
   ],
   providers: []
