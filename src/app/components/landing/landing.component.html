@@ -1,6 +1,6 @@
 <div class="container">
   <div class="content-wrapper">
-    <div class="head">
+    <div [ngClass]="{'head': true}">
       <div class="col">
         <img src="/assets/logo/Onimind_Logo.png" class="logo" alt="Missing logo">
       </div>
@@ -9,23 +9,32 @@
       </div>
     </div>
     <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
+
       <div class="row">
 
         <!-- Last login users. -->
         <div class="col w50">
           <div class="wrapper">
-            <h2 class="heading"> Recent Logins </h2>
-            <div class="row">
-              <p class="paragraph"> Psynapsus admin panel helps you keep track on company updates and user feedbacks. Still no login detected!</p>
+
+            <!-- Component Breakdown -->
+            <div>
+              <h2 class="heading"> Recent Logins </h2>
+              <div class="row">
+                <p class="paragraph"> Psynapsus admin panel helps you keep track on company updates and user feedbacks. Still no login detected!</p>
+              </div>
             </div>
-            <h2 class="heading"> Features </h2>
-            <div class="row">
-              <ul>
-                <li> Create, update or delete post to/from Desysia blog  </li>
-                <li> Communicate to a user registered with Desysia </li>
-                <li> Post or update game details for Rotten Visions </li>
-                <li> Track and update your profile as required </li>
-              </ul>
+
+            <!-- Component Breakdown -->
+            <div *ngIf="!mobileQuery.matches">
+                <h2 class="heading"> Features </h2>
+                <div class="row">
+                  <ul>
+                    <li> Create, update or delete post to/from Desysia blog  </li>
+                    <li> Communicate to a user registered with Desysia </li>
+                    <li> Post or update game details for Rotten Visions </li>
+                    <li> Track and update your profile as required </li>
+                  </ul>
+                </div>
             </div>
           </div>
         </div>
@@ -38,6 +47,7 @@
 
         </div>
       </div>
+
     </div>
     <div class="footer">
       <app-footer></app-footer>

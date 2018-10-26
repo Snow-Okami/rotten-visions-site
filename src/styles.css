@@ -101,12 +101,20 @@ body.mobile-view {
   padding: 0 20px;
 }
 
+.mobile .wrapper {
+  padding: 10px 0;
+}
+
 .l-h-120 {
   line-height: 120px;
 }
 
 .logo {
   width: 150px;
+}
+
+.right {
+  float: right;
 }
 
 .t-al-right {
