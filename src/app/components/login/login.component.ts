@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
+import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
 
 @Component({
@@ -16,6 +17,10 @@ export class LoginComponent {
    */
   public email = new FormControl('', [ Validators.required ]);
   public password = new FormControl('', [ Validators.required ]);
+  public loginForm = new FormGroup({
+    email: this.email,
+    password: this.password
+  });
   public hidePass: boolean = true;
   public disableClick: boolean = false;
 
@@ -30,6 +35,7 @@ export class LoginComponent {
 
   constructor(
     private store: StoreService,
+    private http: HttpService,
     private router: Router
   ) { }
 
@@ -44,9 +50,19 @@ export class LoginComponent {
   }
 
   loginFun() {
-    this.store.setCookie('ps-u-a-p', 'abhisek507', 1);
-    this.store.setCookie('ps-t-a-p', 'abcd', 1);
-    this.router.navigate(['/dashboard']);
+    if(this.loginForm.valid) {
+      let form = Object.assign({}, this.loginForm.value);
+      this.http.login(form)
+      .subscribe(resp => {
+        console.log('response', resp);
+        
+        // if(resp['message']['type'] != 'error') {
+        //   this.store.setCookie('ps-t-a-p', resp['token'], 1);
+        //   this.store.setCookie('ps-u-a-p', this.email.value, 1);
+        //   this.router.navigate(['/dashboard']);
+        // }
+      });
+    }
   }
 
 }

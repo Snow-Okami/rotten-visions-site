@@ -4,7 +4,7 @@ import {
   Router,
   ActivatedRouteSnapshot,
   RouterStateSnapshot } from '@angular/router';
-import { StoreService } from './store.service'
+import { StoreService } from './store.service';
 
 @Injectable({
   providedIn: 'root'
