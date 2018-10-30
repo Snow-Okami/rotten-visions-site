@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
@@ -36,7 +37,8 @@ export class LoginComponent {
   constructor(
     private store: StoreService,
     private http: HttpService,
-    private router: Router
+    private router: Router,
+    public snackBar: MatSnackBar
   ) { }
 
   ngOnInit() { }
@@ -49,15 +51,44 @@ export class LoginComponent {
     this.loader._elementRef.nativeElement.classList.add('hidden');
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+    });
+  }
+
   loginFun() {
     if(this.loginForm.valid) {
+      
+      /**
+       * @description Disable buttons & enable loader.
+       */
+      this.disableClick = true;
+      this.loader._elementRef.nativeElement.classList.remove('hidden');
+
+      /**
+       * @description form contains email and password.
+       */
       let form = Object.assign({}, this.loginForm.value);
+
+      /**
+       * @description Login HTTP request with form object.
+       */
       this.http.login(form)
       .subscribe(resp => {        
-        if(resp['message']['type'] != 'error') {
+        if(resp['message']['type'] !== 'error') {
+          
+          /**
+           * @description Store tokens and redirect to dashboard.
+           */
           this.store.setCookie('ps-t-a-p', resp['data']['token'], 3);
           this.store.setCookie('ps-u-a-p', this.email.value, 3);
           this.router.navigate(['/dashboard']);
+        } else {
+
+          this.openSnackBar(resp['message']['text'], '');
+          this.disableClick = false;
+          this.loader._elementRef.nativeElement.classList.add('hidden');
         }
       });
     }

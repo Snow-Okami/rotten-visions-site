@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,7 @@ export class StoreService {
   /**
    * @description domain update with production type.
    */
-  private production: boolean = true;
-  private domain = this.production ? 'psynapsus.netlify.com' : 'localhost';
+  private domain = environment.production ? 'psynapsus.netlify.com' : 'localhost';
 
   constructor() { }
 

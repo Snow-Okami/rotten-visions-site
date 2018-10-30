@@ -4,6 +4,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { StoreService } from './store.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class HttpService {
   /**
    * @description domain update with production type.
    */
-  private production: boolean = true;
-  private apiurl = this.production ? 'https://psynapsus.herokuapp.com/api/v1' : 'http://localhost:5000/api/v1';
+  // private apiurl = environment.production ? 'https://psynapsus.herokuapp.com/api/v1' : 'http://localhost:5000/api/v1';
+  private apiurl = 'https://psynapsus.herokuapp.com/api/v1';
 
   constructor(
     private http: HttpClient,
