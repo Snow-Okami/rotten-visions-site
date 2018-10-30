@@ -10,28 +10,15 @@ import { StoreService } from './store.service';
 })
 export class HttpService {
   /**
-   * @description Local system URL.
+   * @description domain update with production type.
    */
-  private apiurl = 'http://localhost:5000/api/v1';
-
-  /**
-   * @description Live server URL.
-   */
-  // private apiurl = 'https://psynapsus.herokuapp.com/api/v1';
+  private production: boolean = true;
+  private apiurl = this.production ? 'https://psynapsus.herokuapp.com/api/v1' : 'http://localhost:5000/api/v1';
 
   constructor(
     private http: HttpClient,
     private store: StoreService
   ) { }
-
-  private header() {
-    return {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': this.store.getCookie('r-v-token')
-      })
-    };
-  }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

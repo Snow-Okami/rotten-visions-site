@@ -7,6 +7,12 @@ import { BehaviorSubject } from 'rxjs';
 export class StoreService {
   private messageSource = new BehaviorSubject('');
   public currentMessage = this.messageSource.asObservable();
+  
+  /**
+   * @description domain update with production type.
+   */
+  private production: boolean = true;
+  private domain = this.production ? 'psynapsus.netlify.com' : 'localhost';
 
   constructor() { }
 
@@ -28,7 +34,7 @@ export class StoreService {
     let d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     let expires = 'expires=' + d.toUTCString();
-    document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+    document.cookie = `${cname}=${cvalue};${expires};path=/;domain=${this.domain}`;
   }
 
   /**

@@ -53,14 +53,12 @@ export class LoginComponent {
     if(this.loginForm.valid) {
       let form = Object.assign({}, this.loginForm.value);
       this.http.login(form)
-      .subscribe(resp => {
-        console.log('response', resp);
-        
-        // if(resp['message']['type'] != 'error') {
-        //   this.store.setCookie('ps-t-a-p', resp['token'], 1);
-        //   this.store.setCookie('ps-u-a-p', this.email.value, 1);
-        //   this.router.navigate(['/dashboard']);
-        // }
+      .subscribe(resp => {        
+        if(resp['message']['type'] != 'error') {
+          this.store.setCookie('ps-t-a-p', resp['data']['token'], 3);
+          this.store.setCookie('ps-u-a-p', this.email.value, 3);
+          this.router.navigate(['/dashboard']);
+        }
       });
     }
   }
