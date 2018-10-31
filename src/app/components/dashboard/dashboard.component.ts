@@ -1,6 +1,10 @@
 import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'hammerjs';
+
+import { HttpService } from '../../services/http.service';
+import { StoreService } from '../../services/store.service';
 
 let that;
 
@@ -13,6 +17,7 @@ export class DashboardComponent {
 
   public mobileQuery: MediaQueryList;
   public navList = [
+    { nav: 'Profile', url: '/dashboard/profile' },
     { nav: 'Games', url: '/dashboard/games' },
     { nav: 'Messages', url: '/dashboard/messages' },
     { nav: 'Updates', url: '/dashboard/updates' }
@@ -28,7 +33,10 @@ export class DashboardComponent {
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
-    media: MediaMatcher
+    media: MediaMatcher,
+    private store: StoreService,
+    private http: HttpService,
+    private router: Router,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -79,6 +87,15 @@ export class DashboardComponent {
     if(ev.isFinal) {
       that.sidenav.close();
     }
+  }
+
+  logout() {
+    /**
+     * @description remove cookies and redirect to login page.
+     */
+    this.store.setCookie('ps-t-a-p', '', 0);
+    this.store.setCookie('ps-u-a-p', '', 0);
+    this.router.navigate(['/']);
   }
 
 }

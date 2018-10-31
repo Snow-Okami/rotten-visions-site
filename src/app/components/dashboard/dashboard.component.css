@@ -33,6 +33,31 @@ h1.psynapsus-app-name {
 /**
  * @description SET background color of your choice.
  */
-/* mat-sidenav, mat-sidenav-container {
-  background: #000;
-} */
+.mat-nav-list .mat-list-item {
+  background: none;
+  background-image: url(/assets/background/white-bg.png);
+  transition: 0.2s ease-in-out all;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 30px;
+  width: 250px;
+  margin: 10px 5px;
+}
+.mat-nav-list .mat-list-item:hover, .mat-nav-list .mat-list-item.active {
+  /* background: #a73e45; */
+  /**
+   * @description nav items with background image and animation
+   */
+  background-image: url(/assets/background/red-bg.png);
+  transition: 0.2s ease-in-out all;
+}
+
+.power-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: -webkit-fill-available;
+}
+
+.power-wrapper .material-icons {
+  cursor: pointer;
+}

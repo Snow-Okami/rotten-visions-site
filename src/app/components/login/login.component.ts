@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material';
 
 import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
+import { ValidatorsService } from '../../services/validators.service';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +17,8 @@ export class LoginComponent {
   /**
    * @description 
    */
-  public email = new FormControl('', [ Validators.required ]);
-  public password = new FormControl('', [ Validators.required ]);
+  public email = new FormControl('', [ Validators.required, this.regx.email ]);
+  public password = new FormControl('', [ Validators.required, this.regx.password ]);
   public loginForm = new FormGroup({
     email: this.email,
     password: this.password
@@ -38,7 +39,8 @@ export class LoginComponent {
     private store: StoreService,
     private http: HttpService,
     private router: Router,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private regx: ValidatorsService
   ) { }
 
   ngOnInit() { }
@@ -53,6 +55,9 @@ export class LoginComponent {
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      direction: 'ltr',
       duration: 3000,
     });
   }

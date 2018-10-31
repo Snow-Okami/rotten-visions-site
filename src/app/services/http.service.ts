@@ -14,6 +14,9 @@ export class HttpService {
    * @description domain update with production type.
    */
   // private apiurl = environment.production ? 'https://psynapsus.herokuapp.com/api/v1' : 'http://localhost:5000/api/v1';
+  /**
+   * @description Select domain available only on Heroku.
+   */
   private apiurl = 'https://psynapsus.herokuapp.com/api/v1';
 
   constructor(
@@ -28,6 +31,10 @@ export class HttpService {
     };
   }
 
+  /**
+   * @description Login GET HTTP request.
+   * @param data 
+   */
   login(data): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/admin/login';
 

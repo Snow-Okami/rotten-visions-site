@@ -28,6 +28,9 @@
         <mat-form-field>
             <input matInput placeholder="Enter your password" [type]="hidePass ? 'password' : 'text'" [formControl]="password" required>
             <mat-icon matSuffix (click)="hidePass = !hidePass">{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="!password.hasError('required')">
+              Password don't contain space and minimum 5 characters
+            </mat-error>
             <mat-error *ngIf="password.hasError('required')">
               Password is required
             </mat-error>
