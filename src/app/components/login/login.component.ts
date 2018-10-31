@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
@@ -17,17 +17,20 @@ export class LoginComponent {
   /**
    * @description 
    */
-  public email = new FormControl('', [ Validators.required, this.regx.email ]);
-  public password = new FormControl('', [ Validators.required, this.regx.password ]);
+  public hidePass: boolean = true;
+  public disableClick: boolean = false;
+  public email = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.email ]);
+  public password = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.password ]);
   public loginForm = new FormGroup({
     email: this.email,
     password: this.password
   });
-  public hidePass: boolean = true;
-  public disableClick: boolean = false;
 
   @Input() mobileQuery;
   @Input() loader;
+  @ViewChild('emailField') emailField;
+  @ViewChild('passwordField') passwordField;
+  @ViewChild('hidePassField') hidePassField;
 
   /**
    * 
@@ -66,20 +69,28 @@ export class LoginComponent {
     if(this.loginForm.valid) {
       
       /**
-       * @description Disable buttons & enable loader.
+       * @description Disable buttons, inputs & enable loader.
        */
       this.disableClick = true;
+      this.hidePass = true;
+      // this.emailField.nativeElement.setAttribute('disabled', true);
+      // this.passwordField.nativeElement.setAttribute('disabled', true);
       this.loader._elementRef.nativeElement.classList.remove('hidden');
 
       /**
        * @description form contains email and password.
        */
-      let form = Object.assign({}, this.loginForm.value);
+      let loginForm = Object.assign({}, this.loginForm.value);
+
+      /**
+       * @description Set password field empty.
+       */
+      this.password.setValue('');
 
       /**
        * @description Login HTTP request with form object.
        */
-      this.http.login(form)
+      this.http.login(loginForm)
       .subscribe(resp => {        
         if(resp['message']['type'] !== 'error') {
           
@@ -92,11 +103,22 @@ export class LoginComponent {
         } else {
 
           this.openSnackBar(resp['message']['text'], '');
+          
+          /**
+           * @description Disable buttons, inputs & enable loader.
+           */
           this.disableClick = false;
+          // this.emailField.nativeElement.removeAttribute('disabled');
+          // this.passwordField.nativeElement.removeAttribute('disabled');
           this.loader._elementRef.nativeElement.classList.add('hidden');
         }
       });
     }
+  }
+
+  registerFun() {
+    this.openSnackBar('This feature is under progress!', '');
+    this.disableClick = false;
   }
 
 }

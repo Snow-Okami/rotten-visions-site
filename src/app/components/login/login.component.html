@@ -14,7 +14,7 @@
         -->
       <div class="row">
         <mat-form-field class="contact-input">
-          <input matInput placeholder="Enter your email" autocomplete="off" [formControl]="email" required>
+          <input #emailField matInput placeholder="Enter your email" autocomplete="off" [formControl]="email" required>
           <mat-error *ngIf="!email.hasError('required')">
             Please enter a valid email address
           </mat-error>
@@ -26,7 +26,7 @@
 
       <div class="row">
         <mat-form-field>
-            <input matInput placeholder="Enter your password" [type]="hidePass ? 'password' : 'text'" [formControl]="password" required>
+            <input #passwordField matInput placeholder="Enter your password" [type]="hidePass ? 'password' : 'text'" [formControl]="password" required>
             <mat-icon matSuffix (click)="hidePass = !hidePass">{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
             <mat-error *ngIf="!password.hasError('required')">
               Password don't contain space and minimum 5 characters
@@ -98,6 +98,6 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-button [disabled]="disableClick" (click)="login=!login;"> {{ mobileQuery.matches ? 'Already admin? Login' : 'Already have an account? Login' }} </button>
-    <button mat-raised-button color="primary" class="right" [disabled]="disableClick" (click)="disableClick = !disableClick"> Register </button>
+    <button mat-raised-button color="primary" class="right" [disabled]="disableClick" (click)="registerFun();"> Register </button>
   </mat-card-actions>
 </mat-card>
