@@ -6,10 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
+  private progressBar;
 
   constructor() { }
 
   ngOnInit() {
+    this.progressBar = document.getElementsByClassName('progressbar')[0];
+  }
+
+  ngAfterViewInit() {
+
+    /**
+     * @description Hide Progress Bar When Page is Loaded.
+     */
+    this.progressBar.classList.add('hidden');
   }
 
 }
