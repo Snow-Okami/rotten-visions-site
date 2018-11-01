@@ -27,6 +27,11 @@ export class DashboardComponent {
   @ViewChild('snav') sidenav: any;
   
   @ViewChild('container') container: any;
+  /**
+   * @description title is going to show on the browser tab when component is loaded.
+   */
+  private title = 'Psynapsus - Dashboard';
+
   private mc;
   private panArea = [];
   public finalArea = [];
@@ -51,7 +56,7 @@ export class DashboardComponent {
    * @param c is the child route component. All available variables and funtions will be returned.
    */
   routeChange(c) {
-    document.title = c.title ? c.title : 'Angular 6 Quick Start';
+    document.title = c.title ? c.title : this.title;
   }
 
   ngOnInit() {
@@ -60,20 +65,26 @@ export class DashboardComponent {
 
   ngAfterViewInit() {
 
-    /**
-     * @description Enable SLIDE to TOGGLE navigation.
-     */
-    let containerElement = this.container._element.nativeElement;
-    this.mc = new Hammer.Manager(containerElement);
-    this.mc.add( new Hammer.Pan({ direction: Hammer.DIRECTION_ALL, threshold: 0 }) );
-    this.mc.on("panright", this.onPanRight);
-    this.mc.on("panleft", this.onPanLeft);
+    if(this.mobileQuery.matches) {
+      /**
+       * @description Enable SLIDE to TOGGLE navigation.
+       */
+      let containerElement = this.container._element.nativeElement;
+      this.mc = new Hammer.Manager(containerElement);
+      this.mc.add( new Hammer.Pan({ direction: Hammer.DIRECTION_ALL, threshold: 0 }) );
+      this.mc.on("panright", this.onPanRight);
+      this.mc.on("panleft", this.onPanLeft);
+    }
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
+  /**
+   * @description Event fires when Pan detected on mobile from Left to Right.
+   * @param ev 
+   */
   onPanRight(ev) {
     that.panArea.push({ x: ev.center.x, y: ev.center.y });
     if(ev.isFinal) {
@@ -89,6 +100,10 @@ export class DashboardComponent {
     }
   }
 
+  /**
+   * @description Event fires when Pan detected on mobile from Right to Left.
+   * @param ev 
+   */
   onPanLeft(ev) {
     if(ev.isFinal) {
       that.sidenav.close();

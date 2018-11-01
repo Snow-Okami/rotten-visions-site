@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./updates.component.css']
 })
 export class UpdatesComponent implements OnInit {
+  /**
+   * @description title is going to show on the browser tab when component is loaded.
+   */
+  private title = 'Psynapsus - Updates Dashboard';
+
   private progressBar;
 
   constructor() { }

@@ -24,9 +24,11 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
+
+      <!-- Routing Components Will Appear Here -->
       <router-outlet (activate)="routeChange($event)"></router-outlet>
-    </mat-sidenav-content>
-    <mat-sidenav-content>
+
+      <!-- Footer Will Appear Here -->
       <div class="content-wrapper">
         <div class="footer">
           <app-footer></app-footer>
@@ -34,4 +36,5 @@
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
+
 </div>

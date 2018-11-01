@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./games.component.css']
 })
 export class GamesComponent implements OnInit {
+  /**
+   * @description title is going to show on the browser tab when component is loaded.
+   */
+  private title = 'Psynapsus - Games Dashboard';
+
   private progressBar;
   public fillerContent = Array.from({length: 50}, () =>
       `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut

@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
+  /**
+   * @description title is going to show on the browser tab when component is loaded.
+   */
+  private title = 'Psynapsus - Messages Dashboard';
+
   private progressBar;
 
   constructor() { }

@@ -7,7 +7,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public title = 'Psynapsus Admin Panel';
+  private title = 'Psynapsus - Admin Panel';
   public mobileQuery: MediaQueryList;
 
   constructor(
@@ -28,4 +28,12 @@ export class AppComponent {
   ngAfterViewInit() { }
 
   private _mobileQueryListener: () => void;
+
+  /**
+   * 
+   * @param c is the child route component. All available variables and funtions will be returned.
+   */
+  routeChange(c) {
+    document.title = c.title ? c.title : this.title;
+  }
 }

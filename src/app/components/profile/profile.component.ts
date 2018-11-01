@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  /**
+   * @description title is going to show on the browser tab when component is loaded.
+   */
+  private title = 'Psynapsus - Profile Dashboard';
+
   private progressBar;
 
   constructor() { }

@@ -7,9 +7,14 @@ import { MediaMatcher } from '@angular/cdk/layout';
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent {
+  /**
+   * @description title is going to show on the browser tab when component is loaded.
+   */
+  private title = 'Psynapsus - Admin Panel Login';
+
   public mobileQuery: MediaQueryList;
   private progressBar;
-  
+
   @ViewChild('loader') loader;
 
   /**
