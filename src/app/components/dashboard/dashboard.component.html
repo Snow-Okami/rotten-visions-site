@@ -9,24 +9,29 @@
     </div>
   </mat-toolbar>
 
-  <!-- <div > -->
-      <mat-sidenav-container #container class="psynapsus-sidenav-container"
-        [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+  <mat-sidenav-container #container class="psynapsus-sidenav-container"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
 
-        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-          [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
 
-          <!-- Router Links Should Stay Here -->
-          <mat-nav-list>
+      <!-- Router Links Should Stay Here -->
+      <mat-nav-list>
 
-          <!-- Set [routerLinkActiveOptions]="{exact: true}" when routing to root URL. -->
-            <a mat-list-item [routerLink]="item.url" routerLinkActive="active" *ngFor="let item of navList">{{ item.nav }}</a>
-          </mat-nav-list>
-        </mat-sidenav>
+      <!-- Set [routerLinkActiveOptions]="{exact: true}" when routing to root URL. -->
+        <a mat-list-item [routerLink]="item.url" routerLinkActive="active" *ngFor="let item of navList">{{ item.nav }}</a>
+      </mat-nav-list>
+    </mat-sidenav>
 
-        <mat-sidenav-content>
-          <router-outlet (activate)="routeChange($event)"></router-outlet>
-        </mat-sidenav-content>
-      </mat-sidenav-container>
-  <!-- </div> -->
+    <mat-sidenav-content>
+      <router-outlet (activate)="routeChange($event)"></router-outlet>
+    </mat-sidenav-content>
+    <mat-sidenav-content>
+      <div class="content-wrapper">
+        <div class="footer">
+          <app-footer></app-footer>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+
+/**
+ * @description SharedModule contains the shared Components throughout Psynapsus.
+ */
+import { SharedModule } from '../shared/shared.module';
 import { TrimwordPipe } from '../../pipes/trimword.pipe';
 import 'hammerjs';
 
@@ -25,7 +30,7 @@ export const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
-    MaterialModule,
+    MaterialModule, SharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [

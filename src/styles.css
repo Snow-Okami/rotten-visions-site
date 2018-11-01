@@ -7,6 +7,15 @@
   font-style: normal;
 }
 
+.content-wrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.head, .body, .footer {
+  padding: 15px;
+}
+
 h1, h2, h3, h4, h5 {
   font-family: 'Scifly', sans-serif;
   font-weight: 400;
@@ -43,13 +52,12 @@ body.mobile-view {
  * @description Common CSS Stays Here
  */
 
- .row {
+.row {
   padding: 10px 0;
 }
 
 .col {
   display: inline-block;
-  /* padding: 0 5px; */
   vertical-align: top;
 }
 

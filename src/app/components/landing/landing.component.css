@@ -9,31 +9,3 @@
   z-index: 1;
   color: #fff;
 }
-
-.content-wrapper {
-  width: 90%;
-  margin: 0 auto;
-}
-
-.head, .body, .footer {
-  padding: 15px;
-  /* margin: 0 auto; */
-}
-
-/**
- * Progress Bar CSS
- */
-.progressbar-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 2;
-}
-.mat-progress-bar {
-  height: 3px;
-}
-
-.mat-progress-bar.hidden {
-  visibility: hidden;
-}

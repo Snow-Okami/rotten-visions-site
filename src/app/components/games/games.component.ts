@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./games.component.css']
 })
 export class GamesComponent implements OnInit {
-
+  private progressBar;
   public fillerContent = Array.from({length: 50}, () =>
       `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -16,6 +16,15 @@ export class GamesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.progressBar = document.getElementsByClassName('progressbar')[0];
+  }
+
+  ngAfterViewInit() {
+
+    /**
+     * @description Hide Progress Bar When Page is Loaded.
+     */
+    this.progressBar.classList.add('hidden');
   }
 
 }

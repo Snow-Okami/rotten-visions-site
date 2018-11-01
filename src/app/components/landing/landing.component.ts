@@ -8,6 +8,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 })
 export class LandingComponent {
   public mobileQuery: MediaQueryList;
+  private progressBar;
   
   @ViewChild('loader') loader;
 
@@ -25,9 +26,13 @@ export class LandingComponent {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.progressBar = document.getElementsByClassName('progressbar')[0];
+  }
 
-  ngAfterViewInit() { }
+  ngAfterViewInit() {
+    this.progressBar.classList.add('hidden');
+  }
 
   private _mobileQueryListener: () => void;
 

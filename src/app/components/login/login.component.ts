@@ -25,9 +25,9 @@ export class LoginComponent {
     email: this.email,
     password: this.password
   });
+  private progressBar;
 
   @Input() mobileQuery;
-  @Input() loader;
   @ViewChild('loginFormElement') loginFormElement;
 
   /**
@@ -44,15 +44,11 @@ export class LoginComponent {
     private regx: ValidatorsService
   ) { }
 
-  ngOnInit() { }
-
-  ngAfterViewInit() {
-
-    /**
-     * @description Loader is an element generated using Material Theme.
-     */
-    this.loader._elementRef.nativeElement.classList.add('hidden');
+  ngOnInit() {
+    this.progressBar = document.getElementsByClassName('progressbar')[0];
   }
+
+  ngAfterViewInit() { }
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
@@ -71,7 +67,7 @@ export class LoginComponent {
        */
       this.disableClick = true;
       this.hidePass = true;
-      this.loader._elementRef.nativeElement.classList.remove('hidden');
+      this.progressBar.classList.remove('hidden');
 
       /**
        * @description form contains email and password.
@@ -98,13 +94,13 @@ export class LoginComponent {
           this.router.navigate(['/dashboard']);
         } else {
 
-          this.openSnackBar(resp['message']['text'], '');
-
           /**
            * @description Disable buttons & enable loader.
            */
           this.disableClick = false;
-          this.loader._elementRef.nativeElement.classList.add('hidden');
+          this.progressBar.classList.add('hidden');
+
+          this.openSnackBar(resp['message']['text'], '');
         }
       });
     }

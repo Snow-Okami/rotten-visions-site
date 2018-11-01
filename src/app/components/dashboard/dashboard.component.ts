@@ -30,6 +30,7 @@ export class DashboardComponent {
   private mc;
   private panArea = [];
   public finalArea = [];
+  private progressBar;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -54,9 +55,14 @@ export class DashboardComponent {
   }
 
   ngOnInit() {
+    this.progressBar = document.getElementsByClassName('progressbar')[0];
   }
 
   ngAfterViewInit() {
+
+    /**
+     * @description Enable SLIDE to TOGGLE navigation.
+     */
     let containerElement = this.container._element.nativeElement;
     this.mc = new Hammer.Manager(containerElement);
     this.mc.add( new Hammer.Pan({ direction: Hammer.DIRECTION_ALL, threshold: 0 }) );
