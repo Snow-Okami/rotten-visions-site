@@ -1,6 +1,6 @@
 
 <!-- Login Card Layout Is Here. -->
-<form #form (ngSubmit)="loginFun();" [formGroup]="loginForm">
+<form #loginFormElement (ngSubmit)="loginFun();" [formGroup]="loginForm">
   <mat-card class="login-card" *ngIf="login">
     <mat-card-header>
       <div mat-card-avatar class="login-header-image"></div>
@@ -14,7 +14,7 @@
         -->
       <div class="row">
         <mat-form-field class="contact-input">
-          <input #emailField matInput placeholder="Enter your email" autocomplete="off" [formControl]="email" required>
+          <input matInput placeholder="Enter your email" autocomplete="off" [formControl]="email" required>
           <mat-error *ngIf="!email.hasError('required')">
             Please enter a valid email address
           </mat-error>
@@ -26,7 +26,7 @@
 
       <div class="row">
         <mat-form-field>
-            <input #passwordField matInput placeholder="Enter your password" [type]="hidePass ? 'password' : 'text'" [formControl]="password" required>
+            <input matInput placeholder="Enter your password" [type]="hidePass ? 'password' : 'text'" [formControl]="password" required>
             <mat-icon matSuffix (click)="hidePass = !hidePass">{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
             <mat-error *ngIf="!password.hasError('required')">
               Password don't contain space and minimum 5 characters

@@ -28,9 +28,7 @@ export class LoginComponent {
 
   @Input() mobileQuery;
   @Input() loader;
-  @ViewChild('emailField') emailField;
-  @ViewChild('passwordField') passwordField;
-  @ViewChild('hidePassField') hidePassField;
+  @ViewChild('loginFormElement') loginFormElement;
 
   /**
    * 
@@ -67,14 +65,12 @@ export class LoginComponent {
 
   loginFun() {
     if(this.loginForm.valid) {
-      
+
       /**
        * @description Disable buttons, inputs & enable loader.
        */
       this.disableClick = true;
       this.hidePass = true;
-      // this.emailField.nativeElement.setAttribute('disabled', true);
-      // this.passwordField.nativeElement.setAttribute('disabled', true);
       this.loader._elementRef.nativeElement.classList.remove('hidden');
 
       /**
@@ -83,17 +79,17 @@ export class LoginComponent {
       let loginForm = Object.assign({}, this.loginForm.value);
 
       /**
-       * @description Set password field empty.
+       * @description Set form fields empty.
        */
-      this.password.setValue('');
+      this.loginFormElement.nativeElement.reset();
 
       /**
        * @description Login HTTP request with form object.
        */
       this.http.login(loginForm)
-      .subscribe(resp => {        
+      .subscribe(resp => {
         if(resp['message']['type'] !== 'error') {
-          
+
           /**
            * @description Store tokens and redirect to dashboard.
            */
@@ -103,13 +99,11 @@ export class LoginComponent {
         } else {
 
           this.openSnackBar(resp['message']['text'], '');
-          
+
           /**
-           * @description Disable buttons, inputs & enable loader.
+           * @description Disable buttons & enable loader.
            */
           this.disableClick = false;
-          // this.emailField.nativeElement.removeAttribute('disabled');
-          // this.passwordField.nativeElement.removeAttribute('disabled');
           this.loader._elementRef.nativeElement.classList.add('hidden');
         }
       });
