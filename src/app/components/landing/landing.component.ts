@@ -15,8 +15,6 @@ export class LandingComponent {
   public mobileQuery: MediaQueryList;
   private progressBar;
 
-  @ViewChild('loader') loader;
-
   /**
    * @description Login or Signup Interface. 
    */

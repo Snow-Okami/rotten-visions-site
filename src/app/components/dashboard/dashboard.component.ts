@@ -140,7 +140,7 @@ export class DashboardComponent {
         this.store.setCookie('ps-u-a-p', '', 0);
         this.router.navigate(['/']);
 
-        this.openSnackBar('You are successfully logged out!', '');
+        this.openSnackBar('You have successfully logged out!', '');
       } else {
         this.openSnackBar(resp['message']['text'], '');
         this.progressBar.classList.add('hidden');

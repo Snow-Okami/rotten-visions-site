@@ -1,0 +1,11 @@
+.create-post {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+}
+
+.update-tab {
+  width: fit-content;
+  padding: 7px 10px;
+  background: #212121;
+}

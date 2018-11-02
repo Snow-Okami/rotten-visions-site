@@ -1,6 +1,55 @@
 <div class="content-wrapper">
-  <div class="body">
-    <p> Updates works! </p>
+  <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
+
+    <!-- Create Post Button -->
+    <button mat-fab class="create-post" matTooltip="Create New" matTooltipPosition="before">
+      <mat-icon aria-label="Create new post icon">add</mat-icon>
+    </button>
+
+    <!-- LATEST Posts Appears Here -->
+    <div class="row">
+      <div class="col w60">
+        <div class="update-tab"> LATEST UPDATES </div>
+        <mat-divider></mat-divider>
+
+        <!-- Repeat should be here -->
+        <div class="row">
+
+          <!-- Keep the image in here -->
+          <div class="col w50">
+
+          </div>
+
+          <!-- Keep the description in here -->
+          <div class="col w50">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LATEST Posts Appears Here -->
+    <div class="row">
+      <div class="col w60">
+        <div class="update-tab"> ALL UPDATES </div>
+        <mat-divider></mat-divider>
+
+        <!-- Repeat should be here -->
+        <div class="row">
+
+          <!-- Keep the image in here -->
+          <div class="col w50">
+
+          </div>
+
+          <!-- Keep the description in here -->
+          <div class="col w50">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
   
