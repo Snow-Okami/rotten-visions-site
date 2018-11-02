@@ -13,11 +13,11 @@ export class HttpService {
   /**
    * @description domain update with production type.
    */
-  // private apiurl = environment.production ? 'https://psynapsus.herokuapp.com/api/v1' : 'http://localhost:5000/api/v1';
+  private apiurl = environment.production ? 'https://psynapsus.herokuapp.com/api/v1' : 'http://localhost:5000/api/v1';
   /**
    * @description Select domain available only on Heroku.
    */
-  private apiurl = 'https://psynapsus.herokuapp.com/api/v1';
+  // private apiurl = 'https://psynapsus.herokuapp.com/api/v1';
 
   constructor(
     private http: HttpClient,
@@ -32,8 +32,7 @@ export class HttpService {
   }
 
   /**
-   * @description Login GET HTTP request.
-   * @param data 
+   * @description Login POST HTTP Request.
    */
   login(data): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/admin/login';
@@ -41,6 +40,18 @@ export class HttpService {
     return this.http.post<any>(url, data).pipe(
       tap(message => message),
       catchError(this.handleError('login', {}))
+    );
+  }
+
+  /**
+   * @description Logout POST HTTP Request.
+   */
+  logout(data): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/admin/logout';
+
+    return this.http.post<any>(url, data).pipe(
+      tap(message => message),
+      catchError(this.handleError('logout', {}))
     );
   }
 }

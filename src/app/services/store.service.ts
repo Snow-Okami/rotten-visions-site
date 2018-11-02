@@ -56,4 +56,11 @@ export class StoreService {
     }
     return '';
   }
+
+  auth() {
+    return {
+      token: this.getCookie('ps-t-a-p'),
+      email: this.getCookie('ps-u-a-p')
+    };
+  }
 }

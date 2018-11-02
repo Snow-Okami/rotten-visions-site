@@ -90,8 +90,10 @@ export class LoginComponent {
            * @description Store tokens and redirect to dashboard.
            */
           this.store.setCookie('ps-t-a-p', resp['data']['token'], 3);
-          this.store.setCookie('ps-u-a-p', this.email.value, 3);
+          this.store.setCookie('ps-u-a-p', loginForm.email, 3);
           this.router.navigate(['/dashboard']);
+
+          this.openSnackBar('You have successfully logged in!', '');
         } else {
 
           /**

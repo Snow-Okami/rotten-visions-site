@@ -1,6 +1,7 @@
 import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 import 'hammerjs';
 
 import { HttpService } from '../../services/http.service';
@@ -43,6 +44,7 @@ export class DashboardComponent {
     private store: StoreService,
     private http: HttpService,
     private router: Router,
+    public snackBar: MatSnackBar,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -110,13 +112,40 @@ export class DashboardComponent {
     }
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      direction: 'ltr',
+      duration: 3000,
+    });
+  }
+
   logout() {
     /**
-     * @description remove cookies and redirect to login page.
+     * @description Enable loader.
      */
-    this.store.setCookie('ps-t-a-p', '', 0);
-    this.store.setCookie('ps-u-a-p', '', 0);
-    this.router.navigate(['/']);
+    this.progressBar.classList.remove('hidden');
+
+    /**
+     * @description logs out the user.
+     */
+    this.http.logout(this.store.auth())
+    .subscribe(resp => {
+      if(resp['message']['type'] !== 'error') {
+        /**
+         * @description remove cookies and redirect to login page.
+         */
+        this.store.setCookie('ps-t-a-p', '', 0);
+        this.store.setCookie('ps-u-a-p', '', 0);
+        this.router.navigate(['/']);
+
+        this.openSnackBar('You are successfully logged out!', '');
+      } else {
+        this.openSnackBar(resp['message']['text'], '');
+        this.progressBar.classList.add('hidden');
+      }
+    })
   }
 
 }
