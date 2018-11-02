@@ -26,6 +26,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   imports: [
@@ -51,7 +52,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatMenuModule,
     MatProgressBarModule,
     MatSnackBarModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule
   ],
   exports: [
     MatCardModule,
@@ -75,7 +77,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatMenuModule,
     MatProgressBarModule,
     MatSnackBarModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule
   ],
   declarations: []
 })
