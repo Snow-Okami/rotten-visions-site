@@ -9,3 +9,15 @@
   padding: 7px 10px;
   background: #212121;
 }
+
+.post-image {
+  max-width: 352px;
+
+  width: 100%;
+  height: 198px;
+}
+
+.mobile .post-image {
+  max-width: 100%;
+  height: auto;
+}
