@@ -21,3 +21,25 @@
   max-width: 100%;
   height: auto;
 }
+
+.post-tag {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.post-tag li {
+  display: inline-block;
+  background: #c1343c;
+  padding: 5px 8px;
+  margin: 5px;
+  border-radius: 4px;
+}
+
+.post-tag li {
+  margin-left: 0px;
+}
+
+.title {
+  font-size: 25px;
+  color: #c3233f;
+}

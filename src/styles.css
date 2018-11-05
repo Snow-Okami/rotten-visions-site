@@ -26,6 +26,11 @@ h1, h2, h3, h4, h5 {
   font-weight: 400;
 }
 
+p {
+  line-height: 25px;
+  padding: 1px;
+}
+
 body:not(.mobile-view) {
   background: url(/assets/background/theme.png);
   background-attachment: fixed;
@@ -47,10 +52,17 @@ body.mobile-view {
 }
 
 .paragraph, li {
-  letter-spacing: 1px;
-  line-height: 25px;
-  padding: 1px;
   margin: 5px 0;
+}
+
+/**
+ * @description Paragraph background is set here.
+ */
+.pg-bg {
+  opacity: 0.5;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  background: #000;
 }
 
 /**
@@ -136,4 +148,16 @@ body.mobile-view {
 
 .t-al-center {
   text-align: center;
+}
+
+.m-l-20 {
+  margin-left: 20px;
+}
+
+.mobile .m-l-20 {
+  margin-left: 0px;
+}
+
+.m-b-5 {
+  margin-bottom: 5px;
 }
