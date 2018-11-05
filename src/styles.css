@@ -31,6 +31,11 @@ p {
   padding: 1px;
 }
 
+ul:not(.default) {
+  padding-left: 0;
+  list-style-type: none;
+}
+
 body:not(.mobile-view) {
   background: url(/assets/background/theme.png);
   background-attachment: fixed;
@@ -70,7 +75,7 @@ body.mobile-view {
  */
 
 .row {
-  padding: 10px 0;
+  padding:6px 0;
 }
 
 .col {

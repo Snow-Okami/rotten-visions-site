@@ -2,6 +2,7 @@
   position: fixed;
   bottom: 15px;
   right: 15px;
+  z-index: 1;
 }
 
 .update-tab {
@@ -22,17 +23,13 @@
   height: auto;
 }
 
-.post-tag {
-  padding-left: 0;
-  list-style-type: none;
-}
-
 .post-tag li {
   display: inline-block;
-  background: #c1343c;
-  padding: 5px 8px;
-  margin: 5px;
-  border-radius: 4px;
+  background: #c3233f;
+  padding: 1px 8px 2px;
+  margin: 5px 5px 0;
+  border-radius: 2px;
+  font-size: 12px;
 }
 
 .post-tag li {
@@ -42,4 +39,23 @@
 .title {
   font-size: 25px;
   color: #c3233f;
+}
+
+.post-published {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.comment-item-wrapper {
+  padding: 6px 10px 0px 10px;
+  background: #212121;
+  border-radius: 30px;
+}
+
+.published-item-wrapper {
+  padding: 5px 10px;
+  background: #212121;
+  border-radius: 30px;
 }
