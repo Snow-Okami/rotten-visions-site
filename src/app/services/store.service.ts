@@ -60,7 +60,7 @@ export class StoreService {
   auth() {
     return {
       token: this.getCookie('ps-t-a-p'),
-      email: this.getCookie('ps-u-a-p')
+      email: atob(this.getCookie('ps-u-a-p'))
     };
   }
 }

@@ -38,7 +38,7 @@ export class AuthguardService implements CanActivate {
    */
   shouldLogin(url: string): boolean {
     let auth = {
-      username: this.store.getCookie(this.user),
+      username: atob(this.store.getCookie(this.user)),
       token: this.store.getCookie(this.token)
     };
     if(auth.username.length && auth.token.length) {
@@ -53,7 +53,7 @@ export class AuthguardService implements CanActivate {
    */
   isLoggedin(url: string): boolean {
     let auth = {
-      username: this.store.getCookie(this.user),
+      username: atob(this.store.getCookie(this.user)),
       token: this.store.getCookie(this.token)
     };
     if(auth.username.length && auth.token.length) { return true; }
