@@ -1,6 +1,13 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material';
+import * as _ from 'lodash';
+
+export interface Tag {
+  name: string;
+}
 
 @Component({
   selector: 'app-create-update',
@@ -15,6 +22,12 @@ export class CreateUpdateComponent {
 
   public mobileQuery: MediaQueryList;
   private progressBar;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  public tags: Tag[] = [
+    {name: 'Organs'},
+    {name: 'Social'},
+    {name: 'Login'},
+  ];
 
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
@@ -38,6 +51,36 @@ export class CreateUpdateComponent {
      * @description Hide Progress Bar When Page is Loaded.
      */
     this.progressBar.classList.add('hidden');
+  }
+
+  /**
+   * @description add a new tag by pressing Enter or Comma.
+   */
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      const tag = { name: (value || '').trim() };
+      
+      if (!_.find(this.tags, tag)) {
+        this.tags.push(tag);
+      }
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  /**
+   * @description remove is used to remove tags from input field.
+   * @param tag is an Object contains the tag name property. 
+   */
+  remove(tag: Tag): void {
+    _.pullAllBy(this.tags, [tag], 'name');
   }
 
 }
