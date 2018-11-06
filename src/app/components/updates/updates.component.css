@@ -27,18 +27,17 @@
   display: inline-block;
   background: #c3233f;
   padding: 1px 8px 2px;
-  margin: 5px 5px 0;
+  margin: 5px 5px 0 1px;
   border-radius: 2px;
   font-size: 12px;
 }
 
-.post-tag li {
-  margin-left: 0px;
-}
-
 .title {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   font-size: 25px;
   color: #c3233f;
+  cursor: pointer;
 }
 
 .post-published {

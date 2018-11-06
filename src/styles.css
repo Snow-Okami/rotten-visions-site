@@ -6,6 +6,7 @@
   font-weight: 300;
   font-style: normal;
   letter-spacing: 1px;
+  color: #fff;
 }
 
 .content-wrapper {
@@ -15,10 +16,6 @@
 
 .head, .body, .footer {
   padding: 15px;
-}
-
-.footer {
-  color: #fff;
 }
 
 h1, h2, h3, h4, h5 {

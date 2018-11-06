@@ -4,12 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 
-import { UpdatesComponent } from '../../components/updates/updates.component';
+import { ViewUpdateComponent } from '../../components/view-update/view-update.component';
 
 export const routes: Routes = [
-  { path: '', component: UpdatesComponent },
-  { path: 'create', loadChildren: '../create-update/create-update.module#CreateUpdateModule' },
-  { path: 'view', loadChildren: '../view-update/view-update.module#ViewUpdateModule' },
+  { path: '', component: ViewUpdateComponent }
 ];
 
 @NgModule({
@@ -19,10 +17,7 @@ export const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    UpdatesComponent
-  ],
-  providers: []
+    ViewUpdateComponent
+  ]
 })
-export class UpdatesModule { }
-
-
+export class ViewUpdateModule { }
