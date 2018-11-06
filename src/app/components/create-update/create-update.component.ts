@@ -24,9 +24,7 @@ export class CreateUpdateComponent {
   private progressBar;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   public tags: Tag[] = [
-    {name: 'Organs'},
     {name: 'Social'},
-    {name: 'Login'},
   ];
 
   constructor(

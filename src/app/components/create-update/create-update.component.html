@@ -9,61 +9,77 @@
 
         <div class="col w80">
 
-          <mat-card class="login-card">
+          <div class="col w40">
+            <!-- <div class="m-l-20">
 
-            <mat-card-header>
-              <!-- <div mat-card-avatar class="login-header-image"></div>
-              <mat-card-title>Hello Admin!</mat-card-title>
-              <mat-card-subtitle>Create post here.</mat-card-subtitle> -->
+              <div class="row"> 
+                <p> Choose image file </p>
+              </div> -->
 
-              <!-- <i class="material-icons"> arrow_back_ios </i> -->
-            </mat-card-header>
+              <div class="row">
 
-            <mat-card-content>
-
-              <div class="col w50">
-                  <!-- 
-                  Email input field with Regular Expression updated validation checking.
-                  -->
-                <div class="row">
-                  <mat-form-field class="contact-input">
-                    <input matInput placeholder="Enter post title" autocomplete="off" required>
-                    <!-- <mat-error *ngIf="!email.hasError('required')">
-                      Please enter a valid email address
-                    </mat-error> -->
-                    <!-- <mat-error *ngIf="email.hasError('required')">
-                      Email is required
-                    </mat-error> -->
-                  </mat-form-field>
-                </div>
-          
-                <div class="row">
-                  <mat-form-field class="contact-input">
-                    <mat-chip-list #chipList>
-                      <mat-chip *ngFor="let tag of tags" selectable="true"
-                                removable="true" (removed)="remove(tag)">
-                        {{tag.name}}
-                        <mat-icon matChipRemove>cancel</mat-icon>
-                      </mat-chip>
-                      <input placeholder="Add post tags"
-                              [matChipInputFor]="chipList"
-                              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                              matChipInputAddOnBlur="true"
-                              (matChipInputTokenEnd)="add($event)">
-                    </mat-chip-list>
-                  </mat-form-field>
+                <!-- Image Container -->
+                <div class="drop-image-cover">
+                  <input type="file" class="drop-image" >
                 </div>
               </div>
 
-              <div class="col w50">
+            <!-- </div> -->
+          </div>
 
+          <div class="col w60">
+            <div class="m-l-20">
+                <!-- 
+                Email input field with Regular Expression updated validation checking.
+                -->
+              <div class="row">
+                <mat-form-field class="contact-input">
+                  <input matInput placeholder="Enter post title" autocomplete="off" required>
+                  <!-- <mat-error *ngIf="!email.hasError('required')">
+                    Please enter a valid email address
+                  </mat-error> -->
+                  <!-- <mat-error *ngIf="email.hasError('required')">
+                    Email is required
+                  </mat-error> -->
+                </mat-form-field>
+              </div>
+        
+              <div class="row">
+                <mat-form-field class="contact-input">
+                  <mat-chip-list #chipList>
+                    <mat-chip *ngFor="let tag of tags" selectable="true"
+                              removable="true" (removed)="remove(tag)">
+                      {{tag.name}}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="Add post tags"
+                            [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            matChipInputAddOnBlur="true"
+                            (matChipInputTokenEnd)="add($event)">
+                  </mat-chip-list>
+                </mat-form-field>
               </div>
 
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-raised-button type="submit" color="primary"> Create </button>
-            </mat-card-actions>
-          </mat-card>
+              <div class="row">
+                <mat-form-field class="contact-input textarea">
+                  <textarea matInput #message matTextareaAutosize maxlength="256" placeholder="Enter post description" required></textarea>
+                  <mat-hint align="start" *ngIf="!mobileQuery.matches"><strong>Don't disclose personal info</strong> </mat-hint>
+                  <mat-hint align="start" *ngIf="mobileQuery.matches"><strong>It's public</strong> </mat-hint>
+                  <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                  <!-- <mat-error *ngIf="!messageFormControl.hasError('required')">
+                    Message must have 10 words. Eg.: Hi Alfred! ...
+                  </mat-error>
+                  <mat-error *ngIf="messageFormControl.hasError('required')">
+                    Message is <strong>required</strong>
+                  </mat-error> -->
+                </mat-form-field>
+              </div>
+            </div>
+
+          </div>
+
+          <button mat-raised-button type="submit" color="primary"> Create </button>
         </div>
       </div>
   </div>

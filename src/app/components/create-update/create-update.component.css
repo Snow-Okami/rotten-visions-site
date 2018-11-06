@@ -10,3 +10,20 @@
 .mat-card-actions {
   margin-left: 0px;
 }
+
+.drop-image-cover {
+  position: relative;
+  border-radius: 3px;
+  border: 2px dashed #ffffff8f;
+  width: 99%;
+}
+
+.drop-image {
+  position: relative;
+  opacity: 0;
+  height: 220px;
+  width: 100%;
+  outline: none;
+  box-shadow: none;
+  z-index: 0;
+}
