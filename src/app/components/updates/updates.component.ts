@@ -19,7 +19,7 @@ export class UpdatesComponent implements OnInit {
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
-    private router: Router,
+    private router: Router
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 840px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -38,14 +38,6 @@ export class UpdatesComponent implements OnInit {
      * @description Hide Progress Bar When Page is Loaded.
      */
     this.progressBar.classList.add('hidden');
-  }
-
-  visitCreateUpdate() {
-    this.router.navigate(['/dashboard/updates/create']);
-  }
-
-  visitViewUpdate() {
-    this.router.navigate(['/dashboard/updates/view']);
   }
 
 }

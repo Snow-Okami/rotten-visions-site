@@ -2,7 +2,7 @@
   <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
 
     <!-- Create Post Button -->
-    <button (click)="visitCreateUpdate()" mat-fab class="create-post" matTooltip="Create New" matTooltipPosition="before">
+    <button routerLink="/dashboard/updates/create" mat-fab class="create-post" matTooltip="Create New" matTooltipPosition="before">
       <mat-icon aria-label="Create new post icon">add</mat-icon>
     </button>
 
@@ -59,7 +59,7 @@
 
                 <!-- POST TITLE Should Stay Here -->
                 <div class="row">
-                  <p class="title" (click)="visitViewUpdate()"> UNTITLED SCIFI GAME </p>
+                  <p class="title" routerLink="/dashboard/updates/view"> UNTITLED SCIFI GAME </p>
                 </div>
 
                 <!-- POST DESCRIPTION Should Stay Here -->
