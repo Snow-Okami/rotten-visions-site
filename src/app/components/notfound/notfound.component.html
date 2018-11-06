@@ -1,3 +1,35 @@
-<p>
-  notfound works!
-</p>
+<div class="page-not-found-container">
+  <div class="content-wrapper">
+
+    <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
+
+      <div class="row t-al-center">
+        <div class="col">
+
+          <!-- Page Not Found Logo Is Here -->
+          <div class="row">
+            <img src="/assets/logo/404.png" alt="missing page not found logo!">
+          </div>
+
+          <!-- Page Not Found Text Is Here -->
+          <div class="row">
+            <h2> Page Not Found! </h2>
+          </div>
+
+          <!-- Redirect To Dashboard Or Login Link Is Here -->
+          <div class="row">
+            <p> The page you are looking for doesn't exist or an other error occurred. </p>
+            <p> You can visit to <a [routerLink]="visitDashboard ? '/dashboard' : '/'"> {{ visitDashboard ? 'Dashboard' : 'Login' }} </a> now.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <app-footer></app-footer>
+    </div>
+  </div>
+</div>
