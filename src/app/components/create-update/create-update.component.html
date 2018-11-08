@@ -1,85 +1,97 @@
 <div class="content-wrapper">
     <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
     
-      <div class="row">
+      <!-- <div class="row">
         <i class="material-icons"> arrow_back_ios </i>
-      </div>
+      </div> -->
 
       <div class="row">
 
-        <div class="col w80">
+        <div class="col w100">
 
-          <div class="col w40">
-            <!-- <div class="m-l-20">
-
-              <div class="row"> 
-                <p> Choose image file </p>
-              </div> -->
-
+          <div class="row">
+            <div class="col w60">
+              <!-- 
+              Email input field with Regular Expression updated validation checking.
+              -->
               <div class="row">
-
-                <!-- Image Container -->
-                <div class="drop-image-cover">
-                  <input type="file" class="drop-image" >
+                <div class="row">
+                  <p> Enter post details </p>
+                </div>
+  
+                <div class="row">
+                  <mat-form-field class="contact-input">
+                    <input matInput placeholder="Enter post title" autocomplete="off" required>
+                    <!-- <mat-error *ngIf="!email.hasError('required')">
+                      Please enter a valid email address
+                    </mat-error> -->
+                    <!-- <mat-error *ngIf="email.hasError('required')">
+                      Email is required
+                    </mat-error> -->
+                  </mat-form-field>
+                </div>
+          
+                <div class="row">
+                  <mat-form-field class="contact-input">
+                    <mat-chip-list #chipList>
+                      <mat-chip *ngFor="let tag of tags" selectable="true"
+                                removable="true" (removed)="remove(tag)">
+                        {{tag.name}}
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                      </mat-chip>
+                      <input placeholder="Add post tags"
+                              [matChipInputFor]="chipList"
+                              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                              matChipInputAddOnBlur="true"
+                              (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                  </mat-form-field>
+                </div>
+  
+                <div class="row">
+                  <mat-form-field class="contact-input textarea">
+                    <textarea matInput #message matTextareaAutosize maxlength="256" placeholder="Enter post description" required></textarea>
+                    <mat-hint align="start" *ngIf="!mobileQuery.matches"><strong>Don't disclose personal info</strong> </mat-hint>
+                    <mat-hint align="start" *ngIf="mobileQuery.matches"><strong>It's public</strong> </mat-hint>
+                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                    <!-- <mat-error *ngIf="!messageFormControl.hasError('required')">
+                      Message must have 10 words. Eg.: Hi Alfred! ...
+                    </mat-error>
+                    <mat-error *ngIf="messageFormControl.hasError('required')">
+                      Message is <strong>required</strong>
+                    </mat-error> -->
+                  </mat-form-field>
                 </div>
               </div>
-
-            <!-- </div> -->
-          </div>
-
-          <div class="col w60">
-            <div class="m-l-20">
-                <!-- 
-                Email input field with Regular Expression updated validation checking.
-                -->
-              <div class="row">
-                <mat-form-field class="contact-input">
-                  <input matInput placeholder="Enter post title" autocomplete="off" required>
-                  <!-- <mat-error *ngIf="!email.hasError('required')">
-                    Please enter a valid email address
-                  </mat-error> -->
-                  <!-- <mat-error *ngIf="email.hasError('required')">
-                    Email is required
-                  </mat-error> -->
-                </mat-form-field>
-              </div>
-        
-              <div class="row">
-                <mat-form-field class="contact-input">
-                  <mat-chip-list #chipList>
-                    <mat-chip *ngFor="let tag of tags" selectable="true"
-                              removable="true" (removed)="remove(tag)">
-                      {{tag.name}}
-                      <mat-icon matChipRemove>cancel</mat-icon>
-                    </mat-chip>
-                    <input placeholder="Add post tags"
-                            [matChipInputFor]="chipList"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                            matChipInputAddOnBlur="true"
-                            (matChipInputTokenEnd)="add($event)">
-                  </mat-chip-list>
-                </mat-form-field>
-              </div>
-
-              <div class="row">
-                <mat-form-field class="contact-input textarea">
-                  <textarea matInput #message matTextareaAutosize maxlength="256" placeholder="Enter post description" required></textarea>
-                  <mat-hint align="start" *ngIf="!mobileQuery.matches"><strong>Don't disclose personal info</strong> </mat-hint>
-                  <mat-hint align="start" *ngIf="mobileQuery.matches"><strong>It's public</strong> </mat-hint>
-                  <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-                  <!-- <mat-error *ngIf="!messageFormControl.hasError('required')">
-                    Message must have 10 words. Eg.: Hi Alfred! ...
-                  </mat-error>
-                  <mat-error *ngIf="messageFormControl.hasError('required')">
-                    Message is <strong>required</strong>
-                  </mat-error> -->
-                </mat-form-field>
+  
+            </div>
+  
+            <div class="col w40">
+              <div class="m-l-50">
+  
+                <div class="row">
+  
+                  <!-- Image Container -->
+                  <div class="row">
+                    <p> {{ mobileQuery.matches ? 'Click to add image here' : 'Drag & drop image here' }} </p>
+                  </div>
+  
+                  <div class="row">
+                    <div class="drop-image-cover">
+                      <input type="file" class="drop-image" >
+                    </div>
+                  </div>
+  
+                </div>
+  
               </div>
             </div>
-
           </div>
 
-          <button mat-raised-button type="submit" color="primary"> Create </button>
+          <div [ngClass]="{'row': true, 'right': mobileQuery.matches}">
+            <button mat-raised-button type="submit" color="primary"> Create Post </button>
+          </div>
+
         </div>
       </div>
   </div>

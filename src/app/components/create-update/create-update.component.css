@@ -13,9 +13,12 @@
 
 .drop-image-cover {
   position: relative;
-  border-radius: 3px;
-  border: 2px dashed #ffffff8f;
+  outline-offset: 1px;
+  outline: 2px dashed #ffffff8f;
   width: 99%;
+  background: url(/assets/logo/img.png), #8e8e8e4d;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .drop-image {

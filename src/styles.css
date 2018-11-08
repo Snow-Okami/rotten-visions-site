@@ -123,7 +123,15 @@ body.mobile-view {
   width: 80%;
 }
 
-.mobile .col.w20:not(.inline), .mobile .col.w30:not(.inline), .mobile .col.w33:not(.inline), .mobile .col.w40:not(.inline), .mobile .col.w50:not(.inline), .mobile .col.w60:not(.inline), .mobile .col.w70:not(.inline), .mobile .col.w80:not(.inline) {
+.col.w90 {
+  width: 90%;
+}
+
+.col.w100 {
+  width: 100%;
+}
+
+.mobile .col.w20:not(.inline), .mobile .col.w30:not(.inline), .mobile .col.w33:not(.inline), .mobile .col.w40:not(.inline), .mobile .col.w50:not(.inline), .mobile .col.w60:not(.inline), .mobile .col.w70:not(.inline), .mobile .col.w80:not(.inline), .mobile .col.w90:not(.inline), .mobile .col.w100:not(.inline) {
   width: 100%
 }
 
@@ -159,7 +167,31 @@ body.mobile-view {
   margin-left: 20px;
 }
 
+.m-l-30 {
+  margin-left: 30px;
+}
+
+.m-l-40 {
+  margin-left: 40px;
+}
+
+.m-l-50 {
+  margin-left: 50px;
+}
+
 .mobile .m-l-20 {
+  margin-left: 0px;
+}
+
+.mobile .m-l-30 {
+  margin-left: 0px;
+}
+
+.mobile .m-l-40 {
+  margin-left: 0px;
+}
+
+.mobile .m-l-50 {
   margin-left: 0px;
 }
 
