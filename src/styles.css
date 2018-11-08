@@ -214,3 +214,10 @@ body.mobile-view {
 .check {
   margin: 0 10px;
 }
+
+.hidden {
+  position: absolute !important;
+  visibility: hidden;
+  height: 0px !important;
+  width: 0px !important;
+}

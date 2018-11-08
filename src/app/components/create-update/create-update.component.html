@@ -14,7 +14,7 @@
                 <div class="row">
                   <h2 class="heading c-red"> Enter post details </h2>
                 </div>
-  
+
                 <div class="row">
                   <mat-form-field class="contact-input" appearance="outline">
                     <mat-label> Enter post title </mat-label>
@@ -27,7 +27,7 @@
                     </mat-error> -->
                   </mat-form-field>
                 </div>
-          
+
                 <div class="row">
                   <mat-form-field class="contact-input" appearance="outline">
                     <mat-label> Add post tags </mat-label>
@@ -45,7 +45,7 @@
                     </mat-chip-list>
                   </mat-form-field>
                 </div>
-  
+
                 <div class="row">
                   <mat-form-field class="contact-input textarea" appearance="outline">
                     <mat-label> Enter post description </mat-label>
@@ -73,9 +73,9 @@
                   </section>
                 </div>
               </div>
-  
+
             </div>
-  
+
             <div class="col w40">
               <div class="m-l-50">
   
@@ -88,7 +88,9 @@
   
                   <div class="row">
                     <div class="drop-image-cover">
-                      <input type="file" class="drop-image">
+                      <input type="file" class="drop-file" #dropFile (change)="showImage($event)" [ngClass]="{'hidden': !hideImage}">
+                      <img src="" alt="Image preview..." #dropImage [ngClass]="{'hidden': hideImage}" class="drop-image">
+                      <img src="/assets/logo/close.png" alt="Missing close!" class="drop-image-close" [ngClass]="{'hidden': hideImage}" (click)="removeImage()">
                     </div>
                   </div>
 
@@ -110,7 +112,7 @@
           </div>
 
           <div class="row">
-            
+
             <div class="col w30 inline" *ngIf="mobileQuery.matches">
               <section class="select-publish-section">
                 <!-- <mat-checkbox class="check" [(ngModel)]="publish"> Publish </mat-checkbox> -->
@@ -126,14 +128,14 @@
               <div class="col inline" *ngIf="!mobileQuery.matches" [ngClass]="{'right': mobileQuery.matches}">
                 <button mat-raised-button type="submit" color="primary"> {{ publish ? 'Publish' : 'Save' }} </button>
               </div>
-  
+
               <div class="col inline" [ngClass]="{'right': mobileQuery.matches}">
                 <div class="m-l-10 force">
-  
+
                   <button mat-stroked-button type="button" color="primary">
                     <mat-icon aria-label="Example icon-button with a heart icon"> chevron_left </mat-icon>
                   </button>
-  
+
                 </div>
               </div>
 

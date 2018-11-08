@@ -1,9 +1,11 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material';
 import * as _ from 'lodash';
+
+let that;
 
 export interface Tag {
   name: string;
@@ -32,6 +34,10 @@ export class CreateUpdateComponent {
    */
   private publish: boolean = false;
 
+  public hideImage: boolean = true;
+  @ViewChild('dropImage') image;
+  @ViewChild('dropFile') file;
+
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
@@ -40,6 +46,8 @@ export class CreateUpdateComponent {
     this.mobileQuery = media.matchMedia('(max-width: 800px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+
+    that = this;
   }
 
   private _mobileQueryListener: () => void;
@@ -84,6 +92,27 @@ export class CreateUpdateComponent {
    */
   remove(tag: Tag): void {
     _.pullAllBy(this.tags, [tag], 'name');
+  }
+
+  showImage(event): void {
+    let image = this.image.nativeElement;
+    let file = this.file.nativeElement;
+    let reader  = new FileReader();
+
+    reader.addEventListener("load", function () {
+      image['src'] = reader.result;
+      that.hideImage = false;
+    }, false);
+
+    if (file['files'][0]) {
+      reader.readAsDataURL(file['files'][0]);
+    }
+  }
+
+  removeImage(): void {
+    this.hideImage = true;
+    this.image.nativeElement['src'] = '';
+    this.file.nativeElement.value = null;
   }
 
 }

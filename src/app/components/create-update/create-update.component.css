@@ -21,7 +21,7 @@
   background-position: center;
 }
 
-.drop-image {
+.drop-file {
   cursor: pointer;
   position: relative;
   opacity: 0;
@@ -32,8 +32,20 @@
   z-index: 0;
 }
 
+.drop-image {
+  width: 100%;
+  height: 220px;
+}
+
 .select-publish-section {
   height: 38px;
   display: flex;
   align-items: center;
+}
+
+img.drop-image-close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  cursor: pointer;
 }
