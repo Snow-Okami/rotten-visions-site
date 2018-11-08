@@ -29,6 +29,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatRippleModule } from '@angular/material/core';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   imports: [
@@ -57,7 +59,9 @@ import { MatChipsModule } from '@angular/material/chips';
     MatTabsModule,
     MatExpansionModule,
     MatBadgeModule,
-    MatChipsModule
+    MatChipsModule,
+    MatRippleModule,
+    MatSlideToggleModule
   ],
   exports: [
     MatCardModule,
@@ -84,7 +88,9 @@ import { MatChipsModule } from '@angular/material/chips';
     MatTabsModule,
     MatExpansionModule,
     MatBadgeModule,
-    MatChipsModule
+    MatChipsModule,
+    MatRippleModule,
+    MatSlideToggleModule
   ],
   declarations: []
 })

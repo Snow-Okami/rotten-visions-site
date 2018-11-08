@@ -27,12 +27,17 @@ export class CreateUpdateComponent {
     {name: 'Social'},
   ];
 
+  /**
+   * @description
+   */
+  private publish: boolean = false;
+
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
     private router: Router
   ) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQuery = media.matchMedia('(max-width: 800px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }

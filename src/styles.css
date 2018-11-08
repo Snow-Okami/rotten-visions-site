@@ -56,6 +56,10 @@ body.mobile-view {
   margin: 5px 0;
 }
 
+.c-red {
+  color: #c3233f;
+}
+
 .paragraph, li {
   margin: 5px 0;
 }
@@ -163,6 +167,10 @@ body.mobile-view {
   text-align: center;
 }
 
+.m-l-10 {
+  margin-left: 10px;
+}
+
 .m-l-20 {
   margin-left: 20px;
 }
@@ -179,22 +187,30 @@ body.mobile-view {
   margin-left: 50px;
 }
 
-.mobile .m-l-20 {
+.mobile .m-l-10:not(.force) {
   margin-left: 0px;
 }
 
-.mobile .m-l-30 {
+.mobile .m-l-20:not(.force) {
   margin-left: 0px;
 }
 
-.mobile .m-l-40 {
+.mobile .m-l-30:not(.force) {
   margin-left: 0px;
 }
 
-.mobile .m-l-50 {
+.mobile .m-l-40:not(.force) {
+  margin-left: 0px;
+}
+
+.mobile .m-l-50:not(.force) {
   margin-left: 0px;
 }
 
 .m-b-5 {
   margin-bottom: 5px;
+}
+
+.check {
+  margin: 0 10px;
 }
