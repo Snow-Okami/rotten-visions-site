@@ -111,7 +111,7 @@
 
           <div class="row">
             
-            <div class="col w40 inline" *ngIf="mobileQuery.matches">
+            <div class="col w30 inline" *ngIf="mobileQuery.matches">
               <section class="select-publish-section">
                 <!-- <mat-checkbox class="check" [(ngModel)]="publish"> Publish </mat-checkbox> -->
 
@@ -122,7 +122,7 @@
               </section>
             </div>
 
-            <div class="col w60 inline">
+            <div class="col w70 inline">
               <div class="col inline" *ngIf="!mobileQuery.matches" [ngClass]="{'right': mobileQuery.matches}">
                 <button mat-raised-button type="submit" color="primary"> {{ publish ? 'Publish' : 'Save' }} </button>
               </div>
