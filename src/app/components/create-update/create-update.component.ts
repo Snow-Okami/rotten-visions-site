@@ -3,7 +3,12 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 import * as _ from 'lodash';
+
+import { HttpService } from '../../services/http.service';
+import { ValidatorsService } from '../../services/validators.service';
 
 let that;
 
@@ -30,9 +35,18 @@ export class CreateUpdateComponent {
   ];
 
   /**
-   * @description
+   * @description Form controls and Groups are as follows
    */
-  private publish: boolean = false;
+  public postTitle = new FormControl({ value: '', disabled: false }, [ Validators.required ]);
+  public postDescription = new FormControl({ value: '', disabled: false }, [ Validators.required ]);
+  public postPublish = new FormControl({ value: false, disabled: false });
+
+  @ViewChild('postCreateFormElement') postCreateFormElement;
+  public postForm = new FormGroup({
+    title: this.postTitle,
+    publish: this.postPublish,
+    description: this.postDescription
+  });
 
   public hideImage: boolean = true;
   @ViewChild('dropImage') image;
@@ -41,7 +55,10 @@ export class CreateUpdateComponent {
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
-    private router: Router
+    private router: Router,
+    private http: HttpService,
+    private regx: ValidatorsService,
+    public snackBar: MatSnackBar,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 800px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -62,6 +79,15 @@ export class CreateUpdateComponent {
      * @description Hide Progress Bar When Page is Loaded.
      */
     this.progressBar.classList.add('hidden');
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      direction: 'ltr',
+      duration: 3000,
+    });
   }
 
   /**
@@ -113,6 +139,19 @@ export class CreateUpdateComponent {
     this.hideImage = true;
     this.image.nativeElement['src'] = '';
     this.file.nativeElement.value = null;
+  }
+
+  saveOrPublish(event) {
+    if(this.postForm.valid) {
+      this.openSnackBar('Feature is under development!', '');
+
+      let form = new FormData();
+      // form.append('image', this.file.nativeElement['files'][0]);
+      form.append('title', this.postForm.value.title);
+      form.append('description', this.postForm.value.description);
+      form.append('publish', this.postForm.value.publish);
+      form.append('tags', JSON.stringify(_.map(this.tags, 'name')));
+    }
   }
 
 }

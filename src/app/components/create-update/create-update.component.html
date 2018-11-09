@@ -4,147 +4,164 @@
       <div class="row">
 
         <div class="col w100">
+          
+          <form #postCreateFormElement (ngSubmit)="saveOrPublish($event);" [formGroup]="postForm">
 
-          <div class="row">
-            <div class="col w60">
-              <!-- 
-              Email input field with Regular Expression updated validation checking.
-              -->
-              <div class="row">
+            <!-- Enter or Select post details row -->
+            <div class="row">
+
+              <!-- Post details section column -->
+              <div class="col w60">
+                <!-- 
+                Email input field with Regular Expression updated validation checking.
+                -->
                 <div class="row">
-                  <h2 class="heading c-red"> Enter post details </h2>
+                  <div class="row">
+                    <h2 class="heading c-red"> Enter post details </h2>
+                  </div>
+
+                  <!-- Title input text row -->
+                  <div class="row">
+                    <mat-form-field class="contact-input" appearance="outline">
+                      <mat-label> Enter post title </mat-label>
+                      <input matInput placeholder="eg.: Coming on 8th" autocomplete="off" [formControl]="postTitle" required>
+                      <!-- <mat-error *ngIf="!email.hasError('required')">
+                        Please enter a valid email address
+                      </mat-error> -->
+                      <!-- <mat-error *ngIf="email.hasError('required')">
+                        Email is required
+                      </mat-error> -->
+                    </mat-form-field>
+                  </div>
+
+                  <!-- Tags mat-chips row -->
+                  <div class="row">
+                    <mat-form-field class="contact-input" appearance="outline">
+                      <mat-label> Add post tags </mat-label>
+                      <mat-chip-list #chipList>
+                        <mat-chip *ngFor="let tag of tags" selectable="true"
+                                  removable="true" (removed)="remove(tag)">
+                          {{tag.name}}
+                          <mat-icon matChipRemove>cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="eg.: Octopus"
+                                [matChipInputFor]="chipList"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                matChipInputAddOnBlur="true"
+                                (matChipInputTokenEnd)="add($event)">
+                      </mat-chip-list>
+                    </mat-form-field>
+                  </div>
+
+                  <!-- Description text area row -->
+                  <div class="row">
+                    <mat-form-field class="contact-input textarea" appearance="outline">
+                      <mat-label> Enter post description </mat-label>
+                      <textarea [style.minHeight.px]="90" matInput #message matTextareaAutosize maxlength="256" placeholder="eg.: After a long await..." required [formControl]="postDescription"></textarea>
+                      <mat-hint align="start" *ngIf="!mobileQuery.matches"><strong>Don't disclose personal info</strong> </mat-hint>
+                      <mat-hint align="start" *ngIf="mobileQuery.matches"><strong>It's public</strong> </mat-hint>
+                      <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                      <!-- <mat-error *ngIf="!messageFormControl.hasError('required')">
+                        Message must have 10 words. Eg.: Hi Alfred! ...
+                      </mat-error>
+                      <mat-error *ngIf="messageFormControl.hasError('required')">
+                        Message is <strong>required</strong>
+                      </mat-error> -->
+                    </mat-form-field>
+                  </div>
+
+                  <!-- Choose publish slide toggle row for desktop -->
+                  <div class="row" *ngIf="!mobileQuery.matches">
+                    <section class="select-publish-section">
+                      <mat-slide-toggle
+                          class="check" [formControl]="postPublish">
+                          Publish (If not checked, post will be saved as draft)
+                      </mat-slide-toggle>
+                    </section>
+                  </div>
                 </div>
 
-                <div class="row">
-                  <mat-form-field class="contact-input" appearance="outline">
-                    <mat-label> Enter post title </mat-label>
-                    <input matInput placeholder="eg.: Coming on 8th" autocomplete="off" required>
-                    <!-- <mat-error *ngIf="!email.hasError('required')">
-                      Please enter a valid email address
-                    </mat-error> -->
-                    <!-- <mat-error *ngIf="email.hasError('required')">
-                      Email is required
-                    </mat-error> -->
-                  </mat-form-field>
-                </div>
-
-                <div class="row">
-                  <mat-form-field class="contact-input" appearance="outline">
-                    <mat-label> Add post tags </mat-label>
-                    <mat-chip-list #chipList>
-                      <mat-chip *ngFor="let tag of tags" selectable="true"
-                                removable="true" (removed)="remove(tag)">
-                        {{tag.name}}
-                        <mat-icon matChipRemove>cancel</mat-icon>
-                      </mat-chip>
-                      <input placeholder="eg.: Octopus"
-                              [matChipInputFor]="chipList"
-                              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                              matChipInputAddOnBlur="true"
-                              (matChipInputTokenEnd)="add($event)">
-                    </mat-chip-list>
-                  </mat-form-field>
-                </div>
-
-                <div class="row">
-                  <mat-form-field class="contact-input textarea" appearance="outline">
-                    <mat-label> Enter post description </mat-label>
-                    <textarea [style.minHeight.px]="90" matInput #message matTextareaAutosize maxlength="256" placeholder="eg.: After a long await..." required></textarea>
-                    <mat-hint align="start" *ngIf="!mobileQuery.matches"><strong>Don't disclose personal info</strong> </mat-hint>
-                    <mat-hint align="start" *ngIf="mobileQuery.matches"><strong>It's public</strong> </mat-hint>
-                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-                    <!-- <mat-error *ngIf="!messageFormControl.hasError('required')">
-                      Message must have 10 words. Eg.: Hi Alfred! ...
-                    </mat-error>
-                    <mat-error *ngIf="messageFormControl.hasError('required')">
-                      Message is <strong>required</strong>
-                    </mat-error> -->
-                  </mat-form-field>
-                </div>
-
-                <div class="row" *ngIf="!mobileQuery.matches">
-                  <section class="select-publish-section">
-                    <!-- <mat-checkbox class="check" [(ngModel)]="publish"> Publish </mat-checkbox> -->
-
-                    <mat-slide-toggle
-                        class="check" [(ngModel)]="publish">
-                        Publish (If not checked, post will be saved as draft)
-                    </mat-slide-toggle>
-                  </section>
-                </div>
               </div>
 
-            </div>
-
-            <div class="col w40">
-              <div class="m-l-50">
-  
-                <div class="row">
-  
-                  <!-- Image Container -->
+              <!-- Image drag & drop section column -->
+              <div class="col w40">
+                <div class="m-l-50">
+    
                   <div class="row">
-                    <h2 class="heading c-red"> {{ mobileQuery.matches ? 'Click to add image here' : 'Drag & drop image here' }} </h2>
-                  </div>
-  
-                  <div class="row">
-                    <div class="drop-image-cover">
-                      <input type="file" class="drop-file" #dropFile (change)="showImage($event)" [ngClass]="{'hidden': !hideImage}">
-                      <img src="" alt="Image preview..." #dropImage [ngClass]="{'hidden': hideImage}" class="drop-image">
-                      <img src="/assets/logo/close.png" alt="Missing close!" class="drop-image-close" [ngClass]="{'hidden': hideImage}" (click)="removeImage()">
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <h2 class="heading c-red"> Notes </h2>
+    
+                    <!-- Image heading container -->
                     <div class="row">
-                      <ul class="default">
-                        <li> Choose 16:9 image dimention for best view </li>
-                        <li> Maximum file size is 5.0MB </li>
-                        <li> No image will be shown when not uploaded </li>
-                      </ul>
+                      <h2 class="heading c-red"> {{ mobileQuery.matches ? 'Click to add image here' : 'Drag & drop image here' }} </h2>
                     </div>
+    
+                    <!-- Image Container -->
+                    <div class="row">
+                      <div class="drop-image-cover">
+                        <input type="file" class="drop-file" #dropFile (change)="showImage($event)" [ngClass]="{'hidden': !hideImage}">
+                        <img src="" alt="Image preview..." #dropImage [ngClass]="{'hidden': hideImage}" class="drop-image">
+                        <img src="/assets/logo/close.png" alt="Missing close!" class="drop-image-close" [ngClass]="{'hidden': hideImage}" (click)="removeImage()">
+                      </div>
+                    </div>
+
+                    <!-- Image requirement description row -->
+                    <div class="row">
+                      <h2 class="heading c-red"> Notes </h2>
+                      <div class="row">
+                        <ul class="default">
+                          <li> Choose 16:9 image dimention for best view </li>
+                          <li> Maximum file size is 5.0MB </li>
+                          <li> No image will be shown when not uploaded </li>
+                        </ul>
+                      </div>
+                    </div>
+    
                   </div>
-  
-                </div>
-  
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-
-            <div class="col w30 inline" *ngIf="mobileQuery.matches">
-              <section class="select-publish-section">
-                <!-- <mat-checkbox class="check" [(ngModel)]="publish"> Publish </mat-checkbox> -->
-
-                <mat-slide-toggle
-                    class="check" [(ngModel)]="publish">
-                    Publish (If not checked, post will be saved as draft)
-                </mat-slide-toggle>
-              </section>
-            </div>
-
-            <div class="col w70 inline">
-              <div class="col inline" *ngIf="!mobileQuery.matches" [ngClass]="{'right': mobileQuery.matches}">
-                <button mat-raised-button type="submit" color="primary"> {{ publish ? 'Publish' : 'Save' }} </button>
-              </div>
-
-              <div class="col inline" [ngClass]="{'right': mobileQuery.matches}">
-                <div class="m-l-10 force">
-
-                  <button mat-stroked-button type="button" color="primary">
-                    <mat-icon aria-label="Example icon-button with a heart icon"> chevron_left </mat-icon>
-                  </button>
-
+    
                 </div>
               </div>
-
-              <div class="col inline" *ngIf="mobileQuery.matches" [ngClass]="{'right': mobileQuery.matches}">
-                <button mat-raised-button type="submit" color="primary"> {{ publish ? 'Publish' : 'Save' }} </button>
-              </div>
             </div>
 
-          </div>
+            <!-- Save or Publish button row -->
+            <div class="row">
+
+              <!-- Choose publish slide toggle column for mobile -->
+              <div class="col w30 inline" *ngIf="mobileQuery.matches">
+                <section class="select-publish-section">
+                  <mat-slide-toggle
+                      class="check" [formControl]="postPublish">
+                      Publish (If not checked, post will be saved as draft)
+                  </mat-slide-toggle>
+                </section>
+              </div>
+
+              <!-- Publish or Save button column for mobile and desktop -->
+              <div class="col w70 inline">
+
+                <!-- Publish or Save button column for desktop -->
+                <div class="col inline" *ngIf="!mobileQuery.matches" [ngClass]="{'right': mobileQuery.matches}">
+                  <button mat-raised-button type="submit" color="primary"> {{ postPublish.value ? 'Publish' : 'Save' }} </button>
+                </div>
+
+                <!-- Back button column for desktop or mobile -->
+                <div class="col inline" [ngClass]="{'right': mobileQuery.matches}">
+                  <div class="m-l-10 force">
+
+                    <button mat-stroked-button type="button" color="primary">
+                      <mat-icon aria-label="Example icon-button with a heart icon"> chevron_left </mat-icon>
+                    </button>
+
+                  </div>
+                </div>
+
+                <!-- Publish or Save button column for mobile -->
+                <div class="col inline" *ngIf="mobileQuery.matches" [ngClass]="{'right': mobileQuery.matches}">
+                  <button mat-raised-button type="submit" color="primary"> {{ postPublish.value ? 'Publish' : 'Save' }} </button>
+                </div>
+              </div>
+
+            </div>
+          
+          </form>
 
         </div>
       </div>

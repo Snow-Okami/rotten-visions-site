@@ -24,6 +24,12 @@ export class HttpService {
     private store: StoreService
   ) { }
 
+  private option = {
+    headers: new HttpHeaders({
+      'enctype': 'multipart/form-data'
+    })
+  };
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       Object.assign(result, {'message': error.error})
@@ -52,6 +58,18 @@ export class HttpService {
     return this.http.post<any>(url, data).pipe(
       tap(message => message),
       catchError(this.handleError('logout', {}))
+    );
+  }
+
+  /**
+   * @description Post New Update POST HTTP Request.
+   */
+  post(data): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/admin/logout';
+
+    return this.http.post<any>(url, data, this.option).pipe(
+      tap(message => message),
+      catchError(this.handleError('post', {}))
     );
   }
 }
