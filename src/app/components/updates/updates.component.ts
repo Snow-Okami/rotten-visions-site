@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 
+import { HttpService } from '../../services/http.service';
+
 @Component({
   selector: 'app-updates',
   templateUrl: './updates.component.html',
@@ -15,11 +17,13 @@ export class UpdatesComponent implements OnInit {
 
   public mobileQuery: MediaQueryList;
   private progressBar;
+  public updates = [];
 
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
-    private router: Router
+    private router: Router,
+    private http: HttpService,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 840px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -34,10 +38,19 @@ export class UpdatesComponent implements OnInit {
 
   ngAfterViewInit() {
 
-    /**
-     * @description Hide Progress Bar When Page is Loaded.
-     */
-    this.progressBar.classList.add('hidden');
+    this.http.posts({})
+    .subscribe(resp => {
+      if(resp['message']['type'] !== 'error') {
+        this.updates = resp['data'];
+
+        /**
+         * @description Hide Progress Bar When Page is Loaded.
+         */
+        this.progressBar.classList.add('hidden');
+      } else {
+
+      }
+    });
   }
 
   visitCreate() {

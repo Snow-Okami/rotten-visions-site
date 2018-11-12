@@ -36,7 +36,7 @@
 
         <!-- Repeat should be here -->
         <ul>
-          <li class="row">
+          <li class="row" *ngIf="false">
 
             <!-- Keep the image in here -->
             <div class="col w40">
@@ -65,6 +65,46 @@
                 <!-- POST DESCRIPTION Should Stay Here -->
                 <div class="row">
                   <p > So our game currently has the code name Untitled SciFi Game or (USG) for short. Anyone who can get the reference to that one will get their name in th... </p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Divider Appears Here -->
+            <div class="row">
+              <mat-divider></mat-divider>
+            </div>
+          </li>
+
+          <li class="row" *ngFor="let update of updates">
+
+            <!-- Keep the image in here -->
+            <div class="col w40">
+              <div class="row">
+                <img src="https://psynapsus.herokuapp.com/image/post/{{update.image}}" alt="missing post images!" [ngClass]="{'post-image': true}">
+              </div>
+            </div>
+
+            <!-- Keep the description in here -->
+            <div class="col w60">
+              <div class="m-l-20">
+
+                <!-- POST TAGS Should Stay Here -->
+                <div class="row">
+                  <ul class="post-tag">
+                    <li> Action </li>
+                    <li> Fight </li>
+                  </ul>
+                </div>
+
+                <!-- POST TITLE Should Stay Here -->
+                <div class="row">
+                  <p class="title" routerLink="/dashboard/updates/view"> {{update.title}} </p>
+                </div>
+
+                <!-- POST DESCRIPTION Should Stay Here -->
+                <div class="row">
+                  <p > {{update.description}} </p>
                 </div>
 
               </div>

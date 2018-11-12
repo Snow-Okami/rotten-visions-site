@@ -1,7 +1,7 @@
 .create-post {
   position: fixed;
-  bottom: 15px;
-  right: 15px;
+  bottom: 25px;
+  right: 25px;
   z-index: 1;
 }
 

@@ -98,7 +98,9 @@ export class CreateUpdateComponent {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
+    /**
+     * @description Add a TAG by pressing COMMAA or SPACE
+     */ 
     if ((value || '').trim()) {
       const tag = { name: (value || '').trim() };
       
