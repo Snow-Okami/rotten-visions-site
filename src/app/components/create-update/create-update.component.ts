@@ -56,7 +56,7 @@ export class CreateUpdateComponent {
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
-    private page: Location,
+    public page: Location,
     private http: HttpService,
     private regx: ValidatorsService,
     public snackBar: MatSnackBar,
