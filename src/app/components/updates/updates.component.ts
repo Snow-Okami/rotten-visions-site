@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-updates',
@@ -38,6 +38,15 @@ export class UpdatesComponent implements OnInit {
      * @description Hide Progress Bar When Page is Loaded.
      */
     this.progressBar.classList.add('hidden');
+  }
+
+  visitCreate() {
+    /**
+     * @description Show Progress Bar When Page is Loading.
+     */
+    this.progressBar.classList.remove('hidden');
+
+    this.router.navigate(['/dashboard/updates/create']);
   }
 
 }

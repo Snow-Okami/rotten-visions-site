@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   FormControl,
   Validators } from '@angular/forms';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,34 @@ export class ValidatorsService extends Validators  {
       return (spaceex.test(control.value) || control.value.length < 5) ? { invalid_characters: true } : null;
     }
     return null;
+  }
+
+  /**
+   * @description Title Field Validator. Title Must Have 2 Words.
+   */
+  title(control: FormControl) {
+    if (control.value && control.value.length > 0) {
+      let regex = /^[A-Za-z]{1,}\s[A-Za-z]{1,}/gm;
+      const matches = regex.test(control.value);
+      return !matches ? { invalid_characters: matches } : null;
+    } else {
+      return null;
+    }
+  }
+
+  /**
+   * @description 
+   */
+  description(control: FormControl) {
+    if (control.value && control.value.length > 0) {
+      let regex = /^[A-Za-z]{1,}\s/gm;
+      let matches = regex.test(control.value);
+      let wordList = _.filter(_.split(_.replace(control.value, /\n/gm, ' '), ' '), (o) => {
+        return o.length > 0;
+      });
+      return wordList.length >= 10 ? matches ? null : { invalid_characters: true } : { invalid_length: true };
+    } else {
+      return null;
+    }
   }
 }

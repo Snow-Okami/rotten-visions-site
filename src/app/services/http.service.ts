@@ -65,7 +65,7 @@ export class HttpService {
    * @description Post New Update POST HTTP Request.
    */
   post(data): Observable<HttpResponse<any>> {
-    let url = this.apiurl + '/admin/logout';
+    let url = this.apiurl + '/post';
 
     return this.http.post<any>(url, data, this.option).pipe(
       tap(message => message),

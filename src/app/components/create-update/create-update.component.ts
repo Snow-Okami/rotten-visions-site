@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Location } from '@angular/common';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -27,6 +27,7 @@ export class CreateUpdateComponent {
    */
   private title = 'Psynapsus - Create New Update';
 
+  public disableClick: boolean = false;
   public mobileQuery: MediaQueryList;
   private progressBar;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -37,8 +38,8 @@ export class CreateUpdateComponent {
   /**
    * @description Form controls and Groups are as follows
    */
-  public postTitle = new FormControl({ value: '', disabled: false }, [ Validators.required ]);
-  public postDescription = new FormControl({ value: '', disabled: false }, [ Validators.required ]);
+  public postTitle = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.title ]);
+  public postDescription = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.description ]);
   public postPublish = new FormControl({ value: false, disabled: false });
 
   @ViewChild('postCreateFormElement') postCreateFormElement;
@@ -55,7 +56,7 @@ export class CreateUpdateComponent {
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
-    private router: Router,
+    private page: Location,
     private http: HttpService,
     private regx: ValidatorsService,
     public snackBar: MatSnackBar,
@@ -86,7 +87,7 @@ export class CreateUpdateComponent {
       verticalPosition: 'top',
       horizontalPosition: 'right',
       direction: 'ltr',
-      duration: 3000,
+      duration: 4000,
     });
   }
 
@@ -141,16 +142,81 @@ export class CreateUpdateComponent {
     this.file.nativeElement.value = null;
   }
 
+  resetForm(): void {
+    this.removeImage();
+    this.tags = [];
+    this.postPublish.setValue(false);
+  }
+
   saveOrPublish(event) {
     if(this.postForm.valid) {
-      this.openSnackBar('Feature is under development!', '');
+      /**
+       * @description Disable buttons, inputs & enable loader.
+       */
+      this.disableClick = true;
+      this.progressBar.classList.remove('hidden');
 
+      /**
+       * @description Create FormData to be POST to API.
+       */
       let form = new FormData();
-      // form.append('image', this.file.nativeElement['files'][0]);
+      
+      /**
+       * @description Append File and Tag only when they are available.
+       */
+      if(this.file.nativeElement['files'].length) {
+        form.append('image', this.file.nativeElement['files'][0]);
+      }
+      if(this.tags.length) {
+        form.append('tags', JSON.stringify(_.map(this.tags, 'name')));
+      }
+
+      /**
+       * @description REQUIRED FromData Fields.
+       */
       form.append('title', this.postForm.value.title);
       form.append('description', this.postForm.value.description);
       form.append('publish', this.postForm.value.publish);
-      form.append('tags', JSON.stringify(_.map(this.tags, 'name')));
+
+      /**
+       * @description Set form fields empty.
+       */
+      this.postCreateFormElement.nativeElement.reset();
+      this.resetForm();
+
+      /**
+       * @description POST FormData to API.
+       */
+      this.http.post(form)
+      .subscribe(resp => {
+        if(resp['message']['type'] !== 'error') {
+
+          /**
+           * @description Show SNACK Message On Response.
+           */
+          let snackMessage: string = resp['data']['publish'] ? 'Update has been published successfully!' : 'Update has been saved successfully!';
+          this.openSnackBar(snackMessage, '');
+
+          /**
+           * @description Enable buttons & disable loader.
+           */
+          this.disableClick = false;
+          this.progressBar.classList.add('hidden');
+
+        } else {
+          /**
+           * @description Enable buttons & disable loader.
+           */
+          this.disableClick = false;
+          this.progressBar.classList.add('hidden');
+          /**
+           * @description ERROR detected with API response.
+           */
+          this.openSnackBar(resp['message']['text'], '');
+        }
+      });
+    } else {
+      this.openSnackBar('Invalid form detected!', '');
     }
   }
 
