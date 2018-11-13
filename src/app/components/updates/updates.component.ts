@@ -34,9 +34,6 @@ export class UpdatesComponent implements OnInit {
 
   ngOnInit() {
     this.progressBar = document.getElementsByClassName('progressbar')[0];
-  }
-
-  ngAfterViewInit() {
 
     this.http.posts({})
     .subscribe(resp => {
@@ -52,6 +49,8 @@ export class UpdatesComponent implements OnInit {
       }
     });
   }
+
+  ngAfterViewInit() { }
 
   visitCreate() {
     /**

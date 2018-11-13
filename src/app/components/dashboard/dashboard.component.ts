@@ -77,6 +77,14 @@ export class DashboardComponent {
       this.mc.on("panright", this.onPanRight);
       this.mc.on("panleft", this.onPanLeft);
     }
+
+    /**
+     * @description Enable Auto API Test For Inactivity. Tests once in every 20 mins.
+     */
+    setInterval(() => {
+      this.http.test({})
+      .subscribe(resp => {});
+    }, 1200000);
   }
 
   ngOnDestroy(): void {

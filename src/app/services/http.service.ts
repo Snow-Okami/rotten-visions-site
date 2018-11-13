@@ -84,4 +84,16 @@ export class HttpService {
       catchError(this.handleError('posts', {}))
     );
   }
+
+  /**
+   * @description GET posts with Limitation.
+   */
+  test(option): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/test';
+
+    return this.http.get<any>(url).pipe(
+      tap(message => message),
+      catchError(this.handleError('test', {}))
+    );
+  }
 }
