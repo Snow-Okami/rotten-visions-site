@@ -52,7 +52,7 @@ export class UpdatesComponent implements OnInit {
          */
         this.progressBar.classList.add('hidden');
       } else {
-
+        this.progressBar.classList.add('hidden');
       }
     });
   }
