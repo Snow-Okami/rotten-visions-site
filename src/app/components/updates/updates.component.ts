@@ -35,7 +35,14 @@ export class UpdatesComponent implements OnInit {
   ngOnInit() {
     this.progressBar = document.getElementsByClassName('progressbar')[0];
 
-    this.http.posts({})
+    /**
+     * @description SET UP skip, limit & sort options here.
+     */
+    let option = {
+      skip: this.updates.length
+    };
+
+    this.http.posts(option)
     .subscribe(resp => {
       if(resp['message']['type'] !== 'error') {
         this.updates = resp['data'];
