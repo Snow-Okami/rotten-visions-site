@@ -13,18 +13,14 @@
         <mat-divider></mat-divider>
 
         <!-- Repeat should be here -->
-        <div class="row">
+        <ul>
+          <li class="row pg-bg" *ngIf="!recent.length">
+            <div class="col w100">
+              <p class="t-al-center"> Sorry! updates not available. </p>
+            </div>
+          </li>
+        </ul>
 
-          <!-- Keep the image in here -->
-          <div class="col w50">
-
-          </div>
-
-          <!-- Keep the description in here -->
-          <div class="col w50">
-
-          </div>
-        </div>
       </div>
     </div>
 
@@ -36,43 +32,9 @@
 
         <!-- Repeat should be here -->
         <ul>
-          <li class="row" *ngIf="false">
-
-            <!-- Keep the image in here -->
-            <div class="col w40">
-              <div class="row">
-                <img src="/assets/post/1.jpg" alt="missing post images!" [ngClass]="{'post-image': true}">
-              </div>
-            </div>
-
-            <!-- Keep the description in here -->
-            <div class="col w60">
-              <div class="m-l-20">
-
-                <!-- POST TAGS Should Stay Here -->
-                <div class="row">
-                  <ul class="post-tag">
-                    <li> Action </li>
-                    <li> Fight </li>
-                  </ul>
-                </div>
-
-                <!-- POST TITLE Should Stay Here -->
-                <div class="row">
-                  <p class="title" routerLink="/dashboard/updates/view"> UNTITLED SCIFI GAME </p>
-                </div>
-
-                <!-- POST DESCRIPTION Should Stay Here -->
-                <div class="row">
-                  <p > So our game currently has the code name Untitled SciFi Game or (USG) for short. Anyone who can get the reference to that one will get their name in th... </p>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- Divider Appears Here -->
-            <div class="row">
-              <mat-divider></mat-divider>
+          <li class="row pg-bg" *ngIf="!updates.length">
+            <div class="col w100">
+              <p class="t-al-center"> Sorry! updates not available. </p>
             </div>
           </li>
 

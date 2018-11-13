@@ -18,6 +18,7 @@ export class UpdatesComponent implements OnInit {
   public mobileQuery: MediaQueryList;
   private progressBar;
   public updates = [];
+  public recent = [];
 
   constructor(
     public changeDetectorRef: ChangeDetectorRef,

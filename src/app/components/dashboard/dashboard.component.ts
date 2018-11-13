@@ -26,7 +26,6 @@ export class DashboardComponent {
   private _mobileQueryListener: () => void;
 
   @ViewChild('snav') sidenav: any;
-  
   @ViewChild('container') container: any;
   /**
    * @description title is going to show on the browser tab when component is loaded.
