@@ -80,10 +80,8 @@ export class DashboardComponent {
     /**
      * @description Enable Auto API Test For Inactivity. Tests once in every 20 mins.
      */
-    setInterval(() => {
-      this.http.test({})
-      .subscribe(resp => {});
-    }, 1200000);
+    this.http.test({})
+    .subscribe(resp => {});
   }
 
   ngOnDestroy(): void {

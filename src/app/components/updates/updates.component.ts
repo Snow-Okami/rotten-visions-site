@@ -17,6 +17,13 @@ export class UpdatesComponent implements OnInit {
 
   public mobileQuery: MediaQueryList;
   private progressBar;
+  /**
+   * @description Update Text Changes As Required Before Or After HTTP Request & Response.
+   */
+  public updateText = 'Checking for updates...';
+  /**
+   * @description UPDATES & RECENT Will Have The Update Objects.
+   */
   public updates = [];
   public recent = [];
 
@@ -53,6 +60,7 @@ export class UpdatesComponent implements OnInit {
          */
         this.progressBar.classList.add('hidden');
       } else {
+        this.updateText = 'Sorry! updates not available.';
         this.progressBar.classList.add('hidden');
       }
     });

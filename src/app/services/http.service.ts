@@ -62,6 +62,18 @@ export class HttpService {
   }
 
   /**
+   * @description Register POST HTTP Request.
+   */
+  register(data): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/admin';
+
+    return this.http.post<any>(url, data).pipe(
+      tap(message => message),
+      catchError(this.handleError('register', {}))
+    );
+  }
+
+  /**
    * @description Post New Update POST HTTP Request.
    */
   post(data): Observable<HttpResponse<any>> {

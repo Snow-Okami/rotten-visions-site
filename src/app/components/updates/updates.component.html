@@ -16,7 +16,7 @@
         <ul>
           <li class="row pg-bg" *ngIf="!recent.length">
             <div class="col w100">
-              <p class="t-al-center"> Sorry! updates not available. </p>
+              <p class="t-al-center"> {{updateText}} </p>
             </div>
           </li>
         </ul>
@@ -34,7 +34,7 @@
         <ul>
           <li class="row pg-bg" *ngIf="!updates.length">
             <div class="col w100">
-              <p class="t-al-center"> Sorry! updates not available. </p>
+              <p class="t-al-center"> {{updateText}} </p>
             </div>
           </li>
 
@@ -43,7 +43,7 @@
             <!-- Keep the image in here -->
             <div class="col w40">
               <div class="row">
-                <img src="https://psynapsus.herokuapp.com/image/post/{{update.image}}" alt="missing post images!" [ngClass]="{'post-image': true}">
+                <img [src]="update.image" alt="missing post images!" [ngClass]="{'post-image': true}">
               </div>
             </div>
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   FormControl,
+  FormGroup,
   Validators } from '@angular/forms';
 import * as _ from 'lodash';
 
@@ -61,5 +62,25 @@ export class ValidatorsService extends Validators  {
     } else {
       return null;
     }
+  }
+
+  /**
+   * @description 
+   */
+  name(control: FormControl) {
+    if (control.value && control.value.length > 0) {
+      let regex = /(?<name>...)/;
+      const matches = regex.test(control.value.trim());
+      return !matches ? { invalid_characters: matches } : null;
+    } else {
+      return null;
+    }
+  }
+
+  /**
+   * @description 
+   */
+  registerForm(group: FormGroup) {
+    return group.controls.confirmPassword.value === group.controls.password.value ? null : { incorrect_password: true };
   }
 }

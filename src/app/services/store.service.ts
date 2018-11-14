@@ -25,7 +25,6 @@ export class StoreService {
   }
 
   /**
-   * 
    * @param cname cookie name to be set.
    * @param cvalue cookie value to be set.
    * @param exdays cookie validity to be set.
