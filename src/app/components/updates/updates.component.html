@@ -26,7 +26,8 @@
                 <p class="col title"> {{ post.title }} </p>
               </div>
               <div class="row">
-                <p class="col"> {{ post.comment }} </p>
+                <!-- {{ post.tags }} -->
+                <p class="col"> NO COMMENTS </p> 
               </div>
               <div class="row">
                 <p> {{ post.description | trimword: 150 }} </p>
@@ -40,7 +41,7 @@
       </li>
     </ul>
     <div class="row" #loadScroll>
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      <mat-progress-bar mode="indeterminate" *ngIf="progressBar"></mat-progress-bar>
     </div>
   </div>
 </div>

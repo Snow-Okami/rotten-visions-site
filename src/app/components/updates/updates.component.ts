@@ -2,6 +2,7 @@ import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import * as _ from 'lodash';
 
+import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
 
 let that;
@@ -42,12 +43,14 @@ export class UpdatesComponent {
   ];
   public postList = [];
   public searchText = '';
+  public progressBar = true;
   @ViewChild('loadScroll') loadScroll: any;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    private store: StoreService
+    private store: StoreService,
+    private http: HttpService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -55,11 +58,17 @@ export class UpdatesComponent {
 
     that = this;
 
-    this.postList = Object.assign([], this.array);
+    // this.postList = Object.assign([], this.array);
   }
 
   ngOnInit() {
     this.store.currentMessage.subscribe(text => this.searchText = text);
+    
+    /**
+     * @description SHOW Progress bar and load Updates.
+     */
+    this.progressBar = true;
+    this.loadMore();
   }
 
   ngAfterViewInit() {
@@ -90,7 +99,12 @@ export class UpdatesComponent {
     let wh = window.innerHeight, eb = that.loadScroll.nativeElement.getBoundingClientRect().top - 80;
     if(that.isScrollDown() && wh >= eb) {
       window.removeEventListener('scroll', that.onScrollDown);
-      setTimeout(() => { that.loadMore(); }, 2000);
+      
+      /**
+       * @description SHOW Progress bar and load Updates.
+       */
+      that.progressBar = true;
+      that.loadMore();
     }
   }
 
@@ -98,8 +112,30 @@ export class UpdatesComponent {
    * @description Loads data after scroll ends.
    */
   loadMore() {
-    this.postList = _.concat(this.postList, this.array);
-    window.addEventListener('scroll', this.onScrollDown, false);
+
+    /**
+     * @description SET UP skip, limit & sort options here.
+     */
+    let option = {
+      skip: this.postList.length
+    };
+
+    this.http.posts(option)
+    .subscribe(resp => {
+      if(resp['message']['type'] !== 'error') {
+        this.postList = _.concat(this.postList, Object.assign([], resp['data']));
+      } else { }
+
+      /**
+       * @description Hide Progress Bar When Page is Loaded.
+       */
+      this.progressBar = false;
+      // attach a scroll event to scroll at least 20px from bottom to top.
+
+      setTimeout(() => {
+        window.addEventListener('scroll', this.onScrollDown, false);
+      }, 1000);
+    });
   }
 
 }
