@@ -138,5 +138,9 @@ export class UpdatesComponent {
     });
   }
 
+  ngOnDestroy() {
+    window.removeEventListener('scroll', that.onScrollDown);
+  }
+
 }
 

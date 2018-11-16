@@ -25,11 +25,13 @@
   display: flex;
   flex-direction: column;
   position: fixed;
-  height: 110px;
+  height: 80px;
   bottom: 0;
   left: 0;
   right: 0;
   background: #c3233f;
+  opacity: 0.6;
+  z-index: 1;
 }
 
 .icon-holder {
