@@ -8,7 +8,6 @@ import { MaterialModule } from '../material/material.module';
  * @description SharedModule contains the shared Components throughout Psynapsus.
  */
 import { SharedModule } from '../shared/shared.module';
-import { TrimwordPipe } from '../../pipes/trimword.pipe';
 import 'hammerjs';
 
 import { DashboardComponent } from '../../components/dashboard/dashboard.component';
@@ -34,8 +33,7 @@ export const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    DashboardComponent,
-    TrimwordPipe
+    DashboardComponent
   ],
   providers: []
 })

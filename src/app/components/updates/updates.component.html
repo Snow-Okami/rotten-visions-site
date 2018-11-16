@@ -43,7 +43,11 @@
             <!-- Keep the image in here -->
             <div class="col w40">
               <div class="row">
-                <img [src]="update.image" alt="missing post images!" [ngClass]="{'post-image': true}">
+                <img alt="missing post images!" [ngClass]="{'post-image': true}"
+                  [defaultImage]="image.defaultImage"
+                  [lazyLoad]="update.image"
+                  [offset]="image.offset"
+                >
               </div>
             </div>
 
@@ -61,12 +65,12 @@
 
                 <!-- POST TITLE Should Stay Here -->
                 <div class="row">
-                  <p class="title" routerLink="/dashboard/updates/view"> {{update.title}} </p>
+                  <p class="title" routerLink="/dashboard/updates/view"> {{ update.title | trimword: 20 }} </p>
                 </div>
 
                 <!-- POST DESCRIPTION Should Stay Here -->
                 <div class="row">
-                  <p > {{update.description}} </p>
+                  <p > {{ update.description | trimword: 200 }} </p>
                 </div>
 
               </div>

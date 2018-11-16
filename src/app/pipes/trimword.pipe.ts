@@ -6,7 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TrimwordPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    return null;
+    let v = value.length > args ? value.slice(0, args) + '...' : value;
+    return v;
   }
 
 }

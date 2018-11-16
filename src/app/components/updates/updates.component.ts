@@ -15,6 +15,14 @@ export class UpdatesComponent implements OnInit {
    */
   private title = 'Psynapsus - Updates Dashboard';
 
+  /**
+   * @description Default Post Image To Be Loaded.
+   */
+  public image = {
+    offset: 100,
+    defaultImage: '/assets/logo/img-ex-light.png'
+  };
+
   public mobileQuery: MediaQueryList;
   private progressBar;
   /**
