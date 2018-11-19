@@ -32,6 +32,8 @@ export class DashboardComponent {
    */
   private title = 'Psynapsus - Dashboard';
 
+  private content: any;
+
   private mc;
   private panArea = [];
   public finalArea = [];
@@ -82,6 +84,7 @@ export class DashboardComponent {
      */
     // this.http.test({})
     // .subscribe(resp => {});
+    
   }
 
   ngOnDestroy(): void {

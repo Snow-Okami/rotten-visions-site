@@ -20,7 +20,7 @@ export class AppComponent {
 
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
-    public media: MediaMatcher,
+    public media: MediaMatcher
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();

@@ -14,6 +14,11 @@ export class StoreService {
    */
   private domain = environment.production ? 'psynapsus.netlify.com' : 'localhost';
 
+  /**
+   * @description Save Updates in Store.
+   */
+  public updates: string;
+
   constructor() { }
 
   /**

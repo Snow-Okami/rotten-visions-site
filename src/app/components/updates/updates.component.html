@@ -58,8 +58,7 @@
                 <!-- POST TAGS Should Stay Here -->
                 <div class="row">
                   <ul class="post-tag">
-                    <li> Action </li>
-                    <li> Fight </li>
+                    <li *ngFor="let item of update.tags"> {{item}} </li>
                   </ul>
                 </div>
 

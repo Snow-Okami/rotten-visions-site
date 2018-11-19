@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
+import * as _ from 'lodash';
 
 import { HttpService } from '../../services/http.service';
 
@@ -35,11 +36,13 @@ export class UpdatesComponent implements OnInit {
   public updates = [];
   public recent = [];
 
+  private content: any;
+
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
     private router: Router,
-    private http: HttpService,
+    private http: HttpService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 840px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -61,6 +64,10 @@ export class UpdatesComponent implements OnInit {
     this.http.posts(option)
     .subscribe(resp => {
       if(resp['message']['type'] !== 'error') {
+        _.forEach(resp['data'], (i) => {
+          i.tags = i.tags ? JSON.parse(i.tags) : [];
+        });
+
         this.updates = resp['data'];
 
         /**
@@ -74,7 +81,10 @@ export class UpdatesComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit() { }
+  ngAfterViewInit() {
+    this.content = document.getElementsByClassName('mat-sidenav-content')[0];
+    this.content.addEventListener('scroll', this.onScrollDown, false);
+  }
 
   visitCreate() {
     /**
@@ -83,6 +93,10 @@ export class UpdatesComponent implements OnInit {
     this.progressBar.classList.remove('hidden');
 
     this.router.navigate(['/dashboard/updates/create']);
+  }
+
+  onScrollDown(e) {
+    console.log(e);
   }
 
 }
