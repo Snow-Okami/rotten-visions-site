@@ -45,6 +45,7 @@ export class UpdatesComponent {
   public searchText = '';
   public progressBar = true;
   @ViewChild('loadScroll') loadScroll: any;
+  @ViewChild('fixedBottom') fixedBottom: any;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -96,7 +97,7 @@ export class UpdatesComponent {
      * @description wh is window height
      * eb is element's bottom
      */
-    let wh = window.innerHeight, eb = that.loadScroll.nativeElement.getBoundingClientRect().top - 80;
+    let wh = window.innerHeight, eb = that.loadScroll.nativeElement.getBoundingClientRect().top;
     if(that.isScrollDown() && wh >= eb) {
       window.removeEventListener('scroll', that.onScrollDown);
       
@@ -106,6 +107,34 @@ export class UpdatesComponent {
       that.progressBar = true;
       that.loadMore();
     }
+  }
+
+  /**
+   * @description Fix & Attach Scroll Event.
+   */
+  setScroll() {
+    // eb > window.innerHeight ? eb - window.innerHeight
+
+    setTimeout(() => {
+      /**
+       * @description SCROLL to a better position.
+       */
+      let eb = this.fixedBottom.nativeElement.getBoundingClientRect().top;
+      if(window.innerHeight > eb) {
+        window.scrollTo({
+          top:  window.scrollY - (window.innerHeight - eb),
+          left: 0,
+          behavior: 'smooth'
+        });
+      }
+
+      /**
+       * @description Attach Scroll Event Again.
+       */
+      setTimeout(() => {
+        window.addEventListener('scroll', this.onScrollDown, false);
+      }, 500);
+    }, 10);
   }
 
   /**
@@ -132,9 +161,9 @@ export class UpdatesComponent {
       this.progressBar = false;
       // attach a scroll event to scroll at least 20px from bottom to top.
 
-      setTimeout(() => {
-        window.addEventListener('scroll', this.onScrollDown, false);
-      }, 1000);
+      if(option.skip) {
+        this.setScroll();
+      }
     });
   }
 
