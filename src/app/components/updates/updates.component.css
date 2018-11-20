@@ -38,6 +38,7 @@
   font-size: 25px;
   color: #c3233f;
   cursor: pointer;
+  outline: none;
 }
 
 .post-published {

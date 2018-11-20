@@ -1,4 +1,5 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
+import { Location } from '@angular/common';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
@@ -19,6 +20,7 @@ export class ViewUpdateComponent {
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
+    public page: Location,
     private router: Router
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');

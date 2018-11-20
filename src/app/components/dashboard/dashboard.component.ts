@@ -156,5 +156,12 @@ export class DashboardComponent {
     })
   }
 
+  showRouteProgress(e) {
+    let classList = e.target.parentNode.classList.value.split(' ');
+    if(!classList.includes('active')) {
+      this.progressBar.classList.remove('hidden');
+    }
+  }
+
 }
 

@@ -19,7 +19,7 @@
       <mat-nav-list>
 
       <!-- Set [routerLinkActiveOptions]="{exact: true}" when routing to root URL. -->
-        <a mat-list-item [routerLink]="item.url" routerLinkActive="active" *ngFor="let item of navList">{{ item.nav }}</a>
+        <a mat-list-item [routerLink]="item.url" routerLinkActive="active" *ngFor="let item of navList" (click)="snav.toggle();showRouteProgress($event);">{{ item.nav }}</a>
       </mat-nav-list>
     </mat-sidenav>
 
