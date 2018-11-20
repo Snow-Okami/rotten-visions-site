@@ -81,6 +81,10 @@
             </div>
           </li>
         </ul>
+        <div class="row" #fixedBottom></div>
+        <div class="row" #loadScroll>
+          <mat-progress-bar mode="indeterminate" *ngIf="loadingBar"></mat-progress-bar>
+        </div>
       </div>
     </div>
 
