@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-// import { Socket } from 'ngx-socket-io';
+import { Socket } from 'ngx-socket-io';
 
 import { HttpService } from '../../services/http.service';
 
@@ -20,7 +20,7 @@ export class MessagesComponent {
   private progressBar;
 
   constructor(
-    // private socket: Socket,
+    private socket: Socket,
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
     private http: HttpService
@@ -36,6 +36,8 @@ export class MessagesComponent {
      * @description Hide Progress Bar When Page is Loaded.
      */
     this.progressBar.classList.add('hidden');
+
+    this.socket.emit('login', 'hello');
   }
 
 }
