@@ -13,27 +13,35 @@ export class HttpService {
   /**
    * @description domain update with production type.
    */
-  // private apiurl = environment.production ? 'https://psynapsus.herokuapp.com/api/v1' : 'http://localhost:5000/api/v1';
+  private apiurl = environment.production ? 'https://psynapsus.herokuapp.com/api/v1' : 'http://localhost:5000/api/v1';
   /**
    * @description Select domain available only on Heroku.
    */
-  private apiurl = 'https://psynapsus.herokuapp.com/api/v1';
+  // private apiurl = 'https://psynapsus.herokuapp.com/api/v1';
 
   constructor(
     private http: HttpClient,
     private store: StoreService
   ) { }
 
-  private option = {
-    headers: new HttpHeaders({
-      'enctype': 'multipart/form-data'
-    })
-  };
-
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       Object.assign(result, {'message': error.error})
       return of(result as T);
+    };
+  }
+
+  /**
+   * @description Returns HTTP Header Options.
+   */
+  option() {
+    return {
+      headers: new HttpHeaders({
+        'enctype': 'multipart/form-data',
+        'Content-Type':  'application/json',
+        'Authorization': this.store.getCookie('ps-t-a-p'),
+        'Email': atob(this.store.getCookie('ps-u-a-p'))
+      })
     };
   }
 
@@ -79,7 +87,7 @@ export class HttpService {
   post(data): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/post';
 
-    return this.http.post<any>(url, data, this.option).pipe(
+    return this.http.post<any>(url, data, this.option()).pipe(
       tap(message => message),
       catchError(this.handleError('post', {}))
     );
@@ -91,7 +99,7 @@ export class HttpService {
   posts(option): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/post?skip=' + option.skip;
 
-    return this.http.get<any>(url).pipe(
+    return this.http.get<any>(url, this.option()).pipe(
       tap(message => message),
       catchError(this.handleError('posts', {}))
     );
