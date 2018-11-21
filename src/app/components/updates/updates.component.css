@@ -38,6 +38,10 @@
   font-size: 25px;
   color: #c3233f;
   cursor: pointer;
+
+  /**
+   * @description Outline schould be none.
+   **/
   outline: none;
 }
 
