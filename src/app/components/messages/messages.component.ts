@@ -37,7 +37,7 @@ export class MessagesComponent {
      */
     this.progressBar.classList.add('hidden');
 
-    this.socket.emit('login', 'hello');
+    this.socket.emit('login');
   }
 
 }
