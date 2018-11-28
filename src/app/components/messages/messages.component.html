@@ -1,5 +1,54 @@
 <div class="content-wrapper">
   <div class="body">
-    <p> Messages works! </p>
+
+    <!-- Messages Card Starts Here -->
+    <mat-card>
+
+      <!-- Messages Title Bar Starts Here -->
+      <div class="row">
+
+        <!-- Back Button Appears Here -->
+        <div class="col w33"> <mat-icon matSuffix> arrow_back </mat-icon> </div>
+        
+        <!-- Message Title Will Appear Here -->
+        <div class="col w33 t-al-center card-title"> 
+          <mat-icon matPrefix class="title-item"> chat </mat-icon>
+          <h4 class="title-item m-l-5"> Messages </h4>
+        </div>
+        
+        <!-- Empty Row For Matching Template -->
+        <div class="col w33 t-al-right"></div>
+      </div>
+
+      <!-- Chat List Wrapper Starts Here -->
+      <div class="row">
+        <div class="col w30">
+
+          <ul class="chat-wrapper shade">
+            <li class="user-item m-0 row">
+              <div class="col w-10"></div>
+              <div class="col w-90"></div>
+            </li>
+            <li class="user-item m-0 row">
+              <div class="col w-10"></div>
+              <div class="col w-90"></div>
+            </li>
+          </ul>
+
+        </div>
+
+        <div class="col w2"> <mat-divider style="height: 400px;" [vertical]="true"></mat-divider> </div>
+
+        <div class="col w60">
+          <div class="chat-wrapper"></div>
+        </div>
+
+      </div>
+
+    </mat-card>
+    <!-- Messages Card Ends Here -->
+
+    <div class="chat-section-wrapper"></div>
+
   </div>
 </div>

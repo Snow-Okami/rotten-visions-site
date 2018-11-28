@@ -95,6 +95,14 @@ body.mobile-view {
   display: block;
 }
 
+.col.w2 {
+  width: 2%;
+}
+
+.col.w10 {
+  width: 10%;
+}
+
 .col.w20 {
   width: 20%;
 }
@@ -135,7 +143,7 @@ body.mobile-view {
   width: 100%;
 }
 
-.mobile .col.w20:not(.inline), .mobile .col.w30:not(.inline), .mobile .col.w33:not(.inline), .mobile .col.w40:not(.inline), .mobile .col.w50:not(.inline), .mobile .col.w60:not(.inline), .mobile .col.w70:not(.inline), .mobile .col.w80:not(.inline), .mobile .col.w90:not(.inline), .mobile .col.w100:not(.inline) {
+.mobile .col.w2:not(.inline), .mobile .col.w10:not(.inline), .mobile .col.w20:not(.inline), .mobile .col.w30:not(.inline), .mobile .col.w33:not(.inline), .mobile .col.w40:not(.inline), .mobile .col.w50:not(.inline), .mobile .col.w60:not(.inline), .mobile .col.w70:not(.inline), .mobile .col.w80:not(.inline), .mobile .col.w90:not(.inline), .mobile .col.w100:not(.inline) {
   width: 100%
 }
 
@@ -167,6 +175,14 @@ body.mobile-view {
   text-align: center;
 }
 
+.m-0 {
+  margin: 0;
+}
+
+.m-l-5 {
+  margin-left: 5px;
+}
+
 .m-l-10 {
   margin-left: 10px;
 }
@@ -185,6 +201,10 @@ body.mobile-view {
 
 .m-l-50 {
   margin-left: 50px;
+}
+
+.mobile .m-l-5:not(.force) {
+  margin-left: 0px;
 }
 
 .mobile .m-l-10:not(.force) {

@@ -1,0 +1,20 @@
+
+.card-title .title-item {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.chat-wrapper {
+  overflow-y: auto;
+}
+
+.chat-wrapper.shade {
+  margin: 0 5px;
+  height: 400px;
+  /* background-image: linear-gradient(to bottom, #a73e451f, #a73e45db); */
+}
+
+.login-header-image {
+  background-image: url('/assets/logo/Onimind_Logo.png');
+  background-size: cover;
+}
