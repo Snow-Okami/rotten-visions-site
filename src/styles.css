@@ -8,6 +8,18 @@
   letter-spacing: 1px;
 }
 
+.mat-card {
+  background: #212121;
+}
+
+.mat-drawer-container {
+  background-color: transparent;
+}
+
+.mat-drawer {
+  background-color: #212121;
+}
+
 .content-wrapper {
   width: 90%;
   margin: 0 auto;
