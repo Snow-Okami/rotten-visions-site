@@ -4,14 +4,9 @@
   vertical-align: middle;
 }
 
-.chat-wrapper {
+.list-wrapper {
+  max-height: 392px;
   overflow-y: auto;
-}
-
-.chat-wrapper.shade {
-  margin: 0 5px;
-  height: 400px;
-  /* background-image: linear-gradient(to bottom, #a73e451f, #a73e45db); */
 }
 
 .login-header-image {
