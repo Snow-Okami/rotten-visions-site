@@ -43,7 +43,7 @@ export class MessagesComponent {
 
     this.socket.emit('login');
 
-    this.scrollToBottom();
+    // this.scrollToBottom();
   }
 
   public scrollToBottom(): void {
