@@ -1,6 +1,7 @@
 import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Socket } from 'ngx-socket-io';
+import { PerfectScrollbarConfigInterface, PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 
 import { HttpService } from '../../services/http.service';
 
@@ -18,6 +19,9 @@ export class MessagesComponent {
   private title = 'Psynapsus - Messages Dashboard';
 
   private progressBar;
+  public config: PerfectScrollbarConfigInterface = { };
+  @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
+  @ViewChild(PerfectScrollbarDirective) directiveRef?: PerfectScrollbarDirective;
 
   constructor(
     private socket: Socket,
@@ -38,6 +42,16 @@ export class MessagesComponent {
     this.progressBar.classList.add('hidden');
 
     this.socket.emit('login');
+
+    this.scrollToBottom();
+  }
+
+  public scrollToBottom(): void {
+    this.componentRef.directiveRef.scrollToBottom();
+  }
+
+  public onScrollEvent(event: any): void {
+    console.log(event);
   }
 
 }

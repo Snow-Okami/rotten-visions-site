@@ -14,10 +14,16 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { MaterialModule } from '../material/material.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { SharedModule } from '../shared/shared.module';
+import { PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import { MessagesComponent } from '../../components/messages/messages.component';
 
 import { environment } from '../../../environments/environment';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true,
+  suppressScrollY: false
+};
 
 export const routes: Routes = [
   { path: '', component: MessagesComponent }
@@ -36,13 +42,18 @@ const config: SocketIoConfig = { url: apiurl, options: {} };
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
     MaterialModule, LazyLoadImageModule, SharedModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild(routes), PerfectScrollbarModule,
     SocketIoModule.forRoot(config)
   ],
   declarations: [
     MessagesComponent
   ],
-  providers: []
+  providers: [
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
+  ]
 })
 export class MessagesModule { }
 
