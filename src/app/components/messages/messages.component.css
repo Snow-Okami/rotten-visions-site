@@ -46,3 +46,7 @@
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 14px;
 }
+
+.arrow-back {
+  cursor: pointer;
+}
