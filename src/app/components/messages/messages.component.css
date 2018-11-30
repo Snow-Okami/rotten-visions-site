@@ -3,13 +3,3 @@
   display: inline-block;
   vertical-align: middle;
 }
-
-.list-wrapper {
-  max-height: 340px;
-  overflow-y: auto;
-}
-
-.login-header-image {
-  background-image: url('/assets/logo/Onimind_Logo.png');
-  background-size: cover;
-}
