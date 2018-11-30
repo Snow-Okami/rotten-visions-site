@@ -239,6 +239,10 @@ body.mobile-view {
   margin-left: 0px;
 }
 
+.m-r-10 {
+  margin-right: 10px;
+}
+
 .m-b-5 {
   margin-bottom: 5px;
 }
@@ -254,6 +258,14 @@ body.mobile-view {
   width: 0px !important;
   left: 0px !important;
   top: 0px !important;
+}
+
+.v-al-middle {
+  vertical-align: middle;
+}
+
+.m-w-90 {
+  max-width: 90%;
 }
 
 perfect-scrollbar > .ps.ps--scrolling-y > .ps__rail-y {

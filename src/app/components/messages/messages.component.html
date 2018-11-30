@@ -22,54 +22,54 @@
 
       <!-- Chat List Wrapper Starts Here -->
       <div class="row">
-        <div class="col w30">
+        <div class="col w20">
           
-          <perfect-scrollbar style="position: relative; max-width: 600px; max-height: 340px;" [config]="config" (psYReachEnd)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)"> 
+          <perfect-scrollbar #chatList style="position: relative; max-width: 230px; max-height: 340px;" [config]="config" (psYReachEnd)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)"> 
             <mat-list>
               <mat-list-item>
-                <mat-icon mat-list-icon>folder</mat-icon>
+                <mat-icon mat-list-icon> person </mat-icon>
                 <h4 mat-line> Abhisek Dutta </h4>
                 <p mat-line> Hi there! </p>
                 <mat-divider></mat-divider>
               </mat-list-item>
               <mat-list-item>
-                <mat-icon mat-list-icon>folder</mat-icon>
+                <mat-icon mat-list-icon> person </mat-icon>
                 <h4 mat-line> Abhisek Dutta </h4>
                 <p mat-line> Hi there! </p>
                 <mat-divider></mat-divider>
               </mat-list-item>
               <mat-list-item>
-                <mat-icon mat-list-icon>folder</mat-icon>
+                <mat-icon mat-list-icon> person </mat-icon>
                 <h4 mat-line> Abhisek Dutta </h4>
                 <p mat-line> Hi there! </p>
                 <mat-divider></mat-divider>
               </mat-list-item>
               <mat-list-item>
-                <mat-icon mat-list-icon>folder</mat-icon>
+                <mat-icon mat-list-icon> person </mat-icon>
                 <h4 mat-line> Abhisek Dutta </h4>
                 <p mat-line> Hi there! </p>
                 <mat-divider></mat-divider>
               </mat-list-item>
               <mat-list-item>
-                <mat-icon mat-list-icon>folder</mat-icon>
+                <mat-icon mat-list-icon> person </mat-icon>
                 <h4 mat-line> Abhisek Dutta </h4>
                 <p mat-line> Hi there! </p>
                 <mat-divider></mat-divider>
               </mat-list-item>
               <mat-list-item>
-                <mat-icon mat-list-icon>folder</mat-icon>
+                <mat-icon mat-list-icon> person </mat-icon>
                 <h4 mat-line> Abhisek Dutta </h4>
                 <p mat-line> Hi there! </p>
                 <mat-divider></mat-divider>
               </mat-list-item>
               <mat-list-item>
-                <mat-icon mat-list-icon>folder</mat-icon>
+                <mat-icon mat-list-icon> person </mat-icon>
                 <h4 mat-line> Abhisek Dutta </h4>
                 <p mat-line> Hi there! </p>
                 <mat-divider></mat-divider>
               </mat-list-item>
               <mat-list-item>
-                <mat-icon mat-list-icon>folder</mat-icon>
+                <mat-icon mat-list-icon> person </mat-icon>
                 <h4 mat-line> Abhisek Dutta </h4>
                 <p mat-line> Hi there! </p>
               </mat-list-item>
@@ -90,67 +90,63 @@
 
         <div class="col w2"> </div>
 
-        <div class="col w60">
+        <div class="col w70">
 
-            <perfect-scrollbar style="position: relative; max-width: 600px; max-height: 340px;" [config]="config" (psYReachEnd)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)">
-              <mat-list>
-                <mat-list-item>
-                  <mat-icon mat-list-icon>folder</mat-icon>
-                  <h4 mat-line> Abhisek Dutta </h4>
-                  <p mat-line> Hi there! </p>
-                  <mat-divider></mat-divider>
-                </mat-list-item>
-                <mat-list-item>
-                  <mat-icon mat-list-icon>folder</mat-icon>
-                  <h4 mat-line> Abhisek Dutta </h4>
-                  <p mat-line> Hi there! </p>
-                  <mat-divider></mat-divider>
-                </mat-list-item>
-                <mat-list-item>
-                  <mat-icon mat-list-icon>folder</mat-icon>
-                  <h4 mat-line> Abhisek Dutta </h4>
-                  <p mat-line> Hi there! </p>
-                  <mat-divider></mat-divider>
-                </mat-list-item>
-                <mat-list-item>
-                  <mat-icon mat-list-icon>folder</mat-icon>
-                  <h4 mat-line> Abhisek Dutta </h4>
-                  <p mat-line> Hi there! </p>
-                  <mat-divider></mat-divider>
-                </mat-list-item>
-                <mat-list-item>
-                  <mat-icon mat-list-icon>folder</mat-icon>
-                  <h4 mat-line> Abhisek Dutta </h4>
-                  <p mat-line> Hi there! </p>
-                  <mat-divider></mat-divider>
-                </mat-list-item>
-                <mat-list-item>
-                  <mat-icon mat-list-icon>folder</mat-icon>
-                  <h4 mat-line> Abhisek Dutta </h4>
-                  <p mat-line> Hi there! </p>
-                  <mat-divider></mat-divider>
-                </mat-list-item>
-                <mat-list-item>
-                  <mat-icon mat-list-icon>folder</mat-icon>
-                  <h4 mat-line> Abhisek Dutta </h4>
-                  <p mat-line> Hi there! </p>
-                  <mat-divider></mat-divider>
-                </mat-list-item>
-                <mat-list-item>
-                  <mat-icon mat-list-icon>folder</mat-icon>
-                  <h4 mat-line> Abhisek Dutta </h4>
-                  <p mat-line> Hi there! </p>
-                </mat-list-item>
-              </mat-list>
-            </perfect-scrollbar>
+          <perfect-scrollbar #messageList style="position: relative; max-width: 750px; max-height: 340px;" [config]="config" (psYReachEnd)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)">
+            <mat-list>
 
-            <!-- <mat-divider></mat-divider>
-            <h3 mat-subheader>Notes</h3>
-            <mat-list-item *ngFor="let note of notes">
-              <mat-icon mat-list-icon>note</mat-icon>
-              <h4 mat-line>{{note.name}}</h4>
-              <p mat-line> {{note.updated | date}} </p>
-            </mat-list-item> -->
+              <ul>
+
+                <!-- *ngFor="let note of notes" -->
+                <li class="row chat-row-wrapper">
+                  <div class="chat-wrapper right">
+                    <div class="col v-al-middle m-r-10"><mat-icon mat-list-icon> person </mat-icon></div>
+                    
+                    <div class="col v-al-middle m-w-90"> </div>
+                  </div>
+                </li>
+
+                <li class="row chat-row-wrapper">
+                  <div class="chat-wrapper">
+                    <div class="col v-al-middle m-r-10"><mat-icon mat-list-icon> person </mat-icon></div>
+                    
+                    <div class="col v-al-middle m-w-90"> </div>
+                  </div>
+                </li>
+
+                <li class="row chat-row-wrapper">
+                  <div class="chat-wrapper">
+                    <div class="col v-al-middle m-r-10"><mat-icon mat-list-icon> person </mat-icon></div>
+                    
+                    <div class="col v-al-middle m-w-90">
+                      <p> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </p>
+                      <p> The point of using Lorem Ipsum is that ... </p>
+                      <h4 class="mat-line"> Abhisek Dutta </h4>
+                    </div>
+                  </div>    
+                </li>
+
+                <li class="row chat-row-wrapper">
+                  <div class="chat-wrapper right">
+                    <div class="col v-al-middle m-r-10"><mat-icon mat-list-icon> person </mat-icon></div>
+                    
+                    <div class="col v-al-middle m-w-90"> </div>
+                  </div>
+                </li>
+
+                <li class="row chat-row-wrapper">
+                  <div class="chat-wrapper right">
+                    <div class="col v-al-middle m-r-10"><mat-icon mat-list-icon> person </mat-icon></div>
+                    
+                    <div class="col v-al-middle m-w-90"> </div>
+                  </div>
+                </li>
+
+              </ul>
+
+            </mat-list>
+          </perfect-scrollbar>
+
         </div>
 
       </div>

@@ -20,8 +20,8 @@ export class MessagesComponent {
 
   private progressBar;
   public config: PerfectScrollbarConfigInterface = { };
-  @ViewChild(PerfectScrollbarComponent) chatRef?: PerfectScrollbarComponent;
-  @ViewChild(PerfectScrollbarComponent) messageRef?: PerfectScrollbarComponent;
+  @ViewChild('chatList') chatList?: PerfectScrollbarComponent;
+  @ViewChild('messageList') messageList?: PerfectScrollbarComponent;
 
   constructor(
     private socket: Socket,
@@ -43,12 +43,12 @@ export class MessagesComponent {
 
     this.socket.emit('login');
 
-    console.log(this.chatRef, this.messageRef);
+    console.log(this.chatList, this.messageList);
     // this.scrollToBottom();
   }
 
   public scrollToBottom(): void {
-    this.messageRef.directiveRef.scrollToBottom();
+    this.messageList.directiveRef.scrollToBottom();
   }
 
   public onScrollEvent(event: any): void {
