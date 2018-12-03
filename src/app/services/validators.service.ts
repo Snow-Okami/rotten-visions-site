@@ -69,7 +69,7 @@ export class ValidatorsService extends Validators  {
    */
   name(control: FormControl) {
     if (control.value && control.value.length > 0) {
-      let regex = /(?<name>...)/;
+      let regex = /^[A-Z][a-z]/gm;
       const matches = regex.test(control.value.trim());
       return !matches ? { invalid_characters: matches } : null;
     } else {
