@@ -43,8 +43,8 @@ export class MessagesComponent {
 
     this.socket.emit('login');
 
-    console.log(this.chatList, this.messageList);
-    // this.scrollToBottom();
+    // console.log(this.chatList, this.messageList);
+    this.scrollToBottom();
   }
 
   public scrollToBottom(): void {
@@ -52,7 +52,7 @@ export class MessagesComponent {
   }
 
   public onScrollEvent(event: any): void {
-    console.log(event);
+    // console.log(event);
   }
 
 }
