@@ -140,19 +140,18 @@ export class DashboardComponent {
      */
     this.http.logout(this.store.auth())
     .subscribe(resp => {
-      if(resp['message']['type'] !== 'error') {
-        /**
-         * @description remove cookies and redirect to login page.
-         */
-        this.store.setCookie('ps-t-a-p', '', 0);
-        this.store.setCookie('ps-u-a-p', '', 0);
-        this.router.navigate(['/']);
+      /**
+       * @description remove cookies.
+       */
+      this.store.setCookie('ps-t-a-p', '', 0);
+      this.store.setCookie('ps-u-a-p', '', 0);
 
-        this.openSnackBar('You have successfully logged out!', '');
-      } else {
-        this.openSnackBar(resp['message']['text'], '');
-        this.progressBar.classList.add('hidden');
-      }
+      if(resp['message']['type'] !== 'error') { this.openSnackBar('You have successfully logged out!', ''); }
+      else { this.openSnackBar(resp['message']['text'], ''); }
+      /**
+       * @description redirect to login page.
+       */
+      this.router.navigate(['/']);
     })
   }
 
