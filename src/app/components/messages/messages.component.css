@@ -58,17 +58,6 @@
   opacity: 0.8;
 }
 
-.chat-input {
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #fff;
-  width: 100%;
-  font-size: 15px;
-  font-family: "Open Sans Condensed", sans-serif;
-  letter-spacing: 2px;
-}
-
 .mat-form-field {
   width: 100%;
 }
