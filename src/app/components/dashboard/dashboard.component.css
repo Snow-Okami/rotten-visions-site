@@ -55,8 +55,9 @@ h1.psynapsus-app-name {
 .power-wrapper {
   display: flex;
   justify-content: flex-end;
-  width: -webkit-fill-available;
-  width: -moz-available;
+  /* width: -webkit-fill-available;
+  width: -moz-available; */
+  width: 100%
 }
 
 .power-wrapper .material-icons {
