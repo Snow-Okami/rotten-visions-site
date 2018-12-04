@@ -50,3 +50,25 @@
 .arrow-back {
   cursor: pointer;
 }
+
+.chat-input-wrapper {
+  background: #303030;
+  border-radius: 5px;
+  padding: 15px 20px 0;
+  opacity: 0.8;
+}
+
+.chat-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  width: 100%;
+  font-size: 15px;
+  font-family: "Open Sans Condensed", sans-serif;
+  letter-spacing: 2px;
+}
+
+.mat-form-field {
+  width: 100%;
+}

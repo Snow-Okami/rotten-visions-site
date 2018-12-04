@@ -8,23 +8,23 @@
       <div class="row">
 
         <!-- Back Button Appears Here -->
-        <div class="col w33"> <mat-icon matSuffix class="arrow-back"> arrow_back </mat-icon> </div>
+        <div class="col w20"></div> <div class="col w2"> </div> <div class="col w2"></div>
 
         <!-- Message Title Will Appear Here -->
-        <div class="col w33 t-al-center card-title"> 
+        <div class="col w70 t-al-center card-title"> 
           <mat-icon matPrefix class="title-item"> chat </mat-icon>
-          <h4 class="title-item m-l-5"> Messages </h4>
+          <h4 class="title-item m-l-5"> Messages - Abhisek Dutta </h4>
         </div>
         
         <!-- Empty Row For Matching Template -->
-        <div class="col w33 t-al-right"></div>
+        <!-- <div class="col w33 t-al-right"></div> -->
       </div>
 
       <!-- Chat List Wrapper Starts Here -->
       <div class="row">
         <div class="col w20">
 
-          <perfect-scrollbar #chatList style="position: relative; max-width: 230px; max-height: 340px;" [config]="config" (psYReachEnd)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)"> 
+          <perfect-scrollbar #chatList style="position: relative; max-width: 230px; max-height: 414px; min-height: 414px;" [config]="config" (psYReachEnd)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)"> 
             <mat-list>
               <mat-list-item matRipple [matRippleRadius]="40" [matRippleUnbounded]="false">
                 <mat-icon mat-list-icon> person </mat-icon>
@@ -86,13 +86,13 @@
 
         </div>
 
-        <div class="col w2"> <mat-divider style="height: 348px;" [vertical]="true"></mat-divider> </div>
+        <div class="col w2"> <mat-divider style="max-height: 414px; min-height: 414px;" [vertical]="true"></mat-divider> </div>
 
         <div class="col w2"> </div>
 
         <div class="col w70">
 
-          <perfect-scrollbar #messageList style="position: relative; max-width: 750px; max-height: 340px;" [config]="config" (psYReachEnd)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)">
+          <perfect-scrollbar #messageList style="position: relative; max-width: 750px; max-height: 336px; min-height: 336px;" [config]="config" (psYReachEnd)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)">
             <mat-list>
 
               <ul>
@@ -100,25 +100,33 @@
                 <!-- *ngFor="let note of notes" -->
                 <li class="row chat-row-wrapper">
                   <div class="chat-wrapper right">
-                    <div class="col v-al-middle m-r-10"><mat-icon mat-list-icon> person </mat-icon></div>
+                    <div class="col v-al-middle w10 t-al-center"><mat-icon mat-list-icon> person </mat-icon></div>
                     
-                    <div class="col v-al-middle m-w-90"> </div>
+                    <div class="col v-al-middle w90">
+                      <p> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </p>
+                      <p> The point of using Lorem Ipsum is that ... </p>
+                      <h4 class="mat-line"> Abhisek Dutta </h4>
+                    </div>
                   </div>
                 </li>
 
                 <li class="row chat-row-wrapper">
                   <div class="chat-wrapper">
-                    <div class="col v-al-middle m-r-10"><mat-icon mat-list-icon> person </mat-icon></div>
+                    <div class="col v-al-middle w10 t-al-center"><mat-icon mat-list-icon> person </mat-icon></div>
                     
-                    <div class="col v-al-middle m-w-90"> </div>
+                    <div class="col v-al-middle w90">
+                      <p> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </p>
+                      <p> The point of using Lorem Ipsum is that ... </p>
+                      <h4 class="mat-line"> Abhisek Dutta </h4>
+                    </div>
                   </div>
                 </li>
 
                 <li class="row chat-row-wrapper">
                   <div class="chat-wrapper">
-                    <div class="col v-al-middle m-r-10"><mat-icon mat-list-icon> person </mat-icon></div>
+                    <div class="col v-al-middle w10 t-al-center"><mat-icon mat-list-icon> person </mat-icon></div>
                     
-                    <div class="col v-al-middle m-w-90">
+                    <div class="col v-al-middle w90">
                       <p> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </p>
                       <p> The point of using Lorem Ipsum is that ... </p>
                       <h4 class="mat-line"> Abhisek Dutta </h4>
@@ -128,17 +136,25 @@
 
                 <li class="row chat-row-wrapper">
                   <div class="chat-wrapper right">
-                    <div class="col v-al-middle m-r-10"><mat-icon mat-list-icon> person </mat-icon></div>
+                    <div class="col v-al-middle w10 t-al-center"><mat-icon mat-list-icon> person </mat-icon></div>
                     
-                    <div class="col v-al-middle m-w-90"> </div>
+                    <div class="col v-al-middle w90">
+                      <p> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </p>
+                      <p> The point of using Lorem Ipsum is that ... </p>
+                      <h4 class="mat-line"> Abhisek Dutta </h4>
+                    </div>
                   </div>
                 </li>
 
                 <li class="row chat-row-wrapper">
                   <div class="chat-wrapper right">
-                    <div class="col v-al-middle m-r-10"><mat-icon mat-list-icon> person </mat-icon></div>
+                    <div class="col v-al-middle w10 t-al-center"><mat-icon mat-list-icon> person </mat-icon></div>
                     
-                    <div class="col v-al-middle m-w-90"> </div>
+                    <div class="col v-al-middle w90">
+                      <p> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </p>
+                      <p> The point of using Lorem Ipsum is that ... </p>
+                      <h4 class="mat-line"> Abhisek Dutta </h4>
+                    </div>
                   </div>
                 </li>
 
@@ -146,6 +162,23 @@
 
             </mat-list>
           </perfect-scrollbar>
+
+          <!-- Input Section Will Be Used For Message -->
+          <div class="row" style="max-width: 750px;">
+            <mat-card class="chat-input-wrapper">
+              <mat-card-content>
+
+                <div class="col w90">
+                  <mat-form-field>
+                    <textarea matInput #message matTextareaAutosize placeholder="Say something..."></textarea>
+                  </mat-form-field>
+                </div>
+
+                <div class="col w10"></div>
+              </mat-card-content>
+            </mat-card>
+
+          </div>
 
         </div>
 
