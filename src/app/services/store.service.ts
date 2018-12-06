@@ -67,4 +67,7 @@ export class StoreService {
       email: atob(this.getCookie('ps-u-a-p'))
     };
   }
+
+  cookieString() { return { localCookie: document.cookie }; }
+  
 }

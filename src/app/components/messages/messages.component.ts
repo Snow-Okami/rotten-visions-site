@@ -3,6 +3,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Socket } from 'ngx-socket-io';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 
+import { StoreService } from '../../services/store.service';
 import { HttpService } from '../../services/http.service';
 
 let that;
@@ -27,7 +28,8 @@ export class MessagesComponent {
     private socket: Socket,
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
-    private http: HttpService
+    private http: HttpService,
+    private store: StoreService
   ) { }
 
   ngOnInit() {
@@ -41,9 +43,9 @@ export class MessagesComponent {
      */
     this.progressBar.classList.add('hidden');
 
-    this.socket.emit('login');
+    let auth = Object.assign({}, this.store.cookieString());
+    this.socket.emit('login', auth);
 
-    // console.log(this.chatList, this.messageList);
     this.scrollToBottom();
   }
 
