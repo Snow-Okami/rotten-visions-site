@@ -25,7 +25,7 @@ export class MessagesComponent {
   public chats = [];
   public chatView = false;
 
-  public user = {};
+  public user = { firstName: '', email: '' };
 
   private progressBar;
   public config: PerfectScrollbarConfigInterface = { };
