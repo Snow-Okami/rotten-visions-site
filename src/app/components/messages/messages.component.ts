@@ -19,6 +19,11 @@ export class MessagesComponent {
    */
   private title = 'Psynapsus - Messages Dashboard';
 
+  /**
+   * @description Holds all the available chats for the user.
+   */
+  public chats = [];
+
   private progressBar;
   public config: PerfectScrollbarConfigInterface = { };
   @ViewChild('chatList') chatList?: PerfectScrollbarComponent;
@@ -33,7 +38,19 @@ export class MessagesComponent {
   ) { }
 
   ngOnInit() {
+    /**
+     * @description Initialize the this object into that.
+     */
+    that = this;
+    /**
+     * @description Initializes the progress bar.
+     */
     this.progressBar = document.getElementsByClassName('progressbar')[0];
+
+    /**
+     * @description Attach Socket Events. Note Events must use that in place of Components this.
+     */
+    this.socket.on('chats', this.onChats);
   }
 
   ngAfterViewInit() {
@@ -55,6 +72,13 @@ export class MessagesComponent {
 
   public onScrollEvent(event: any): void {
     // console.log(event);
+  }
+
+  private onChats(res) {
+    if(res.error) { return false; }
+    that.chats = res.data;
+
+    console.log(that.chats);
   }
 
 }
