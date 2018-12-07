@@ -3,30 +3,27 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular6-quick-start-with-angular-material-theme": {
+    "psynapsus-adminpanel": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
-      "targets": {
+      "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular6-quick-start-with-angular-material-theme",
+            "outputPath": "dist/psynapsus-adminpanel",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "src/manifest.json"
+              "src/assets"
             ],
             "styles": [
-              {
-                "input": "src/theme.scss"
-              },
+              { "input": "src/theme.scss" },
               "src/styles.css"
             ],
             "scripts": []
@@ -48,25 +45,31 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "serviceWorker": true
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular6-quick-start-with-angular-material-theme:build"
+            "browserTarget": "psynapsus-adminpanel:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular6-quick-start-with-angular-material-theme:build:production"
+              "browserTarget": "psynapsus-adminpanel:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular6-quick-start-with-angular-material-theme:build"
+            "browserTarget": "psynapsus-adminpanel:build"
           }
         },
         "test": {
@@ -82,8 +85,7 @@
             "scripts": [],
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "src/manifest.json"
+              "src/assets"
             ]
           }
         },
@@ -101,19 +103,20 @@
         }
       }
     },
-    "angular6-quick-start-with-angular-material-theme-e2e": {
+    "psynapsus-adminpanel-e2e": {
       "root": "e2e/",
       "projectType": "application",
-      "targets": {
+      "prefix": "",
+      "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular6-quick-start-with-angular-material-theme:serve"
+            "devServerTarget": "psynapsus-adminpanel:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular6-quick-start-with-angular-material-theme:serve:production"
+              "devServerTarget": "psynapsus-adminpanel:serve:production"
             }
           }
         },
@@ -129,5 +132,5 @@
       }
     }
   },
-  "defaultProject": "angular6-quick-start-with-angular-material-theme"
+  "defaultProject": "psynapsus-adminpanel"
 }

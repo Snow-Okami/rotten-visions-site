@@ -6,6 +6,7 @@ import { MaterialModule } from '../material/material.module';
  * @description Custom Trim Word Pipe.
  */
 import { TrimwordPipe } from '../../pipes/trimword.pipe';
+import { NameonlyPipe } from '../../pipes/nameonly.pipe';
 
 import { FooterComponent } from '../../components/footer/footer.component';
 
@@ -19,6 +20,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
      * @description Shares Pipes For Lazy Routing Modules.
      */
     TrimwordPipe,
+    NameonlyPipe,
 
     /**
      * @description Shared Components For Lazy Routing Modules.
@@ -30,6 +32,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
      * @description Shares Pipes For Lazy Routing Modules.
      */
     TrimwordPipe,
+    NameonlyPipe,
 
     /**
      * @description Shared Components For Lazy Routing Modules.

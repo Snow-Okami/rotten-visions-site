@@ -26,52 +26,11 @@
 
           <perfect-scrollbar #chatList style="position: relative; max-width: 230px; max-height: 414px; min-height: 414px;" [config]="config" (psYReachEnd)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)"> 
             <mat-list>
-              <mat-list-item matRipple [matRippleRadius]="40" [matRippleUnbounded]="false">
+              <mat-list-item *ngFor="let c of chats" matRipple [matRippleRadius]="40" [matRippleUnbounded]="false">
                 <mat-icon mat-list-icon> person </mat-icon>
-                <h4 mat-line> Abhisek Dutta </h4>
+                <h4 mat-line> {{ c.type ? c.fullName : 'Working on it' }} </h4>
                 <p mat-line> Hi there! </p>
                 <mat-divider></mat-divider>
-              </mat-list-item>
-              <mat-list-item class="active">
-                <mat-icon mat-list-icon> person </mat-icon>
-                <h4 mat-line> Abhisek Dutta </h4>
-                <p mat-line> Hi there! </p>
-                <mat-divider></mat-divider>
-              </mat-list-item>
-              <mat-list-item>
-                <mat-icon mat-list-icon> person </mat-icon>
-                <h4 mat-line> Abhisek Dutta </h4>
-                <p mat-line> Hi there! </p>
-                <mat-divider></mat-divider>
-              </mat-list-item>
-              <mat-list-item>
-                <mat-icon mat-list-icon> person </mat-icon>
-                <h4 mat-line> Abhisek Dutta </h4>
-                <p mat-line> Hi there! </p>
-                <mat-divider></mat-divider>
-              </mat-list-item>
-              <mat-list-item>
-                <mat-icon mat-list-icon> person </mat-icon>
-                <h4 mat-line> Abhisek Dutta </h4>
-                <p mat-line> Hi there! </p>
-                <mat-divider></mat-divider>
-              </mat-list-item>
-              <mat-list-item>
-                <mat-icon mat-list-icon> person </mat-icon>
-                <h4 mat-line> Abhisek Dutta </h4>
-                <p mat-line> Hi there! </p>
-                <mat-divider></mat-divider>
-              </mat-list-item>
-              <mat-list-item>
-                <mat-icon mat-list-icon> person </mat-icon>
-                <h4 mat-line> Abhisek Dutta </h4>
-                <p mat-line> Hi there! </p>
-                <mat-divider></mat-divider>
-              </mat-list-item>
-              <mat-list-item>
-                <mat-icon mat-list-icon> person </mat-icon>
-                <h4 mat-line> Abhisek Dutta </h4>
-                <p mat-line> Hi there! </p>
               </mat-list-item>
             </mat-list>
           </perfect-scrollbar>
