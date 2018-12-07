@@ -11,9 +11,10 @@
         <div class="col w20"></div> <div class="col w2"> </div> <div class="col w2"></div>
 
         <!-- Message Title Will Appear Here -->
-        <div class="col w70 t-al-center card-title"> 
+        <div class="col w70 t-al-center card-title">
           <mat-icon matPrefix class="title-item"> chat </mat-icon>
-          <h4 class="title-item m-l-5"> Messages - Abhisek Dutta </h4>
+          <h4 class="title-item m-l-5" [ngClass]="{ 'hidden': !chatView }"> Messages - Abhisek Dutta </h4>
+          <h4 class="title-item m-l-5" [ngClass]="{ 'hidden': chatView }"> Welcome {{ user.firstName }}! </h4>
         </div>
         
         <!-- Empty Row For Matching Template -->
@@ -28,20 +29,12 @@
             <mat-list>
               <mat-list-item *ngFor="let c of chats" matRipple [matRippleRadius]="40" [matRippleUnbounded]="false">
                 <mat-icon mat-list-icon> person </mat-icon>
-                <h4 mat-line> {{ c.type ? c.fullName : 'Working on it' }} </h4>
+                <h4 mat-line> {{ c.type ? c.fullName : c | nameonly: user }} </h4>
                 <p mat-line> Hi there! </p>
                 <mat-divider></mat-divider>
               </mat-list-item>
             </mat-list>
           </perfect-scrollbar>
-
-            <!-- <mat-divider></mat-divider>
-            <h3 mat-subheader>Notes</h3>
-            <mat-list-item *ngFor="let note of notes">
-              <mat-icon mat-list-icon>note</mat-icon>
-              <h4 mat-line>{{note.name}}</h4>
-              <p mat-line> {{note.updated | date}} </p>
-            </mat-list-item> -->
 
         </div>
 
@@ -49,7 +42,7 @@
 
         <div class="col w2"> </div>
 
-        <div class="col w70">
+        <div class="col w70" [ngClass]="{ 'hidden': !chatView }">
 
           <perfect-scrollbar #messageList style="position: relative; max-width: 750px; max-height: 336px; min-height: 336px;" [config]="config" (psYReachEnd)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)">
             <mat-list>

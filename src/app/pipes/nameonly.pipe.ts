@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import * as _ from 'lodash';
 
 @Pipe({
   name: 'nameonly'
@@ -6,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class NameonlyPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    return null;
+    return _.differenceBy(value.users, [args], 'email')[0]['fullName'];
   }
 
 }

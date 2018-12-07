@@ -23,6 +23,9 @@ export class MessagesComponent {
    * @description Holds all the available chats for the user.
    */
   public chats = [];
+  public chatView = false;
+
+  public user = {};
 
   private progressBar;
   public config: PerfectScrollbarConfigInterface = { };
@@ -50,6 +53,7 @@ export class MessagesComponent {
     /**
      * @description Attach Socket Events. Note Events must use that in place of Components this.
      */
+    this.socket.on('user', this.onUser);
     this.socket.on('chats', this.onChats);
   }
 
@@ -74,11 +78,15 @@ export class MessagesComponent {
     // console.log(event);
   }
 
+  private onUser(res) {
+    that.user = res;
+  }
+
   private onChats(res) {
     if(res.error) { return false; }
     that.chats = res.data;
 
-    console.log(that.chats);
+    console.log(that.user);
   }
 
 }
