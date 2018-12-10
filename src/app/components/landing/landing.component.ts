@@ -24,7 +24,7 @@ export class LandingComponent {
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
   ) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQuery = media.matchMedia('(max-width: 849px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }

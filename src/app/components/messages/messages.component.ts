@@ -24,6 +24,7 @@ export class MessagesComponent {
    */
   public chats = [];
   public chatView = false;
+  public messages = [];
 
   public user = { firstName: '', email: '' };
 
@@ -78,15 +79,21 @@ export class MessagesComponent {
     // console.log(event);
   }
 
+  public showItsMessages(cid): void {
+    console.log('On it...', cid);
+
+    let auth = Object.assign({}, this.store.cookieString());
+    this.socket.emit('findLimitedMessage', auth);
+  }
+
   private onUser(res) {
     that.user = res;
   }
 
   private onChats(res) {
-    if(res.error) { return false; }
     that.chats = res.data;
 
-    console.log(that.user);
+    console.log(that.user, that.chats);
   }
 
 }

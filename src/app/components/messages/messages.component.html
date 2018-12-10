@@ -14,6 +14,8 @@
         <div class="col w70 t-al-center card-title">
           <mat-icon matPrefix class="title-item"> chat </mat-icon>
           <h4 class="title-item m-l-5" [ngClass]="{ 'hidden': !chatView }"> Messages - Abhisek Dutta </h4>
+
+          <!-- User's own name appears when no chat selected. -->
           <h4 class="title-item m-l-5" [ngClass]="{ 'hidden': chatView }"> Welcome {{ user.firstName }}! </h4>
         </div>
         
@@ -27,10 +29,10 @@
 
           <perfect-scrollbar #chatList style="position: relative; max-width: 230px; max-height: 414px; min-height: 414px;" [config]="config" (psYReachEnd)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)"> 
             <mat-list>
-              <mat-list-item *ngFor="let c of chats" matRipple [matRippleRadius]="40" [matRippleUnbounded]="false">
+              <mat-list-item *ngFor="let c of chats" matRipple [matRippleRadius]="40" [matRippleUnbounded]="false" (click)="showItsMessages(c.id)">
                 <mat-icon mat-list-icon> person </mat-icon>
                 <h4 mat-line> {{ c.type ? c.fullName : c | nameonly: user }} </h4>
-                <p mat-line> Hi there! </p>
+                <p mat-line> {{ c.lastMessage.text }} </p>
                 <mat-divider></mat-divider>
               </mat-list-item>
             </mat-list>
