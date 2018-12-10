@@ -26,7 +26,8 @@ export class MessagesComponent {
   public chatView = false;
   public messages = [];
 
-  public user = { firstName: '', email: '' };
+  public recipients = [{ fullName: 'Recipient Name', email: 'recipient@example.com' }];
+  public user = { firstName: 'User', fullName: 'User Name', email: 'user@example.com' };
 
   private progressBar;
   public config: PerfectScrollbarConfigInterface = { };
@@ -56,6 +57,7 @@ export class MessagesComponent {
      */
     this.socket.on('user', this.onUser);
     this.socket.on('chats', this.onChats);
+    this.socket.on('messages', this.onMessages);
   }
 
   ngAfterViewInit() {
@@ -79,11 +81,12 @@ export class MessagesComponent {
     // console.log(event);
   }
 
-  public showItsMessages(cid): void {
-    console.log('On it...', cid);
-
+  public showItsMessages(c): void {
+    this.recipients = c.users;
     let auth = Object.assign({}, this.store.cookieString());
-    this.socket.emit('findLimitedMessage', auth);
+    this.socket.emit('findLimitedMessage',
+      Object.assign({ message: { query: { cid: c.cid }, option: { sort: -1, skip: 0, limit: 20 } } }, auth)
+    );
   }
 
   private onUser(res) {
@@ -92,8 +95,13 @@ export class MessagesComponent {
 
   private onChats(res) {
     that.chats = res.data;
+  }
 
-    console.log(that.user, that.chats);
+  private onMessages(res) {
+    that.messages = res.data;
+    that.chatView = true;
+
+    console.log(that.messages);
   }
 
 }

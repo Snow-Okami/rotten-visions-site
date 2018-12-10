@@ -7,7 +7,7 @@ import * as _ from 'lodash';
 export class NameonlyPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    return _.differenceBy(value.users, [args], 'email')[0]['fullName'];
+    return _.differenceBy(value, [args], 'email')[0]['fullName'];
   }
 
 }

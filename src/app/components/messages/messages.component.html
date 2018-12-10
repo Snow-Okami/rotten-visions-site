@@ -13,7 +13,7 @@
         <!-- Message Title Will Appear Here -->
         <div class="col w70 t-al-center card-title">
           <mat-icon matPrefix class="title-item"> chat </mat-icon>
-          <h4 class="title-item m-l-5" [ngClass]="{ 'hidden': !chatView }"> Messages - Abhisek Dutta </h4>
+          <h4 class="title-item m-l-5" [ngClass]="{ 'hidden': !chatView }"> Messages - {{ recipients | nameonly: user }} </h4>
 
           <!-- User's own name appears when no chat selected. -->
           <h4 class="title-item m-l-5" [ngClass]="{ 'hidden': chatView }"> Welcome {{ user.firstName }}! </h4>
@@ -29,9 +29,9 @@
 
           <perfect-scrollbar #chatList style="position: relative; max-width: 230px; max-height: 414px; min-height: 414px;" [config]="config" (psYReachEnd)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)"> 
             <mat-list>
-              <mat-list-item *ngFor="let c of chats" matRipple [matRippleRadius]="40" [matRippleUnbounded]="false" (click)="showItsMessages(c.id)">
+              <mat-list-item *ngFor="let c of chats" matRipple [matRippleRadius]="40" [matRippleUnbounded]="false" (click)="showItsMessages(c)">
                 <mat-icon mat-list-icon> person </mat-icon>
-                <h4 mat-line> {{ c.type ? c.fullName : c | nameonly: user }} </h4>
+                <h4 mat-line> {{ c.type ? c.fullName : c.users | nameonly: user }} </h4>
                 <p mat-line> {{ c.lastMessage.text }} </p>
                 <mat-divider></mat-divider>
               </mat-list-item>
@@ -52,56 +52,19 @@
               <ul>
 
                 <!-- *ngFor="let note of notes" -->
-                <li class="row chat-row-wrapper">
+                <li *ngFor="let m of messages" class="row chat-row-wrapper">
                   <div class="chat-wrapper right">
                     <div class="col v-al-middle w10 t-al-center"><mat-icon mat-list-icon> person </mat-icon></div>
                     
                     <div class="col v-al-middle w90">
-                      <p> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </p>
-                      <p> The point of using Lorem Ipsum is that ... </p>
-                      <h4 class="mat-line"> Abhisek Dutta </h4>
+                      <p> {{ m.text }} </p>
+                      <h4 class="mat-line"> {{ recipients | nameonly: user }} </h4>
                     </div>
                   </div>
                 </li>
 
                 <li class="row chat-row-wrapper">
                   <div class="chat-wrapper">
-                    <div class="col v-al-middle w10 t-al-center"><mat-icon mat-list-icon> person </mat-icon></div>
-                    
-                    <div class="col v-al-middle w90">
-                      <p> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </p>
-                      <p> The point of using Lorem Ipsum is that ... </p>
-                      <h4 class="mat-line"> Abhisek Dutta </h4>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="row chat-row-wrapper">
-                  <div class="chat-wrapper">
-                    <div class="col v-al-middle w10 t-al-center"><mat-icon mat-list-icon> person </mat-icon></div>
-                    
-                    <div class="col v-al-middle w90">
-                      <p> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </p>
-                      <p> The point of using Lorem Ipsum is that ... </p>
-                      <h4 class="mat-line"> Abhisek Dutta </h4>
-                    </div>
-                  </div>    
-                </li>
-
-                <li class="row chat-row-wrapper">
-                  <div class="chat-wrapper right">
-                    <div class="col v-al-middle w10 t-al-center"><mat-icon mat-list-icon> person </mat-icon></div>
-                    
-                    <div class="col v-al-middle w90">
-                      <p> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </p>
-                      <p> The point of using Lorem Ipsum is that ... </p>
-                      <h4 class="mat-line"> Abhisek Dutta </h4>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="row chat-row-wrapper">
-                  <div class="chat-wrapper right">
                     <div class="col v-al-middle w10 t-al-center"><mat-icon mat-list-icon> person </mat-icon></div>
                     
                     <div class="col v-al-middle w90">
