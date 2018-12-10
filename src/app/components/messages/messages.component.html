@@ -51,25 +51,13 @@
 
               <ul>
 
-                <!-- *ngFor="let note of notes" -->
                 <li *ngFor="let m of messages" class="row chat-row-wrapper">
                   <div class="chat-wrapper right m-l-30">
                     <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
 
                     <div class="col wauto">
                       <p> {{ m.text }} </p>
-                      <h4 class="mat-line"> {{ recipients | nameonly: user }} </h4>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="row chat-row-wrapper">
-                  <div class="chat-wrapper m-r-30">
-                    <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
-                    
-                    <div class="col wauto">
-                      <p> The point of using Lorem Ipsum is that ... </p>
-                      <h4 class="mat-line"> Abhisek Dutta </h4>
+                      <h4 class="mat-line"> {{ m.createdBy.fullName }} </h4>
                     </div>
                   </div>
                 </li>
