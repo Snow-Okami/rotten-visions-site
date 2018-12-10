@@ -159,7 +159,11 @@ body.mobile-view {
   width: 100%;
 }
 
-.mobile .col.w2:not(.inline), .mobile .col.w10:not(.inline), .mobile .col.w20:not(.inline), .mobile .col.w30:not(.inline), .mobile .col.w33:not(.inline), .mobile .col.w40:not(.inline), .mobile .col.w50:not(.inline), .mobile .col.w60:not(.inline), .mobile .col.w70:not(.inline), .mobile .col.w80:not(.inline), .mobile .col.w90:not(.inline), .mobile .col.w100:not(.inline) {
+.col.wauto {
+  width: auto;
+}
+
+.mobile .col.w2:not(.inline), .mobile .col.w10:not(.inline), .mobile .col.w20:not(.inline), .mobile .col.w30:not(.inline), .mobile .col.w33:not(.inline), .mobile .col.w40:not(.inline), .mobile .col.w50:not(.inline), .mobile .col.w60:not(.inline), .mobile .col.w70:not(.inline), .mobile .col.w80:not(.inline), .mobile .col.w90:not(.inline), .mobile .col.w100:not(.inline), .mobile .col.wauto:not(.inline) {
   width: 100%
 }
 
@@ -245,6 +249,14 @@ body.mobile-view {
 
 .m-r-10 {
   margin-right: 10px;
+}
+
+.m-r-20 {
+  margin-right: 20px;
+}
+
+.m-r-30 {
+  margin-right: 30px;
 }
 
 .m-b-5 {

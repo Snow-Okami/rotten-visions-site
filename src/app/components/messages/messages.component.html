@@ -53,10 +53,10 @@
 
                 <!-- *ngFor="let note of notes" -->
                 <li *ngFor="let m of messages" class="row chat-row-wrapper">
-                  <div class="chat-wrapper right">
-                    <div class="col v-al-middle w10 t-al-center"><mat-icon mat-list-icon> person </mat-icon></div>
-                    
-                    <div class="col v-al-middle w90">
+                  <div class="chat-wrapper right m-l-30">
+                    <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
+
+                    <div class="col wauto">
                       <p> {{ m.text }} </p>
                       <h4 class="mat-line"> {{ recipients | nameonly: user }} </h4>
                     </div>
@@ -64,11 +64,10 @@
                 </li>
 
                 <li class="row chat-row-wrapper">
-                  <div class="chat-wrapper">
-                    <div class="col v-al-middle w10 t-al-center"><mat-icon mat-list-icon> person </mat-icon></div>
+                  <div class="chat-wrapper m-r-30">
+                    <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
                     
-                    <div class="col v-al-middle w90">
-                      <p> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </p>
+                    <div class="col wauto">
                       <p> The point of using Lorem Ipsum is that ... </p>
                       <h4 class="mat-line"> Abhisek Dutta </h4>
                     </div>

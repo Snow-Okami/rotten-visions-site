@@ -26,12 +26,15 @@
 }
 
 .chat-wrapper {
-  margin: 5px 0;
-  padding: 5px 10px;
+  position: relative;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px 10px 5px 57px;
   border: 1px solid #3c3c3c;
   border-radius: 5px;
-  width: fit-content;
-  max-width: 90%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  min-width: auto;
 }
 
 .chat-wrapper > .col h4, .mat-list-item h4.mat-line {
@@ -40,6 +43,14 @@
   color: #bd4040;
   text-transform: uppercase;
   letter-spacing: 0px;
+}
+
+.chat-image {
+  width: 50px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .chat-wrapper > .col p, .mat-list-item p.mat-line {
