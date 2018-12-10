@@ -85,7 +85,7 @@ export class MessagesComponent {
     this.recipients = c.users;
     let auth = Object.assign({}, this.store.cookieString());
     this.socket.emit('findLimitedMessage',
-      Object.assign({ message: { query: { cid: c.cid }, option: { sort: -1, skip: 0, limit: 20 } } }, auth)
+      Object.assign({ message: { query: { cid: c.cid }, option: { sort: -1, skip: 0, limit: 10 } } }, auth)
     );
   }
 
@@ -100,8 +100,6 @@ export class MessagesComponent {
   private onMessages(res) {
     that.messages = res.data;
     that.chatView = true;
-
-    console.log(that.messages);
   }
 
 }

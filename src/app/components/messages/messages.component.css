@@ -72,3 +72,7 @@
 .mat-form-field {
   width: 100%;
 }
+
+.send-btn {
+  padding-bottom: 17.5px;
+}

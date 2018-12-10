@@ -103,6 +103,10 @@ body.mobile-view {
   vertical-align: top;
 }
 
+.col.v-al-b {
+  vertical-align: bottom;
+}
+
 .col.v-al-m {
   vertical-align: middle;
 }

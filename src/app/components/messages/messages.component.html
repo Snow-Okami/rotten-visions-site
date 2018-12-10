@@ -52,7 +52,7 @@
               <ul>
 
                 <li *ngFor="let m of messages" class="row chat-row-wrapper">
-                  <div class="chat-wrapper right m-l-30">
+                  <div class="chat-wrapper" [ngClass]="{ 'right': m.createdBy.email === user.email, 'm-r-30': m.createdBy.email !== user.email, 'm-l-30': m.createdBy.email === user.email }">
                     <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
 
                     <div class="col wauto">
@@ -78,7 +78,9 @@
                   </mat-form-field>
                 </div>
 
-                <div class="col w10"></div>
+                <div class="col w10 t-al-center v-al-b send-btn">
+                  <mat-icon> send </mat-icon>
+                </div>
               </mat-card-content>
             </mat-card>
 
