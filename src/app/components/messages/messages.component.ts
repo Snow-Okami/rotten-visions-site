@@ -114,7 +114,7 @@ export class MessagesComponent {
 
     let auth = Object.assign({}, this.store.cookieString());
     this.socket.emit('ping', auth);
-    console.log(t);
+    console.log(t, this.chat);
   }
 
   private onUser(res) {

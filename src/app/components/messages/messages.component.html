@@ -17,7 +17,7 @@
           </button>
 
           <mat-icon matPrefix class="title-item"> chat </mat-icon>
-          <h4 class="title-item m-l-5" [ngClass]="{ 'hidden': !chatView }"> Messages - {{ chat.users | nameonly: user }} </h4>
+          <h4 class="title-item m-l-5" [ngClass]="{ 'hidden': !chatView }"> Messages - {{ chat.type ? chat.fullName : chat.users | nameonly: user }} </h4>
 
           <!-- User's own name appears when no chat selected. -->
           <h4 class="title-item m-l-5" [ngClass]="{ 'hidden': chatView }"> Welcome {{ user.firstName }}! </h4>
