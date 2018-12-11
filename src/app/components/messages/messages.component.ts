@@ -96,6 +96,7 @@ export class MessagesComponent {
 
   public showItsMessages(c): void {
     console.log(c);
+
     this.recipients = c.users;
     let auth = Object.assign({}, this.store.cookieString());
     this.socket.emit('findLimitedMessage',
