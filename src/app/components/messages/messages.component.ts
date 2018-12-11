@@ -95,6 +95,7 @@ export class MessagesComponent {
   }
 
   public showItsMessages(c): void {
+    console.log(c);
     this.recipients = c.users;
     let auth = Object.assign({}, this.store.cookieString());
     this.socket.emit('findLimitedMessage',
@@ -110,6 +111,8 @@ export class MessagesComponent {
     });
     let t = _.join(t_a, '');
 
+    let auth = Object.assign({}, this.store.cookieString());
+    this.socket.emit('ping', auth);
     console.log(t);
   }
 

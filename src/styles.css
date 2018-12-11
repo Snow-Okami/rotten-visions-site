@@ -295,3 +295,8 @@ perfect-scrollbar > .ps.ps--scrolling-y > .ps__rail-y {
 .ps .ps__rail-y:hover {
   background-color: transparent !important;
 }
+
+.chat-wrapper span.writable p.msg-text {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 14px;
+}

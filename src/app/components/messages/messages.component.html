@@ -64,7 +64,8 @@
                     <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
 
                     <div class="col wauto">
-                      <p> {{ m.text }} </p>
+                      <!-- <p> {{ m.text }} </p> -->
+                      <span [innerHTML]="m.text" class="writable"></span>
                       <h4 class="mat-line"> {{ m.createdBy.fullName }} </h4>
                     </div>
                   </div>
