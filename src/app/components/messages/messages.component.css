@@ -1,3 +1,6 @@
+.card-title {
+  position: relative;
+}
 
 .card-title .title-item {
   display: inline-block;
@@ -75,4 +78,25 @@
 
 .send-btn {
   padding-bottom: 17.5px;
+}
+
+.init-text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  font-family: 'Open Sans Condensed', sans-serif;
+  opacity: 0.5;
+}
+
+.mat-icon-button.back {
+  position: absolute;
+  left: 0px;
+  top: -10px;
+}
+
+.mat-icon-button.visibility {
+  position: absolute;
+  right: 0px;
+  top: -10px;
 }

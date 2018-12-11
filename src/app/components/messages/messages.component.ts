@@ -24,6 +24,7 @@ export class MessagesComponent {
    */
   public chats = [];
   public chatView = false;
+  public quickText = false;
   public messages = [];
 
   public recipients = [{ fullName: 'Recipient Name', email: 'recipient@example.com' }];
@@ -81,12 +82,24 @@ export class MessagesComponent {
     // console.log(event);
   }
 
+  public hideMessages() {
+    this.chatView = this.quickText = false;
+  }
+
+  public alterQuickText() {
+    this.quickText = !this.quickText;
+  }
+
   public showItsMessages(c): void {
     this.recipients = c.users;
     let auth = Object.assign({}, this.store.cookieString());
     this.socket.emit('findLimitedMessage',
       Object.assign({ message: { query: { cid: c.cid }, option: { sort: -1, skip: 0, limit: 10 } } }, auth)
     );
+  }
+
+  public sendThis() {
+    
   }
 
   private onUser(res) {
