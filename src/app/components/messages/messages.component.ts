@@ -29,7 +29,9 @@ export class MessagesComponent {
   public quickText = false;
   public messages = [];
 
-  public recipients = [{ fullName: 'Recipient Name', email: 'recipient@example.com' }];
+  public chat = {
+    users: [{ fullName: 'Recipient Name', email: 'recipient@example.com' }]
+  };
   public user = { firstName: 'User', fullName: 'User Name', email: 'user@example.com' };
 
   private progressBar;
@@ -95,9 +97,7 @@ export class MessagesComponent {
   }
 
   public showItsMessages(c): void {
-    console.log(c);
-
-    this.recipients = c.users;
+    this.chat = c;
     let auth = Object.assign({}, this.store.cookieString());
     this.socket.emit('findLimitedMessage',
       Object.assign({ message: { query: { cid: c.cid }, option: { sort: -1, skip: 0, limit: 10 } } }, auth)
