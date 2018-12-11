@@ -1,7 +1,9 @@
 import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Socket } from 'ngx-socket-io';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
+import * as _ from 'lodash';
 
 import { StoreService } from '../../services/store.service';
 import { HttpService } from '../../services/http.service';
@@ -34,6 +36,8 @@ export class MessagesComponent {
   public config: PerfectScrollbarConfigInterface = { };
   @ViewChild('chatList') chatList?: PerfectScrollbarComponent;
   @ViewChild('messageList') messageList?: PerfectScrollbarComponent;
+
+  public text = new FormControl({ value: '', disabled: false }, []);
 
   constructor(
     private socket: Socket,
@@ -99,7 +103,14 @@ export class MessagesComponent {
   }
 
   public sendThis() {
-    
+    if(!this.text.value.length) { return false; }
+
+    let t_a = _.map(_.split(this.text.value, '\n'), (o) => {
+      return o === '' ? '<br>' : `<p> ${o} </p>`;
+    });
+    let t = _.join(t_a, '');
+
+    console.log(t);
   }
 
   private onUser(res) {
