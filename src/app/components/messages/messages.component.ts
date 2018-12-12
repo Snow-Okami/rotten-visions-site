@@ -32,6 +32,7 @@ export class MessagesComponent {
 
   public chat = {
     id: '0',
+    messages: [],
     users: [{ fullName: 'Recipient Name', email: 'recipient@example.com' }]
   };
   public user = { firstName: 'User', fullName: 'User Name', email: 'user@example.com' };
@@ -68,6 +69,7 @@ export class MessagesComponent {
     this.socket.on('user', this.onUser);
     this.socket.on('chats', this.onChats);
     this.socket.on('messages', this.onMessages);
+    this.socket.on('texted', this.onTexted);
   }
 
   ngAfterViewInit() {
@@ -79,12 +81,10 @@ export class MessagesComponent {
 
     let auth = Object.assign({}, this.store.cookieString());
     this.socket.emit('login', auth);
-
-    this.scrollToBottom();
   }
 
   public scrollToBottom(): void {
-    this.messageList.directiveRef.scrollToBottom();
+    setTimeout(() => { this.messageList.directiveRef.scrollToBottom(); }, 300);
   }
 
   public onScrollEvent(event: any): void {
@@ -100,10 +100,10 @@ export class MessagesComponent {
   }
 
   public showItsMessages(c): void {
-    this.chat = c;
+    this.chat = c; this.messages = this.chat.messages;
     let auth = Object.assign({}, this.store.cookieString());
     this.socket.emit('findLimitedMessage',
-      Object.assign({ message: { query: { cid: c.cid }, option: { sort: -1, skip: 0, limit: 10 } } }, auth)
+      Object.assign({ message: { query: { cid: c.id }, option: { sort: -1, skip: 0, limit: 10 } } }, auth)
     );
   }
 
@@ -119,6 +119,8 @@ export class MessagesComponent {
     this.socket.emit('text', 
       Object.assign({ message: { query: { cid: this.chat.id, text: t, createdBy: { email: this.user.email, fullName: this.user.fullName } } } }, auth)
     );
+
+    this.text.setValue('');
   }
 
   private onUser(res) {
@@ -132,6 +134,15 @@ export class MessagesComponent {
   private onMessages(res) {
     that.messages = res.data;
     that.chatView = true;
+
+    that.scrollToBottom();
+  }
+
+  private onTexted(res) {
+    that.chat.lastMessage = res.lastMessage
+    that.messages.push(res.lastMessage);
+
+    that.scrollToBottom();
   }
 
 }

@@ -160,7 +160,7 @@ export class LoginComponent {
     /**
      * @description form contains email and password.
      */
-    let registerForm = Object.assign({}, this.registerForm.value, { isMale: true });
+    let registerForm = Object.assign({}, this.registerForm.value, { isMale: true, fullName: (this.firstName.value + ' ' + this.lastName.value) });
 
     /**
      * @description Set form fields empty.

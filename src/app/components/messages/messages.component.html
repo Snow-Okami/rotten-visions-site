@@ -36,7 +36,9 @@
 
           <perfect-scrollbar #chatList style="position: relative; max-width: 230px; max-height: 414px; min-height: 414px;" [config]="config" (psYReachEnd)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)"> 
             <mat-list>
-              <mat-list-item *ngFor="let c of chats" matRipple [matRippleRadius]="40" [matRippleUnbounded]="false" (click)="showItsMessages(c)">
+
+              <!--  matRipple [matRippleRadius]="40" [matRippleUnbounded]="false" -->
+              <mat-list-item *ngFor="let c of chats" (click)="showItsMessages(c)">
                 <mat-icon mat-list-icon> person </mat-icon>
                 <h4 mat-line> {{ c.type ? c.fullName : c.users | nameonly: user }} </h4>
                 <!-- <p mat-line> {{ c.lastMessage.text }} </p> -->
