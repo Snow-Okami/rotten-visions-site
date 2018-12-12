@@ -39,7 +39,8 @@
               <mat-list-item *ngFor="let c of chats" matRipple [matRippleRadius]="40" [matRippleUnbounded]="false" (click)="showItsMessages(c)">
                 <mat-icon mat-list-icon> person </mat-icon>
                 <h4 mat-line> {{ c.type ? c.fullName : c.users | nameonly: user }} </h4>
-                <p mat-line> {{ c.lastMessage.text }} </p>
+                <!-- <p mat-line> {{ c.lastMessage.text }} </p> -->
+                <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(c.lastMessage.text)" class="writable" mat-line></span>
                 <mat-divider></mat-divider>
               </mat-list-item>
             </mat-list>
@@ -65,7 +66,7 @@
 
                     <div class="col wauto">
                       <!-- <p> {{ m.text }} </p> -->
-                      <span [innerHTML]="m.text" class="writable"></span>
+                      <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(m.text)" class="writable"></span>
                       <h4 class="mat-line"> {{ m.createdBy.fullName }} </h4>
                     </div>
                   </div>

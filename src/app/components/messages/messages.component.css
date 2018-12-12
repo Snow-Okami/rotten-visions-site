@@ -56,11 +56,6 @@
   transform: translateY(-50%);
 }
 
-.chat-wrapper .col span.writable p.msg-text, .mat-list-item p.mat-line {
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 14px;
-}
-
 .arrow-back {
   cursor: pointer;
 }

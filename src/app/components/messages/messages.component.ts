@@ -1,6 +1,7 @@
 import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Socket } from 'ngx-socket-io';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 import * as _ from 'lodash';
@@ -30,6 +31,7 @@ export class MessagesComponent {
   public messages = [];
 
   public chat = {
+    id: '0',
     users: [{ fullName: 'Recipient Name', email: 'recipient@example.com' }]
   };
   public user = { firstName: 'User', fullName: 'User Name', email: 'user@example.com' };
@@ -46,7 +48,8 @@ export class MessagesComponent {
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
     private http: HttpService,
-    private store: StoreService
+    private store: StoreService,
+    public sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -108,13 +111,14 @@ export class MessagesComponent {
     if(!this.text.value.length) { return false; }
 
     let t_a = _.map(_.split(this.text.value, '\n'), (o) => {
-      return o === '' ? '<br>' : `<p> ${o} </p>`;
+      return o === '' ? '<br>' : `<p class='msg-text'> ${o} </p>`;
     });
     let t = _.join(t_a, '');
 
     let auth = Object.assign({}, this.store.cookieString());
-    this.socket.emit('ping', auth);
-    console.log(t, this.chat);
+    this.socket.emit('text', 
+      Object.assign({ message: { query: { cid: this.chat.id, text: t, createdBy: { email: this.user.email, fullName: this.user.fullName } } } }, auth)
+    );
   }
 
   private onUser(res) {
