@@ -32,6 +32,8 @@ export class MessagesComponent {
 
   public chat = {
     id: '0',
+    type: 0,
+    fullName: '',
     messages: [],
     users: [{ fullName: 'Recipient Name', email: 'recipient@example.com' }]
   };
