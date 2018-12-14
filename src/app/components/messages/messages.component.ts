@@ -180,12 +180,11 @@ export class MessagesComponent {
    * @description when user sends or receives a text.
    */
   private onTexted(res) {
-    that.chat.lastMessage = res.lastMessage
-    that.messages.push(res.lastMessage);
+    let c = _.find(that.chats, { 'id': res.lastMessage.cid });
+    c['lastMessage'] = res.lastMessage;
+    c['messages'].push(res.lastMessage);
 
     that.scrollToBottom();
-
-    console.log(res);
   }
 
 }
