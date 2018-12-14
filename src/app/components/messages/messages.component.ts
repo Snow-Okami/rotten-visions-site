@@ -98,6 +98,7 @@ export class MessagesComponent {
    */
   public hideMessages() {
     this.chatView = this.quickText = false;
+    this.messages = [];
   }
 
   /**
