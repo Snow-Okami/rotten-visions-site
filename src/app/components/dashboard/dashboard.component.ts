@@ -93,7 +93,7 @@ export class DashboardComponent {
 
   /**
    * @description Event fires when Pan detected on mobile from Left to Right.
-   * @param ev 
+   * @param ev is the event captured by hammer js
    */
   onPanRight(ev) {
     that.panArea.push({ x: ev.center.x, y: ev.center.y });
