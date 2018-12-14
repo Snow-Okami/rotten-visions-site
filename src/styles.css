@@ -296,7 +296,15 @@ perfect-scrollbar > .ps.ps--scrolling-y > .ps__rail-y {
   background-color: transparent !important;
 }
 
-.chat-wrapper span.writable p.msg-text, .mat-list-item span.writable p.msg-text {
+span.writable.mat-line {
+  max-height: 27px;
+  line-height: 27px;
+}
+
+span.writable, span.writable p, span.writable h1, span.writable h2, span.writable h3, span.writable h4, span.writable h5, span.writable h6 {
   font-family: 'Open Sans Condensed', sans-serif;
+}
+
+span.writable, span.writable p {
   font-size: 14px;
 }

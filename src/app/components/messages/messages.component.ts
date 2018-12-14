@@ -90,33 +90,57 @@ export class MessagesComponent {
   }
 
   public onScrollEvent(event: any): void {
-    // console.log(event);
+    if(event.type === 'ps-y-reach-start') { }
   }
 
+  /**
+   * @description Hide the messages view section.
+   */
   public hideMessages() {
     this.chatView = this.quickText = false;
   }
 
+  /**
+   * @description Changes the quick text option.
+   */
   public alterQuickText() {
     this.quickText = !this.quickText;
   }
 
+  /**
+   * @description show messages when user clicks on an individual chat.
+   */
   public showItsMessages(c): void {
     this.chat = c; this.messages = this.chat.messages;
+    this.chatView = true;
+    /**
+     * @description scroll to bottom of the messages.
+     */
+    this.scrollToBottom();
+    /**
+     * @description do not fetch messages when already have some.
+     */
+    if(this.messages.length) { return; }
+
+    /**
+     * @description Passes the Query with auth for messages.
+     */
     let auth = Object.assign({}, this.store.cookieString());
     this.socket.emit('findLimitedMessage',
-      Object.assign({ message: { query: { cid: c.id }, option: { sort: -1, skip: 0, limit: 10 } } }, auth)
+      Object.assign({ message: { query: { cid: this.chat.id }, option: { sort: -1, skip: 0, limit: 10 } } }, auth)
     );
   }
 
+  /**
+   * @description Sends the current message.
+   */
   public sendThis() {
     if(!this.text.value.length) { return false; }
 
-    let t_a = _.map(_.split(this.text.value, '\n'), (o) => {
-      return o === '' ? '<br>' : `<p class='msg-text'> ${o} </p>`;
-    });
-    let t = _.join(t_a, '');
-
+    let t = _.split(this.text.value, '\n').join('<br>');
+    /**
+     * @description Passes the Query with auth for messages.
+     */
     let auth = Object.assign({}, this.store.cookieString());
     this.socket.emit('text', 
       Object.assign({ message: { query: { cid: this.chat.id, text: t, createdBy: { email: this.user.email, fullName: this.user.fullName } } } }, auth)
@@ -125,26 +149,43 @@ export class MessagesComponent {
     this.text.setValue('');
   }
 
+  /**
+   * @description response from socket server with user details.
+   */
   private onUser(res) {
     that.user = res;
   }
 
+  /**
+   * @description response from socket server with chat details.
+   */
   private onChats(res) {
     that.chats = res.data;
   }
 
+  /**
+   * @description response from socket server with messages.
+   */
   private onMessages(res) {
-    that.messages = res.data;
-    that.chatView = true;
-
-    that.scrollToBottom();
+    let c = _.find(that.chats, { 'id': res.data[0].cid });
+    let m = _.concat(res.data, c['messages']);
+    that.messages = c['messages'] = m;
+    /**
+     * @description scroll to bottom of the messages.
+     */
+    if(that.messages.length <= 10) { that.scrollToBottom(); }
   }
 
+  /**
+   * @description when user sends or receives a text.
+   */
   private onTexted(res) {
     that.chat.lastMessage = res.lastMessage
     that.messages.push(res.lastMessage);
 
     that.scrollToBottom();
+
+    console.log(res);
   }
 
 }
