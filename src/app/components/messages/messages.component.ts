@@ -27,6 +27,8 @@ export class MessagesComponent {
    */
   public chats = [];
   public chatView = false;
+  public chatLoader = true;
+  public messageLoader = false;
   public quickText = false;
   public messages = [];
 
@@ -85,19 +87,27 @@ export class MessagesComponent {
     this.socket.emit('login', auth);
   }
 
+  ngOnDestroy() {
+    this.socket.disconnect(true);
+  }
+
   public scrollToBottom(): void {
     setTimeout(() => { this.messageList.directiveRef.scrollToBottom(); }, 300);
   }
 
-  public onScrollEvent(event: any): void {
-    if(event.type === 'ps-y-reach-start') { }
+  public loadChats(event: any): void {
+    // console.log(event);
+  }
+
+  public loadMessages(event: any): void {
+    // console.log(event);
   }
 
   /**
    * @description Hide the messages view section.
    */
   public hideMessages() {
-    this.chatView = this.quickText = false;
+    this.chatView = this.quickText = this.messageLoader = false;
     this.messages = [];
   }
 
@@ -113,7 +123,7 @@ export class MessagesComponent {
    */
   public showItsMessages(c): void {
     this.chat = c; this.messages = this.chat.messages;
-    this.chatView = true;
+    this.chatView = this.messageLoader = true;
     /**
      * @description scroll to bottom of the messages.
      */
@@ -121,14 +131,14 @@ export class MessagesComponent {
     /**
      * @description do not fetch messages when already have some.
      */
-    if(this.messages.length) { return; }
+    if(this.messages.length) { this.messageLoader = false; return; }
 
     /**
      * @description Passes the Query with auth for messages.
      */
     let auth = Object.assign({}, this.store.cookieString());
     this.socket.emit('findLimitedMessage',
-      Object.assign({ message: { query: { cid: this.chat.id }, option: { sort: -1, skip: 0, limit: 10 } } }, auth)
+      Object.assign({ message: { query: { cid: this.chat.id }, option: { sort: -1, skip: this.messages.length, limit: 10 } } }, auth)
     );
   }
 
@@ -162,15 +172,27 @@ export class MessagesComponent {
    */
   private onChats(res) {
     that.chats = res.data;
+    /**
+     * @description hide the chat loader.
+     */
+    that.chatLoader = false;
+
+    console.log('chats feeling...');
   }
 
   /**
    * @description response from socket server with messages.
    */
   private onMessages(res) {
+    console.log('message detected!');
+
     let c = _.find(that.chats, { 'id': res.data[0].cid });
     let m = _.concat(res.data, c['messages']);
     that.messages = c['messages'] = m;
+    /**
+     * @description hide the loader when message is loaded.
+     */
+    that.messageLoader = false;
     /**
      * @description scroll to bottom of the messages.
      */
@@ -184,7 +206,9 @@ export class MessagesComponent {
     let c = _.find(that.chats, { 'id': res.lastMessage.cid });
     c['lastMessage'] = res.lastMessage;
     c['messages'].push(res.lastMessage);
-
+    /**
+     * @description scroll to bottom after chat is loaded.
+     */
     that.scrollToBottom();
   }
 

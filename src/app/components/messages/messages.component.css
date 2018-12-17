@@ -9,11 +9,14 @@
 
 .mat-list-item {
   opacity: 0.5;
-  cursor: pointer;
 }
 
 .mat-list-item:hover {
   opacity: 1;
+}
+
+.mat-list-item .chat-name:hover {
+  cursor: pointer;
 }
 
 .mat-list-item.active {
@@ -94,4 +97,17 @@
   position: absolute;
   right: 0px;
   top: -10px;
+}
+
+.message-loader {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.chat-loader {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  transform: translateY(-50%);
 }

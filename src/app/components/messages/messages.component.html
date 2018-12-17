@@ -34,17 +34,26 @@
       <div class="row">
         <div class="col w20">
 
-          <perfect-scrollbar #chatList style="position: relative; max-width: 230px; max-height: 414px; min-height: 414px;" [config]="config" (psYReachEnd)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)"> 
+          <perfect-scrollbar #chatList style="position: relative; max-width: 230px; max-height: 414px; min-height: 414px;" [config]="config" (psYReachEnd)="loadChats($event)">
             <mat-list>
 
-              <!--  matRipple [matRippleRadius]="40" [matRippleUnbounded]="false" -->
-              <mat-list-item *ngFor="let c of chats" (click)="showItsMessages(c)">
-                <mat-icon mat-list-icon> person </mat-icon>
-                <h4 mat-line> {{ c.type ? c.fullName : c.users | nameonly: user }} </h4>
-                <!-- <p mat-line> {{ c.lastMessage.text }} </p> -->
+              <!-- Message loader will be shown here -->
+              <ul *ngIf="chatLoader">
+                <li class="row chat-row-wrapper t-al-center">
+                  <div class="col">
+                    <mat-progress-spinner class="chat-loader" [color]="'primary'" [mode]="'indeterminate'" [diameter]="30" [strokeWidth]="4"></mat-progress-spinner>
+                  </div>
+                </li>
+              </ul>
+
+              <!-- Messages will be loaded here -->
+              <mat-list-item *ngFor="let c of chats">
+                <mat-icon mat-list-icon class="chat-image"> person </mat-icon>
+                <h4 mat-line class="chat-name" (click)="showItsMessages(c)"> {{ c.type ? c.fullName : c.users | nameonly: user }} </h4>
                 <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(c.lastMessage.text)" class="writable" mat-line></span>
                 <mat-divider></mat-divider>
               </mat-list-item>
+
             </mat-list>
           </perfect-scrollbar>
 
@@ -57,17 +66,24 @@
         <!-- SHOW for the messages -->
         <div class="col w70" [ngClass]="{ 'hidden': !chatView }">
 
-          <perfect-scrollbar #messageList style="position: relative; max-width: 750px; max-height: 336px; min-height: 336px;" [config]="config" (psYReachEnd)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)">
+          <perfect-scrollbar #messageList style="position: relative; max-width: 750px; max-height: 336px; min-height: 336px;" [config]="config" (psYReachStart)="loadMessages($event)">
             <mat-list>
 
               <ul>
 
+                <!-- Message loader will be shown here -->
+                <li class="row chat-row-wrapper t-al-center" *ngIf="messageLoader">
+                  <div class="col">
+                    <mat-progress-spinner class="message-loader" [color]="'primary'" [mode]="'indeterminate'" [diameter]="30" [strokeWidth]="4"></mat-progress-spinner>
+                  </div>
+                </li>
+
+                <!-- Messages will repeat here -->
                 <li *ngFor="let m of messages" class="row chat-row-wrapper">
                   <div class="chat-wrapper" [ngClass]="{ 'right': m.createdBy.email === user.email, 'm-r-30': m.createdBy.email !== user.email, 'm-l-30': m.createdBy.email === user.email }">
                     <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
 
                     <div class="col wauto">
-                      <!-- <p> {{ m.text }} </p> -->
                       <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(m.text)" class="writable"></span>
                       <h4 class="mat-line"> {{ m.createdBy.fullName }} </h4>
                     </div>
