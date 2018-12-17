@@ -77,7 +77,6 @@ export class MessagesComponent {
   }
 
   ngAfterViewInit() {
-
     /**
      * @description Hide Progress Bar When Page is Loaded.
      */
@@ -85,10 +84,12 @@ export class MessagesComponent {
 
     let auth = Object.assign({}, this.store.cookieString());
     this.socket.emit('login', auth);
+
+    console.log(auth);
   }
 
   ngOnDestroy() {
-    this.socket.disconnect(true);
+    // this.socket.disconnect(true);
   }
 
   public scrollToBottom(): void {
