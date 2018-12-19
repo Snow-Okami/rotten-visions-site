@@ -18,6 +18,7 @@ export class StoreService {
    * @description Save Updates in Store.
    */
   public updates: string;
+  public socketInitialized: boolean = false;
 
   constructor() { }
 

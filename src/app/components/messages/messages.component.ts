@@ -43,10 +43,26 @@ export class MessagesComponent {
 
   private progressBar;
   public config: PerfectScrollbarConfigInterface = { };
+  /**
+   * @description captures the chat list element from DOM.
+   */
+  private chatListElem;
   @ViewChild('chatList') chatList?: PerfectScrollbarComponent;
+  /**
+   * @description captures the message list element from DOM.
+   */
+  private messageListElem;
   @ViewChild('messageList') messageList?: PerfectScrollbarComponent;
 
   public text = new FormControl({ value: '', disabled: false }, []);
+  /**
+   * @description allows to load more messages and chats.
+   */
+  public loadMore = {
+    messages: true,
+    chats: true
+  };
+  private forceScroll: boolean = true;
 
   constructor(
     private socket: Socket,
@@ -70,13 +86,24 @@ export class MessagesComponent {
     /**
      * @description Attach Socket Events. Note Events must use that in place of Components this.
      */
-    this.socket.on('user', this.onUser);
-    this.socket.on('chats', this.onChats);
-    this.socket.on('messages', this.onMessages);
-    this.socket.on('texted', this.onTexted);
+    if(!this.store.socketInitialized) {
+      this.socket.on('user', this.onUser);
+      this.socket.on('chats', this.onChats);
+      this.socket.on('messages', this.onMessages);
+      this.socket.on('texted', this.onTexted);
+      /**
+       * @description Update the store for future use.
+       */
+      this.store.socketInitialized = true;
+    }
   }
 
   ngAfterViewInit() {
+    /**
+     * @description capture the scroll bar elements from browser DOM.
+     */
+    this.chatListElem = document.querySelectorAll('.ps')[0];
+    this.messageListElem = document.querySelectorAll('.ps')[1];
     /**
      * @description Hide Progress Bar When Page is Loaded.
      */
@@ -84,16 +111,18 @@ export class MessagesComponent {
 
     let auth = Object.assign({}, this.store.cookieString());
     this.socket.emit('login', auth);
-
-    console.log(auth);
   }
 
   ngOnDestroy() {
     // this.socket.disconnect(true);
   }
 
-  public scrollToBottom(): void {
+  private scrollToBottom(): void {
     setTimeout(() => { this.messageList.directiveRef.scrollToBottom(); }, 300);
+  }
+
+  private scrollYDown(elem, y): void {
+    elem.scrollTo({ top: elem.scrollTop + y, left: 0, behavior: 'smooth' });
   }
 
   public loadChats(event: any): void {
@@ -101,7 +130,22 @@ export class MessagesComponent {
   }
 
   public loadMessages(event: any): void {
-    // console.log(event);
+    /**
+     * @description Passes the Query with auth for messages.
+     */
+    if(this.loadMore.messages) {
+      /**
+       * @description blocks the event for some time.
+       */
+      this.loadMore.messages = false;
+      /**
+       * @description loads the message after 1.5 seconds.
+       */
+      let auth = Object.assign({}, this.store.cookieString());
+      this.socket.emit('findLimitedMessage',
+        Object.assign({ message: { query: { cid: this.chat.id }, option: { sort: -1, skip: this.messages.length, limit: 10 } } }, auth)
+      );
+    }
   }
 
   /**
@@ -133,7 +177,10 @@ export class MessagesComponent {
      * @description do not fetch messages when already have some.
      */
     if(this.messages.length) { this.messageLoader = false; return; }
-
+    /**
+     * @description setup a force scroll.
+     */
+    this.forceScroll = true;
     /**
      * @description Passes the Query with auth for messages.
      */
@@ -177,27 +224,31 @@ export class MessagesComponent {
      * @description hide the chat loader.
      */
     that.chatLoader = false;
-
-    console.log('chats feeling...');
   }
 
   /**
    * @description response from socket server with messages.
    */
   private onMessages(res) {
-    console.log('message detected!');
-
+    /**
+     * @description stops execution when no data found.
+     */
+    if(!res.data.length) { return true; }
+    /**
+     * @description insert messages in proper order.
+     */
     let c = _.find(that.chats, { 'id': res.data[0].cid });
     let m = _.concat(res.data, c['messages']);
     that.messages = c['messages'] = m;
     /**
-     * @description hide the loader when message is loaded.
+     * @description hide the loader when message is loaded. And enables the load more event.
      */
-    that.messageLoader = false;
+    that.messageLoader = false; setTimeout(() => { that.loadMore.messages = true; }, 500);
     /**
      * @description scroll to bottom of the messages.
      */
     if(that.messages.length <= 10) { that.scrollToBottom(); }
+    else { that.scrollYDown(that.messageListElem, 20); }
   }
 
   /**
