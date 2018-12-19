@@ -62,7 +62,7 @@ export class MessagesComponent {
     messages: true,
     chats: true
   };
-  private forceScroll: boolean = true;
+  private lastScrollTop = -1;
 
   constructor(
     private socket: Socket,
@@ -122,7 +122,17 @@ export class MessagesComponent {
   }
 
   private scrollYDown(elem, y): void {
-    elem.scrollTo({ top: elem.scrollTop + y, left: 0, behavior: 'smooth' });
+    setTimeout(() => { elem.scrollTo({ top: elem.scrollTop + y, left: 0, behavior: 'smooth' }); setTimeout(() => { that.loadMore.messages = true; }, 500); }, 300);
+  }
+
+  /**
+   * @description Detect scroll direction. Returns true if down or false.
+   */
+  isScrollDown(elem) {
+    let st = elem.scrollTop;
+    let type = st > this.lastScrollTop ? true : false;
+    this.lastScrollTop = st <= 0 ? 0 : st;
+    return type;
   }
 
   public loadChats(event: any): void {
@@ -133,7 +143,7 @@ export class MessagesComponent {
     /**
      * @description Passes the Query with auth for messages.
      */
-    if(this.loadMore.messages) {
+    if(this.loadMore.messages && !this.isScrollDown(this.messageListElem)) {
       /**
        * @description blocks the event for some time.
        */
@@ -170,6 +180,10 @@ export class MessagesComponent {
     this.chat = c; this.messages = this.chat.messages;
     this.chatView = this.messageLoader = true;
     /**
+     * @description stop initial loading of messages.
+     */
+    this.lastScrollTop = -1;
+    /**
      * @description scroll to bottom of the messages.
      */
     this.scrollToBottom();
@@ -177,10 +191,6 @@ export class MessagesComponent {
      * @description do not fetch messages when already have some.
      */
     if(this.messages.length) { this.messageLoader = false; return; }
-    /**
-     * @description setup a force scroll.
-     */
-    this.forceScroll = true;
     /**
      * @description Passes the Query with auth for messages.
      */
@@ -233,7 +243,7 @@ export class MessagesComponent {
     /**
      * @description stops execution when no data found.
      */
-    if(!res.data.length) { return true; }
+    if(!res.data.length) { that.scrollYDown(that.messageListElem, 20); return true; }
     /**
      * @description insert messages in proper order.
      */
@@ -243,7 +253,7 @@ export class MessagesComponent {
     /**
      * @description hide the loader when message is loaded. And enables the load more event.
      */
-    that.messageLoader = false; setTimeout(() => { that.loadMore.messages = true; }, 500);
+    that.messageLoader = false;
     /**
      * @description scroll to bottom of the messages.
      */
