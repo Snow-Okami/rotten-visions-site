@@ -111,3 +111,13 @@
   left: 45%;
   transform: translateY(-50%);
 }
+
+button.new-message.mat-fab.mat-accent {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+.message-list-wrapper {
+  padding: 0 16px;
+}

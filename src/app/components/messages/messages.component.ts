@@ -31,6 +31,7 @@ export class MessagesComponent {
   public messageLoader = false;
   public quickText = false;
   public messages = [];
+  public createView = false;
 
   public chat = {
     id: '0',
@@ -63,6 +64,16 @@ export class MessagesComponent {
     chats: true
   };
   private lastScrollTop = -1;
+
+  /**
+   * @description search users section for create message.
+   */
+  public searchInput = new FormControl({ value: '', disabled: false }, []);
+  public typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers', 'Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+  /**
+   * @description store the user results after search.
+   */
+  public searchedUsers = [];
 
   constructor(
     private socket: Socket,
@@ -162,7 +173,7 @@ export class MessagesComponent {
    * @description Hide the messages view section.
    */
   public hideMessages() {
-    this.chatView = this.quickText = this.messageLoader = false;
+    this.createView = this.chatView = this.quickText = this.messageLoader = false;
     this.messages = [];
   }
 
@@ -178,7 +189,7 @@ export class MessagesComponent {
    */
   public showItsMessages(c): void {
     this.chat = c; this.messages = this.chat.messages;
-    this.chatView = this.messageLoader = true;
+    this.chatView = this.messageLoader = true; this.createView = false;
     /**
      * @description stop initial loading of messages.
      */
@@ -216,6 +227,20 @@ export class MessagesComponent {
     );
 
     this.text.setValue('');
+  }
+
+  /**
+   * @description open create chat modal.
+   */
+  public visitCreate() {
+    this.createView = !this.createView;
+  }
+
+  /**
+   * @description search for the users.
+   */
+  public searchUsers(event: any) {
+    console.log(event, 'triggered');
   }
 
   /**

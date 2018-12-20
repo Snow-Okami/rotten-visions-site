@@ -16,6 +16,10 @@
             <mat-icon aria-label="icon-button">arrow_back</mat-icon>
           </button>
 
+          <button mat-icon-button matTooltip="Back" [matTooltipPosition]="'above'" class="back" [ngClass]="{ 'hidden': !createView }" (click)="hideMessages()">
+            <mat-icon aria-label="icon-button">arrow_back</mat-icon>
+          </button>
+
           <mat-icon matPrefix class="title-item"> chat </mat-icon>
           <h4 class="title-item m-l-5" [ngClass]="{ 'hidden': !chatView }"> Messages - {{ chat.type ? chat.fullName : chat.users | nameonly: user }} </h4>
 
@@ -32,7 +36,7 @@
 
       <!-- Chat List Wrapper Starts Here -->
       <div class="row">
-        <div class="col w20">
+        <div class="col w20" style="position: relative;">
 
           <perfect-scrollbar #chatList style="position: relative; max-width: 230px; max-height: 414px; min-height: 414px;" [config]="config" (psYReachEnd)="loadChats($event)">
             <mat-list>
@@ -57,6 +61,11 @@
             </mat-list>
           </perfect-scrollbar>
 
+          <!-- Create Chat Button -->
+          <button (click)="visitCreate()" mat-fab class="new-message" matTooltip="New Message" matTooltipPosition="before">
+            <mat-icon aria-label="Create new message icon">add</mat-icon>
+          </button>
+
         </div>
 
         <div class="col w2"> <mat-divider style="max-height: 414px; min-height: 414px;" [vertical]="true"></mat-divider> </div>
@@ -64,7 +73,7 @@
         <div class="col w2"> </div>
 
         <!-- SHOW for the messages -->
-        <div class="col w70" [ngClass]="{ 'hidden': !chatView }">
+        <div class="col w70" [ngClass]="{ 'hidden': !chatView || createView }">
 
           <perfect-scrollbar #messageList style="position: relative; max-width: 750px; max-height: 336px; min-height: 336px;" [config]="config" (psYReachStart)="loadMessages($event)">
             <mat-list>
@@ -119,10 +128,34 @@
         </div>
 
         <!-- SHOW when no chat is selected -->
-        <div class="col w70" [ngClass]="{ 'hidden': chatView }">
+        <div class="col w70" [ngClass]="{ 'hidden': chatView || createView }">
           <div style="height: 414px; position: relative; max-width: 750px;">
             <h4 class="init-text t-al-center"> SORRY! no chat selected! </h4>
           </div>
+        </div>
+
+        <!-- SHOW for the messages -->
+        <div class="col w70" [ngClass]="{ 'hidden': !createView }">
+
+          <div class="row" style="max-width: 750px;">
+            <ul class="message-list-wrapper">
+              <li class="row">
+                <div class="col w100"> <mat-form-field> <input (keyup)="searchUsers($event)" matInput placeholder="Search by email" [formControl]="searchInput"> </mat-form-field> </div>
+              </li>
+            </ul>
+          </div>
+
+          <perfect-scrollbar #messageList style="position: relative; max-width: 750px; max-height: 336px; min-height: 336px;" [config]="config" (psYReachStart)="loadMessages($event)">
+            <mat-list>
+
+              <mat-selection-list #shoes>
+                <mat-list-option *ngFor="let shoe of typesOfShoes">
+                  {{shoe}}
+                </mat-list-option>
+              </mat-selection-list>
+            </mat-list>
+          </perfect-scrollbar>
+
         </div>
 
       </div>
