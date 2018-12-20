@@ -320,4 +320,8 @@ export class MessagesComponent {
     that.searchedUsers = res.data;
   }
 
+  public createChat() {
+    console.log('selected users are');
+  }
+
 }
