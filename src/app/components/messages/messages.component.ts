@@ -102,6 +102,7 @@ export class MessagesComponent {
       this.socket.on('chats', this.onChats);
       this.socket.on('messages', this.onMessages);
       this.socket.on('texted', this.onTexted);
+      this.socket.on('packet', this.onPacket);
       /**
        * @description Update the store for future use.
        */
@@ -239,8 +240,20 @@ export class MessagesComponent {
   /**
    * @description search for the users.
    */
-  public searchUsers(event: any) {
-    console.log(event, 'triggered');
+  public searchUsers(event: KeyboardEvent) {
+    /**
+     * @description Minimum 3 letters (without any space) are required for the search.
+     */
+    let v = this.searchInput.value.trim();
+    if(v.length < 3) { this.searchedUsers = []; return false; }
+    /**
+     * @description Passes the Query with auth for messages.
+     */
+    let auth = Object.assign({}, this.store.cookieString());
+    this.socket.emit('search', 
+      Object.assign({ message: { query: { text: v } } }, auth)
+    );
+
   }
 
   /**
@@ -297,6 +310,14 @@ export class MessagesComponent {
      * @description scroll to bottom after chat is loaded.
      */
     that.scrollToBottom();
+  }
+
+  private onPacket(res) {
+    if(res.error) { that.searchedUsers = []; return false; }
+    /**
+     * @description store packets into the searchedUsers
+     */
+    that.searchedUsers = res.data;
   }
 
 }

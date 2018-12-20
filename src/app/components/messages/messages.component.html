@@ -148,9 +148,9 @@
           <perfect-scrollbar #messageList style="position: relative; max-width: 750px; max-height: 336px; min-height: 336px;" [config]="config" (psYReachStart)="loadMessages($event)">
             <mat-list>
 
-              <mat-selection-list #shoes>
-                <mat-list-option *ngFor="let shoe of typesOfShoes">
-                  {{shoe}}
+              <mat-selection-list #susers>
+                <mat-list-option *ngFor="let suser of searchedUsers">
+                  {{ suser.fullName }}
                 </mat-list-option>
               </mat-selection-list>
             </mat-list>
