@@ -49,6 +49,17 @@ export class ValidatorsService extends Validators  {
   }
 
   /**
+   * @description Group name validator.
+   */
+  groupName(control: FormControl) {
+    if (control.value && control.value.length > 0) {
+      let v = control.value.trim();
+      return (v.length) ? null : { invalid_characters: true };
+    }
+    return null;
+  }
+
+  /**
    * @description 
    */
   description(control: FormControl) {

@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Socket } from 'ngx-socket-io';
@@ -8,8 +8,13 @@ import * as _ from 'lodash';
 
 import { StoreService } from '../../services/store.service';
 import { HttpService } from '../../services/http.service';
+import { ValidatorsService } from '../../services/validators.service';
 
 let that;
+
+export interface Fruit {
+  name: string;
+}
 
 @Component({
   selector: 'app-messages',
@@ -69,7 +74,6 @@ export class MessagesComponent {
    * @description search users section for create message.
    */
   public searchInput = new FormControl({ value: '', disabled: false }, []);
-  public typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers', 'Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
   /**
    * @description store the user results after search.
    */
@@ -81,6 +85,7 @@ export class MessagesComponent {
     public media: MediaMatcher,
     private http: HttpService,
     private store: StoreService,
+    private regx: ValidatorsService,
     public sanitizer: DomSanitizer
   ) { }
 
@@ -317,11 +322,47 @@ export class MessagesComponent {
     /**
      * @description store packets into the searchedUsers
      */
-    that.searchedUsers = res.data;
+    let ur = _.map(res.data, (r) => { return Object.assign({}, r, { 'selected': false }); });
+    /**
+     * @description filter the selcted users on search list.
+     */
+    _.forEach(ur, (u) => {
+      let tu = _.find(that.selectedUsers, ['email', u.email]);
+      if(tu) { u.selected = tu.selected; }
+    });
+    that.searchedUsers = ur;
   }
 
-  public createChat() {
-    console.log('selected users are');
+  public createChat(event: any) {
+    console.log(this.createChatForm);
   }
 
+  /**
+   * @description all the selected user list will be stored here.
+   */
+  public selectedUsers = [];
+  /**
+   * @description form fields and validations are done here.
+   */
+  public groupFullName = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.groupName ]);
+  private createChatForm = new FormGroup({
+    fullName: this.groupFullName
+  });
+
+  alterSelected(u: any): void {
+    /**
+     * @description store the user or remove.
+     */
+    if(u.selected) { this.selectedUsers.push(u); }
+    else { this.remove(u); }
+  }
+
+  /**
+   * @description remove user from the selected users.
+   */
+  remove(u: any): void {
+    _.remove(this.selectedUsers, (o) => { return o.email === u.email; });
+    let tu = _.find(this.searchedUsers, ['email', u.email]);
+    if(tu) { tu.selected = false; }
+  }
 }

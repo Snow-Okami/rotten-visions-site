@@ -138,26 +138,61 @@
         <div class="col w70" [ngClass]="{ 'hidden': !createView }">
 
           <div class="row" style="max-width: 750px; position: relative;">
-            <ul class="message-list-wrapper">
-              <li class="row">
-                <div class="col w100"> <mat-form-field> <input (keyup)="searchUsers($event)" matInput placeholder="Search by email" [formControl]="searchInput"> </mat-form-field> </div>
-              </li>
-            </ul>
+            
+            <!-- Create chat form -->
+            <form #createChatForm (ngSubmit)="createChat($event);">
+              <ul class="message-list-wrapper">
 
-            <!-- Create Chat Button -->
-            <button (click)="createChat()" mat-fab class="start-chat" matTooltip="Start Chat" matTooltipPosition="before">
-              <mat-icon aria-label="Start chat icon">add</mat-icon>
-            </button>
+                <!-- Group name field when exists. -->
+                <li class="row" *ngIf="selectedUsers.length > 1">
+                  <mat-form-field>
+                    <input matInput placeholder="Group name" autocomplete="off" [formControl]="groupFullName" required>
+                    <mat-error *ngIf="groupFullName.hasError('invalid_characters')">
+                      Only space is not allowed.
+                    </mat-error>
+                    <mat-error *ngIf="groupFullName.hasError('required')">
+                      Group name is required
+                    </mat-error>
+                  </mat-form-field>
+                </li>
+
+                <!-- Input list for user search. -->
+                <li class="row">
+                  <mat-form-field>
+                    <mat-chip-list #chipList>
+                      <mat-chip *ngFor="let u of selectedUsers" [selectable]="true"
+                              [removable]="true" (removed)="remove(u)">
+                        {{ u.fullName }}
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                      </mat-chip>
+                      <input placeholder="Selected user..."
+                            autocomplete="off"
+                            (keyup)="searchUsers($event)"
+                            [matChipInputFor]="chipList"
+                            [matChipInputAddOnBlur]="true"
+                            [formControl]="searchInput">
+                    </mat-chip-list>
+                  </mat-form-field>
+                </li>
+
+              </ul>
+
+              <!-- Create Chat Button -->
+              <button type="submit" mat-fab class="start-chat" matTooltip="Start Chat" matTooltipPosition="before">
+                <mat-icon aria-label="Start chat icon">add</mat-icon>
+              </button>
+            </form>
+
           </div>
 
-          <perfect-scrollbar #messageList style="position: relative; max-width: 750px; max-height: 336px; min-height: 336px;" [config]="config" (psYReachStart)="loadMessages($event)">
+          <perfect-scrollbar #messageList style="position: relative; max-width: 750px; max-height: 314px; min-height: 314px;" [config]="config" (psYReachStart)="loadMessages($event)">
             <mat-list>
 
               <!-- Messages will be loaded here -->
-              <mat-list-item *ngFor="let suser of searchedUsers">
-                <h4 mat-line class="chat-name"> {{ suser.fullName }} </h4>
-                <p> {{ suser.email}} </p>
-                <mat-checkbox class="suser-select-margin" [(ngModel)]="suser.online"></mat-checkbox>
+              <mat-list-item *ngFor="let u of searchedUsers">
+                <h4 mat-line class="chat-name"> {{ u.fullName }} </h4>
+                <p> {{ u.email}} </p>
+                <mat-checkbox class="suser-select-margin" [(ngModel)]="u.selected" (change)="alterSelected(u)"></mat-checkbox>
                 <mat-divider></mat-divider>
               </mat-list-item>
 
