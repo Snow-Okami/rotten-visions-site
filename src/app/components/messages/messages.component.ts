@@ -110,6 +110,7 @@ export class MessagesComponent {
       this.socket.on('messages', this.onMessages);
       this.socket.on('texted', this.onTexted);
       this.socket.on('packet', this.onPacket);
+      this.socket.on('cPacket', this.onCPacket);
       /**
        * @description Update the store for future use.
        */
@@ -313,10 +314,32 @@ export class MessagesComponent {
     that.chatLoader = false;
   }
 
+  private onCPacket(res) {
+    /**
+     * @description push the new chat.
+     */
+    that.chats.push(res.chat.data);
+    /**
+     * @description show its messages when user has created the chat.
+     */
+    if(that.user.email === res.chat.data.admin.email) { that.showItsMessages(res.chat.data); }
+    /**
+     * @description Passes the Query with auth for join.
+     */
+    let auth = Object.assign({}, that.store.cookieString());
+    that.socket.emit('join',
+      Object.assign({ message: { room: res.room } }, auth)
+    );
+  }
+
   /**
    * @description response from socket server with messages.
    */
   private onMessages(res) {
+    /**
+     * @description hide the loader when message is loaded. And enables the load more event.
+     */
+    that.messageLoader = false;
     /**
      * @description stops execution when no data found.
      */
@@ -327,10 +350,6 @@ export class MessagesComponent {
     let c = _.find(that.chats, { 'id': res.data[0].cid });
     let m = _.concat(res.data, c['messages']);
     that.messages = c['messages'] = m;
-    /**
-     * @description hide the loader when message is loaded. And enables the load more event.
-     */
-    that.messageLoader = false;
     /**
      * @description scroll to bottom of the messages.
      */
