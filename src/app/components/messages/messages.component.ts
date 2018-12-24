@@ -2,6 +2,7 @@ import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MatSnackBar } from '@angular/material';
 import { Socket } from 'ngx-socket-io';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 import * as _ from 'lodash';
@@ -85,6 +86,7 @@ export class MessagesComponent {
     public media: MediaMatcher,
     private http: HttpService,
     private store: StoreService,
+    public snackBar: MatSnackBar,
     private regx: ValidatorsService,
     public sanitizer: DomSanitizer
   ) { }
@@ -262,6 +264,36 @@ export class MessagesComponent {
   }
 
   /**
+   * @description creates a chat for the user when the chat does not extsts.
+   */
+  public createChat(event: any) {
+    if(!this.selectedUsers.length || (!this.createChatForm.valid && this.selectedUsers.length > 1)) { this.openSnackBar('Please choose user(s) and group name!', ''); return; }
+    /**
+     * @description stores the fullName as required.
+     */
+    if(this.selectedUsers.length === 1) {
+      this.createChatForm.setValue({ fullName: '' });
+      /**
+       * @description find is the chat already exists.
+       */
+      let ec = _.find(this.chats, (o) => { if(!o.type) { return _.find(o.users, (tu) => { return tu.email === this.selectedUsers[0]['email']; }) != undefined; } });
+      
+      if(ec) { this.showItsMessages(ec); return; }
+    }
+    /**
+     * @description generates the request parameters.
+     */
+    let ch = Object.assign({}, this.createChatForm.value, { users: this.selectedUsers });
+    /**
+     * @description Passes the Query with auth for a new chat.
+     */
+    let auth = Object.assign({}, this.store.cookieString());
+    this.socket.emit('chat',
+      Object.assign({ message: { query: ch } }, auth)
+    );
+  }
+
+  /**
    * @description response from socket server with user details.
    */
   private onUser(res) {
@@ -333,10 +365,6 @@ export class MessagesComponent {
     that.searchedUsers = ur;
   }
 
-  public createChat(event: any) {
-    console.log(this.createChatForm);
-  }
-
   /**
    * @description all the selected user list will be stored here.
    */
@@ -364,5 +392,19 @@ export class MessagesComponent {
     _.remove(this.selectedUsers, (o) => { return o.email === u.email; });
     let tu = _.find(this.searchedUsers, ['email', u.email]);
     if(tu) { tu.selected = false; }
+  }
+
+  /**
+   * @description opens the snack bar when required.
+   * @param message the string that is to be shown.
+   * @param action supporting message when required.
+   */
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      direction: 'ltr',
+      duration: 3000,
+    });
   }
 }
