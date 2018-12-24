@@ -10,7 +10,7 @@ export class FooterComponent implements OnInit {
    * 
    * @description version is the app version.
    */
-  public version: string = '2.8.2';
+  public version: string = '2.8.3';
 
   constructor() { }
 
