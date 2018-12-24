@@ -277,7 +277,9 @@ export class MessagesComponent {
        * @description find is the chat already exists.
        */
       let ec = _.find(this.chats, (o) => { if(!o.type) { return _.find(o.users, (tu) => { return tu.email === this.selectedUsers[0]['email']; }) != undefined; } });
-      
+      /**
+       * @description select from available messages.
+       */
       if(ec) { this.showItsMessages(ec); return; }
     }
     /**
