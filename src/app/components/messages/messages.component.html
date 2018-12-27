@@ -109,13 +109,13 @@
                   </div>
                 </li>
 
-                <li *ngIf="isTyping.show" class="row chat-row-wrapper opacity-q4">
+                <li *ngIf="chat.isTyping.show" class="row chat-row-wrapper opacity-q4">
                   <div class="chat-wrapper m-r-30">
                     <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
 
                     <div class="col wauto">
-                      <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(isTyping.lastMessage.text)" class="writable"></span>
-                      <h6 class="mat-line"> {{ isTyping.lastMessage.createdBy.fullName }} is typing... </h6>
+                      <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(chat.isTyping.lastMessage.text)" class="writable"></span>
+                      <h6 class="mat-line"> {{ chat.isTyping.lastMessage.createdBy.fullName }} is typing... </h6>
                     </div>
                   </div>
                 </li>
@@ -132,7 +132,7 @@
 
                 <div class="col w90">
                   <mat-form-field>
-                    <textarea matInput #message matTextareaAutosize placeholder="Say something..." [formControl]="text" (keydown)="keyDown($event)" (keyup)="keyUp($event)"></textarea>
+                    <textarea matInput #message matTextareaAutosize placeholder="Say something..." [formControl]="text" (keydown)="keyDown($event)" (keyup)="keyUp($event)" (blur)="blur($event)"></textarea>
                   </mat-form-field>
                 </div>
 

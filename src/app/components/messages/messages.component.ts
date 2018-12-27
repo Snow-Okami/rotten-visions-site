@@ -44,7 +44,8 @@ export class MessagesComponent {
     type: 0,
     fullName: '',
     messages: [],
-    users: [{ fullName: 'Recipient Name', email: 'recipient@example.com' }]
+    users: [{ fullName: 'Recipient Name', email: 'recipient@example.com' }],
+    isTyping: { show: false, lastMessage: { cid: '', createdBy: { email: '', fullName: '' }, text: '' } }
   };
   public user = { firstName: 'User', fullName: 'User Name', email: 'user@example.com' };
 
@@ -112,6 +113,7 @@ export class MessagesComponent {
       this.socket.on('packet', this.onPacket);
       this.socket.on('cPacket', this.onCPacket);
       this.socket.on('typing', this.onTyping);
+      this.socket.on('typed', this.onTyped);
       /**
        * @description Update the store for future use.
        */
@@ -237,6 +239,16 @@ export class MessagesComponent {
      * @description shows the typing message.
      */
     this.showTyping();
+  }
+
+  /**
+   * @description initialize focus out event.
+   */
+  public blur(event: FocusEvent) {
+
+    this.socket.emit('typed', 
+      Object.assign({ message: { query: { cid: this.chat.id, createdBy: { email: this.user.email, fullName: this.user.fullName } } } })
+    );
   }
 
   /**
@@ -422,20 +434,27 @@ export class MessagesComponent {
   }
 
   /**
-   * @description handles the is typing operation here.
+   * @description show the respones when typing.
    */
-  public isTyping = {
-    show: false,
-    lastMessage: { cid: '', createdBy: { email: '', fullName: '' }, text: '' }
-  };
-
   private onTyping(res) {
     let c = _.find(that.chats, { 'id': res.lastMessage.cid });
     c['isTyping'] = { show: true, lastMessage: res.lastMessage };
     /**
-     * @description when typing the message.
+     * @description delay scroll is maintained.
      */
-    that.isTyping = c['isTyping'];
+    that.scrollToBottom();
+  }
+
+  /**
+   * @description removes the typing text.
+   */
+  private onTyped(res) {
+    let c = _.find(that.chats, { 'id': res.cid });
+    c['isTyping'] = { show: false, lastMessage: { cid: '', createdBy: { email: '', fullName: '' }, text: '' } };
+    /**
+     * @description delay scroll is maintained.
+     */
+    that.scrollToBottom();
   }
 
   /**
