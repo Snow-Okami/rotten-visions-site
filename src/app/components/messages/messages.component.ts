@@ -234,7 +234,7 @@ export class MessagesComponent {
    * @description sends the typing response or the text to the recipients.
    */
   public keyUp(event: KeyboardEvent) {
-    if(event.keyCode === 13 && !event.shiftKey) { console.log('Sending the text...'); return; }
+    if(event.keyCode === 13 && !event.shiftKey) { this.sendThis(); return; }
     /**
      * @description shows the typing message.
      */
