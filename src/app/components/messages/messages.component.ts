@@ -222,19 +222,37 @@ export class MessagesComponent {
   }
 
   /**
-   * @description Sends the current message with text typing response.
+   * @description confirms the key events.
    */
   public keyDown(event: KeyboardEvent) {
     if(event.keyCode === 13 && !event.shiftKey) { event.preventDefault(); return; }
   }
 
   /**
-   * @description
+   * @description sends the typing response or the text to the recipients.
    */
   public keyUp(event: KeyboardEvent) {
     if(event.keyCode === 13 && !event.shiftKey) { console.log('Sending the text...'); return; }
-    
-    console.log('Showing text typing...');
+    /**
+     * @description shows the typing message.
+     */
+    this.showTyping();
+  }
+
+  /**
+   * @description Sends show typing text.
+   */
+  private showTyping() {
+    if(!this.text.value.length) { return false; }
+
+    let t = _.split(this.text.value, '\n').join('<br>');
+    /**
+     * @description Passes the Query with auth for messages.
+     */
+    let auth = Object.assign({}, this.store.cookieString());
+    this.socket.emit('typing', 
+      Object.assign({ message: { query: { cid: this.chat.id, text: t, createdBy: { email: this.user.email, fullName: this.user.fullName } } } }, auth)
+    );
   }
 
   /**
@@ -403,8 +421,21 @@ export class MessagesComponent {
     that.searchedUsers = ur;
   }
 
-  private onTyping(res) {
+  /**
+   * @description handles the is typing operation here.
+   */
+  public isTyping = {
+    show: false,
+    lastMessage: { cid: '', createdBy: { email: '', fullName: '' }, text: '' }
+  };
 
+  private onTyping(res) {
+    let c = _.find(that.chats, { 'id': res.lastMessage.cid });
+    c['isTyping'] = { show: true, lastMessage: res.lastMessage };
+    /**
+     * @description when typing the message.
+     */
+    that.isTyping = c['isTyping'];
   }
 
   /**
