@@ -111,6 +111,7 @@ export class MessagesComponent {
       this.socket.on('texted', this.onTexted);
       this.socket.on('packet', this.onPacket);
       this.socket.on('cPacket', this.onCPacket);
+      this.socket.on('typing', this.onTyping);
       /**
        * @description Update the store for future use.
        */
@@ -218,6 +219,22 @@ export class MessagesComponent {
     this.socket.emit('findLimitedMessage',
       Object.assign({ message: { query: { cid: this.chat.id }, option: { sort: -1, skip: this.messages.length, limit: 10 } } }, auth)
     );
+  }
+
+  /**
+   * @description Sends the current message with text typing response.
+   */
+  public keyDown(event: KeyboardEvent) {
+    if(event.keyCode === 13 && !event.shiftKey) { event.preventDefault(); return; }
+  }
+
+  /**
+   * @description
+   */
+  public keyUp(event: KeyboardEvent) {
+    if(event.keyCode === 13 && !event.shiftKey) { console.log('Sending the text...'); return; }
+    
+    console.log('Showing text typing...');
   }
 
   /**
@@ -384,6 +401,10 @@ export class MessagesComponent {
       if(tu) { u.selected = tu.selected; }
     });
     that.searchedUsers = ur;
+  }
+
+  private onTyping(res) {
+
   }
 
   /**

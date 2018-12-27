@@ -43,7 +43,7 @@
   min-width: auto;
 }
 
-.chat-wrapper > .col h4, .mat-list-item h4.mat-line {
+.chat-wrapper > .col h4, .chat-wrapper > .col h6, .mat-list-item h4.mat-line {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 14px;
   color: #bd4040;
