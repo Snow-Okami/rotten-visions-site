@@ -72,7 +72,7 @@
 
 
           <!-- Create Chat Button -->
-          <button (click)="visitCreate()" mat-fab class="new-message" matTooltip="New Message" matTooltipPosition="before">
+          <button (click)="visitCreate()" mat-fab class="new-message" matTooltip="New Message" matTooltipPosition="before" [ngClass]="{ 'hidden': createView }">
             <mat-icon aria-label="Create new message icon">add</mat-icon>
           </button>
 
@@ -98,7 +98,7 @@
                 </li>
 
                 <!-- Messages will repeat here -->
-                <li *ngFor="let m of messages" class="row chat-row-wrapper">
+                <li *ngFor="let m of chat.messages" class="row chat-row-wrapper">
                   <div class="chat-wrapper" [ngClass]="{ 'right': m.createdBy.email === user.email, 'm-r-30': m.createdBy.email !== user.email, 'm-l-30': m.createdBy.email === user.email }">
                     <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
 
@@ -114,7 +114,7 @@
                     <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
 
                     <div class="col wauto">
-                      <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(chat.isTyping.lastMessage.text)" class="writable"></span>
+                      <span [ngClass]="{ 'hidden': !chat.isTyping.lastMessage.text.length }" [innerHTML]="sanitizer.bypassSecurityTrustHtml(chat.isTyping.lastMessage.text)" class="writable"></span>
                       <h6 class="mat-line"> {{ chat.isTyping.lastMessage.createdBy.fullName }} is typing... </h6>
                     </div>
                   </div>
