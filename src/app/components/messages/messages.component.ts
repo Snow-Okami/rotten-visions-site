@@ -234,7 +234,7 @@ export class MessagesComponent {
    * @description sends the typing response or the text to the recipients.
    */
   public keyUp(event: KeyboardEvent) {
-    if(event.keyCode === 13 && !event.shiftKey) { this.sendThis(); return; }
+    if(event.keyCode === 13 && !event.shiftKey) { this.hideTyping(); this.sendThis(); return; }
     /**
      * @description shows the typing message.
      */
@@ -244,12 +244,7 @@ export class MessagesComponent {
   /**
    * @description initialize focus out event.
    */
-  public blur(event: FocusEvent) {
-
-    this.socket.emit('typed', 
-      Object.assign({ message: { query: { cid: this.chat.id, createdBy: { email: this.user.email, fullName: this.user.fullName } } } })
-    );
-  }
+  public blur(event: FocusEvent) { this.hideTyping(); }
 
   /**
    * @description Sends show typing text.
@@ -268,10 +263,19 @@ export class MessagesComponent {
   }
 
   /**
+   * @description Hides show typing text.
+   */
+  private hideTyping() {
+    this.socket.emit('typed', 
+      Object.assign({ message: { query: { cid: this.chat.id, createdBy: { email: this.user.email, fullName: this.user.fullName } } } })
+    );
+  }
+
+  /**
    * @description Sends the current message.
    */
   public sendThis() {
-    if(!this.text.value.length) { return false; }
+    if(!_.trim(this.text.value).length) { return false; }
 
     let t = _.split(this.text.value, '\n').join('<br>');
     /**
