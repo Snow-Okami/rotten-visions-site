@@ -79,6 +79,11 @@ export class MessagesComponent {
    * @description store the user results after search.
    */
   public searchedUsers = [];
+  /**
+   * @description allows to select mobile views for better page style.
+   */
+  public mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
 
   constructor(
     private socket: Socket,
@@ -89,7 +94,11 @@ export class MessagesComponent {
     public snackBar: MatSnackBar,
     private regx: ValidatorsService,
     public sanitizer: DomSanitizer
-  ) { }
+  ) {
+    this.mobileQuery = media.matchMedia('(max-width: 699px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
 
   ngOnInit() {
     /**
@@ -140,7 +149,7 @@ export class MessagesComponent {
   }
 
   private scrollToBottom(): void {
-    setTimeout(() => { this.messageList.directiveRef.scrollToBottom(); }, 300);
+    if(!this.mobileQuery.matches) { setTimeout(() => { this.messageList.directiveRef.scrollToBottom(); }, 300); }
   }
 
   private scrollYDown(elem, y): void {

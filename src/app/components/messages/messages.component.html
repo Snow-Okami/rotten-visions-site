@@ -1,8 +1,8 @@
 <div class="content-wrapper">
-  <div class="body">
+  <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
 
-    <!-- Messages Card Starts Here -->
-    <mat-card>
+    <!-- Messages Card For Desktop Starts Here -->
+    <mat-card *ngIf="!mobileQuery.matches">
 
       <!-- Messages Title Bar Starts Here -->
       <div class="row">
@@ -225,7 +225,103 @@
       </div>
 
     </mat-card>
-    <!-- Messages Card Ends Here -->
+    <!-- Messages Card For Desktop Ends Here -->
+
+    <div class="row" *ngIf="mobileQuery.matches">
+
+      <div class="col w100" [ngClass]="{ 'hidden': createView || chatView }">
+          
+        <div [ngClass]="{ 'hidden': !chatLoader && chats.length === 0 }">
+          <mat-list>
+  
+            <!-- Message loader will be shown here -->
+            <ul *ngIf="chatLoader">
+              <li class="row chat-row-wrapper t-al-center">
+                <div class="col">
+                  <mat-progress-spinner class="chat-loader" [color]="'primary'" [mode]="'indeterminate'" [diameter]="30" [strokeWidth]="4"></mat-progress-spinner>
+                </div>
+              </li>
+            </ul>
+    
+            <!-- Messages will be loaded here -->
+            <mat-list-item *ngFor="let c of chats">
+              <mat-icon mat-list-icon class="chat-image"> person </mat-icon>
+              <h4 mat-line class="chat-name" (click)="showItsMessages(c)"> {{ c.type ? c.fullName : c.users | nameonly: user }} </h4>
+              <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(c.lastMessage.text)" class="writable" mat-line></span>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+    
+          </mat-list>
+        </div>
+
+        <div [ngClass]="{ 'hidden': !chatLoader && chats.length > 0 }">
+          <div style="position: relative;">
+            <h4 class="init-text t-al-center"> SORRY! no chat found! </h4>
+          </div>
+        </div>
+
+        <button (click)="visitCreate()" mat-fab class="new-message" matTooltip="New Message" matTooltipPosition="before">
+          <mat-icon aria-label="Create new message icon">add</mat-icon>
+        </button>
+      </div>
+
+      <div class="col w100" [ngClass]="{ 'hidden': !chatView }">
+        <ul>
+
+          <!-- Message loader will be shown here -->
+          <li class="row chat-row-wrapper t-al-center" *ngIf="messageLoader">
+            <div class="col">
+              <mat-progress-spinner class="message-loader" [color]="'primary'" [mode]="'indeterminate'" [diameter]="30" [strokeWidth]="4"></mat-progress-spinner>
+            </div>
+          </li>
+
+          <!-- Messages will repeat here -->
+          <li *ngFor="let m of chat.messages" class="row chat-row-wrapper">
+            <div class="chat-wrapper" [ngClass]="{ 'right': m.createdBy.email === user.email, 'm-r-30': m.createdBy.email !== user.email, 'm-l-30': m.createdBy.email === user.email }">
+              <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
+
+              <div class="col wauto">
+                <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(m.text)" class="writable"></span>
+                <h4 class="mat-line"> {{ m.createdBy.fullName }} </h4>
+              </div>
+            </div>
+          </li>
+
+          <li *ngIf="chat.isTyping.show" class="row chat-row-wrapper opacity-q4">
+            <div class="chat-wrapper m-r-30">
+              <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
+
+              <div class="col wauto">
+                <span [ngClass]="{ 'hidden': !chat.isTyping.lastMessage.text.length }" [innerHTML]="sanitizer.bypassSecurityTrustHtml(chat.isTyping.lastMessage.text)" class="writable"></span>
+                <h6 class="mat-line"> {{ chat.isTyping.lastMessage.createdBy.fullName }} is typing... </h6>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+
+        <!-- Input Section Will Be Used For Message -->
+        <div class="row">
+            <mat-card class="chat-input-wrapper">
+              <mat-card-content>
+
+                <div class="col w90 inline">
+                  <mat-form-field>
+                    <textarea matInput #message matTextareaAutosize placeholder="Say something..." [formControl]="text" (keydown)="keyDown($event)" (keyup)="keyUp($event)" (blur)="blur($event)"></textarea>
+                  </mat-form-field>
+                </div>
+
+                <div class="col w10 inline t-al-center v-al-b send-btn">
+                  <button mat-icon-button matTooltip="Send" [matTooltipPosition]="'above'" (click)="sendThis()">
+                    <mat-icon aria-label="send-button"> send </mat-icon>
+                  </button>
+                </div>
+              </mat-card-content>
+            </mat-card>
+
+          </div>
+      </div>
+    </div>
 
   </div>
 </div>
