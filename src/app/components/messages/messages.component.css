@@ -135,3 +135,10 @@ button.start-chat.mat-fab.mat-accent {
 .suser-select-margin {
   margin: 0 30px;
 }
+
+.mobile .input-box-wrapper {
+  position: fixed;
+  bottom: 0px;
+  left: 5px;
+  right: 5px;
+}

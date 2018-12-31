@@ -266,51 +266,55 @@
       </div>
 
       <div class="col w100" [ngClass]="{ 'hidden': !chatView }">
-        <ul>
 
-          <!-- Message loader will be shown here -->
-          <li class="row chat-row-wrapper t-al-center" *ngIf="messageLoader">
-            <div class="col">
-              <mat-progress-spinner class="message-loader" [color]="'primary'" [mode]="'indeterminate'" [diameter]="30" [strokeWidth]="4"></mat-progress-spinner>
-            </div>
-          </li>
+        <div class="message-wrapper">
+          <ul>
 
-          <!-- Messages will repeat here -->
-          <li *ngFor="let m of chat.messages" class="row chat-row-wrapper">
-            <div class="chat-wrapper" [ngClass]="{ 'right': m.createdBy.email === user.email, 'm-r-30': m.createdBy.email !== user.email, 'm-l-30': m.createdBy.email === user.email }">
-              <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
-
-              <div class="col wauto">
-                <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(m.text)" class="writable"></span>
-                <h4 class="mat-line"> {{ m.createdBy.fullName }} </h4>
+            <!-- Message loader will be shown here -->
+            <li class="row chat-row-wrapper t-al-center" *ngIf="messageLoader">
+              <div class="col">
+                <mat-progress-spinner class="message-loader" [color]="'primary'" [mode]="'indeterminate'" [diameter]="30" [strokeWidth]="4"></mat-progress-spinner>
               </div>
-            </div>
-          </li>
-
-          <li *ngIf="chat.isTyping.show" class="row chat-row-wrapper opacity-q4">
-            <div class="chat-wrapper m-r-30">
-              <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
-
-              <div class="col wauto">
-                <span [ngClass]="{ 'hidden': !chat.isTyping.lastMessage.text.length }" [innerHTML]="sanitizer.bypassSecurityTrustHtml(chat.isTyping.lastMessage.text)" class="writable"></span>
-                <h6 class="mat-line"> {{ chat.isTyping.lastMessage.createdBy.fullName }} is typing... </h6>
+            </li>
+  
+            <!-- Messages will repeat here -->
+            <li *ngFor="let m of chat.messages" class="row chat-row-wrapper">
+              <div class="chat-wrapper" [ngClass]="{ 'right': m.createdBy.email === user.email, 'm-r-30': m.createdBy.email !== user.email, 'm-l-30': m.createdBy.email === user.email }">
+                <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
+  
+                <div class="col wauto">
+                  <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(m.text)" class="writable"></span>
+                  <h4 class="mat-line"> {{ m.createdBy.fullName }} </h4>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
+  
+            <li *ngIf="chat.isTyping.show" class="row chat-row-wrapper opacity-q4">
+              <div class="chat-wrapper m-r-30">
+                <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
+  
+                <div class="col wauto">
+                  <span [ngClass]="{ 'hidden': !chat.isTyping.lastMessage.text.length }" [innerHTML]="sanitizer.bypassSecurityTrustHtml(chat.isTyping.lastMessage.text)" class="writable"></span>
+                  <h6 class="mat-line"> {{ chat.isTyping.lastMessage.createdBy.fullName }} is typing... </h6>
+                </div>
+              </div>
+            </li>
+  
+          </ul>
+        </div>
 
-        </ul>
-
-        <!-- Input Section Will Be Used For Message -->
-        <div class="row">
+        <div class="input-box-wrapper">
+          <!-- Input Section Will Be Used For Message -->
+          <div class="row">
             <mat-card class="chat-input-wrapper">
               <mat-card-content>
-
+  
                 <div class="col w90 inline">
                   <mat-form-field>
                     <textarea matInput #message matTextareaAutosize placeholder="Say something..." [formControl]="text" (keydown)="keyDown($event)" (keyup)="keyUp($event)" (blur)="blur($event)"></textarea>
                   </mat-form-field>
                 </div>
-
+  
                 <div class="col w10 inline t-al-center v-al-b send-btn">
                   <button mat-icon-button matTooltip="Send" [matTooltipPosition]="'above'" (click)="sendThis()">
                     <mat-icon aria-label="send-button"> send </mat-icon>
@@ -318,8 +322,10 @@
                 </div>
               </mat-card-content>
             </mat-card>
-
+  
           </div>
+        </div>
+
       </div>
     </div>
 
