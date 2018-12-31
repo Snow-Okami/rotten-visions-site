@@ -34,11 +34,27 @@ export class HttpService {
   /**
    * @description Returns HTTP Header Options.
    */
-  option() {
+  toGet() {
     return {
       headers: new HttpHeaders({
         'enctype': 'multipart/form-data',
         'Content-Type':  'application/json',
+        'Access-Control-Allow-Methods': 'GET',
+        'Authorization': this.store.getCookie('ps-t-a-p'),
+        'Email': atob(this.store.getCookie('ps-u-a-p'))
+      })
+    };
+  }
+
+  /**
+   * @description Returns HTTP Header Options.
+   */
+  toPost() {
+    return {
+      headers: new HttpHeaders({
+        'enctype': 'multipart/form-data',
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Methods': 'POST',
         'Authorization': this.store.getCookie('ps-t-a-p'),
         'Email': atob(this.store.getCookie('ps-u-a-p'))
       })
@@ -87,7 +103,7 @@ export class HttpService {
   post(data): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/post';
 
-    return this.http.post<any>(url, data, this.option()).pipe(
+    return this.http.post<any>(url, data, this.toPost()).pipe(
       tap(message => message),
       catchError(this.handleError('post', {}))
     );
@@ -99,7 +115,7 @@ export class HttpService {
   posts(option): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/post?skip=' + option.skip;
 
-    return this.http.get<any>(url, this.option()).pipe(
+    return this.http.get<any>(url, this.toGet()).pipe(
       tap(message => message),
       catchError(this.handleError('posts', {}))
     );

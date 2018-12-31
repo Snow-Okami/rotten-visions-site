@@ -38,8 +38,8 @@ export class CreateUpdateComponent {
   /**
    * @description Form controls and Groups are as follows
    */
-  public postTitle = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.title ]);
-  public postDescription = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.description ]);
+  public postTitle = new FormControl({ value: '', disabled: false }, [ Validators.required ]);
+  public postDescription = new FormControl({ value: '', disabled: false }, [ Validators.required ]);
   public postPublish = new FormControl({ value: false, disabled: false });
 
   @ViewChild('postCreateFormElement') postCreateFormElement;
@@ -167,24 +167,24 @@ export class CreateUpdateComponent {
        * @description Append File and Tag only when they are available.
        */
       if(this.file.nativeElement['files'].length) {
-        form.append('image', this.file.nativeElement['files'][0]);
+        // form.append('image', this.file.nativeElement['files'][0]);
       }
       if(this.tags.length) {
-        form.append('tags', JSON.stringify(_.map(this.tags, 'name')));
+        // form.append('tags', JSON.stringify(_.map(this.tags, 'name')));
       }
 
       /**
        * @description REQUIRED FromData Fields.
        */
-      form.append('title', this.postForm.value.title);
-      form.append('description', this.postForm.value.description);
-      form.append('publish', this.postForm.value.publish);
+      // form.append('title', this.postForm.value.title);
+      // form.append('description', this.postForm.value.description);
+      // form.append('publish', this.postForm.value.publish);
 
       /**
        * @description Set form fields empty.
        */
-      this.postCreateFormElement.nativeElement.reset();
-      this.resetForm();
+      // this.postCreateFormElement.nativeElement.reset();
+      // this.resetForm();
 
       /**
        * @description POST FormData to API.
