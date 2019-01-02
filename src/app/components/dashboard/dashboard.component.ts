@@ -38,6 +38,7 @@ export class DashboardComponent {
   private panArea = [];
   public finalArea = [];
   private progressBar;
+  public hideFooter: boolean = false;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -60,6 +61,7 @@ export class DashboardComponent {
    */
   routeChange(c) {
     document.title = c.title ? c.title : this.title;
+    this.hideFooter = c.hideFooter ? true : false;
   }
 
   ngOnInit() {

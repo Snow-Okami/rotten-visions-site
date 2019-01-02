@@ -27,6 +27,10 @@ export class MessagesComponent {
    * @description title is going to show on the browser tab when component is loaded.
    */
   private title = 'Psynapsus - Messages Dashboard';
+  /**
+   * @description data to be received by the dashboard.
+   */
+  private hideFooter = true;
 
   /**
    * @description Holds all the available chats for the user.

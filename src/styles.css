@@ -29,6 +29,10 @@
   margin: 0 auto;
 }
 
+.hidden .head, .hidden .body, .hidden .footer, .head.mobile, .body.mobile, .footer.mobile {
+  padding: 0px;
+}
+
 .head, .body, .footer {
   padding: 15px;
 }

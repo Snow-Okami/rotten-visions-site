@@ -29,7 +29,7 @@
       <router-outlet (activate)="routeChange($event)"></router-outlet>
 
       <!-- Footer Will Appear Here -->
-      <div class="content-wrapper">
+      <div class="content-wrapper" [ngClass]="{ 'hidden': hideFooter }">
         <div class="footer">
           <app-footer></app-footer>
         </div>

@@ -17,6 +17,10 @@ export class UpdatesComponent implements OnInit {
    * @description title is going to show on the browser tab when component is loaded.
    */
   private title = 'Psynapsus - Updates Dashboard';
+  /**
+   * @description data to be received by the dashboard.
+   */
+  private hideFooter = true;
 
   /**
    * @description Default Post Image To Be Loaded.

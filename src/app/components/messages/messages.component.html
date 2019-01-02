@@ -279,7 +279,7 @@
   
             <!-- Messages will repeat here -->
             <li *ngFor="let m of chat.messages" class="row chat-row-wrapper">
-              <div class="chat-wrapper" [ngClass]="{ 'right': m.createdBy.email === user.email, 'm-r-30': m.createdBy.email !== user.email, 'm-l-30': m.createdBy.email === user.email }">
+              <div class="chat-wrapper" [ngClass]="{ 'right': m.createdBy.email === user.email, 'm-r-30': m.createdBy.email !== user.email, 'm-l-30': m.createdBy.email === user.email, 'force': mobileQuery.matches }">
                 <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
   
                 <div class="col wauto">
@@ -290,7 +290,7 @@
             </li>
   
             <li *ngIf="chat.isTyping.show" class="row chat-row-wrapper opacity-q4">
-              <div class="chat-wrapper m-r-30">
+              <div class="chat-wrapper m-r-30" [ngClass]="{ 'force': mobileQuery.matches }">
                 <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div>
   
                 <div class="col wauto">
