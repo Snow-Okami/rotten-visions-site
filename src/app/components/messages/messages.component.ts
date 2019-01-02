@@ -126,6 +126,11 @@ export class MessagesComponent {
        * @description Update the store for future use.
        */
       this.store.socketInitialized = true;
+      /**
+       * @description keeps the connection alive for entire life span.
+       */
+      let auth = Object.assign({}, this.store.cookieString());
+      setInterval(() => { this.socket.emit('keep alive', auth); }, 1000);
     }
   }
 
