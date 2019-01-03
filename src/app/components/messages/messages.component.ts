@@ -159,15 +159,17 @@ export class MessagesComponent {
 
   private fixMobileScroll(): void {
     /*
-    var wn = document.querySelector('.message-wrapper');
-    var mi = document.querySelector('.message-wrapper ul').getBoundingClientRect();
-    var dw = document.querySelector('.mat-drawer-content').getBoundingClientRect();
-    var inp = document.querySelector('.input-box-wrapper').getBoundingClientRect();
-
-    mi.height - (dw.height - inp.height);
-
     wn.setAttribute('style', 'margin-bottom: 70px');
      */
+
+    let wn = document.querySelector('.message-wrapper');
+    let mi = document.querySelector('.message-wrapper ul').getBoundingClientRect();
+    let dw = document.querySelector('.mat-drawer-content').getBoundingClientRect();
+    let inp = document.querySelector('.input-box-wrapper').getBoundingClientRect();
+
+    let d = mi.height - (dw.height - inp.height) + 8;
+
+    console.log('ul:', mi.height, 'container:', dw.height, 'input box:', inp.height);
   }
 
   private scrollToBottom(): void {
