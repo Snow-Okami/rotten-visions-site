@@ -164,17 +164,16 @@ export class MessagesComponent {
 
     let wn = document.querySelector('.message-wrapper');
     let mi = document.querySelector('.message-wrapper ul').getBoundingClientRect();
-    let dw = document.querySelector('.mat-drawer-content').getBoundingClientRect();
+    let dw = document.querySelector('.mat-drawer-container').getBoundingClientRect();
     let inp = document.querySelector('.input-box-wrapper').getBoundingClientRect();
 
-    let d = mi.height - (dw.height - inp.height) + 8;
-
-    console.log('ul:', mi.height, 'container:', dw.height, 'input box:', inp.height);
+    if(mi.height > (dw.height - inp.height)) { wn.setAttribute('style', `margin-bottom: ${inp.height - 10}px`); }
+    setTimeout(() => {  }, 300);
   }
 
   private scrollToBottom(): void {
     if(!this.mobileQuery.matches) { setTimeout(() => { this.messageList.directiveRef.scrollToBottom(); }, 300); }
-    else { setTimeout(() => { this.fixMobileScroll(); }, 300); }
+    else { this.fixMobileScroll(); }
   }
 
   private scrollYDown(elem, y): void {
