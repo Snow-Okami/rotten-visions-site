@@ -44,10 +44,6 @@
   min-width: auto;
 }
 
-.mobile .message-wrapper {
-  margin-bottom: 75px;
-}
-
 .chat-wrapper > .col h4, .chat-wrapper > .col h6, .mat-list-item h4.mat-line {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 14px;

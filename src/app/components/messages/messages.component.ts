@@ -157,8 +157,22 @@ export class MessagesComponent {
     // this.socket.disconnect(true);
   }
 
+  private fixMobileScroll(): void {
+    /*
+    var wn = document.querySelector('.message-wrapper');
+    var mi = document.querySelector('.message-wrapper ul').getBoundingClientRect();
+    var dw = document.querySelector('.mat-drawer-content').getBoundingClientRect();
+    var inp = document.querySelector('.input-box-wrapper').getBoundingClientRect();
+
+    mi.height - (dw.height - inp.height);
+
+    wn.setAttribute('style', 'margin-bottom: 70px');
+     */
+  }
+
   private scrollToBottom(): void {
     if(!this.mobileQuery.matches) { setTimeout(() => { this.messageList.directiveRef.scrollToBottom(); }, 300); }
+    else { setTimeout(() => { this.fixMobileScroll(); }, 300); }
   }
 
   private scrollYDown(elem, y): void {
