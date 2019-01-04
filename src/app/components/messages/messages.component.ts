@@ -165,9 +165,10 @@ export class MessagesComponent {
     let wn = document.querySelector('.message-wrapper');
     let mi = document.querySelector('.message-wrapper ul').getBoundingClientRect();
     let dw = document.querySelector('.mat-drawer-container').getBoundingClientRect();
+    let nv = document.querySelector('.psynapsus-toolbar').getBoundingClientRect();
     let inp = document.querySelector('.input-box-wrapper').getBoundingClientRect();
 
-    if(mi.height > (dw.height - inp.height)) { wn.setAttribute('style', `margin-bottom: ${inp.height - 10}px`); this.scrollYDown(window, window.innerHeight); }
+    if(mi.height > (window.innerHeight - nv.height - inp.height)) { wn.setAttribute('style', `margin-bottom: ${inp.height - 10}px`); this.scrollYDown(window, window.innerHeight); }
   }
 
   private scrollToBottom(): void {
@@ -176,6 +177,7 @@ export class MessagesComponent {
   }
 
   private scrollYDown(elem, y): void {
+    console.log('scrolling', elem, 'for', y);
     setTimeout(() => { elem.scrollTo({ top: (elem.scrollTop ? elem.scrollTop : 0) + y, left: 0, behavior: 'smooth' }); setTimeout(() => { that.loadMore.messages = true; }, 500); }, 300);
   }
 
