@@ -3,8 +3,8 @@
 * {
   margin: 0px;
   font-family: 'Scifly', sans-serif;
-  font-weight: 300;
-  font-style: normal;
+  /* font-weight: 300; */
+  /* font-style: normal; */
   letter-spacing: 1px;
 }
 
@@ -316,4 +316,9 @@ span.writable, span.writable p, span.writable h1, span.writable h2, span.writabl
 
 span.writable, span.writable p {
   font-size: 14px;
+}
+
+span.writable-update {
+  line-height: 25px;
+  padding: 1px;
 }

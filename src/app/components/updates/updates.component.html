@@ -69,7 +69,7 @@
 
                 <!-- POST DESCRIPTION Should Stay Here -->
                 <div class="row">
-                  <p > {{ update.description | trimword: 200 }} </p>
+                  <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(fixPostLen(update.description, 200))" class="writable-update"></span>
                 </div>
 
               </div>

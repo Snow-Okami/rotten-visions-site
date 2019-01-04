@@ -1,8 +1,13 @@
 .create-post {
   position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 1;
+}
+
+.mobile .create-post {
   bottom: 15px;
   right: 15px;
-  z-index: 1;
 }
 
 .update-tab {

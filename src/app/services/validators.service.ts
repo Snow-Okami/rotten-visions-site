@@ -64,7 +64,7 @@ export class ValidatorsService extends Validators  {
    */
   description(control: FormControl) {
     if (control.value && control.value.length > 0) {
-      let regex = /^[A-Za-z]{1,}\s/gm;
+      let regex = /^[<A-Za-z0-9>]{1,}\s/gm;
       let matches = regex.test(control.value);
       let wordList = _.filter(_.split(_.replace(control.value, /\n/gm, ' '), ' '), (o) => {
         return o.length > 0;

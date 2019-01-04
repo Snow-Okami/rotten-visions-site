@@ -1,9 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 import * as _ from 'lodash';
 
 import { HttpService } from '../../services/http.service';
+import { text } from '@angular/core/src/render3';
 
 let that;
 
@@ -57,7 +59,8 @@ export class UpdatesComponent implements OnInit {
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
     private router: Router,
-    private http: HttpService
+    private http: HttpService,
+    public sanitizer: DomSanitizer
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 840px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -197,6 +200,11 @@ export class UpdatesComponent implements OnInit {
         this.content.addEventListener('scroll', this.onScrollDown, false);
       }, 500);
     }, 10);
+  }
+
+  fixPostLen(value, args) {
+    let v = value.length > args ? value.slice(0, args) + '...' : value;
+    return v;
   }
 
 }

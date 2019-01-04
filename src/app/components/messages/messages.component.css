@@ -128,6 +128,11 @@
 
 button.new-message.mat-fab.mat-accent {
   position: absolute;
+  bottom: 25px;
+  right: 25px;
+}
+
+.mobile button.new-message.mat-fab.mat-accent {
   bottom: 15px;
   right: 15px;
 }

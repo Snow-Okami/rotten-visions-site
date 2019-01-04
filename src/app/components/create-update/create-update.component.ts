@@ -177,7 +177,7 @@ export class CreateUpdateComponent {
        * @description REQUIRED FromData Fields.
        */
       form.append('title', this.postForm.value.title);
-      form.append('description', this.postForm.value.description);
+      form.append('description', _.split(_.trim(this.postForm.value.description), '\n').join('<br>'));
       form.append('publish', this.postForm.value.publish);
 
       /**
