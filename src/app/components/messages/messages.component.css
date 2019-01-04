@@ -155,5 +155,6 @@ button.start-chat.mat-fab.mat-accent {
 }
 
 .mobile .message-wrapper {
+  position: relative;
   z-index: 4;
 }
