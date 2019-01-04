@@ -167,17 +167,16 @@ export class MessagesComponent {
     let dw = document.querySelector('.mat-drawer-container').getBoundingClientRect();
     let inp = document.querySelector('.input-box-wrapper').getBoundingClientRect();
 
-    if(mi.height > (dw.height - inp.height)) { wn.setAttribute('style', `margin-bottom: ${inp.height - 10}px`); }
-    setTimeout(() => {  }, 300);
+    if(mi.height > (dw.height - inp.height)) { wn.setAttribute('style', `margin-bottom: ${inp.height - 10}px`); this.scrollYDown(window, window.innerHeight); }
   }
 
   private scrollToBottom(): void {
     if(!this.mobileQuery.matches) { setTimeout(() => { this.messageList.directiveRef.scrollToBottom(); }, 300); }
-    else { this.fixMobileScroll(); }
+    else { setTimeout(() => { this.fixMobileScroll(); }, 300); }
   }
 
   private scrollYDown(elem, y): void {
-    setTimeout(() => { elem.scrollTo({ top: elem.scrollTop + y, left: 0, behavior: 'smooth' }); setTimeout(() => { that.loadMore.messages = true; }, 500); }, 300);
+    setTimeout(() => { elem.scrollTo({ top: (elem.scrollTop ? elem.scrollTop : 0) + y, left: 0, behavior: 'smooth' }); setTimeout(() => { that.loadMore.messages = true; }, 500); }, 300);
   }
 
   /**
