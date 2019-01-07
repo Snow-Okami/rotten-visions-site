@@ -31,6 +31,7 @@ export class MessagesComponent {
    * @description data to be received by the dashboard.
    */
   private hideFooter = true;
+  private hideMatToolbar: string = '';
 
   /**
    * @description Holds all the available chats for the user.
@@ -113,7 +114,10 @@ export class MessagesComponent {
      * @description Initializes the progress bar.
      */
     this.progressBar = document.getElementsByClassName('progressbar')[0];
-
+    /**
+     * @description subscribe to store variables.
+     */
+    this.store.hideMatToolbar.subscribe(text => this.hideMatToolbar = text);
     /**
      * @description Attach Socket Events. Note Events must use that in place of Components this.
      */
@@ -224,14 +228,14 @@ export class MessagesComponent {
    * @description Hide the messages view section.
    */
   public hideMessages() {
-    this.createView = this.chatView = this.quickText = this.messageLoader = false;
+    this.createView = this.chatView = this.quickText = this.messageLoader = false; this.store.alterMatToolbar(this.chatView ? 'show' : '');
   }
 
   /**
    * @description show messages when user clicks on an individual chat.
    */
   public showItsMessages(c): void {
-    this.chat = c; this.chatView = this.messageLoader = true; this.createView = false;
+    this.chat = c; this.chatView = this.messageLoader = true; this.createView = false; this.store.alterMatToolbar(this.chatView ? 'show' : '');
     /**
      * @description stop initial loading of messages.
      */

@@ -39,6 +39,7 @@ export class DashboardComponent {
   public finalArea = [];
   private progressBar;
   public hideFooter: boolean = false;
+  public hideMatToolbar: string = '';
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -66,6 +67,10 @@ export class DashboardComponent {
 
   ngOnInit() {
     this.progressBar = document.getElementsByClassName('progressbar')[0];
+    /**
+     * @description subscribe to store variables.
+     */
+    this.store.hideMatToolbar.subscribe(text => this.hideMatToolbar = text);
   }
 
   ngAfterViewInit() {

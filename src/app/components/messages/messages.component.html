@@ -228,6 +228,45 @@
     <!-- Messages Card For Desktop Ends Here -->
 
     <div class="row" *ngIf="mobileQuery.matches">
+      <mat-toolbar color="primary" class="psynapsus-toolbar" [ngClass]="{ 'hidden': !chatView }">
+
+        <mat-toolbar-row>
+          <!-- Help to improve the performance. -->
+          <button aria-label="navigate-back" mat-icon-button [ngClass]="{ 'hidden': !chatView }" (click)="hideMessages()"><mat-icon aria-label="icon-button">arrow_back</mat-icon></button>
+          <h1 class="psynapsus-chat-title"> {{ chat.type ? chat.fullName : chat.users | nameonly: user }} </h1>
+          <div class="option-wrapper">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon matSuffix class="material-icons"> more_vert </mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>dialpad</mat-icon>
+                <span>Redial</span>
+              </button>
+              <button mat-menu-item disabled>
+                <mat-icon>voicemail</mat-icon>
+                <span>Check voicemail</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>notifications_off</mat-icon>
+                <span>Disable alerts</span>
+              </button>
+            </mat-menu>
+          </div>
+        </mat-toolbar-row>
+
+      </mat-toolbar>
+
+      <!-- <mat-toolbar color="primary" class="psynapsus-toolbar" [ngClass]="{ 'hidden': !chatView }">
+
+        <button mat-icon-button class="back" [ngClass]="{ 'hidden': !chatView }" (click)="hideMessages()">
+          <mat-icon aria-label="icon-button">arrow_back</mat-icon>
+        </button>
+        <h1 class="title-item m-l-5 force" [ngClass]="{ 'hidden': !chatView }"> {{ chat.type ? chat.fullName : chat.users | nameonly: user }} </h1>
+        <div class="power-wrapper">
+          <mat-icon matSuffix class="material-icons" matTooltip="Logout!" matTooltipPosition="before"> power_settings_new </mat-icon>
+        </div>
+      </mat-toolbar> -->
 
       <div class="col w100" [ngClass]="{ 'hidden': createView || chatView }">
           

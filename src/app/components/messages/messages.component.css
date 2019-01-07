@@ -163,3 +163,21 @@ button.start-chat.mat-fab.mat-accent {
   position: relative;
   z-index: 4;
 }
+
+.mobile .psynapsus-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+}
+
+.mobile .option-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+h1.psynapsus-chat-title {
+  margin-left: 8px;
+}

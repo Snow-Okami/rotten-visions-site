@@ -6,8 +6,8 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class StoreService {
-  private messageSource = new BehaviorSubject('');
-  public currentMessage = this.messageSource.asObservable();
+  private toolbarSource = new BehaviorSubject('');
+  public hideMatToolbar = this.toolbarSource.asObservable();
   
   /**
    * @description domain update with production type.
@@ -26,8 +26,8 @@ export class StoreService {
    * @description message passing service between Components.
    * @param message string to be passed to component(Parent or Child).
    */
-  changeMessage(message: string) {
-    this.messageSource.next(message);
+  alterMatToolbar(message: string) {
+    this.toolbarSource.next(message);
   }
 
   /**

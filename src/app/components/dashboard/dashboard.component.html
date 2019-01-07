@@ -1,5 +1,5 @@
 <div class="psynapsus-container" [class.psynapsus-is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary" class="psynapsus-toolbar">
+  <mat-toolbar color="primary" class="psynapsus-toolbar" [ngClass]="{ 'hidden': hideMatToolbar.length }">
 
     <!-- Help to improve the performance. -->
     <button aria-label="Navigation" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
