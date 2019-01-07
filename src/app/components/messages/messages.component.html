@@ -228,6 +228,7 @@
     <!-- Messages Card For Desktop Ends Here -->
 
     <div class="row" *ngIf="mobileQuery.matches">
+      <!-- Show the extra toolbar on the top of the page. -->
       <mat-toolbar color="primary" class="psynapsus-toolbar" [ngClass]="{ 'hidden': !chatView }">
 
         <mat-toolbar-row>
@@ -250,17 +251,7 @@
 
       </mat-toolbar>
 
-      <!-- <mat-toolbar color="primary" class="psynapsus-toolbar" [ngClass]="{ 'hidden': !chatView }">
-
-        <button mat-icon-button class="back" [ngClass]="{ 'hidden': !chatView }" (click)="hideMessages()">
-          <mat-icon aria-label="icon-button">arrow_back</mat-icon>
-        </button>
-        <h1 class="title-item m-l-5 force" [ngClass]="{ 'hidden': !chatView }"> {{ chat.type ? chat.fullName : chat.users | nameonly: user }} </h1>
-        <div class="power-wrapper">
-          <mat-icon matSuffix class="material-icons" matTooltip="Logout!" matTooltipPosition="before"> power_settings_new </mat-icon>
-        </div>
-      </mat-toolbar> -->
-
+      <!-- Chats will be loaded here -->
       <div class="col w100" [ngClass]="{ 'hidden': createView || chatView }">
           
         <div [ngClass]="{ 'hidden': !chatLoader && chats.length === 0 }">
@@ -297,6 +288,7 @@
         </button>
       </div>
 
+      <!-- Messages will be loaded here -->
       <div class="col w100" [ngClass]="{ 'hidden': !chatView }">
 
         <div class="message-wrapper">
@@ -359,6 +351,8 @@
         </div>
 
       </div>
+
+      <div class="col w100" [ngClass]="{ 'hidden': true }"></div>
     </div>
 
   </div>
