@@ -143,8 +143,17 @@ button.start-chat.mat-fab.mat-accent {
   right: 10px;
 }
 
+.mobile button.start-chat.mat-fab.mat-accent {
+  bottom: 0px;
+  right: 0px;
+}
+
 .message-list-wrapper {
   padding: 0 16px;
+}
+
+.mobile .message-list-wrapper {
+  padding: 0 6px;
 }
 
 .suser-select-margin {

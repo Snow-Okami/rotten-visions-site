@@ -229,18 +229,18 @@
 
     <div class="row" *ngIf="mobileQuery.matches">
       <!-- Show the extra toolbar on the top of the page. -->
-      <mat-toolbar color="primary" class="psynapsus-toolbar" [ngClass]="{ 'hidden': !chatView }">
+      <mat-toolbar color="primary" class="psynapsus-toolbar" [ngClass]="{ 'hidden': !chatView && !createView }">
 
         <mat-toolbar-row>
           <!-- Help to improve the performance. -->
-          <button aria-label="navigate-back" mat-icon-button [ngClass]="{ 'hidden': !chatView }" (click)="hideMessages()"><mat-icon aria-label="icon-button">arrow_back</mat-icon></button>
-          <h1 class="psynapsus-chat-title"> {{ chat.type ? chat.fullName : chat.users | nameonly: user }} </h1>
-          <div class="option-wrapper">
+          <button aria-label="navigate-back" mat-icon-button [ngClass]="{ 'hidden': !chatView && !createView }" (click)="hideMessages()"><mat-icon aria-label="icon-button">arrow_back</mat-icon></button>
+          <h1 class="psynapsus-chat-title" [ngClass]="{ 'hidden': !chatView }"> {{ chat.type ? chat.fullName : chat.users | nameonly: user }} </h1>
+          <div class="option-wrapper" [ngClass]="{ 'hidden': !chatView }">
             <button mat-icon-button [matMenuTriggerFor]="menu">
               <mat-icon matSuffix class="material-icons"> more_vert </mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item [ngClass]="{ 'hidden': !chatView }" (click)="alterQuickText()">
+              <button mat-menu-item (click)="alterQuickText()">
                 <mat-icon aria-label="icon-button" [ngClass]="{ 'hidden': quickText }">visibility_off</mat-icon>
                 <mat-icon aria-label="icon-button" [ngClass]="{ 'hidden': !quickText }">visibility</mat-icon>
                 <span>Quick text</span>
@@ -352,7 +352,67 @@
 
       </div>
 
-      <div class="col w100" [ngClass]="{ 'hidden': true }"></div>
+      <div class="col w100" [ngClass]="{ 'hidden': !createView }">
+        <div class="row">
+            
+          <!-- Create chat form -->
+          <form #createChatForm (ngSubmit)="createChat($event);">
+            <ul class="message-list-wrapper">
+
+              <!-- Group name field when exists. -->
+              <li class="row" *ngIf="selectedUsers.length > 1">
+                <mat-form-field>
+                  <input matInput placeholder="Group name" autocomplete="off" [formControl]="groupFullName" required>
+                  <mat-error *ngIf="groupFullName.hasError('invalid_characters')">
+                    Only space is not allowed.
+                  </mat-error>
+                  <mat-error *ngIf="groupFullName.hasError('required')">
+                    Group name is required
+                  </mat-error>
+                </mat-form-field>
+              </li>
+
+              <!-- Input list for user search. -->
+              <li class="row" style="position: relative;">
+                <mat-form-field>
+                  <mat-chip-list #chipList>
+                    <mat-chip *ngFor="let u of selectedUsers" [selectable]="true"
+                            [removable]="true" (removed)="remove(u)">
+                      {{ u.fullName }}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="Selected user..."
+                          autocomplete="off"
+                          (keyup)="searchUsers($event)"
+                          [matChipInputFor]="chipList"
+                          [matChipInputAddOnBlur]="true"
+                          [formControl]="searchInput">
+                  </mat-chip-list>
+                </mat-form-field>
+
+                <!-- Create Chat Button -->
+                <button type="submit" mat-fab class="start-chat" matTooltip="Start Chat" matTooltipPosition="before">
+                  <mat-icon aria-label="Start chat icon">add</mat-icon>
+                </button>
+              </li>
+
+              <li class="row" *ngFor="let u of searchedUsers">
+                <div class="col w80 inline">
+                  <h4 class="chat-name"> {{ u.fullName }} </h4>
+                  <p> {{ u.email}} </p>
+                </div>
+                <div class="col w20 inline">
+                  <mat-checkbox name="searched-user" class="suser-select-margin" [(ngModel)]="u.selected" (change)="alterSelected(u)"></mat-checkbox>
+                </div>
+                <mat-divider></mat-divider>
+              </li>
+
+            </ul>
+
+          </form>
+
+        </div>
+      </div>
     </div>
 
   </div>

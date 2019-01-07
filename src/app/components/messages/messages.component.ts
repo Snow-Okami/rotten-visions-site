@@ -328,6 +328,10 @@ export class MessagesComponent {
    */
   public visitCreate() {
     this.createView = !this.createView;
+    /**
+     * @description show / hide the material toolbar.
+     */
+    this.store.alterMatToolbar(this.createView ? 'show' : '');
   }
 
   /**

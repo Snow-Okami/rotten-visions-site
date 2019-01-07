@@ -321,3 +321,7 @@ span.writable, span.writable p {
 span.writable-update {
   line-height: 25px;
 }
+
+.mobile .message-list-wrapper .mat-list-item-content {
+  padding: 0px !important;
+}
