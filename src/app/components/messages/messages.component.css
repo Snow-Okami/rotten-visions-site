@@ -31,8 +31,8 @@
   min-height: 40px;
   height: 100%;
   overflow: hidden;
-  padding-right: 5px;
-  padding-left: 5px;
+  padding-right: 7px;
+  padding-left: 7px;
   opacity: 0.8;
 }
 
@@ -42,10 +42,49 @@
   margin-bottom: 5px;
   padding: 5px 10px 5px 57px;
   border: 1px solid #3c3c3c;
+  background: #3c3c3c;
   border-radius: 5px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   min-width: auto;
+}
+
+.chat-wrapper.right {
+  border: 1px solid #bd4040;
+  background: #bd4040;
+}
+
+.chat-wrapper:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  bottom: -2px;
+  right: -7px;
+  height: 20px;
+  border-right: 20px solid #333334;
+  border-bottom-left-radius: 16px 14px;
+  transform: translate(0, -2px);
+}
+
+.chat-wrapper.right:before {
+  border-right: 20px solid #bd4040;
+}
+
+.chat-wrapper:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: -2px;
+  right: -57px;
+  width: 26px;
+  height: 20px;
+  background: #212121;
+  border-bottom-left-radius: 10px;
+  transform: translate(-30px, -2px);
+}
+
+.mobile .chat-wrapper:after {
+  background: #0e0f13;
 }
 
 .chat-wrapper > .col h4, .chat-wrapper > .col h6 {
