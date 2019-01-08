@@ -158,7 +158,10 @@ export class MessagesComponent {
   }
 
   ngOnDestroy() {
-    // this.socket.disconnect(true);
+    /**
+     * @description alter the material toolbal on the mobile view.
+     */
+    if(this.mobileQuery.matches) { this.store.alterMatToolbar(''); }
   }
 
   private fixMobileScroll(): void {
@@ -228,14 +231,22 @@ export class MessagesComponent {
    * @description Hide the messages view section.
    */
   public hideMessages() {
-    this.createView = this.chatView = this.quickText = this.messageLoader = false; this.store.alterMatToolbar(this.chatView ? 'show' : '');
+    this.createView = this.chatView = this.quickText = this.messageLoader = false;
+    /**
+     * @description alter the material toolbal on the mobile view.
+     */
+    if(this.mobileQuery.matches) { this.store.alterMatToolbar(this.chatView ? 'show' : ''); }
   }
 
   /**
    * @description show messages when user clicks on an individual chat.
    */
   public showItsMessages(c): void {
-    this.chat = c; this.chatView = this.messageLoader = true; this.createView = false; this.store.alterMatToolbar(this.chatView ? 'show' : '');
+    this.chat = c; this.chatView = this.messageLoader = true; this.createView = false;
+    /**
+     * @description alter the material toolbal on the mobile view.
+     */
+    if(this.mobileQuery.matches) { this.store.alterMatToolbar(this.chatView ? 'show' : ''); }
     /**
      * @description stop initial loading of messages.
      */
@@ -329,9 +340,9 @@ export class MessagesComponent {
   public visitCreate() {
     this.createView = !this.createView;
     /**
-     * @description show / hide the material toolbar.
+     * @description alter the material toolbal on the mobile view.
      */
-    this.store.alterMatToolbar(this.createView ? 'show' : '');
+    if(this.mobileQuery.matches) { this.store.alterMatToolbar(this.createView ? 'show' : ''); }
   }
 
   /**

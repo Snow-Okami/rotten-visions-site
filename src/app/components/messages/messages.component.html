@@ -251,8 +251,8 @@
 
       </mat-toolbar>
 
-      <!-- Chats will be loaded here -->
-      <div class="col w100" [ngClass]="{ 'hidden': createView || chatView }">
+      <!-- Chats will be loaded here [ngClass]="{ 'hidden': createView || chatView }" -->
+      <div class="col w100" *ngIf="!createView && !chatView">
           
         <div [ngClass]="{ 'hidden': !chatLoader && chats.length === 0 }">
           <mat-list>
@@ -267,7 +267,7 @@
             </ul>
     
             <!-- Messages will be loaded here -->
-            <mat-list-item *ngFor="let c of chats">
+            <mat-list-item *ngFor="let c of chats" class="mobile-chat-ui">
               <mat-icon mat-list-icon class="chat-image"> person </mat-icon>
               <h4 mat-line class="chat-name" (click)="showItsMessages(c)"> {{ c.type ? c.fullName : c.users | nameonly: user }} </h4>
               <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(c.lastMessage.text)" class="writable" mat-line></span>
@@ -288,8 +288,8 @@
         </button>
       </div>
 
-      <!-- Messages will be loaded here -->
-      <div class="col w100" [ngClass]="{ 'hidden': !chatView }">
+      <!-- Messages will be loaded here [ngClass]="{ 'hidden': !chatView }" -->
+      <div class="col w100" *ngIf="chatView">
 
         <div class="message-wrapper">
           <ul>
@@ -352,7 +352,8 @@
 
       </div>
 
-      <div class="col w100" [ngClass]="{ 'hidden': !createView }">
+      <!-- [ngClass]="{ 'hidden': !createView }" -->
+      <div class="col w100" *ngIf="createView"> 
         <div class="row">
             
           <!-- Create chat form -->
