@@ -1,6 +1,6 @@
 {
   "name": "psynapsus-adminpanel",
-  "version": "2.9.6",
+  "version": "2.9.7",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4004",

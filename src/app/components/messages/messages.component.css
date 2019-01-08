@@ -31,16 +31,22 @@
   min-height: 40px;
   height: 100%;
   overflow: hidden;
-  padding-right: 7px;
+  padding-right: 15px;
   padding-left: 7px;
   opacity: 0.8;
+}
+
+.mobile .chat-row-wrapper {
+  padding-right: 7px;
 }
 
 .chat-wrapper {
   position: relative;
   margin-top: 5px;
   margin-bottom: 5px;
-  padding: 5px 10px 5px 57px;
+  /* LINE No. 103, 107, 118 & 307, 311, 322 depends on this CSS. */
+  padding: 5px 10px 5px 15px;
+  /* padding: 5px 10px 5px 57px; */
   border: 1px solid #bd4040;
   background: #bd4040;
   border-radius: 5px;
