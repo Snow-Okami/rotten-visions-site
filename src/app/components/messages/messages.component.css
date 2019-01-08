@@ -54,23 +54,44 @@
   background: #3c3c3c;
 }
 
-.chat-wrapper:before {
+.chat-wrapper:not(.right):before {
+  content:"";
+  position:absolute;
+  z-index:2;
+  bottom:-2px;
+  left:-7px;
+  height:20px;
+  border-left:20px solid #bd4040;
+  border-bottom-right-radius: 16px 14px;
+  transform:translate(0, -2px);
+}
+
+.chat-wrapper.right:before {
   content: "";
   position: absolute;
   z-index: -1;
   bottom: -2px;
   right: -7px;
   height: 20px;
-  border-right: 20px solid #bd4040;  
+  border-right: 20px solid #333334;
   border-bottom-left-radius: 16px 14px;
   transform: translate(0, -2px);
 }
 
-.chat-wrapper.right:before {
-  border-right: 20px solid #333334;
+.chat-wrapper:not(.right):after {
+  content:"";
+  position:absolute;
+  z-index:3;
+  bottom:-2px;
+  left:3px;
+  width:26px;
+  height:20px;
+  background:#212121;
+  border-bottom-right-radius: 10px;
+  transform:translate(-30px, -2px);
 }
 
-.chat-wrapper:after {
+.chat-wrapper.right:after {
   content: "";
   position: absolute;
   z-index: 1;
