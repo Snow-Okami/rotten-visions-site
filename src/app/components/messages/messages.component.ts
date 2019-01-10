@@ -184,7 +184,7 @@ export class MessagesComponent {
   }
 
   private scrollYDown(elem, y): void {
-    setTimeout(() => { elem.scrollTo({ top: (elem.scrollTop ? elem.scrollTop : 0) + y, left: 0, behavior: 'smooth' }); setTimeout(() => { that.loadMore.messages = true; }, 500); }, 300);
+    setTimeout(() => { elem.scrollTo({ top: (elem.scrollTop ? elem.scrollTop : 0) + y, left: 0, behavior: 'smooth' }); setTimeout(() => { that.loadMore.messages = true; }, 500); }, 500);
   }
 
   /**
