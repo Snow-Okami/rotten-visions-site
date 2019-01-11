@@ -18,7 +18,7 @@ export class FooterComponent implements OnInit {
     public appUpdate: SwUpdate,
     public snackBar: MatSnackBar
   ) {
-    this.appUpdate.available.subscribe(e => { console.log(e); this.update = true; });
+    this.appUpdate.available.subscribe(e => { this.update = true; });
   }
 
   updateApplication() {
