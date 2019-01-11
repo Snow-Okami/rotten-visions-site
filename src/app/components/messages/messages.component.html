@@ -51,7 +51,7 @@
                     </div>
                   </li>
                 </ul>
-  
+
                 <!-- Messages will be loaded here -->
                 <mat-list-item *ngFor="let c of chats">
                   <mat-icon mat-list-icon class="chat-image"> person </mat-icon>
@@ -59,7 +59,7 @@
                   <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(c.lastMessage.text)" class="writable" mat-line></span>
                   <mat-divider></mat-divider>
                 </mat-list-item>
-  
+
               </mat-list>
             </perfect-scrollbar>
           </div>
@@ -229,7 +229,7 @@
 
     <div class="row" *ngIf="mobileQuery.matches">
       <!-- Show the extra toolbar on the top of the page. -->
-      <mat-toolbar color="primary" class="psynapsus-toolbar" [ngClass]="{ 'hidden': !chatView && !createView }">
+      <mat-toolbar color="primary" class="psynapsus-toolbar" [ngClass]="{ 'hidden': !chatView && !createView, 'mobile': mobileQuery.matches }">
 
         <mat-toolbar-row>
           <!-- Help to improve the performance. -->

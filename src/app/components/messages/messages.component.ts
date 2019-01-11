@@ -172,10 +172,10 @@ export class MessagesComponent {
     let wn = document.querySelector('.message-wrapper');
     let mi = document.querySelector('.message-wrapper ul').getBoundingClientRect();
     let dw = document.querySelector('.mat-drawer-container').getBoundingClientRect();
-    let nv = document.querySelector('.psynapsus-toolbar').getBoundingClientRect();
+    let nv = document.querySelector('.psynapsus-toolbar.mobile').getBoundingClientRect();
     let inp = document.querySelector('.input-box-wrapper').getBoundingClientRect();
 
-    if(mi.height > (window.innerHeight - nv.height - inp.height)) { wn.setAttribute('style', `margin-bottom: ${inp.height - 10}px`); this.scrollYDown(window, window.innerHeight); }
+    if(mi.height > (window.innerHeight - nv.height - inp.height)) { wn.setAttribute('style', `margin-bottom: ${inp.height - 10}px`); this.scrollYDown(window, mi.height); }
   }
 
   private scrollToBottom(): void {
