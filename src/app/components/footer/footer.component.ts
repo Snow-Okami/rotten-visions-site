@@ -15,7 +15,7 @@ export class FooterComponent implements OnInit {
   public update: boolean = false;
 
   constructor(
-    private appUpdate: SwUpdate,
+    public appUpdate: SwUpdate,
     public snackBar: MatSnackBar
   ) {
     appUpdate.available.subscribe(e => { this.update = true; });
