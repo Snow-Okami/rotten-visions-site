@@ -444,6 +444,7 @@ export class MessagesComponent {
    * @description response from socket server with messages.
    */
   private onMessages(res: any) {
+    console.log(res);
     /**
      * @description hide the loader when message is loaded. And enables the load more event.
      */

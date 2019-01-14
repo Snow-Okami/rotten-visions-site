@@ -103,7 +103,7 @@
 
                     <div class="col wauto">
                       <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(m.text)" class="writable"></span>
-                      <h4 class="mat-line"> {{ m.createdBy.fullName }} </h4>
+                      <h4 class="mat-line"> {{ m.createdBy.fullName }}, {{ m.createdAt | date : 'h:mm a' }} </h4>
                     </div>
                   </div>
                 </li>
@@ -308,7 +308,7 @@
   
                 <div class="col wauto">
                   <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(m.text)" class="writable"></span>
-                  <h4 class="mat-line"> {{ m.createdBy.fullName }} </h4>
+                  <h4 class="mat-line"> {{ m.createdBy.fullName }}, {{ m.createdAt | date : 'h:mm a' }} </h4>
                 </div>
               </div>
             </li>
