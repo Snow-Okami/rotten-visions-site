@@ -184,7 +184,7 @@ export class MessagesComponent {
     else { setTimeout(() => { this.fixMobileScroll(); }, 300); }
   }
 
-  private scrollYDown(elem, y): void {
+  private scrollYDown(elem: any, y: any): void {
     let op = { top: (elem.scrollTop ? elem.scrollTop : 0) + y, left: 0, behavior: 'smooth' };
     setTimeout(() => { elem.scrollTo(op); setTimeout(() => { that.loadMore.messages = true; }, 500); }, 500);
   }
@@ -192,7 +192,7 @@ export class MessagesComponent {
   /**
    * @description Detect scroll direction. Returns true if down or false.
    */
-  isScrollDown(elem) {
+  isScrollDown(elem: any) {
     let st = elem.scrollTop;
     let type = st > this.lastScrollTop ? true : false;
     this.lastScrollTop = st <= 0 ? 0 : st;
@@ -243,7 +243,7 @@ export class MessagesComponent {
   /**
    * @description show messages when user clicks on an individual chat.
    */
-  public showItsMessages(c): void {
+  public showItsMessages(c: any): void {
     this.chat = c; this.chatView = this.messageLoader = true; this.createView = false;
     /**
      * @description alter the material toolbal on the mobile view.
@@ -401,14 +401,14 @@ export class MessagesComponent {
   /**
    * @description response from socket server with user details.
    */
-  private onUser(res) {
+  private onUser(res: any) {
     that.user = res;
   }
 
   /**
    * @description response from socket server with chat details.
    */
-  private onChats(res) {
+  private onChats(res: any) {
     that.chats = res.data;
     /**
      * @description hide the chat loader.
@@ -416,7 +416,7 @@ export class MessagesComponent {
     that.chatLoader = false;
   }
 
-  private onCPacket(res) {
+  private onCPacket(res: any) {
     /**
      * @description push the new chat.
      */
@@ -437,7 +437,7 @@ export class MessagesComponent {
   /**
    * @description response from socket server with messages.
    */
-  private onMessages(res) {
+  private onMessages(res: any) {
     /**
      * @description hide the loader when message is loaded. And enables the load more event.
      */
@@ -462,7 +462,7 @@ export class MessagesComponent {
   /**
    * @description when user sends or receives a text.
    */
-  private onTexted(res) {
+  private onTexted(res: any) {
     let c = _.find(that.chats, { 'id': res.lastMessage.cid });
     c['lastMessage'] = res.lastMessage;
     c['messages'].push(res.lastMessage);
@@ -477,7 +477,7 @@ export class MessagesComponent {
     that.chats.splice(0, 0, c);
   }
 
-  private onPacket(res) {
+  private onPacket(res: any) {
     if(res.error) { that.searchedUsers = []; return false; }
     /**
      * @description store packets into the searchedUsers
@@ -496,7 +496,7 @@ export class MessagesComponent {
   /**
    * @description show the respones when typing.
    */
-  private onTyping(res) {
+  private onTyping(res: any) {
     let c = _.find(that.chats, { 'id': res.lastMessage.cid });
     c['isTyping'] = { show: true, lastMessage: res.lastMessage };
     /**
@@ -508,7 +508,7 @@ export class MessagesComponent {
   /**
    * @description removes the typing text.
    */
-  private onTyped(res) {
+  private onTyped(res: any) {
     let c = _.find(that.chats, { 'id': res.cid });
     c['isTyping'] = { show: false, lastMessage: { cid: '', createdBy: { email: '', fullName: '' }, text: '' } };
     /**
