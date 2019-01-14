@@ -26,22 +26,22 @@ export class MessagesComponent {
   /**
    * @description title is going to show on the browser tab when component is loaded.
    */
-  private title = 'Psynapsus - Messages Dashboard';
+  private title: string = 'Psynapsus - Messages Dashboard';
   /**
    * @description data to be received by the dashboard.
    */
-  private hideFooter = true;
+  private hideFooter: boolean = true;
   private hideMatToolbar: string = '';
 
   /**
    * @description Holds all the available chats for the user.
    */
   public chats = [];
-  public chatView = false;
-  public chatLoader = true;
-  public messageLoader = false;
-  public quickText = false;
-  public createView = false;
+  public chatView: boolean = false;
+  public chatLoader: boolean = true;
+  public messageLoader: boolean = false;
+  public quickText: boolean = false;
+  public createView: boolean = false;
 
   public chat = {
     id: '0',
@@ -53,17 +53,17 @@ export class MessagesComponent {
   };
   public user = { firstName: 'User', fullName: 'User Name', email: 'user@example.com' };
 
-  private progressBar;
+  private progressBar: any;
   public config: PerfectScrollbarConfigInterface = { };
   /**
    * @description captures the chat list element from DOM.
    */
-  private chatListElem;
+  private chatListElem: any;
   @ViewChild('chatList') chatList?: PerfectScrollbarComponent;
   /**
    * @description captures the message list element from DOM.
    */
-  private messageListElem;
+  private messageListElem: any;
   @ViewChild('messageList') messageList?: PerfectScrollbarComponent;
 
   public text = new FormControl({ value: '', disabled: false }, []);
