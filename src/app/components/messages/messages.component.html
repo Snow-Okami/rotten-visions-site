@@ -38,19 +38,19 @@
       <div class="row">
         <div class="col w20" style="position: relative;">
 
-          <!-- Chat list wrapper -->
-          <div [ngClass]="{ 'hidden': !chatLoader && chats.length === 0 }">
+          <div *ngIf="chatLoader">
+            <!-- Message loader will be shown here -->
+            <div class="row chat-row-wrapper t-al-center">
+              <div class="col" style="min-height: 414px;"> 
+                <mat-progress-spinner class="chat-loader" [color]="'primary'" [mode]="'indeterminate'" [diameter]="30" [strokeWidth]="4"></mat-progress-spinner>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chat list wrapper. -->
+          <div [ngClass]="{ 'hidden': chatLoader && !chats.length }"> <!-- *ngIf="!chatLoader && chats.length" -->
             <perfect-scrollbar #chatList style="position: relative; max-width: 230px; max-height: 414px; min-height: 414px;" [config]="config" (psYReachEnd)="loadChats($event)">
               <mat-list>
-  
-                <!-- Message loader will be shown here -->
-                <ul *ngIf="chatLoader">
-                  <li class="row chat-row-wrapper t-al-center">
-                    <div class="col">
-                      <mat-progress-spinner class="chat-loader" [color]="'primary'" [mode]="'indeterminate'" [diameter]="30" [strokeWidth]="4"></mat-progress-spinner>
-                    </div>
-                  </li>
-                </ul>
 
                 <!-- Messages will be loaded here -->
                 <mat-list-item *ngFor="let c of chats">
@@ -64,15 +64,14 @@
             </perfect-scrollbar>
           </div>
 
-          <div [ngClass]="{ 'hidden': !chatLoader && chats.length > 0 }">
+          <div *ngIf="!chatLoader && !chats.length">  <!-- [ngClass]="{ 'hidden': !chatLoader && chats.length === 0 }" -->
             <div style="height: 414px; position: relative; max-width: 230px;">
               <h4 class="init-text t-al-center"> SORRY! no chat found! </h4>
             </div>
           </div>
 
-
           <!-- Create Chat Button -->
-          <button (click)="visitCreate()" mat-fab class="new-message" matTooltip="New Message" matTooltipPosition="before" [ngClass]="{ 'hidden': createView }">
+          <button (click)="visitCreate()" mat-fab class="new-message" matTooltip="New Message" matTooltipPosition="before" *ngIf="!createView && !chatLoader">  <!-- [ngClass]="{ 'hidden': createView }" -->
             <mat-icon aria-label="Create new message icon">add</mat-icon>
           </button>
 
@@ -155,7 +154,7 @@
           </div>
         </div>
 
-        <!-- SHOW for the messages -->
+        <!-- SHOW for the user lists -->
         <div class="col w70" [ngClass]="{ 'hidden': !createView }">
 
           <div class="row" style="max-width: 750px; position: relative;">
@@ -206,7 +205,7 @@
 
           </div>
 
-          <perfect-scrollbar #messageList style="position: relative; max-width: 750px; max-height: 314px; min-height: 314px;" [config]="config" (psYReachStart)="loadMessages($event)">
+          <perfect-scrollbar #userList style="position: relative; max-width: 750px; max-height: 314px; min-height: 314px;" [config]="config">
             <mat-list>
 
               <!-- Messages will be loaded here -->

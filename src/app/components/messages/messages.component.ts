@@ -146,8 +146,9 @@ export class MessagesComponent {
     /**
      * @description capture the scroll bar elements from browser DOM.
      */
-    this.chatListElem = document.querySelectorAll('.ps')[0];
-    this.messageListElem = document.querySelectorAll('.ps')[1];
+    let ps = document.querySelectorAll('.ps');
+    this.chatListElem = ps[0];
+    this.messageListElem = ps[1];
     /**
      * @description Hide Progress Bar When Page is Loaded.
      */
@@ -184,7 +185,8 @@ export class MessagesComponent {
   }
 
   private scrollYDown(elem, y): void {
-    setTimeout(() => { elem.scrollTo({ top: (elem.scrollTop ? elem.scrollTop : 0) + y, left: 0, behavior: 'smooth' }); setTimeout(() => { that.loadMore.messages = true; }, 500); }, 500);
+    let op = { top: (elem.scrollTop ? elem.scrollTop : 0) + y, left: 0, behavior: 'smooth' }; console.log(op, elem.scrollTop, elem); 
+    setTimeout(() => { elem.scrollTo(op); setTimeout(() => { that.loadMore.messages = true; }, 500); }, 500);
   }
 
   /**
