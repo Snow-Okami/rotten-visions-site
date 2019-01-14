@@ -269,3 +269,9 @@ button.start-chat.mat-fab.mat-accent {
 h1.psynapsus-chat-title {
   margin-left: 8px;
 }
+
+.date-wrapper {
+  font-size: 10px;
+  text-align: center;
+  background-image: linear-gradient(to right, #9b3a37, #373737);
+}

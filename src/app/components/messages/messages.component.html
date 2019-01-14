@@ -98,6 +98,9 @@
 
                 <!-- Messages will repeat here -->
                 <li *ngFor="let m of chat.messages" class="row chat-row-wrapper">
+
+                  <div class="row date-wrapper"> {{ m.createdAt | date : 'fullDate' }} </div>
+
                   <div class="chat-wrapper" [ngClass]="{ 'right': m.createdBy.email === user.email, 'm-r-30': m.createdBy.email !== user.email, 'm-l-30': m.createdBy.email === user.email }">
                     <!-- <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div> -->
 
