@@ -185,7 +185,7 @@ export class MessagesComponent {
   }
 
   private scrollYDown(elem, y): void {
-    let op = { top: (elem.scrollTop ? elem.scrollTop : 0) + y, left: 0, behavior: 'smooth' }; console.log(op, elem.scrollTop, elem); 
+    let op = { top: (elem.scrollTop ? elem.scrollTop : 0) + y, left: 0, behavior: 'smooth' };
     setTimeout(() => { elem.scrollTo(op); setTimeout(() => { that.loadMore.messages = true; }, 500); }, 500);
   }
 
