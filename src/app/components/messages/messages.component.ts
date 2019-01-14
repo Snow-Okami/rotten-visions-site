@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -274,14 +274,14 @@ export class MessagesComponent {
    * @description confirms the key events.
    */
   public keyDown(event: KeyboardEvent) {
-    if(event.keyCode === 13 && !event.shiftKey) { event.preventDefault(); return; }
+    if(event.keyCode === 13 && !event.shiftKey && !this.mobileQuery.matches) { event.preventDefault(); return; }
   }
 
   /**
    * @description sends the typing response or the text to the recipients.
    */
   public keyUp(event: KeyboardEvent) {
-    if(event.keyCode === 13 && !event.shiftKey) { this.hideTyping(); this.sendThis(); return; }
+    if(event.keyCode === 13 && !event.shiftKey && !this.mobileQuery.matches) { this.hideTyping(); this.sendThis(); return; }
     /**
      * @description shows the typing message.
      */
@@ -319,6 +319,11 @@ export class MessagesComponent {
   }
 
   /**
+   * @description Initialize the text element.
+   */
+  @ViewChild('message') textElem: ElementRef;
+
+  /**
    * @description Sends the current message.
    */
   public sendThis() {
@@ -334,6 +339,7 @@ export class MessagesComponent {
     );
 
     this.text.setValue('');
+    this.textElem.nativeElement.focus();
   }
 
   /**
