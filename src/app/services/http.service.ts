@@ -34,7 +34,7 @@ export class HttpService {
   /**
    * @description Returns HTTP Header Options.
    */
-  option(type) {
+  option(type: any) {
     return {
       headers: new HttpHeaders(Object.assign({}, type, {
         'Authorization': this.store.getCookie('ps-t-a-p'),
@@ -46,7 +46,7 @@ export class HttpService {
   /**
    * @description Login POST HTTP Request.
    */
-  login(data): Observable<HttpResponse<any>> {
+  login(data: any): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/admin/login';
 
     return this.http.post<any>(url, data).pipe(
@@ -58,7 +58,7 @@ export class HttpService {
   /**
    * @description Logout POST HTTP Request.
    */
-  logout(data): Observable<HttpResponse<any>> {
+  logout(data: any): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/admin/logout';
 
     return this.http.post<any>(url, data).pipe(
@@ -70,7 +70,7 @@ export class HttpService {
   /**
    * @description Register POST HTTP Request.
    */
-  register(data): Observable<HttpResponse<any>> {
+  register(data: any): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/admin';
 
     return this.http.post<any>(url, data).pipe(
@@ -82,7 +82,7 @@ export class HttpService {
   /**
    * @description Post New Update POST HTTP Request.
    */
-  post(data): Observable<HttpResponse<any>> {
+  post(data: any): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/post';
 
     return this.http.post<any>(url, data, this.option({ 'enctype': 'multipart/form-data' })).pipe(
@@ -94,7 +94,7 @@ export class HttpService {
   /**
    * @description GET posts with Limitation.
    */
-  posts(option): Observable<HttpResponse<any>> {
+  posts(option: any): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/post?skip=' + option.skip;
 
     return this.http.get<any>(url, this.option({ 'Content-Type':  'application/json' })).pipe(
@@ -106,7 +106,7 @@ export class HttpService {
   /**
    * @description GET posts with Limitation.
    */
-  test(option): Observable<HttpResponse<any>> {
+  test(option: any): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/test';
 
     return this.http.get<any>(url).pipe(

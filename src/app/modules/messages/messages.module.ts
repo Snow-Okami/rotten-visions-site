@@ -3,10 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 /**
- * @description Socket Modules for Social Chat.
- */
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-/**
  * @description MaterialModule is for Material theme.
  * @description Load images lazely.
  * @description SharedModule contains the shared Components & Pipes throughout Psynapsus.
@@ -18,8 +14,6 @@ import { PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfi
 
 import { MessagesComponent } from '../../components/messages/messages.component';
 
-import { environment } from '../../../environments/environment';
-
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   suppressScrollY: false
@@ -28,22 +22,12 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 export const routes: Routes = [
   { path: '', component: MessagesComponent }
 ];
-/**
- * @description domain update with production type.
- */
-const apiurl = environment.production ? 'https://psynapsus.herokuapp.com' : 'http://localhost:5000';
-/**
- * @description Select domain available only on Heroku.
- */
-// const apiurl = 'https://psynapsus.herokuapp.com';
-const config: SocketIoConfig = { url: apiurl, options: {} };
 
 @NgModule({
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
     MaterialModule, LazyLoadImageModule, SharedModule,
-    RouterModule.forChild(routes), PerfectScrollbarModule,
-    SocketIoModule.forRoot(config)
+    RouterModule.forChild(routes), PerfectScrollbarModule
   ],
   declarations: [
     MessagesComponent

@@ -48,7 +48,7 @@
           </div>
 
           <!-- Chat list wrapper. -->
-          <div [ngClass]="{ 'hidden': chatLoader && !chats.length }"> <!-- *ngIf="!chatLoader && chats.length" -->
+          <div [ngClass]="{ 'hidden': !(!chatLoader && chats.length) }"> <!-- *ngIf="!chatLoader && chats.length" -->
             <perfect-scrollbar #chatList style="position: relative; max-width: 230px; max-height: 414px; min-height: 414px;" [config]="config" (psYReachEnd)="loadChats($event)">
               <mat-list>
 

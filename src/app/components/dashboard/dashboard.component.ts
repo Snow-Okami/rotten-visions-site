@@ -7,7 +7,7 @@ import 'hammerjs';
 import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
 
-let that;
+let that: any;
 
 @Component({
   selector: 'app-dashboard',

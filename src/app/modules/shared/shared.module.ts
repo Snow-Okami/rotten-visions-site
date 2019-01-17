@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
-
+/**
+ * @description Socket Modules for Social Chat.
+ */
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 /**
  * @description Custom Trim Word Pipe.
  */
@@ -10,10 +13,22 @@ import { NameonlyPipe } from '../../pipes/nameonly.pipe';
 
 import { FooterComponent } from '../../components/footer/footer.component';
 
+import { environment } from '../../../environments/environment';
+/**
+ * @description domain update with production type.
+ */
+const apiurl = environment.production ? 'https://psynapsus.herokuapp.com' : 'http://localhost:5000';
+/**
+ * @description Select domain available only on Heroku.
+ */
+// const apiurl = 'https://psynapsus.herokuapp.com';
+const config: SocketIoConfig = { url: apiurl, options: {} };
+
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    SocketIoModule.forRoot(config),
   ],
   declarations: [
     /**
@@ -21,7 +36,6 @@ import { FooterComponent } from '../../components/footer/footer.component';
      */
     TrimwordPipe,
     NameonlyPipe,
-
     /**
      * @description Shared Components For Lazy Routing Modules.
      */
@@ -33,6 +47,11 @@ import { FooterComponent } from '../../components/footer/footer.component';
      */
     TrimwordPipe,
     NameonlyPipe,
+
+    /**
+     * @description Shared modules are stored here.
+     */
+    SocketIoModule,
 
     /**
      * @description Shared Components For Lazy Routing Modules.
