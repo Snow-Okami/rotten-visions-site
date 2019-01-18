@@ -25,11 +25,7 @@ export class FooterComponent implements OnInit {
 
   updateApplication() {
     if(environment.production) {
-      this.appUpdate.activateUpdate().then(() => {
-        navigator.serviceWorker.getRegistration().then((sw) => {
-          sw.unregister(); document.location.reload();
-        });
-      });
+      this.appUpdate.activateUpdate().then(()=>{navigator.serviceWorker.getRegistration().then((sw)=>{sw.unregister();document.location.reload();});});
     }
   }
 
