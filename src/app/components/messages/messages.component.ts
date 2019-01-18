@@ -451,7 +451,7 @@ export class MessagesComponent {
     /**
      * @description stops execution when no data found.
      */
-    if(!res.data.length) { that.scrollYDown(that.messageListElem, 20); return true; }
+    if(!res.data.length) { that.scrollYDown(that.messageListElem ? that.messageListElem : window, 20); return true; }
     /**
      * @description insert messages in proper order.
      */

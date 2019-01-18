@@ -28,7 +28,7 @@
         <mat-form-field>
             <input matInput placeholder="Enter your password"
               [type]="hidePass ? 'password' : 'text'"
-              [formControl]="password" required
+              [formControl]="password" autocomplete="off" required
               >
             <mat-icon matSuffix (click)="hidePass = !hidePass">{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
             <mat-error *ngIf="!password.hasError('required')">
@@ -100,7 +100,7 @@
         <mat-form-field>
           <input matInput placeholder="Enter your password"
             [type]="hidePass ? 'password' : 'text'"
-            [formControl]="password" required
+            [formControl]="password" autocomplete="off" required
             >
           <mat-icon matSuffix (click)="hidePass = !hidePass">{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
           <mat-error *ngIf="!password.hasError('required')">
@@ -113,7 +113,7 @@
       </div>
       <div class="row" *ngIf="hidePass">
         <mat-form-field class="contact-input">
-          <input matInput placeholder="Confirm your password" [type]="hidePass ? 'password' : 'text'" [formControl]="confirmPassword" required>
+          <input matInput placeholder="Confirm your password" [type]="hidePass ? 'password' : 'text'" [formControl]="confirmPassword" autocomplete="off" required>
           <!-- <mat-error *ngIf="!confirmPassword.hasError('required') && registerForm.hasError('incorrect_password')">
             Confirm don't match
           </mat-error> -->
