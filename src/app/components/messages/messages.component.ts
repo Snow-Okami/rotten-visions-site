@@ -423,6 +423,8 @@ export class MessagesComponent {
   }
 
   private onCPacket(res: any) {
+
+    console.log('chat packet detected!');
     /**
      * @description push the new chat.
      */
@@ -459,14 +461,15 @@ export class MessagesComponent {
     let m = _.concat(res.data, c['messages']);
     c['messages'] = m;
 
+    // let t_t = new Date(c['lastMessage']['createdAt']);
+    // let d = t_t.getFullYear() + '-' + t_t.getMonth() + '-' + t_t.getDate();
     let d = '';
+
     _.forEach(c['messages'], (t_i) => {
       let t_t = new Date(t_i.createdAt);
       let t_d = t_t.getFullYear() + '-' + t_t.getMonth() + '-' + t_t.getDate();
       t_i.showDate = t_d !== d; d = t_d;
     });
-
-    console.log(c);
 
     /**
      * @description scroll to bottom of the messages.
