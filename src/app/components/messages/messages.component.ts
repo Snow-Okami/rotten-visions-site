@@ -458,6 +458,16 @@ export class MessagesComponent {
     let c = _.find(that.chats, { 'id': res.data[0].cid });
     let m = _.concat(res.data, c['messages']);
     c['messages'] = m;
+
+    let d = '';
+    _.forEach(c['messages'], (t_i) => {
+      let t_t = new Date(t_i.createdAt);
+      let t_d = t_t.getFullYear() + '-' + t_t.getMonth() + '-' + t_t.getDate();
+      t_i.showDate = t_d !== d; d = t_d;
+    });
+
+    console.log(c);
+
     /**
      * @description scroll to bottom of the messages.
      */
@@ -470,7 +480,15 @@ export class MessagesComponent {
    */
   private onTexted(res: any) {
     let c = _.find(that.chats, { 'id': res.lastMessage.cid });
+
+    let t_t = new Date(c['lastMessage']['createdAt']);
+    let d = t_t.getFullYear() + '-' + t_t.getMonth() + '-' + t_t.getDate();
+
+    t_t = new Date(res.lastMessage.createdAt);
+    let t_d = t_t.getFullYear() + '-' + t_t.getMonth() + '-' + t_t.getDate();
+
     c['lastMessage'] = res.lastMessage;
+    res.lastMessage.showDate = t_d !== d;
     c['messages'].push(res.lastMessage);
     /**
      * @description scroll to bottom after chat is loaded.
