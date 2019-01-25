@@ -423,8 +423,6 @@ export class MessagesComponent {
   }
 
   private onCPacket(res: any) {
-
-    console.log('chat packet detected!');
     /**
      * @description push the new chat.
      */
