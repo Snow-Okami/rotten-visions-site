@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material';
 
 import { environment } from '../../../environments/environment';
 
+import { StoreService } from '../../services/store.service';
 import { HttpService } from '../../services/http.service';
 
 @Component({
@@ -15,13 +16,14 @@ export class FooterComponent implements OnInit {
   /**
    * @description version is the app version.
    */
-  public version: string = '3.0.3';
+  public version: string = '3.0.4';
   public update: boolean = false;
 
   constructor(
     public appUpdate: SwUpdate,
     public snackBar: MatSnackBar,
-    private http: HttpService
+    private http: HttpService,
+    private store: StoreService
   ) {
     this.appUpdate.available.subscribe(e => { this.update = true; });
     this.checkForUpdate();
@@ -42,7 +44,7 @@ export class FooterComponent implements OnInit {
   async checkForUpdate() {
     let v = await this.http.getVersion({}).toPromise();
     if(v['message']['type'] !== 'error') {
-      if(v['data']['clientLatest'] !== this.version) { console.log('update available.'); /* this.update = true; */ }
+      if(v['data']['clientLatest'] !== this.version) { console.log('update available.'); this.store.update.data = v['data']; this.store.update.synced = true; /* this.update = true; */ }
     }
   }
 
