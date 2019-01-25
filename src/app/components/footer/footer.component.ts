@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material';
 
 import { environment } from '../../../environments/environment';
 
+import { HttpService } from '../../services/http.service';
+
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -18,9 +20,11 @@ export class FooterComponent implements OnInit {
 
   constructor(
     public appUpdate: SwUpdate,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private http: HttpService
   ) {
     this.appUpdate.available.subscribe(e => { this.update = true; });
+    this.checkForUpdate();
   }
 
   updateApplication() {
@@ -31,7 +35,16 @@ export class FooterComponent implements OnInit {
 
   updatedMessage() { this.openSnackBar('Application is updated!', ''); }
 
-  ngOnInit() { }
+  ngOnInit() {
+    
+  }
+
+  async checkForUpdate() {
+    let v = await this.http.getVersion({}).toPromise();
+    if(v['message']['type'] !== 'error') {
+      if(v['data']['clientLatest'] !== this.version) { console.log('update available.'); /* this.update = true; */ }
+    }
+  }
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {

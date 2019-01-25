@@ -114,4 +114,16 @@ export class HttpService {
       catchError(this.handleError('test', {}))
     );
   }
+
+  /**
+   * @description GET posts with Limitation.
+   */
+  getVersion(option: any): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/version';
+
+    return this.http.get<any>(url).pipe(
+      tap(message => message),
+      catchError(this.handleError('version', {}))
+    );
+  }
 }

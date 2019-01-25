@@ -1,5 +1,5 @@
 <div class="row">
   <div class="col wauto"> <p> Version: {{ version }} </p> </div>
-  <div class="col wauto" *ngIf="appUpdate"> <mat-icon matSuffix class="material-icons m-l-5" style="margin-top: 2px;cursor: pointer;" (click)="updateApplication()"> sync_problem </mat-icon> </div>
-  <div class="col wauto" *ngIf="!appUpdate"> <mat-icon matSuffix class="material-icons m-l-5" style="margin-top: 2px;cursor: pointer;" (click)="updatedMessage()"> sync </mat-icon> </div>
+  <div class="col wauto" *ngIf="update"> <mat-icon matSuffix class="material-icons m-l-5" style="margin-top: 2px;cursor: pointer;" (click)="updateApplication()"> sync_problem </mat-icon> </div>
+  <div class="col wauto" *ngIf="!update"> <mat-icon matSuffix class="material-icons m-l-5" style="margin-top: 2px;cursor: pointer;" (click)="updatedMessage()"> sync </mat-icon> </div>
 </div>
