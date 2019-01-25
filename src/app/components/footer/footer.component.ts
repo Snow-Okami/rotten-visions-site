@@ -15,7 +15,7 @@ export class FooterComponent implements OnInit {
   /**
    * @description version is the app version.
    */
-  public version: string = '3.0.2';
+  public version: string = '3.0.3';
   public update: boolean = false;
 
   constructor(
@@ -33,7 +33,7 @@ export class FooterComponent implements OnInit {
     }
   }
 
-  updatedMessage() { this.openSnackBar('Application is updated!', ''); }
+  updatedMessage() { this.openSnackBar('Psynapsus is updated!', ''); }
 
   ngOnInit() {
     
