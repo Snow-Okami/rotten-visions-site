@@ -103,6 +103,15 @@ export class UpdatesComponent implements OnInit {
     this.router.navigate(['/dashboard/updates/create']);
   }
 
+  viewThisUpdate(id: string) {
+    /**
+     * @description Show Progress Bar When Page is Loading.
+     */
+    this.progressBar.classList.remove('hidden');
+
+    this.router.navigate(['/dashboard/updates/view/' + id]);
+  }
+
   /**
    * @description Detect scroll direction. Returns true if down or false.
    */

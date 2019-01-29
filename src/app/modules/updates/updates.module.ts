@@ -18,7 +18,7 @@ import { UpdatesComponent } from '../../components/updates/updates.component';
 export const routes: Routes = [
   { path: '', component: UpdatesComponent },
   { path: 'create', loadChildren: '../create-update/create-update.module#CreateUpdateModule' },
-  { path: 'view', loadChildren: '../view-update/view-update.module#ViewUpdateModule' },
+  { path: 'view/:id', loadChildren: '../view-update/view-update.module#ViewUpdateModule' },
 ];
 
 @NgModule({

@@ -2,9 +2,8 @@ import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material';
+import { MatSnackBar, MatChipInputEvent } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
 import * as _ from 'lodash';
 
 import { HttpService } from '../../services/http.service';

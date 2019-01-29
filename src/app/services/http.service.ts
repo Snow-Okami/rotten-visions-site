@@ -13,11 +13,11 @@ export class HttpService {
   /**
    * @description domain update with production type.
    */
-  private apiurl = environment.production ? 'https://psynapsus.herokuapp.com/api/v1' : 'http://localhost:5000/api/v1';
+  // private apiurl = environment.production ? 'https://psynapsus.herokuapp.com/api/v1' : 'http://localhost:5000/api/v1';
   /**
    * @description Select domain available only on Heroku.
    */
-  // private apiurl = 'https://psynapsus.herokuapp.com/api/v1';
+  private apiurl = 'https://psynapsus.herokuapp.com/api/v1';
 
   constructor(
     private http: HttpClient,
@@ -103,8 +103,20 @@ export class HttpService {
     );
   }
 
-  /**
+    /**
    * @description GET posts with Limitation.
+   */
+  postDetails(id: string): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/post/' + id;
+
+    return this.http.get<any>(url, this.option({ 'Content-Type':  'application/json' })).pipe(
+      tap(message => message),
+      catchError(this.handleError('posts', {}))
+    );
+  }
+
+  /**
+   * @description GET response from the server.
    */
   test(option: any): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/test';
@@ -116,7 +128,7 @@ export class HttpService {
   }
 
   /**
-   * @description GET posts with Limitation.
+   * @description GET version details from the server.
    */
   getVersion(option: any): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/version';

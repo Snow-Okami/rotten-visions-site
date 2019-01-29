@@ -1,0 +1,51 @@
+.login-header-image {
+  background-image: url('/assets/logo/Onimind_Logo.png');
+  background-size: cover;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-card-actions {
+  margin-left: 0px;
+}
+
+.drop-image-cover {
+  position: relative;
+  outline-offset: 1px;
+  outline: 2px dashed #ffffff8f;
+  width: 99%;
+  background: url(/assets/logo/img.png), #8e8e8e4d;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.drop-file {
+  cursor: pointer;
+  position: relative;
+  opacity: 0;
+  height: 220px;
+  width: 100%;
+  outline: none;
+  box-shadow: none;
+  z-index: 0;
+}
+
+.drop-image {
+  width: 100%;
+  height: 220px;
+}
+
+.select-publish-section {
+  height: 38px;
+  display: flex;
+  align-items: center;
+}
+
+img.drop-image-close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  cursor: pointer;
+}

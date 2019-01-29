@@ -68,3 +68,7 @@
   background: #212121;
   border-radius: 30px;
 }
+
+.update-con-wrapper {
+  cursor: pointer;
+}
