@@ -25,7 +25,7 @@
 
       <div class="col w100">
         
-        <form #postCreateFormElement>
+        <form #postCreateFormElement [formGroup]="postForm" (ngSubmit)="saveOrPublish($event);">
 
           <!-- Enter or Select post details row -->
           <div class="row">

@@ -16,6 +16,16 @@ export interface Tag {
   name: string;
 }
 
+export interface Post {
+  createdAt?: string;
+  description?: string;
+  id?: string;
+  image?: string;
+  publish?: boolean;
+  title?: string;
+  tags?: string;
+}
+
 @Component({
   selector: 'app-view-update',
   templateUrl: './view-update.component.html',
@@ -42,7 +52,7 @@ export class ViewUpdateComponent {
   public postDescription = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.description ]);
   public postPublish = new FormControl({ value: false, disabled: false });
 
-  @ViewChild('postCreateFormElement') postCreateFormElement;
+  @ViewChild('postCreateFormElement') postCreateFormElement: any;
   public postForm = new FormGroup({
     title: this.postTitle,
     publish: this.postPublish,
@@ -52,16 +62,6 @@ export class ViewUpdateComponent {
   public hideImage: boolean = true;
   @ViewChild('dropImage') image: any;
   @ViewChild('dropFile') file: any;
-
-  public post?: any = {
-    id: '',
-    publish: false,
-    image: '',
-    tags: '',
-    title: '',
-    description: '',
-    createdAt: ''
-  };
 
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
@@ -89,18 +89,14 @@ export class ViewUpdateComponent {
     let r = await this.http.postDetails(id).toPromise();
 
     if(r['message']['type'] !== 'error') {
-      let f = r['data'];
+      let f: Post = {tags: '[]'}; Object.assign(f, r['data']);
 
       this.postTitle.setValue(f.title);
-      this.tags = JSON.parse(f.tags).map((t: string) => { return {name: t}; });
+      this.tags = _.map(JSON.parse(f.tags), (t: string) => { return {name: t}; });
       this.postDescription.setValue(f.description);
       this.postPublish.setValue(f.publish);
-      this.image.nativeElement['src'] = f.image;
-      this.hideImage = false;
-
-      this.image.nativeElement.addEventListener('load', () => {
-        that.progressBar.classList.add('hidden');
-      });
+      if(f.image !== 'image.jpg') { this.image.nativeElement['src'] = f.image; this.hideImage = false; this.image.nativeElement.addEventListener('load', () => { that.progressBar.classList.add('hidden'); }); }
+      else { that.progressBar.classList.add('hidden'); }
     }
   }
 
@@ -177,6 +173,47 @@ export class ViewUpdateComponent {
   }
 
   saveOrPublish(event: any) {
-    console.log('form submit detected!');
+    if(this.postForm.invalid) {
+      this.openSnackBar('Invalid form detected!', ''); return;
+    }
+
+    /**
+     * @description Disable buttons, inputs & enable loader.
+     */
+    // this.disableClick = true;
+    // this.progressBar.classList.remove('hidden');
+
+    /**
+     * @description Create FormData to be POST to API.
+     */
+    let form = new FormData();
+    
+    /**
+     * @description Append File and Tag only when they are available.
+     */
+    if(this.file.nativeElement['files'].length) {
+      form.append('image', this.file.nativeElement['files'][0]);
+    } else { form.append('image', 'image.jpg'); }
+
+    if(this.tags.length) {
+      form.append('tags', JSON.stringify(_.map(this.tags, 'name')));
+    }
+
+    /**
+     * @description REQUIRED FromData Fields.
+     */
+    form.append('title', this.postForm.value.title);
+    form.append('description', _.split(_.trim(this.postForm.value.description), '\n').join('<br>'));
+    form.append('publish', this.postForm.value.publish);
+
+    /**
+     * @description Set form fields empty.
+     */
+    // this.postCreateFormElement.nativeElement.reset();
+    // this.resetForm();
+
+    this.file.nativeElement.value = null;
+
+    this.openSnackBar('Sorry! this feature is under development.', '');
   }
 }
