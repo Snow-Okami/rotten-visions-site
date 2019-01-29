@@ -42,7 +42,7 @@
 
             <div class="update-con-wrapper" (click)="viewThisUpdate(update.id);">
               <!-- Keep the image in here -->
-              <div class="col w40" *ngIf="update.image !== 'image.jpg'">
+              <div class="col w40" *ngIf="update.image !== ''">
                 <div class="row">
                   <img alt="missing post images!" [ngClass]="{'post-image': true}"
                     [defaultImage]="image.defaultImage"
@@ -53,8 +53,8 @@
               </div>
 
               <!-- Keep the description in here -->
-              <div [ngClass]="{'w60': update.image !== 'image.jpg', 'w100': update.image == 'image.jpg', 'col': true}">
-                <div [ngClass]="{'m-l-20': update.image !== 'image.jpg'}">
+              <div [ngClass]="{'w60': update.image !== '', 'w100': update.image == '', 'col': true}">
+                <div [ngClass]="{'m-l-20': update.image !== ''}">
 
                   <!-- POST TAGS Should Stay Here -->
                   <div class="row" *ngIf="update.tags.length > 0">

@@ -44,6 +44,7 @@ export class ViewUpdateComponent {
   public tags: Tag[] = [
     {name: 'Social'},
   ];
+  private postId: string;
 
   /**
    * @description Form controls and Groups are as follows
@@ -85,8 +86,8 @@ export class ViewUpdateComponent {
   async ngOnInit() {
     this.progressBar = document.getElementsByClassName('progressbar')[0];
 
-    let id = this.route.snapshot.paramMap.get('id');
-    let r = await this.http.postDetails(id).toPromise();
+    this.postId = this.route.snapshot.paramMap.get('id');
+    let r = await this.http.postDetails(this.postId).toPromise();
 
     if(r['message']['type'] !== 'error') {
       let f: Post = {tags: '[]'}; Object.assign(f, r['data']);
@@ -95,7 +96,7 @@ export class ViewUpdateComponent {
       this.tags = _.map(JSON.parse(f.tags), (t: string) => { return {name: t}; });
       this.postDescription.setValue(f.description);
       this.postPublish.setValue(f.publish);
-      if(f.image !== 'image.jpg') { this.image.nativeElement['src'] = f.image; this.hideImage = false; this.image.nativeElement.addEventListener('load', () => { that.progressBar.classList.add('hidden'); }); }
+      if(f.image !== '') { this.image.nativeElement['src'] = f.image; this.hideImage = false; this.image.nativeElement.addEventListener('load', () => { that.progressBar.classList.add('hidden'); }); }
       else { that.progressBar.classList.add('hidden'); }
     }
   }
@@ -172,7 +173,7 @@ export class ViewUpdateComponent {
     this.postPublish.setValue(false);
   }
 
-  saveOrPublish(event: any) {
+  async saveOrPublish(event: any) {
     if(this.postForm.invalid) {
       this.openSnackBar('Invalid form detected!', ''); return;
     }
@@ -180,8 +181,8 @@ export class ViewUpdateComponent {
     /**
      * @description Disable buttons, inputs & enable loader.
      */
-    // this.disableClick = true;
-    // this.progressBar.classList.remove('hidden');
+    this.disableClick = true;
+    this.progressBar.classList.remove('hidden');
 
     /**
      * @description Create FormData to be POST to API.
@@ -191,9 +192,11 @@ export class ViewUpdateComponent {
     /**
      * @description Append File and Tag only when they are available.
      */
-    if(this.file.nativeElement['files'].length) {
+    if(!this.hasImage(this.image.nativeElement['src'])) {
+      form.append('image', '');
+    } else if(this.hasImage(this.image.nativeElement['src']) && this.file.nativeElement['files'].length) {
       form.append('image', this.file.nativeElement['files'][0]);
-    } else { form.append('image', 'image.jpg'); }
+    }
 
     if(this.tags.length) {
       form.append('tags', JSON.stringify(_.map(this.tags, 'name')));
@@ -209,11 +212,22 @@ export class ViewUpdateComponent {
     /**
      * @description Set form fields empty.
      */
-    // this.postCreateFormElement.nativeElement.reset();
-    // this.resetForm();
-
     this.file.nativeElement.value = null;
 
-    this.openSnackBar('Sorry! this feature is under development.', '');
+    let r = await this.http.updatePost({id: this.postId}, form).toPromise();
+
+    this.disableClick = false;
+    this.progressBar.classList.add('hidden');
+
+    if(r['message']['type'] !== 'error') {
+      this.openSnackBar('Post has been updated successfully!', '');
+    } else {
+      this.openSnackBar(r['message']['text'], '');
+    }
+  }
+
+  hasImage(url: string): boolean {
+    let ao = ['https://res.cloudinary.com/', 'data:image/png;base64'];    
+    return _.find(ao, o => { return url.includes(o); }) ? true : false;
   }
 }
