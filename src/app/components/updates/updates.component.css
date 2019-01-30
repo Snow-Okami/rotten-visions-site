@@ -89,3 +89,7 @@ p.title {
 .mobile p.title {
   font-size: 20px;
 }
+
+.chat-view-wrapper {
+  cursor: pointer;
+}
