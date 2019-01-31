@@ -29,6 +29,10 @@ div, span {
   opacity: 0.6;
 }
 
+span.writable-update h1, span.writable-update h2, span.writable-update h3, span.writable-update h4, span.writable-update h5, span.writable-update h6, span.writable-update p {
+  font-family: 'Montserrat', sans-serif;
+}
+
 img.mobile.logo {
   max-width: 200px;
   max-height: 45px;

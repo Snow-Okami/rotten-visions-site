@@ -2,49 +2,69 @@
 
   <div [ngClass]="{'mobile': mobileQuery.matches, 'body': true}">
 
-    <div class="row">
+    <div class="col w60">
 
-      <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
+      <div class="image-wrapper p-30">
+        <div class="row">
+  
+          <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
+    
+            <div class="">
+  
+              <div class="image-title  p-b-10">
+              
+                <div class="row">
+                  <div class="title"> {{post.title}} </div>
+                </div>
+                <div class="date p-b-10 p-t-10"> Posted on: {{post.createdAt | date}} </div>
+                <div class="tag p-b-10 p-t-10">
+                  <div class="col inline tag-item" *ngFor="let t of post.tags"> {{t}} </div>
+                </div>
+    
+              </div>
 
-        <div class="image-wrapper p-10">
-          
-          <img [ngClass]="{'mobile': mobileQuery.matches, 'post-image': true}"
-          [defaultImage]="image.defaultImage"
-          [lazyLoad]="'https://res.cloudinary.com/imagebag/image/upload/v1546901081/b6onmanpwhdjkgu8rbi5.jpg'"
-          [offset]="image.offset"
-          alt="missing image">
-
-          <div class="image-title">
+              <img [ngClass]="{'mobile': mobileQuery.matches, 'post-image': true}"
+              [defaultImage]="image.defaultImage"
+              [lazyLoad]="post.image"
+              [offset]="image.offset"
+              alt="missing image">
             
-            <div class="row">
-              <div class="title"> The Emall Kolkata </div>
             </div>
-            <div class="date p-b-10"> Posted on: 23rd Jan 2019 </div>
-            <div class="tag">
-              <div class="col inline tag-item"> Shopping </div>
-              <div class="col inline tag-item"> Gedget </div>
-              <div class="col inline tag-item"> Computer </div>
-            </div>
-
+    
           </div>
-        
+    
         </div>
+    
+        <!-- <div class="row">
+          
+          <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
+    
+            <div class="">
+    
+    
+            </div>
+    
+          </div>
+    
+        </div> -->
+      </div>
 
+      <div class="desc-wrapper p-30 m-t-30">
+        <div class="row">
+
+          <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
+            <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(post.description)" class="writable-update"></span>
+          </div>
+
+        </div>
       </div>
 
     </div>
 
-    <div class="row">
-      
-      <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
-
-        <div class="desc-wrapper p-10">
-
-
-        </div>
+    <div class="col w40">
+      <div class="newsletter-wrapper p-30 m-l-30">
 
       </div>
-
     </div>
 
   </div>

@@ -1,5 +1,7 @@
 import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 
 import { HttpService } from '../../services/http.service';
@@ -23,24 +25,34 @@ export class ViewUpdateComponent {
     defaultImage: '/assets/logo/small-logo.png'
   };
 
+  public post: any = {
+    image: ''
+  };
+
+  public description: string = 'We are saving this post into draft. <strong>Please ignore. We are saving this post into draft. Please ignore. We are saving this post into draft.</strong> Please ignore. We are saving this post into draft. Please ignore. We are saving this post into draft. Please ...'
+
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     private store: StoreService,
-    private http: HttpService
+    private http: HttpService,
+    public sanitizer: DomSanitizer,
+    private route: ActivatedRoute
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
     that = this;
-
-    // this.postList = Object.assign([], this.array);
   }
 
   private _mobileQueryListener: () => void;
 
-  ngOnInit() {
+  async ngOnInit() {
+    let param = {'id': this.route.snapshot.paramMap.get('id')};
+    let r = await this.http.post(param).toPromise();
+    this.post = r['data'];
+    this.post.tags = JSON.parse(this.post.tags);
   }
 
   ngAfterViewInit() {
