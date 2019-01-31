@@ -18,6 +18,11 @@ export class ViewUpdateComponent {
   public mobileQuery: MediaQueryList;
   public progressBar = true;
 
+  public image = {
+    offset: 100,
+    defaultImage: '/assets/logo/small-logo.png'
+  };
+
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,

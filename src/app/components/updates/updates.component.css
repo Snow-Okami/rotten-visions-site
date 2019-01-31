@@ -93,3 +93,7 @@ p.title {
 .chat-view-wrapper {
   cursor: pointer;
 }
+
+.chat-view-wrapper:focus {
+  outline: none;
+}
