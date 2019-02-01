@@ -50,12 +50,12 @@
 .post-image {
   max-width: 100%;
   max-height: 400px;
+  border-radius: 5px;
 }
 
 .image-wrapper {
   /* text-align: left; */
   width: fit-content;
-  background: #42424294;
   position: relative;
 }
 
@@ -121,9 +121,6 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-.newsletter-wrapper, .desc-wrapper {
-  background: #42424294;
-}
 
 span.writable-update {
   line-height: 25px;

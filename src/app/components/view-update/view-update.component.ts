@@ -29,8 +29,6 @@ export class ViewUpdateComponent {
     image: ''
   };
 
-  public description: string = 'We are saving this post into draft. <strong>Please ignore. We are saving this post into draft. Please ignore. We are saving this post into draft.</strong> Please ignore. We are saving this post into draft. Please ignore. We are saving this post into draft. Please ...'
-
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
