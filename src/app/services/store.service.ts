@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +9,18 @@ export class StoreService {
   private messageSource = new BehaviorSubject('');
   public currentMessage = this.messageSource.asObservable();
 
-  constructor() { }
+  constructor(
+    private snackBar: MatSnackBar
+  ) { }
 
-  setCookie(cname, cvalue, exdays) {
+  setCookie(cname: any, cvalue: any, exdays: any) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = 'expires=' + d.toUTCString();
     document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
   }
 
-  getCookie(cname) {
+  getCookie(cname: any) {
     var name = cname + '=';
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
@@ -35,5 +38,14 @@ export class StoreService {
 
   changeMessage(message: string) {
     this.messageSource.next(message);
+  }
+
+  openSnackBar(message: string, action?: string, duration?: number) {
+    this.snackBar.open(message, action ? action : '', {
+      duration: duration ? duration : 3000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      direction: 'ltr',
+    });
   }
 }

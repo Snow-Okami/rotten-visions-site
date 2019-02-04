@@ -4,8 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-import { TrimwordPipe } from '../../pipes/trimword.pipe';
+
 import { UpdatefilterPipe } from '../../pipes/updatefilter.pipe';
+
+import { SharedModule } from '../../modules/shared/shared.module';
 
 import { UpdatesComponent } from '../../components/updates/updates.component';
 
@@ -18,11 +20,10 @@ export const routes: Routes = [
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
     MaterialModule, LazyLoadImageModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes), SharedModule
   ],
   declarations: [
     UpdatesComponent,
-    TrimwordPipe,
     UpdatefilterPipe
   ]
 })

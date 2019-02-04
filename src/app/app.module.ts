@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 // import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
+import { MaterialModule } from './modules/material/material.module';
+
 import { RoutingModule } from './modules/routing/routing.module';
 import { AppComponent } from './app.component';
 
@@ -16,6 +18,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MaterialModule,
     RoutingModule,
     HttpClientModule,
     // SocketIoModule.forRoot(config)

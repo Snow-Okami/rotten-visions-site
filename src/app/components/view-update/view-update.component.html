@@ -2,9 +2,9 @@
 
   <div [ngClass]="{'mobile': mobileQuery.matches, 'body': true}">
 
-    <div class="col w60">
+    <div class="col w60 m-b-30" [ngClass]="{'mobile': mobileQuery.matches}">
 
-      <div class="image-wrapper p-30">
+      <div class="image-wrapper" [ngClass]="{'p-15': !mobileQuery.matches}">
         <div class="row">
   
           <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
@@ -49,7 +49,7 @@
         </div> -->
       </div>
 
-      <div class="desc-wrapper p-30">
+      <div class="desc-wrapper" [ngClass]="{'p-15': !mobileQuery.matches}">
         <div class="row">
 
           <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
@@ -61,9 +61,63 @@
 
     </div>
 
-    <div class="col w40">
-      <div class="newsletter-wrapper p-30 m-l-30">
+    <div class="col w40" [ngClass]="{'mobile': mobileQuery.matches}">
+      <div class="newsletter-wrapper" [ngClass]="{'p-15 m-l-30': !mobileQuery.matches}">
 
+        <mat-card>
+          <mat-card-title> Subscribe to the best creative feed. </mat-card-title>
+          
+          <mat-card-content>
+
+            <form class="newsletterform" [formGroup]="newsletterform" (submit)="submit($event, newsletterform);">
+              <div class="row">
+                <mat-form-field class="contact-input">
+                  <input matInput placeholder="Email address" formControlName="email" required>
+                  <mat-error *ngIf="newsletterform.controls.email.hasError('pattern')">
+                    Please enter a valid email
+                  </mat-error>
+                  <mat-error *ngIf="newsletterform.controls.email.hasError('required')">
+                    Name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="row">
+                <button mat-raised-button type="submit">
+                  <i class="material-icons send"> send </i>
+                </button>
+              </div>
+            </form>
+
+          </mat-card-content>
+
+        </mat-card>
+
+      </div>
+
+      <div class="more-update-wrapper" [ngClass]="{'m-l-30': !mobileQuery.matches}" *ngIf="!mobileQuery.matches">
+        <ul class="default">
+
+          <li *ngFor="let p of postList; index as i;" [routerLink]="['/updates/view/' + p.id]" class="link-sm">
+            <div class="row">
+              <div class="col w100">
+                <div class="wrapper">
+                  <div class="row">
+                    <p class="col title-sm"> {{p.title}} </p>
+                  </div>
+                  <div class="row">
+                    <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(p.description)" class="writable-update-sm"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <mat-divider></mat-divider>
+            </div>
+          </li>
+
+        </ul>
       </div>
     </div>
 

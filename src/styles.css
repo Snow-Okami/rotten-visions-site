@@ -41,3 +41,7 @@ img.mobile.logo {
 mat-form-field div, mat-form-field span {
   font-family: 'Roboto Mono', monospace;
 }
+
+.mat-divider {
+  border-top-color: #303030;
+}

@@ -42,6 +42,14 @@ export class RegxFormService extends Validators {
     }
   }
 
+  ngEmail(control: FormControl) {
+    if (control.value && control.value.length > 0) {
+      let regex = /^[A-Za-z0-9\.\-\_]{3,}@[A-Za-z0-9\-\_]{3,}\.[A-Za-z]{2,}$/;
+      return regex.test(control.value) ? null : { pattern: { requiredPattern: regex.toString(), actualValue: control.value, message: 'Please enter a valid email address.' } };
+    }
+    return null;
+  }
+
   message(control: FormControl) {
 
     // first check if the control has a value
