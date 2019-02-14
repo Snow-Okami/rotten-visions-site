@@ -60,6 +60,51 @@
       </div>
 
       <!-- Started working on comments section -->
+      <div class="comment-wrapper" [ngClass]="{'p-15': !mobileQuery.matches}">
+
+        <div class="row">
+
+          <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
+            
+            <div class="comment-title">Comments:</div>
+
+            <ul class="default">
+              <li class="comment-box p-b-10 p-t-10" *ngFor="let com of post.comments; index as i;">
+
+                <div class="comment-wrapper">
+                  <div class="user-title p-b-5 p-t-5"> {{com.createdBy}} </div>
+                  <div class="comment-time p-b-5 p-t-5"> {{com.createdAt | date: 'fullDate'}} </div>
+                  <div class="user-comment p-b-5 p-t-5"> {{com.text}} </div>
+                </div>
+
+                <ul class="default">
+                  <li class="reply-box p-b-10 p-t-10" *ngFor="let reply of com.replies; index as ri;">
+
+                    <div class="col inline p-t-10 p-r-10">
+                      <img src="../../../assets/icon/reply.png" alt="missing logo" class="reply-icon">
+                    </div>
+
+                    <div class="col">
+                      <div class="reply-wrapper">
+                        <div class="user-title p-b-5 p-t-5"> {{reply.createdBy}} </div>
+                        <div class="comment-time p-b-5 p-t-5"> {{reply.createdAt | date: 'fullDate'}} </div>
+                        <div class="user-comment p-b-5 p-t-5"> {{reply.text}} </div>
+                      </div>
+                    </div>
+
+                  </li>
+                </ul>
+                <div class="row">
+                  <mat-divider></mat-divider>
+                </div>
+              </li>
+            </ul>
+
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
 
