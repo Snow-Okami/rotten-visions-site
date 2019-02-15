@@ -81,8 +81,15 @@
                   <li class="p-b-10 p-t-10">
                     <form class="comment-form">
 
-                      <mat-form-field class="contact-input textarea">
-                        <textarea matInput [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="100" placeholder="Leave your comment" required></textarea>
+                      <mat-form-field class="contact-input" appearance="outline">
+                        <mat-label> Good name please </mat-label>
+                        <input matInput placeholder="eg.: John Doe" autocomplete="off" required>
+                      </mat-form-field>
+
+                      <mat-form-field class="contact-input textarea" appearance="outline">
+                        <mat-label> Leave your comment </mat-label>
+                        <textarea matInput #comment [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="100" maxlength="300" placeholder="eg.: The above post is ..." required></textarea>
+                        <mat-hint align="end">{{comment.value.length}} / 300</mat-hint>
                         <i matSuffix class="icon-image-preview icon-white round-send pointer"></i>                        
                       </mat-form-field>
                       
