@@ -34,6 +34,8 @@ export class ViewUpdateComponent {
   public postList: any = [];
 
   public newsletterform: FormGroup;
+  public commentF: FormGroup;
+  public replyF: FormGroup;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -42,7 +44,7 @@ export class ViewUpdateComponent {
     private http: HttpService,
     public sanitizer: DomSanitizer,
     private route: ActivatedRoute,
-    private form: FormBuilder,
+    public form: FormBuilder,
     private Rxjs: RegxFormService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -55,6 +57,24 @@ export class ViewUpdateComponent {
         Validators.required, Rxjs.ngEmail
       ]))
 
+    });
+
+    this.commentF = this.form.group({
+      createdBy: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      text: new FormControl('', Validators.compose([
+        Validators.required
+      ]))
+    });
+
+    this.replyF = this.form.group({
+      createdBy: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      text: new FormControl('', Validators.compose([
+        Validators.required
+      ]))
     });
 
     that = this;
@@ -88,6 +108,26 @@ export class ViewUpdateComponent {
     if(f.invalid) { return false; }
 
     this.store.openSnackBar('Thanks! for subscribing.');
+  }
+
+  async commentNow(e: Event, f: FormGroup) {
+    if(!e.isTrusted || f.invalid) { return; }
+
+    let c = _.pick(this.post, ['_id', 'id']);
+    let form = Object.assign(f.value, {'createdFor': c._id, 'postId': c.id});
+    let r = await this.http.comment(form).toPromise();
+
+    console.log(r);
+  }
+
+  async replyNow(e: Event, f: FormGroup, com: any) {
+    if(!e.isTrusted || f.invalid) { return; }
+
+    let c = _.pick(com, ['_id', 'id']);
+    let form = Object.assign(f.value, {'createdFor': c._id, 'commentId': c.id});
+    let r = await this.http.reply(form).toPromise();
+
+    console.log(r);
   }
 
 }

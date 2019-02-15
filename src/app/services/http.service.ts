@@ -24,11 +24,17 @@ export class HttpService {
     private store: StoreService
   ) { }
 
-  private option = {
-    headers: new HttpHeaders({
-      'enctype': 'multipart/form-data'
-    })
-  };
+  /**
+   * @description Returns HTTP Header Options.
+   */
+  option(type: any) {
+    return {
+      headers: new HttpHeaders(Object.assign({}, type, {
+        'Authorization': this.store.getCookie('ps-t-a-p'),
+        'Email': atob(this.store.getCookie('ps-u-a-p'))
+      }))
+    };
+  }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -40,7 +46,7 @@ export class HttpService {
   /**
    * @description GET posts with Limitation.
    */
-  posts(option): Observable<HttpResponse<any>> {
+  posts(option: any): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/post?skip=' + option.skip;
 
     return this.http.get<any>(url).pipe(
@@ -55,6 +61,24 @@ export class HttpService {
     return this.http.get<any>(url).pipe(
       tap(message => message),
       catchError(this.handleError('post', {}))
+    );
+  }
+
+  comment(data: any): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/postcomment';
+
+    return this.http.post<any>(url, data).pipe(
+      tap(message => message),
+      catchError(this.handleError('comment', {}))
+    );
+  }
+
+  reply(data: any): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/commentreply';
+
+    return this.http.post<any>(url, data).pipe(
+      tap(message => message),
+      catchError(this.handleError('reply', {}))
     );
   }
 

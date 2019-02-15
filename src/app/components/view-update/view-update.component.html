@@ -68,6 +68,35 @@
             
             <div class="comment-title">Comments:</div>
 
+            <div class=" p-b-10 p-t-10">
+              <form class="comment-form" [formGroup]="commentF" (ngSubmit)="commentNow($event, commentF)">
+                        
+                <mat-form-field class="contact-input" appearance="outline">
+                  <mat-label> Good name please </mat-label>
+                  <input matInput placeholder="eg.: John Doe" autocomplete="off" formControlName="createdBy">
+                  <mat-error *ngIf="commentF.controls.createdBy.hasError('required')">
+                    Name is required
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="contact-input textarea" appearance="outline">
+                  <mat-label> Leave your comment </mat-label>
+                  <textarea matInput #comment [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="100" maxlength="800" placeholder="eg.: The above post is ..." formControlName="text"></textarea>
+                  <mat-error *ngIf="commentF.controls.text.hasError('required')">
+                    Comment is required
+                  </mat-error>
+                  <mat-error *ngIf="commentF.controls.text.hasError('minlength')">
+                    Comment must have 100 characters
+                  </mat-error>
+                  <mat-hint align="end">{{comment.value.length}} / 800</mat-hint>
+                </mat-form-field>
+  
+                <div class="row">
+                  <button mat-raised-button type="submit" color="primary"> <i class="icon-image-preview icon-white round-send pointer"></i> </button>
+                </div>
+              </form>
+            </div>
+
             <ul class="default">
               <li class="comment-box p-b-10 p-t-10" *ngFor="let com of post.comments; index as i;">
 
@@ -79,21 +108,34 @@
 
                 <ul class="default">
                   <li class="p-b-10 p-t-10">
-                    <form class="comment-form">
 
+                    <form class="comment-form" [formGroup]="replyF" (ngSubmit)="replyNow($event, replyF, com);">
+                        
                       <mat-form-field class="contact-input" appearance="outline">
                         <mat-label> Good name please </mat-label>
-                        <input matInput placeholder="eg.: John Doe" autocomplete="off" required>
+                        <input matInput placeholder="eg.: John Doe" autocomplete="off" formControlName="createdBy">
+                        <mat-error *ngIf="replyF.controls.createdBy.hasError('required')">
+                          Name is required
+                        </mat-error>
                       </mat-form-field>
 
                       <mat-form-field class="contact-input textarea" appearance="outline">
-                        <mat-label> Leave your comment </mat-label>
-                        <textarea matInput #comment [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="100" maxlength="300" placeholder="eg.: The above post is ..." required></textarea>
-                        <mat-hint align="end">{{comment.value.length}} / 300</mat-hint>
-                        <i matSuffix class="icon-image-preview icon-white round-send pointer"></i>                        
+                        <mat-label> Leave your reply </mat-label>
+                        <textarea matInput #reply [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="20" maxlength="800" placeholder="eg.: The above comment is ..." formControlName="text"></textarea>
+                        <mat-error *ngIf="replyF.controls.text.hasError('required')">
+                          Reply is required
+                        </mat-error>
+                        <mat-error *ngIf="replyF.controls.text.hasError('minlength')">
+                          Reply must have 20 characters
+                        </mat-error>
+                        <mat-hint align="end">{{reply.value.length}} / 800</mat-hint>
                       </mat-form-field>
-                      
+        
+                      <div class="row">
+                        <button mat-raised-button type="submit" color="primary"> <i class="icon-image-preview icon-white round-send pointer"></i> </button>
+                      </div>
                     </form>
+
                   </li>
 
                   <li class="reply-box p-b-10 p-t-10" *ngFor="let reply of com.replies; index as ri;">
@@ -148,8 +190,8 @@
               </div>
 
               <div class="row">
-                <button mat-raised-button type="submit">
-                  <i class="material-icons send"> send </i>
+                <button mat-raised-button type="submit" color="primary">
+                  <i class="icon-image-preview icon-white round-send pointer"></i>
                 </button>
               </div>
             </form>
