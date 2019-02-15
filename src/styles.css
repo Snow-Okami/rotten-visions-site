@@ -45,3 +45,20 @@ mat-form-field div, mat-form-field span {
 .mat-divider {
   border-top-color: #303030;
 }
+
+.icon-image-preview {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  fill: currentColor;
+  background-size: contain;
+}
+
+.icon-white {
+  filter: contrast(4) invert(1);
+}
+
+.pointer {
+  cursor: pointer;
+}
