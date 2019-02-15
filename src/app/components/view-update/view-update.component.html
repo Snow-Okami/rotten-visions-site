@@ -78,6 +78,18 @@
                 </div>
 
                 <ul class="default">
+                  <li class="p-b-10 p-t-10">
+                    <form class="comment-form">
+
+                      <mat-form-field class="contact-input textarea">
+                        <span matPrefix>+1 &nbsp;</span>
+                        <textarea matInput [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="100" placeholder="Leave your comment" required></textarea>
+                        <mat-icon matSuffix>mode_edit</mat-icon>
+                      </mat-form-field>
+                      
+                    </form>
+                  </li>
+
                   <li class="reply-box p-b-10 p-t-10" *ngFor="let reply of com.replies; index as ri;">
 
                     <div class="col inline p-t-10 p-r-10">
