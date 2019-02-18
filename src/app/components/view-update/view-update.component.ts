@@ -115,22 +115,28 @@ export class ViewUpdateComponent {
   async commentNow(e: Event, f: FormGroup) {
     if(!e.isTrusted || f.invalid) { return; }
 
+    document.getElementsByClassName('route-progress-bar')[0].classList.remove('hidden');
+
     let c = _.pick(this.post, ['_id', 'id']);
     let form = Object.assign(f.value, {'createdFor': c._id, 'postId': c.id});
     let r = await this.http.comment(form).toPromise();
+    // if(r['message']['type'] !== 'error') { com.replies.push(r['data']); }
 
-    console.log(r);
+    document.getElementsByClassName('route-progress-bar')[0].classList.add('hidden');
   }
 
   async replyNow(e: Event, f: FormGroup, com: any) {
     if(!e.isTrusted || f.invalid) { return; }
 
+    document.getElementsByClassName('route-progress-bar')[0].classList.remove('hidden');
+
     let c = _.pick(com, ['_id', 'id']);
     let form = Object.assign(f.value, {'createdFor': c._id, 'commentId': c.id});
+    e.target['parentElement'].classList.add('hidden');
     let r = await this.http.reply(form).toPromise();
     if(r['message']['type'] !== 'error') { com.replies.push(r['data']); }
 
-    console.log(r);
+    document.getElementsByClassName('route-progress-bar')[0].classList.add('hidden');
   }
 
   alterForm(e: Event, ex: boolean) {

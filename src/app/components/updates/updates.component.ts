@@ -72,7 +72,7 @@ export class UpdatesComponent {
   /**
    * @description Function called when scrolled to bottom.
    */
-  onScrollDown(e) {
+  onScrollDown(e: any) {
     /**
      * @description wh is window height
      * eb is element's bottom
