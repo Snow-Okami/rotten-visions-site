@@ -97,6 +97,8 @@ export class ViewUpdateComponent {
 
     r = await this.http.posts(option).toPromise();
     if(r['message']['type'] !== 'error') { this.postList = r['data']; }
+
+    console.log(this.post.comments);
   }
 
   ngAfterViewInit() {
@@ -126,8 +128,16 @@ export class ViewUpdateComponent {
     let c = _.pick(com, ['_id', 'id']);
     let form = Object.assign(f.value, {'createdFor': c._id, 'commentId': c.id});
     let r = await this.http.reply(form).toPromise();
+    if(r['message']['type'] !== 'error') { com.replies.push(r['data']); }
 
     console.log(r);
+  }
+
+  alterForm(e: Event, ex: boolean) {
+    let el = ex ? e.target['parentElement']['parentElement']['parentElement']['nextSibling'] : e.target['parentElement']['nextSibling'];
+    let t = el.classList.value.includes('hidden')
+    ? el.classList.remove('hidden')
+    : el.classList.add('hidden');
   }
 
 }

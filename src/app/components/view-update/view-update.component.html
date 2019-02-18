@@ -100,14 +100,20 @@
             <ul class="default">
               <li class="comment-box p-b-10 p-t-10" *ngFor="let com of post.comments; index as i;">
 
-                <div class="comment-wrapper">
+                <div class="comment-container">
                   <div class="user-title p-b-5 p-t-5"> {{com.createdBy}} </div>
                   <div class="comment-time p-b-5 p-t-5"> {{com.createdAt | date: 'fullDate'}} </div>
                   <div class="user-comment p-b-5 p-t-5"> {{com.text}} </div>
                 </div>
 
-                <ul class="default">
+                <ul class="default reply-container">
+
                   <li class="p-b-10 p-t-10">
+                    <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8" (click)="alterForm($event, false);"> Reply </div>
+                    <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8"> Share </div>
+                  </li>
+
+                  <li class="reply-form hidden p-b-10 p-t-10">
 
                     <form class="comment-form" [formGroup]="replyF" (ngSubmit)="replyNow($event, replyF, com);">
                         
@@ -138,22 +144,60 @@
 
                   </li>
 
-                  <li class="reply-box p-b-10 p-t-10" *ngFor="let reply of com.replies; index as ri;">
+                  <li class="reply-box p-b-10 p-t-10" *ngFor="let rep of com.replies; index as ri;">
 
-                    <div class="col inline p-t-10 p-r-10">
+                    <div class="col w20 inline p-t-10 m-w-46">
                       <img src="../../../assets/icon/reply.png" alt="missing logo" class="reply-icon">
                     </div>
 
-                    <div class="col inline">
+                    <div class="col w80 inline">
                       <div class="reply-wrapper">
-                        <div class="user-title p-b-5 p-t-5"> {{reply.createdBy}} </div>
-                        <div class="comment-time p-b-5 p-t-5"> {{reply.createdAt | date: 'fullDate'}} </div>
-                        <div class="user-comment p-b-5 p-t-5"> {{reply.text}} </div>
+                        <div class="user-title p-b-5 p-t-5"> {{rep.createdBy}} </div>
+                        <div class="comment-time p-b-5 p-t-5"> {{rep.createdAt | date: 'fullDate'}} </div>
+                        <div class="user-comment p-b-5 p-t-5"> {{rep.text}} </div>
+                        <div class="p-b-10 p-t-10">
+                          <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8" (click)="alterForm($event, true);"> Reply </div>
+                          <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8"> Share </div>
+                        </div>
                       </div>
+                    </div>
+
+                    <div class="col w100 hidden">
+                        <div class="reply-form p-b-10 p-t-10">
+
+                          <form class="comment-form" [formGroup]="replyF" (ngSubmit)="replyNow($event, replyF, com);">
+                              
+                            <mat-form-field class="contact-input" appearance="outline">
+                              <mat-label> Good name please </mat-label>
+                              <input matInput placeholder="eg.: John Doe" autocomplete="off" formControlName="createdBy">
+                              <mat-error *ngIf="replyF.controls.createdBy.hasError('required')">
+                                Name is required
+                              </mat-error>
+                            </mat-form-field>
+      
+                            <mat-form-field class="contact-input textarea" appearance="outline">
+                              <mat-label> Leave your reply </mat-label>
+                              <textarea matInput #reply [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="20" maxlength="800" placeholder="eg.: The above comment is ..." formControlName="text"></textarea>
+                              <mat-error *ngIf="replyF.controls.text.hasError('required')">
+                                Reply is required
+                              </mat-error>
+                              <mat-error *ngIf="replyF.controls.text.hasError('minlength')">
+                                Reply must have 20 characters
+                              </mat-error>
+                              <mat-hint align="end">{{reply.value.length}} / 800</mat-hint>
+                            </mat-form-field>
+              
+                            <div class="row">
+                              <button mat-raised-button type="submit" color="primary"> <i class="icon-image-preview icon-white round-send pointer"></i> </button>
+                            </div>
+                          </form>
+      
+                        </div>
                     </div>
 
                   </li>
                 </ul>
+
                 <div class="row">
                   <mat-divider></mat-divider>
                 </div>
