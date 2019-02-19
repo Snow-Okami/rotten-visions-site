@@ -18,6 +18,8 @@ let that: any;
 })
 export class ViewUpdateComponent {
   public title = 'Rotten Visions | Update Details';
+  
+  @ViewChild('comment') commentFNative: any;
 
   public mobileQuery: MediaQueryList;
   public progressBar = true;
@@ -120,7 +122,10 @@ export class ViewUpdateComponent {
     let c = _.pick(this.post, ['_id', 'id']);
     let form = Object.assign(f.value, {'createdFor': c._id, 'postId': c.id});
     let r = await this.http.comment(form).toPromise();
-    // if(r['message']['type'] !== 'error') { com.replies.push(r['data']); }
+
+    this.commentFNative.nativeElement.reset();
+
+    if(r['message']['type'] !== 'error') { this.store.openSnackBar('Thanks! for commenting.'); this.post.comments.splice(0, 0, r['data']); }
 
     document.getElementsByClassName('route-progress-bar')[0].classList.add('hidden');
   }
@@ -134,7 +139,7 @@ export class ViewUpdateComponent {
     let form = Object.assign(f.value, {'createdFor': c._id, 'commentId': c.id});
     e.target['parentElement'].classList.add('hidden');
     let r = await this.http.reply(form).toPromise();
-    if(r['message']['type'] !== 'error') { com.replies.push(r['data']); }
+    if(r['message']['type'] !== 'error') { this.store.openSnackBar('Thanks! for your reply.'); com.replies.push(r['data']); }
 
     document.getElementsByClassName('route-progress-bar')[0].classList.add('hidden');
   }

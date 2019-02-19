@@ -69,7 +69,7 @@
             <div class="comment-title">Comments:</div>
 
             <div class=" p-b-10 p-t-10">
-              <form class="comment-form" [formGroup]="commentF" (ngSubmit)="commentNow($event, commentF)">
+              <form #comment class="comment-form" [formGroup]="commentF" (ngSubmit)="commentNow($event, commentF)">
                         
                 <mat-form-field class="contact-input" appearance="outline">
                   <mat-label> Good name please </mat-label>
