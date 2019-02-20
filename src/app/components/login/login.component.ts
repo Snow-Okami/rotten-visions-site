@@ -29,7 +29,7 @@ export class LoginComponent {
   public email = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.email ]);
   public password = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.password ]);
   public confirmPassword = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.password ]);
-
+  public capability = new FormControl({ value: 1, disabled: false });
   /**
    * @description Login Form Group Is Defined Here.
    */
@@ -140,7 +140,8 @@ export class LoginComponent {
       lastName: this.lastName,
       email: this.email,
       password: this.password,
-      confirmPassword: this.confirmPassword
+      confirmPassword: this.confirmPassword,
+      capability: this.capability
     }); // , [ Validators.required, this.regx.registerForm ]
 
     if(!this.registerForm.valid) { return false; }
