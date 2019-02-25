@@ -4,10 +4,12 @@ import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as _ from 'lodash';
 
-import { HttpService } from '../../services/http.service';
-import { text } from '@angular/core/src/render3';
+import { User } from '../../classes/user';
 
-let that;
+import { HttpService } from '../../services/http.service';
+import { StoreService } from '../../services/store.service';
+
+let that: any;
 
 @Component({
   selector: 'app-updates',
@@ -48,18 +50,23 @@ export class UpdatesComponent implements OnInit {
    */
   private lastScrollTop = 0;
   public loadingBar = true;
-  private mc;
+  private mc: any;
 
   @ViewChild('loadScroll') loadScroll: any;
   @ViewChild('fixedBottom') fixedBottom: any;
 
   private content: any;
 
+  private user: User;
+
+  public createButton: boolean = false;
+
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
     private router: Router,
     private http: HttpService,
+    private store: StoreService,
     public sanitizer: DomSanitizer
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 840px)');
@@ -78,6 +85,21 @@ export class UpdatesComponent implements OnInit {
      * @description Load Available Updates (Max 10)
      */
     this.loadMore();
+  }
+
+  async ngAfterContentInit() {
+    this.user = this.store.user.data;
+    let r: any;
+
+    if(!this.store.user.synced) {
+      let email = atob(this.store.getCookie('ps-u-a-p'));
+      r = await this.http.user(email).toPromise();
+      if(r['message']['type'] !== 'error') { this.user = r['data']; }
+    }
+
+    if(this.user.capability === 2) {
+      this.createButton = true;
+    }
   }
 
   ngAfterViewInit() {
@@ -104,6 +126,7 @@ export class UpdatesComponent implements OnInit {
   }
 
   viewThisUpdate(id: string) {
+    if(this.user.capability !== 2) { return; }
     /**
      * @description Show Progress Bar When Page is Loading.
      */

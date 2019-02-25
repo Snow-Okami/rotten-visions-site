@@ -2,7 +2,7 @@ import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { Observable } from 'rxjs';
+import * as _ from 'lodash';
 import 'hammerjs';
 
 import { User } from '../../classes/user';
@@ -23,7 +23,8 @@ export class DashboardComponent {
   public navList = [
     { nav: 'Profile', url: '/dashboard/profile' },
     { nav: 'Games', url: '/dashboard/games' },
-    { nav: 'Messages', url: '/dashboard/messages' }
+    { nav: 'Messages', url: '/dashboard/messages' },
+    { nav: 'Updates', url: '/dashboard/updates' }
   ];
   private _mobileQueryListener: () => void;
 
@@ -36,10 +37,10 @@ export class DashboardComponent {
 
   private content: any;
 
-  private mc;
+  private mc: any;
   private panArea = [];
   public finalArea = [];
-  private progressBar;
+  private progressBar: any;
   public hideFooter: boolean = false;
   public hideMatToolbar: string = '';
 
@@ -87,7 +88,11 @@ export class DashboardComponent {
     }
 
     if(this.user.capability === 2) {
-      this.navList.push({ nav: 'Updates', url: '/dashboard/updates' });
+      /**
+       * @description Add updates in the navList.
+       */
+      let n = _.find(this.navList, ['nav', 'Users']);
+      if(n === undefined) { this.navList.splice(2, 0, { nav: 'Users', url: '/dashboard/users' }); }
     }
   }
 

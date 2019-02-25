@@ -22,7 +22,9 @@ export class StoreService {
     synced: false
   };
   public socketInitialized: boolean = false;
-
+  /**
+   * @description Save User in Store.
+   */
   public user = {
     data: {},
     synced: false

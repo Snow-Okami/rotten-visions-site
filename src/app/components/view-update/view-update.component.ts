@@ -7,10 +7,13 @@ import { MatSnackBar, MatChipInputEvent } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 
+import { User } from '../../classes/user';
+
 import { HttpService } from '../../services/http.service';
+import { StoreService } from '../../services/store.service';
 import { ValidatorsService } from '../../services/validators.service';
 
-let that;
+let that: any;
 
 export interface Tag {
   name: string;
@@ -64,12 +67,17 @@ export class ViewUpdateComponent {
   @ViewChild('dropImage') image: any;
   @ViewChild('dropFile') file: any;
 
+  private user: User;
+
+  public hiddenContent: boolean = true;
+
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
     public page: Location,
     private router: Router,
     private route: ActivatedRoute,
+    private store: StoreService,
     private http: HttpService,
     private regx: ValidatorsService,
     public snackBar: MatSnackBar,
@@ -86,8 +94,24 @@ export class ViewUpdateComponent {
   async ngOnInit() {
     this.progressBar = document.getElementsByClassName('progressbar')[0];
 
+    this.user = this.store.user.data;
+    let r: any;
+
+    if(!this.store.user.synced) {
+      let email = atob(this.store.getCookie('ps-u-a-p'));
+      r = await this.http.user(email).toPromise();
+      if(r['message']['type'] !== 'error') { this.user = r['data']; }
+    }
+
+    if(this.user.capability !== 2) {
+      this.router.navigate(['/dashboard/updates']);
+      return;
+    }
+
+    this.hiddenContent = false;
+
     this.postId = this.route.snapshot.paramMap.get('id');
-    let r = await this.http.postDetails(this.postId).toPromise();
+    r = await this.http.postDetails(this.postId).toPromise();
 
     if(r['message']['type'] !== 'error') {
       let f: Post = {tags: '[]'}; Object.assign(f, r['data']);
