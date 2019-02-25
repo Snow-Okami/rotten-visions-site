@@ -2,7 +2,10 @@ import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { Observable } from 'rxjs';
 import 'hammerjs';
+
+import { User } from '../../classes/user';
 
 import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
@@ -40,6 +43,8 @@ export class DashboardComponent {
   public hideFooter: boolean = false;
   public hideMatToolbar: string = '';
 
+  private user: User;
+
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
@@ -59,9 +64,31 @@ export class DashboardComponent {
    * 
    * @param c is the child route component. All available variables and funtions will be returned.
    */
-  routeChange(c) {
+  routeChange(c: any) {
     document.title = c.title ? c.title : this.title;
     this.hideFooter = c.hideFooter ? true : false;
+    
+    // Show hide nav routes from different users.
+    this.validateUrls();
+  }
+
+  async validateUrls() {
+    this.user = this.store.user.data;
+    let r: any;
+
+    if(!this.store.user.synced) {
+      let email = atob(this.store.getCookie('ps-u-a-p'));
+      r = await this.http.user(email).toPromise();
+
+      if(r['message']['type'] !== 'error') {
+        this.store.user.data = this.user = r['data'];
+        this.store.user.synced = true;
+      }
+    }
+
+    if(this.user.capability === 2) {
+      this.navList.push({ nav: 'Updates', url: '/dashboard/updates' });
+    }
   }
 
   ngOnInit() {
@@ -73,16 +100,7 @@ export class DashboardComponent {
   }
 
   async ngAfterContentInit() {
-    let email = atob(this.store.getCookie('ps-u-a-p'));
-    let r = await this.http.user(email).toPromise();
-
-    if(r['message']['type'] !== 'error') {
-      if(r['data']['capability'] === 2) {
-        this.navList.push({ nav: 'Updates', url: '/dashboard/updates' });
-      }
-    } else {
-      this.openSnackBar(r['message']['text'], '');
-    }
+    
   }
 
   ngAfterViewInit() {
@@ -164,6 +182,7 @@ export class DashboardComponent {
        */
       this.store.setCookie('ps-t-a-p', '', 0);
       this.store.setCookie('ps-u-a-p', '', 0);
+      this.store.user.synced = false;
 
       if(resp['message']['type'] !== 'error') { this.openSnackBar('You have successfully logged out!', ''); }
       else { this.openSnackBar(resp['message']['text'], ''); }

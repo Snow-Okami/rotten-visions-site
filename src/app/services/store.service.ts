@@ -23,6 +23,11 @@ export class StoreService {
   };
   public socketInitialized: boolean = false;
 
+  public user = {
+    data: {},
+    synced: false
+  };
+
   constructor() { }
 
   /**
