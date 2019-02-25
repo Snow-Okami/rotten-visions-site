@@ -132,7 +132,7 @@ export class DashboardComponent {
    * @description Event fires when Pan detected on mobile from Left to Right.
    * @param ev is the event captured by hammer js
    */
-  onPanRight(ev) {
+  onPanRight(ev: any) {
     that.panArea.push({ x: ev.center.x, y: ev.center.y });
     if(ev.isFinal) {
       that.finalArea = Object.assign([], that.panArea);
@@ -151,7 +151,7 @@ export class DashboardComponent {
    * @description Event fires when Pan detected on mobile from Right to Left.
    * @param ev 
    */
-  onPanLeft(ev) {
+  onPanLeft(ev: any) {
     if(ev.isFinal) {
       that.sidenav.close();
     }
@@ -193,7 +193,7 @@ export class DashboardComponent {
     })
   }
 
-  showRouteProgress(e) {
+  showRouteProgress(e: any) {
     let classList = e.target.parentNode.classList.value.split(' ');
     if(!classList.includes('active')) {
       this.progressBar.classList.remove('hidden');
