@@ -12,8 +12,6 @@ export class User {
   jwtValidatedAt?: string;
   lastName?: string;
   online?: boolean;
-  password?: string;
   updatedAt?: string;
-  __v?: number;
   _id?: string;
 }
