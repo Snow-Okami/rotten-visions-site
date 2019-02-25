@@ -121,8 +121,8 @@ export class ViewUpdateComponent {
       this.postDescription.setValue(f.description);
       this.postPublish.setValue(f.publish);
       if(f.image !== '') { this.image.nativeElement['src'] = f.image; this.hideImage = false; this.image.nativeElement.addEventListener('load', () => { that.progressBar.classList.add('hidden'); }); }
-      else { that.progressBar.classList.add('hidden'); }
     }
+    that.progressBar.classList.add('hidden');
   }
 
   ngAfterViewInit() {
