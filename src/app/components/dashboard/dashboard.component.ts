@@ -20,8 +20,7 @@ export class DashboardComponent {
   public navList = [
     { nav: 'Profile', url: '/dashboard/profile' },
     { nav: 'Games', url: '/dashboard/games' },
-    { nav: 'Messages', url: '/dashboard/messages' },
-    { nav: 'Updates', url: '/dashboard/updates' }
+    { nav: 'Messages', url: '/dashboard/messages' }
   ];
   private _mobileQueryListener: () => void;
 
@@ -71,6 +70,19 @@ export class DashboardComponent {
      * @description subscribe to store variables.
      */
     this.store.hideMatToolbar.subscribe(text => this.hideMatToolbar = text);
+  }
+
+  async ngAfterContentInit() {
+    let email = atob(this.store.getCookie('ps-u-a-p'));
+    let r = await this.http.user(email).toPromise();
+
+    if(r['message']['type'] !== 'error') {
+      if(r['data']['capability'] === 2) {
+        this.navList.push({ nav: 'Updates', url: '/dashboard/updates' });
+      }
+    } else {
+      this.openSnackBar(r['message']['text'], '');
+    }
   }
 
   ngAfterViewInit() {

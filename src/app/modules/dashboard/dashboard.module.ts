@@ -17,7 +17,7 @@ export const routes: Routes = [
     path: '',
     component: DashboardComponent,
     children: [
-      { path: '', redirectTo: '/dashboard/updates', pathMatch: 'full' },
+      { path: '', redirectTo: '/dashboard/games', pathMatch: 'full' },
       { path: 'profile', loadChildren: '../profile/profile.module#ProfileModule' },
       { path: 'games', loadChildren: '../games/games.module#GamesModule' },
       { path: 'updates', loadChildren: '../updates/updates.module#UpdatesModule' },

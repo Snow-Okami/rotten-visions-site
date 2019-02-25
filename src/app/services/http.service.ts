@@ -47,7 +47,7 @@ export class HttpService {
    * @description Login POST HTTP Request.
    */
   login(data: any): Observable<HttpResponse<any>> {
-    let url = this.apiurl + '/admin/login';
+    let url = this.apiurl + '/user/login';
 
     return this.http.post<any>(url, data).pipe(
       tap(message => message),
@@ -59,7 +59,7 @@ export class HttpService {
    * @description Logout POST HTTP Request.
    */
   logout(data: any): Observable<HttpResponse<any>> {
-    let url = this.apiurl + '/admin/logout';
+    let url = this.apiurl + '/user/logout';
 
     return this.http.post<any>(url, data).pipe(
       tap(message => message),
@@ -71,11 +71,23 @@ export class HttpService {
    * @description Register POST HTTP Request.
    */
   register(data: any): Observable<HttpResponse<any>> {
-    let url = this.apiurl + '/admin';
+    let url = this.apiurl + '/user';
 
     return this.http.post<any>(url, data).pipe(
       tap(message => message),
       catchError(this.handleError('register', {}))
+    );
+  }
+
+  /**
+   * @description gets user details by email.
+   */
+  user(email: string): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/user/' + email;
+
+    return this.http.get<any>(url, this.option({ 'Content-Type':  'application/json' })).pipe(
+      tap(message => message),
+      catchError(this.handleError('user', {}))
     );
   }
 
