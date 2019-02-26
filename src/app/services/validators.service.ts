@@ -30,7 +30,7 @@ export class ValidatorsService extends Validators  {
   password(control: FormControl) {
     if (control.value && control.value.length > 0) {
       let spaceex = /\s/gm;
-      return (spaceex.test(control.value) || control.value.length < 5) ? { invalid_characters: true } : null;
+      return (spaceex.test(control.value) || control.value.length < 6) ? { invalid: true } : null;
     }
     return null;
   }

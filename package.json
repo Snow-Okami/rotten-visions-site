@@ -3,11 +3,12 @@
   "version": "3.0.5",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4004",
+    "start": "ng serve",
     "build": "ng build --aot --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "startdev": "ng serve --port 4004"
   },
   "private": true,
   "dependencies": {

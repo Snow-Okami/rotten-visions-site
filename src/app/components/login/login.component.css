@@ -96,3 +96,9 @@
 .mat-icon {
   cursor: pointer;
 }
+
+.select-background {
+  background: rgb(40, 40, 40);
+  /* background: rgb(55, 55, 55); */
+  /* background: rgb(29, 29, 29); */
+}

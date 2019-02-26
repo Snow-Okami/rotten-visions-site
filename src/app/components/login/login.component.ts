@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
@@ -11,13 +11,17 @@ import { ValidatorsService } from '../../services/validators.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  // Encapsulation has to be disabled in order for the
+  // component style to apply to the select panel.
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent {
   /**
    * @description Angular 6 Models Are Defined Below.
    */
   public hidePass: boolean = true;
+  public hideConPass: boolean = true;
   public disableClick: boolean = false;
   private progressBar;
 
@@ -29,7 +33,7 @@ export class LoginComponent {
   public email = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.email ]);
   public password = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.password ]);
   public confirmPassword = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.password ]);
-  public capability = new FormControl({ value: 1, disabled: false });
+  public capability = new FormControl({ value: '', disabled: false }, [ Validators.required ]);
   /**
    * @description Login Form Group Is Defined Here.
    */
@@ -178,7 +182,6 @@ export class LoginComponent {
         this.http.login(_.pick(registerForm, ['email', 'password']))
         .subscribe(loginResp => {
           if(loginResp['message']['type'] !== 'error') {
-
             /**
              * @description Store tokens and redirect to dashboard.
              */
@@ -189,7 +192,6 @@ export class LoginComponent {
             this.openSnackBar('You have successfully logged in!', '');
           }
           else {
-
             /**
              * @description Disable buttons & enable loader.
              */
@@ -202,7 +204,6 @@ export class LoginComponent {
 
       }
       else {
-
         /**
          * @description Disable buttons & enable loader.
          */

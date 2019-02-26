@@ -91,8 +91,8 @@ export class DashboardComponent {
       /**
        * @description Add updates in the navList.
        */
-      let n = _.find(this.navList, ['nav', 'Users']);
-      if(n === undefined) { this.navList.splice(2, 0, { nav: 'Users', url: '/dashboard/users' }); }
+      let n = _.find(this.navList, ['nav', 'Track Users']);
+      if(n === undefined) { this.navList.splice(2, 0, { nav: 'Track Users', url: '/dashboard/users' }); }
     }
   }
 
