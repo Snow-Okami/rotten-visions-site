@@ -2,12 +2,20 @@ import { Injectable } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 
+import { HttpService } from './http.service';
+
+let that: any;
+
 @Injectable({
   providedIn: 'root'
 })
 export class RegxFormService extends Validators {
-  constructor() {
+  constructor(
+    private http: HttpService
+  ) {
     super();
+
+    that = this;
   }
 
   name(control: FormControl) {

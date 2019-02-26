@@ -63,7 +63,7 @@ export class ViewUpdateComponent {
 
     this.commentF = this.form.group({
       createdBy: new FormControl('', Validators.compose([
-        Validators.required
+        Validators.required, Rxjs.ngEmail
       ])),
       text: new FormControl('', Validators.compose([
         Validators.required
@@ -99,8 +99,6 @@ export class ViewUpdateComponent {
 
     r = await this.http.posts(option).toPromise();
     if(r['message']['type'] !== 'error') { this.postList = r['data']; }
-
-    console.log(this.post.comments);
   }
 
   ngAfterViewInit() {
@@ -149,6 +147,13 @@ export class ViewUpdateComponent {
     let t = el.classList.value.includes('hidden')
     ? el.classList.remove('hidden')
     : el.classList.add('hidden');
+  }
+
+  async hasEmail(e: Event) {
+    if(this.commentF.controls.createdBy.errors) { return; }
+
+    let r = await this.http.userName(this.commentF.value.createdBy).toPromise();
+    console.log(r);
   }
 
 }

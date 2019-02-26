@@ -72,10 +72,13 @@
               <form #comment class="comment-form" [formGroup]="commentF" (ngSubmit)="commentNow($event, commentF)">
                         
                 <mat-form-field class="contact-input" appearance="outline">
-                  <mat-label> Good name please </mat-label>
-                  <input matInput placeholder="eg.: John Doe" autocomplete="off" formControlName="createdBy">
+                  <mat-label> Your email please </mat-label>
+                  <input matInput type="email" placeholder="eg.: example@example.com" autocomplete="off" formControlName="createdBy" (blur)="hasEmail($event)">
                   <mat-error *ngIf="commentF.controls.createdBy.hasError('required')">
-                    Name is required
+                    Email is required
+                  </mat-error>
+                  <mat-error *ngIf="commentF.controls.createdBy.hasError('pattern')">
+                    Please enter a valid email address
                   </mat-error>
                 </mat-form-field>
 
