@@ -70,10 +70,15 @@
 
             <div class=" p-b-10 p-t-10">
               <form #comment class="comment-form" [formGroup]="commentF" (ngSubmit)="commentNow($event, commentF)">
-                        
+
                 <mat-form-field class="contact-input" appearance="outline">
                   <mat-label> Your email please </mat-label>
-                  <input matInput type="email" placeholder="eg.: example@example.com" autocomplete="off" formControlName="createdBy" (blur)="hasEmail($event)">
+                  
+                  <input matInput type="email" placeholder="eg.: example@example.com" autocomplete="off" formControlName="createdBy" (blur)="commentHasEmail($event)">
+                  
+                  <mat-icon matSuffix class="mat-error" *ngIf="commentEmailError"> error_outline </mat-icon>
+                  <mat-icon matSuffix class="green-done" *ngIf="!commentEmailError"> done </mat-icon>
+                  
                   <mat-error *ngIf="commentF.controls.createdBy.hasError('required')">
                     Email is required
                   </mat-error>
@@ -122,7 +127,12 @@
                         
                       <mat-form-field class="contact-input" appearance="outline">
                         <mat-label> Good name please </mat-label>
-                        <input matInput placeholder="eg.: John Doe" autocomplete="off" formControlName="createdBy">
+                        
+                        <input matInput type="email" placeholder="eg.: example@example.com" autocomplete="off" formControlName="createdBy" (blur)="replyHasEmail($event)">
+
+                        <mat-icon matSuffix class="mat-error" *ngIf="replyEmailError"> error_outline </mat-icon>
+                        <mat-icon matSuffix class="green-done" *ngIf="!replyEmailError"> done </mat-icon>
+
                         <mat-error *ngIf="replyF.controls.createdBy.hasError('required')">
                           Name is required
                         </mat-error>

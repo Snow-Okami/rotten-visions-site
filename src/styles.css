@@ -117,3 +117,7 @@ mat-form-field div, mat-form-field span {
 .font-f-roboto {
   font-family: 'Roboto Mono', monospace;
 }
+
+.green-done {
+  color: #4caf50;
+}

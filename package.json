@@ -3,7 +3,8 @@
   "version": "1.5.7",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4004",
+    "start": "ng serve",
+    "startdev": "ng serve --port 4004",
     "build": "ng build --aot --prod",
     "test": "ng test",
     "lint": "ng lint",

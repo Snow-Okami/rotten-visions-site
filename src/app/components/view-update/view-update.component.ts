@@ -39,6 +39,9 @@ export class ViewUpdateComponent {
   public commentF: FormGroup;
   public replyF: FormGroup;
 
+  public commentEmailError: boolean = true;
+  public replyEmailError: boolean = true;
+
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
@@ -72,7 +75,7 @@ export class ViewUpdateComponent {
 
     this.replyF = this.form.group({
       createdBy: new FormControl('', Validators.compose([
-        Validators.required
+        Validators.required, Rxjs.ngEmail
       ])),
       text: new FormControl('', Validators.compose([
         Validators.required
@@ -149,11 +152,18 @@ export class ViewUpdateComponent {
     : el.classList.add('hidden');
   }
 
-  async hasEmail(e: Event) {
+  async commentHasEmail(e: Event) {
     if(this.commentF.controls.createdBy.errors) { return; }
 
     let r = await this.http.userName(this.commentF.value.createdBy).toPromise();
-    console.log(r);
+    this.commentEmailError = r['message']['type'] === 'error';
+  }
+
+  async replyHasEmail(e: Event) {
+    if(this.replyF.controls.createdBy.errors) { return; }
+
+    let r = await this.http.userName(this.replyF.value.createdBy).toPromise();
+    this.replyEmailError = r['message']['type'] === 'error';
   }
 
 }
