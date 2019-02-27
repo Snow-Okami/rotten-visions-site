@@ -76,8 +76,8 @@
                   
                   <input matInput type="email" placeholder="eg.: example@example.com" autocomplete="off" formControlName="createdBy" (blur)="commentHasEmail($event)">
                   
-                  <mat-icon matSuffix class="mat-error" *ngIf="commentEmailError"> error_outline </mat-icon>
-                  <mat-icon matSuffix class="green-done" *ngIf="!commentEmailError"> done </mat-icon>
+                  <mat-icon matSuffix class="mat-error" *ngIf="senderEmail.comment.hasError"> error_outline </mat-icon>
+                  <mat-icon matSuffix class="green-done" *ngIf="!senderEmail.comment.hasError"> done </mat-icon>
                   
                   <mat-error *ngIf="commentF.controls.createdBy.hasError('required')">
                     Email is required
@@ -126,15 +126,18 @@
                     <form class="comment-form" [formGroup]="replyF" (ngSubmit)="replyNow($event, replyF, com);">
                         
                       <mat-form-field class="contact-input" appearance="outline">
-                        <mat-label> Good name please </mat-label>
+                        <mat-label> Your email please </mat-label>
                         
                         <input matInput type="email" placeholder="eg.: example@example.com" autocomplete="off" formControlName="createdBy" (blur)="replyHasEmail($event)">
-
-                        <mat-icon matSuffix class="mat-error" *ngIf="replyEmailError"> error_outline </mat-icon>
-                        <mat-icon matSuffix class="green-done" *ngIf="!replyEmailError"> done </mat-icon>
-
+                        
+                        <mat-icon matSuffix class="mat-error" *ngIf="senderEmail.reply.hasError"> error_outline </mat-icon>
+                        <mat-icon matSuffix class="green-done" *ngIf="!senderEmail.reply.hasError"> done </mat-icon>
+                        
                         <mat-error *ngIf="replyF.controls.createdBy.hasError('required')">
-                          Name is required
+                          Email is required
+                        </mat-error>
+                        <mat-error *ngIf="replyF.controls.createdBy.hasError('pattern')">
+                          Please enter a valid email address
                         </mat-error>
                       </mat-form-field>
 
@@ -181,10 +184,18 @@
                           <form class="comment-form" [formGroup]="replyF" (ngSubmit)="replyNow($event, replyF, com);">
                               
                             <mat-form-field class="contact-input" appearance="outline">
-                              <mat-label> Good name please </mat-label>
-                              <input matInput placeholder="eg.: John Doe" autocomplete="off" formControlName="createdBy">
+                              <mat-label> Your email please </mat-label>
+
+                              <input matInput type="email" placeholder="eg.: example@example.com" autocomplete="off" formControlName="createdBy" (blur)="replyHasEmail($event)">
+                        
+                              <mat-icon matSuffix class="mat-error" *ngIf="senderEmail.reply.hasError"> error_outline </mat-icon>
+                              <mat-icon matSuffix class="green-done" *ngIf="!senderEmail.reply.hasError"> done </mat-icon>
+                              
                               <mat-error *ngIf="replyF.controls.createdBy.hasError('required')">
-                                Name is required
+                                Email is required
+                              </mat-error>
+                              <mat-error *ngIf="replyF.controls.createdBy.hasError('pattern')">
+                                Please enter a valid email address
                               </mat-error>
                             </mat-form-field>
       

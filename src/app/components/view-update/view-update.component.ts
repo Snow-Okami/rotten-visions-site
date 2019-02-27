@@ -40,6 +40,16 @@ export class ViewUpdateComponent {
   public replyF: FormGroup;
 
   public commentEmailError: boolean = true;
+  public senderEmail = {
+    comment: {
+      hasError: true,
+      data: {}
+    },
+    reply: {
+      hasError: true,
+      data: {}
+    }
+  };
   public replyEmailError: boolean = true;
 
   constructor(
@@ -116,12 +126,12 @@ export class ViewUpdateComponent {
   }
 
   async commentNow(e: Event, f: FormGroup) {
-    if(!e.isTrusted || f.invalid) { return; }
+    if(!e.isTrusted || f.invalid || this.senderEmail.comment.hasError) { return; }
 
     document.getElementsByClassName('route-progress-bar')[0].classList.remove('hidden');
 
     let c = _.pick(this.post, ['_id', 'id']);
-    let form = Object.assign(f.value, {'createdFor': c._id, 'postId': c.id});
+    let form = Object.assign(f.value, {'createdBy': this.senderEmail.comment.data['fullName'], 'createdFor': c._id, 'postId': c.id});
     let r = await this.http.comment(form).toPromise();
 
     this.commentFNative.nativeElement.reset();
@@ -132,12 +142,12 @@ export class ViewUpdateComponent {
   }
 
   async replyNow(e: Event, f: FormGroup, com: any) {
-    if(!e.isTrusted || f.invalid) { return; }
+    if(!e.isTrusted || f.invalid || this.senderEmail.reply.hasError) { return; }
 
     document.getElementsByClassName('route-progress-bar')[0].classList.remove('hidden');
 
     let c = _.pick(com, ['_id', 'id']);
-    let form = Object.assign(f.value, {'createdFor': c._id, 'commentId': c.id});
+    let form = Object.assign(f.value, {'createdBy': this.senderEmail.reply.data['fullName'], 'createdFor': c._id, 'commentId': c.id});
     e.target['parentElement'].classList.add('hidden');
     let r = await this.http.reply(form).toPromise();
     if(r['message']['type'] !== 'error') { this.store.openSnackBar('Thanks! for your reply.'); com.replies.push(r['data']); }
@@ -156,14 +166,18 @@ export class ViewUpdateComponent {
     if(this.commentF.controls.createdBy.errors) { return; }
 
     let r = await this.http.userName(this.commentF.value.createdBy).toPromise();
-    this.commentEmailError = r['message']['type'] === 'error';
+    this.senderEmail.comment.hasError = r['message']['type'] === 'error';
+    this.senderEmail.comment.data = this.senderEmail.comment.hasError ? {} : r['data'];
+
+    console.log(this.senderEmail.comment);
   }
 
   async replyHasEmail(e: Event) {
     if(this.replyF.controls.createdBy.errors) { return; }
 
     let r = await this.http.userName(this.replyF.value.createdBy).toPromise();
-    this.replyEmailError = r['message']['type'] === 'error';
+    this.senderEmail.reply.hasError = r['message']['type'] === 'error';
+    this.senderEmail.reply.data = this.senderEmail.reply.hasError ? {} : r['data'];
   }
 
 }
