@@ -14,7 +14,7 @@
               <div class="image-title  p-b-10">
               
                 <div class="row">
-                  <div class="title"> {{post.title}} </div>
+                  <div class="title"> {{post?.title ? post?.title : 'Loading title...'}} </div>
                 </div>
                 <div class="date p-b-10 p-t-10"> Posted on: {{post.createdAt | date}} </div>
                 <div class="tag p-b-10 p-t-10">
