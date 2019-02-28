@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import * as _ from 'lodash';
-let that;
+import { environment } from '../environments/environment';
+
+let that: any;
 
 @Component({
   selector: 'app-root',
@@ -12,7 +14,7 @@ export class AppComponent {
   private preloadImages = {
     cache: []
   };
-  public cookiePopup = true;
+  public cookiePopup = environment.production;
   constructor() {
     that = this;
     this.cacheImages();
