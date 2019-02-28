@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import * as _ from 'lodash';
+
 import { environment } from '../environments/environment';
 
 let that: any;
