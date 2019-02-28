@@ -1,6 +1,7 @@
 <div class="psynapsus-container" [class.psynapsus-is-mobile]="true">
   <mat-toolbar color="primary" [ngClass]="{'mobile': mobileQuery.matches, 'psynapsus-toolbar': true, 'default': true}">
-    <mat-progress-bar mode="indeterminate" class="route-progress-bar hidden" [style.height.px]="2"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" class="route-progress-bar" [style.height.px]="2"></mat-progress-bar>
+    
     <mat-toolbar-row [ngClass]="{'mobile': mobileQuery.matches}">
 
       <!-- Set [ngClass]="{'hidden': true}" to hide mobile nav button. -->

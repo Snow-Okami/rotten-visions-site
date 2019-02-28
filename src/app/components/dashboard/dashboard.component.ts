@@ -51,11 +51,11 @@ export class DashboardComponent {
    * 
    * @param c is the child route component. All available variables and funtions will be returned.
    */
-  routeChange(c) {
+  routeChange(c: any) {
     document.title = c.title ? c.title : 'Rotten Visions';
   }
 
-  showRouteProgress(e) {
+  showRouteProgress(e: any) {
     let classList = e.target.parentNode.classList.value.split(' ');
     if(!classList.includes('active')) {
       document.getElementsByClassName('route-progress-bar')[0].classList.remove('hidden');

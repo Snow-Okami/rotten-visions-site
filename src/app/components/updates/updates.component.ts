@@ -151,5 +151,12 @@ export class UpdatesComponent {
     window.removeEventListener('scroll', that.onScrollDown);
   }
 
+  showRouteProgress(e: any) {
+    let classList = e.target.parentNode.classList.value.split(' ');
+    if(!classList.includes('active')) {
+      document.getElementsByClassName('route-progress-bar')[0].classList.remove('hidden');
+    }
+  }
+
 }
 

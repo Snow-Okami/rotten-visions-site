@@ -8,7 +8,7 @@
         <mat-divider></mat-divider>
       </li>
       <li *ngFor="let post of postList | updatefilter: searchText">
-        <div class="row chat-view-wrapper" [routerLink]="['/updates/view/' + post.id]">
+        <div class="row chat-view-wrapper" [routerLink]="['/updates/view/' + post.id]" (click)="showRouteProgress($event)">
           <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w40': true}">
             <div class="image-wrapper">
               <div class="row">

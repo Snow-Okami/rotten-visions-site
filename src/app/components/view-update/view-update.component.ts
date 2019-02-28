@@ -100,8 +100,8 @@ export class ViewUpdateComponent {
   async ngOnInit() {
     let param = {'id': this.route.snapshot.paramMap.get('id')};
     let r = await this.http.post(param).toPromise();
-    this.post = r['data'];
-    this.post.tags = JSON.parse(this.post.tags);
+    // this.post = r['data'];
+    // this.post.tags = JSON.parse(this.post.tags);
 
     /**
      * @description SET UP skip, limit & sort options here.
@@ -111,7 +111,7 @@ export class ViewUpdateComponent {
     };
 
     r = await this.http.posts(option).toPromise();
-    if(r['message']['type'] !== 'error') { this.postList = r['data']; }
+    // if(r['message']['type'] !== 'error') { this.postList = r['data']; }
   }
 
   ngAfterViewInit() {
