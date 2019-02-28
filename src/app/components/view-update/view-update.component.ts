@@ -30,7 +30,8 @@ export class ViewUpdateComponent {
   };
 
   public post: any = {
-    image: ''
+    image: '',
+    description: 'Loading content...'
   };
 
   public postList: any = [];
@@ -97,11 +98,14 @@ export class ViewUpdateComponent {
 
   private _mobileQueryListener: () => void;
 
-  async ngOnInit() {
+  async ngOnInit() {  
+  }
+
+  async ngAfterViewInit() {
     let param = {'id': this.route.snapshot.paramMap.get('id')};
     let r = await this.http.post(param).toPromise();
-    // this.post = r['data'];
-    // this.post.tags = JSON.parse(this.post.tags);
+    this.post = r['data'];
+    this.post.tags = JSON.parse(this.post.tags);
 
     /**
      * @description SET UP skip, limit & sort options here.
@@ -111,10 +115,7 @@ export class ViewUpdateComponent {
     };
 
     r = await this.http.posts(option).toPromise();
-    // if(r['message']['type'] !== 'error') { this.postList = r['data']; }
-  }
-
-  ngAfterViewInit() {
+    if(r['message']['type'] !== 'error') { this.postList = r['data']; }
     document.getElementsByClassName('route-progress-bar')[0].classList.add('hidden');
   }
 

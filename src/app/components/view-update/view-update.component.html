@@ -53,7 +53,7 @@
         <div class="row">
 
           <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
-            <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(post.description)" class="writable-update"></span>
+            <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(post?.description)" class="writable-update"></span>
           </div>
 
         </div>
