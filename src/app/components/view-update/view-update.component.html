@@ -160,7 +160,7 @@
 
                   </li>
 
-                  <li class="reply-box p-b-10 p-t-10" *ngFor="let rep of com.replies; index as ri;">
+                  <li class="reply-box p-b-5 p-t-5" *ngFor="let rep of com.replies; index as ri;">
 
                     <div class="col w20 inline p-t-10 m-w-46">
                       <img src="../../../assets/icon/reply.png" alt="missing logo" class="reply-icon">
@@ -171,7 +171,7 @@
                         <div class="user-title p-b-5 p-t-5"> {{rep.createdBy}} </div>
                         <div class="comment-time p-b-5 p-t-5"> {{rep.createdAt | date: 'fullDate'}} </div>
                         <div class="user-comment p-b-5 p-t-5"> {{rep.text}} </div>
-                        <div class="p-b-10 p-t-10">
+                        <div class="p-b-5 p-t-10">
                           <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8" (click)="alterForm($event, true);"> Reply </div>
                           <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8"> Share </div>
                         </div>
