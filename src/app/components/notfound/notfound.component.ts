@@ -7,7 +7,7 @@ import { StoreService } from '../../services/store.service';
 @Component({
   selector: 'app-notfound',
   templateUrl: './notfound.component.html',
-  styleUrls: ['./notfound.component.css']
+  styleUrls: ['./notfound.component.scss']
 })
 export class NotfoundComponent {
   /**

@@ -15,7 +15,7 @@ let that: any;
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
 
@@ -92,11 +92,14 @@ export class DashboardComponent {
        * @description Add updates in the navList.
        */
       let n = _.find(this.navList, ['nav', 'Track Users']);
-      if(n === undefined) { this.navList.splice(2, 0, { nav: 'Track Users', url: '/dashboard/users' }); }
+      if(n === undefined) { this.navList.splice(2, 0, { nav: 'Track Users', url: '/dashboard/track' }); }
     }
   }
 
+  public window: any;
+
   ngOnInit() {
+    this.window = window;
     this.progressBar = document.getElementsByClassName('progressbar')[0];
     /**
      * @description subscribe to store variables.
@@ -115,10 +118,11 @@ export class DashboardComponent {
        * @description Enable SLIDE to TOGGLE navigation.
        */
       let containerElement = this.container._element.nativeElement;
-      this.mc = new Hammer.Manager(containerElement);
-      this.mc.add( new Hammer.Pan({ direction: Hammer.DIRECTION_ALL, threshold: 0 }) );
-      this.mc.on("panright", this.onPanRight);
-      this.mc.on("panleft", this.onPanLeft);
+      // let Hammer = this.window.Hammer;
+      // this.mc = new Hammer.Manager(containerElement);
+      // this.mc.add( new Hammer.Pan({ direction: Hammer.DIRECTION_ALL, threshold: 0 }) );
+      // this.mc.on("panright", this.onPanRight);
+      // this.mc.on("panleft", this.onPanLeft);
     }
 
     /**

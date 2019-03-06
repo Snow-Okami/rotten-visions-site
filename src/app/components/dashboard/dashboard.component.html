@@ -1,30 +1,25 @@
 <div class="psynapsus-container" [class.psynapsus-is-mobile]="mobileQuery.matches">
+  
   <mat-toolbar color="primary" class="psynapsus-toolbar" [ngClass]="{ 'hidden': hideMatToolbar.length }">
-
-    <!-- Help to improve the performance. -->
-    <button aria-label="Navigation" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h1 class="psynapsus-app-name"> Psynapsus </h1>
+    <button class="psynapsus-button-toggle" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <h1 class="psynapsus-angular-header"> Psynapsus </h1>
+    
     <div class="power-wrapper">
       <mat-icon matSuffix class="material-icons" matTooltip="Logout!" matTooltipPosition="before" (click)="logout();"> power_settings_new </mat-icon>
     </div>
   </mat-toolbar>
 
   <mat-sidenav-container #container class="psynapsus-sidenav-container"
-    [style.marginTop.px]="0">
-
+                         [style.marginTop.px]="0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-
-      <!-- Router Links Should Stay Here -->
+                 [fixedInViewport]="true" [fixedTopGap]="mobileQuery.matches ? 56 : 64">
       <mat-nav-list>
-
-      <!-- Set [routerLinkActiveOptions]="{exact: true}" when routing to root URL. -->
+        <!-- Set [routerLinkActiveOptions]="{exact: true}" when routing to root URL. -->
         <a mat-list-item [routerLink]="item.url" routerLinkActive="active" *ngFor="let item of navList" (click)="snav.toggle();showRouteProgress($event);">{{ item.nav }}</a>
       </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-
+    <mat-sidenav-content [style.marginTop.px]="hideMatToolbar.length ? 0 : 56" [style.minHeight.px]="window.innerHeight - 56">
       <!-- Routing Components Will Appear Here -->
       <router-outlet (activate)="routeChange($event)"></router-outlet>
 
@@ -35,6 +30,6 @@
         </div>
       </div>
     </mat-sidenav-content>
-  </mat-sidenav-container>
 
+  </mat-sidenav-container>
 </div>

@@ -229,7 +229,7 @@
     </mat-card>
     <!-- Messages Card For Desktop Ends Here -->
 
-    <div class="row" *ngIf="mobileQuery.matches">
+    <div class="row" *ngIf="mobileQuery.matches" [ngClass]="{'m-t-50': chatView || createView}">
       <!-- Show the extra toolbar on the top of the page. -->
       <mat-toolbar color="primary" class="psynapsus-toolbar" [ngClass]="{ 'hidden': !chatView && !createView, 'mobile': mobileQuery.matches }">
 
@@ -258,7 +258,7 @@
           
         <div [ngClass]="{ 'hidden': !chatLoader && chats.length === 0 }">
           <mat-list>
-  
+
             <!-- Message loader will be shown here -->
             <ul *ngIf="chatLoader">
               <li class="row chat-row-wrapper t-al-center">
@@ -267,7 +267,7 @@
                 </div>
               </li>
             </ul>
-    
+
             <!-- Messages will be loaded here -->
             <mat-list-item *ngFor="let c of chats" class="mobile-chat-ui">
               <mat-icon mat-list-icon class="chat-image"> person </mat-icon>
@@ -275,11 +275,11 @@
               <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(c.lastMessage.text)" class="writable" mat-line></span>
               <mat-divider></mat-divider>
             </mat-list-item>
-    
+
           </mat-list>
         </div>
 
-        <div [ngClass]="{ 'hidden': !chatLoader && chats.length > 0 }">
+        <div [ngClass]="{ 'hidden': chatLoader || chats.length > 0 }">
           <div style="position: relative;">
             <h4 class="init-text t-al-center"> SORRY! no chat found! </h4>
           </div>

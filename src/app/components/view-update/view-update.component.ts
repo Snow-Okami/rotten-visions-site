@@ -32,7 +32,7 @@ export interface Post {
 @Component({
   selector: 'app-view-update',
   templateUrl: './view-update.component.html',
-  styleUrls: ['./view-update.component.css']
+  styleUrls: ['./view-update.component.scss']
 })
 export class ViewUpdateComponent {
   /**

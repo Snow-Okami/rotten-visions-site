@@ -1,0 +1,275 @@
+.card-title {
+  position: relative;
+}
+
+.card-title .title-item {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.mat-list-item {
+  opacity: 0.5;
+}
+
+.mat-list-item:hover {
+  opacity: 1;
+}
+
+.mat-list-item .chat-name:hover {
+  cursor: pointer;
+}
+
+.mat-list-item.active {
+  opacity: 1;
+}
+
+.mat-list-item.mobile-chat-ui {
+  opacity: 0.8;
+}
+
+.chat-row-wrapper {
+  min-height: 40px;
+  height: 100%;
+  overflow: hidden;
+  padding-right: 15px;
+  padding-left: 7px;
+  opacity: 0.8;
+}
+
+.mobile .chat-row-wrapper {
+  padding-right: 7px;
+}
+
+.chat-wrapper {
+  position: relative;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  /* LINE No. 103, 107, 118 & 307, 311, 322 depends on this CSS. */
+  padding: 5px 10px 5px 15px;
+  /* padding: 5px 10px 5px 57px; */
+  border: 1px solid #bd4040;
+  background: #bd4040;
+  border-radius: 5px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  min-width: auto;
+}
+
+.chat-wrapper.right {
+  border: 1px solid #3c3c3c;
+  background: #3c3c3c;
+}
+
+.chat-wrapper:not(.right):before {
+  content:"";
+  position:absolute;
+  z-index:2;
+  bottom:-2px;
+  left:-7px;
+  height:20px;
+  border-left:20px solid #bd4040;
+  border-bottom-right-radius: 16px 14px;
+  transform:translate(0, -2px);
+}
+
+.chat-wrapper.right:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  bottom: -2px;
+  right: -7px;
+  height: 20px;
+  border-right: 20px solid #333334;
+  border-bottom-left-radius: 16px 14px;
+  transform: translate(0, -2px);
+}
+
+.chat-wrapper:not(.right):after {
+  content:"";
+  position:absolute;
+  z-index:3;
+  bottom:-2px;
+  left:3px;
+  width:26px;
+  height:20px;
+  background:#212121;
+  border-bottom-right-radius: 10px;
+  transform:translate(-30px, -2px);
+}
+
+.chat-wrapper.right:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: -2px;
+  right: -57px;
+  width: 26px;
+  height: 20px;
+  background: #212121;
+  border-bottom-left-radius: 10px;
+  transform: translate(-30px, -2px);
+}
+
+.mobile .chat-wrapper:after {
+  background: #0e0f13;
+}
+
+.chat-wrapper > .col h4, .chat-wrapper > .col h6 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 9px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  opacity: 0.7;
+}
+
+.mat-list-item h4.mat-line {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 14px;
+  color: #bd4040;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+}
+
+.chat-image {
+  width: 50px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrow-back {
+  cursor: pointer;
+}
+
+.chat-input-wrapper {
+  background: #303030;
+  border-radius: 5px;
+  padding: 15px 20px 0;
+  opacity: 0.8;
+}
+
+.mobile .chat-input-wrapper {
+  opacity: 1;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.send-btn {
+  padding-bottom: 17.5px;
+}
+
+.init-text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  font-family: 'Open Sans Condensed', sans-serif;
+  opacity: 0.5;
+}
+
+.mat-icon-button.back {
+  position: absolute;
+  left: 0px;
+  top: -10px;
+}
+
+.mat-icon-button.visibility {
+  position: absolute;
+  right: 0px;
+  top: -10px;
+}
+
+.message-loader {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mobile .message-loader {
+  top: 45%;
+  left: 45%;
+}
+
+.chat-loader {
+  position: absolute;
+  left: 45%;
+}
+
+.mobile button.new-message.mat-fab.mat-accent {
+  position: fixed;
+}
+
+button.new-message.mat-fab.mat-accent {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+}
+
+.mobile button.new-message.mat-fab.mat-accent {
+  bottom: 15px;
+  right: 15px;
+}
+
+button.start-chat.mat-fab.mat-accent {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.mobile button.start-chat.mat-fab.mat-accent {
+  bottom: 0px;
+  right: 0px;
+}
+
+.message-list-wrapper {
+  padding: 0 16px;
+}
+
+.mobile .message-list-wrapper {
+  padding: 0 6px;
+}
+
+.suser-select-margin {
+  margin: 0 30px;
+}
+
+.mobile .input-box-wrapper {
+  position: fixed;
+  bottom: 0px;
+  left: 5px;
+  right: 5px;
+  z-index: 5;
+}
+
+.mobile .message-wrapper {
+  position: relative;
+  z-index: 4;
+}
+
+.mobile .psynapsus-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+}
+
+.mobile .option-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+h1.psynapsus-chat-title {
+  margin-left: 8px;
+}
+
+.date-wrapper {
+  font-size: 10px;
+  text-align: center;
+  background-image: linear-gradient(to right, #9b3a37, #373737);
+}

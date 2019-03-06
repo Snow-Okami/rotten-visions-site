@@ -11,7 +11,7 @@ import { ValidatorsService } from '../../services/validators.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.scss'],
   // Encapsulation has to be disabled in order for the
   // component style to apply to the select panel.
   encapsulation: ViewEncapsulation.None

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SwUpdate } from '@angular/service-worker';
+// import { SwUpdate } from '@angular/service-worker';
 import { MatSnackBar } from '@angular/material';
 
 import { environment } from '../../../environments/environment';
@@ -10,28 +10,28 @@ import { HttpService } from '../../services/http.service';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+  styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
   /**
    * @description version is the app version.
    */
-  public version: string = '3.0.7';
+  public version: string = '3.0.8';
   public update: boolean = false;
 
   constructor(
-    public appUpdate: SwUpdate,
+    // public appUpdate: SwUpdate,
     public snackBar: MatSnackBar,
     private http: HttpService,
     private store: StoreService
   ) {
-    this.appUpdate.available.subscribe(e => { this.update = true; });
+    // this.appUpdate.available.subscribe(e => { this.update = true; });
     this.checkForUpdate();
   }
 
   updateApplication() {
     if(environment.production) {
-      this.appUpdate.activateUpdate().then(()=>{navigator.serviceWorker.getRegistration().then((sw)=>{sw.unregister();document.location.reload();});});
+      // this.appUpdate.activateUpdate().then(()=>{navigator.serviceWorker.getRegistration().then((sw)=>{sw.unregister();document.location.reload();});});
     }
   }
 
