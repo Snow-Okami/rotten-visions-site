@@ -78,7 +78,11 @@ export class UpdatesComponent implements OnInit {
 
   private _mobileQueryListener: () => void;
 
+  public imgHeight: any;
+  public window: any;
+
   ngOnInit() {
+    this.window = window;
     this.progressBar = document.getElementsByClassName('progressbar')[0];
 
     /**
@@ -110,10 +114,19 @@ export class UpdatesComponent implements OnInit {
 
     this.content = this.mobileQuery.matches ? window : document.getElementsByClassName('mat-sidenav-content')[0];
     this.content.addEventListener('scroll', this.onScrollDown, false);
+    /**
+     * @description Added window resize event.
+     */
+    this.window.addEventListener('resize', this.isResizing);
+    /**
+     * @description Set custom image height
+     */
+    this.imgHeight = this.mobileQuery.matches ? ((this.window.innerWidth - 32) / 16) * 9 : '198';
   }
 
   ngOnDestroy() {
     this.content.removeEventListener('scroll', this.onScrollDown);
+    this.window.removeEventListener('resize', this.isResizing);
   }
 
   visitCreate() {
@@ -135,6 +148,13 @@ export class UpdatesComponent implements OnInit {
     this.router.navigate(['/dashboard/updates/view/' + id]);
   }
 
+  isResizing(e: any) {
+    /**
+     * @description Set custom image height
+     */
+    that.imgHeight = that.mobileQuery.matches ? ((that.window.innerWidth - 32) / 16) * 9 : '198';
+  }
+
   /**
    * @description Detect scroll direction. Returns true if down or false.
    */
@@ -148,7 +168,7 @@ export class UpdatesComponent implements OnInit {
   /**
    * @description On scroll this event gets fired.
    */
-  onScrollDown(e) {
+  onScrollDown(e: any) {
     /**
      * @description wh is scrollable content height
      * eb is element's bottom
