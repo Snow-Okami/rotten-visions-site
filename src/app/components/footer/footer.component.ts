@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { SwUpdate } from '@angular/service-worker';
+import { SwUpdate } from '@angular/service-worker';
 import { MatSnackBar } from '@angular/material';
 
 import { environment } from '../../../environments/environment';
@@ -20,12 +20,12 @@ export class FooterComponent implements OnInit {
   public update: boolean = false;
 
   constructor(
-    // public appUpdate: SwUpdate,
+    public appUpdate: SwUpdate,
     public snackBar: MatSnackBar,
     private http: HttpService,
     private store: StoreService
   ) {
-    // this.appUpdate.available.subscribe(e => { this.update = true; });
+    this.appUpdate.available.subscribe(e => { this.update = true; });
     this.checkForUpdate();
   }
 

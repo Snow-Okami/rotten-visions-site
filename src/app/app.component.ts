@@ -65,7 +65,7 @@ export class AppComponent {
         '/assets/logo/img.png',
         '/assets/logo/close.png',
         '/assets/logo/404.png',
-      ], image;
+      ], image: any;
 
       /**
        * @description Cache Image Files
