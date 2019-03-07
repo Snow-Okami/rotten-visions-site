@@ -43,7 +43,7 @@ export class AppComponent {
    * 
    * @param c is the child route component. All available variables and funtions will be returned.
    */
-  routeChange(c) {
+  routeChange(c: any) {
     document.title = c.title ? c.title : this.title;
   }
 
@@ -70,7 +70,7 @@ export class AppComponent {
       /**
        * @description Cache Image Files
        */
-      _.forEach(images, (url, index) => {
+      _.forEach(images, (url: string, index: number) => {
         image = new Image();
         image.src = url;
         this.preloadImages.cache.push(image);
