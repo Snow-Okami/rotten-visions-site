@@ -113,16 +113,16 @@ export class DashboardComponent {
 
   ngAfterViewInit() {
 
-    if(this.mobileQuery.matches) {
+    if(this.mobileQuery.matches && this.store.isDevice.Android) {
       /**
        * @description Enable SLIDE to TOGGLE navigation.
        */
       let containerElement = this.container._element.nativeElement;
-      // let Hammer = this.window.Hammer;
-      // this.mc = new Hammer.Manager(containerElement);
-      // this.mc.add( new Hammer.Pan({ direction: Hammer.DIRECTION_ALL, threshold: 0 }) );
-      // this.mc.on("panright", this.onPanRight);
-      // this.mc.on("panleft", this.onPanLeft);
+      let Hammer = this.window.Hammer;
+      this.mc = new Hammer.Manager(containerElement);
+      this.mc.add( new Hammer.Pan({ direction: Hammer.DIRECTION_ALL, threshold: 0 }) );
+      this.mc.on("panright", this.onPanRight);
+      this.mc.on("panleft", this.onPanLeft);
     }
 
     /**
