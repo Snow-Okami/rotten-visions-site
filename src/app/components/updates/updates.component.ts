@@ -112,7 +112,8 @@ export class UpdatesComponent implements OnInit {
      */
     this.progressBar.classList.add('hidden');
 
-    this.content = this.mobileQuery.matches ? window : document.getElementsByClassName('mat-sidenav-content')[0];
+    // this.content = this.mobileQuery.matches ? window : document.getElementsByClassName('mat-sidenav-content')[0];
+    this.content = window;
     this.content.addEventListener('scroll', this.onScrollDown, false);
     /**
      * @description Added window resize event.
@@ -173,7 +174,8 @@ export class UpdatesComponent implements OnInit {
      * @description wh is scrollable content height
      * eb is element's bottom
      */
-    let wh = that.mobileQuery.matches ? that.content.innerHeight : that.content.getBoundingClientRect().bottom
+    // let wh = that.mobileQuery.matches ? that.content.innerHeight : that.content.getBoundingClientRect().bottom
+    let wh = that.content.innerHeight
     , eb = that.loadScroll.nativeElement.getBoundingClientRect().top;
     if(!that.isScrollDown() || eb > wh) { return; }
 
@@ -234,11 +236,13 @@ export class UpdatesComponent implements OnInit {
        * @description wh is scrollable content height
        * @description eb is element's bottom
        */
-      let wh = this.mobileQuery.matches ? this.content.innerHeight : this.content.getBoundingClientRect().bottom
+      // let wh = this.mobileQuery.matches ? this.content.innerHeight : this.content.getBoundingClientRect().bottom
+      let wh = that.content.innerHeight
       , eb = this.fixedBottom.nativeElement.getBoundingClientRect().top;
       if(wh > eb) {
         let option = {
-          top:  (that.mobileQuery.matches ? this.content.scrollY : this.content.scrollTop) - (wh - eb),
+          // top:  (that.mobileQuery.matches ? this.content.scrollY : this.content.scrollTop) - (wh - eb),
+          top:  this.content.scrollY - (wh - eb),
           left: 0,
           behavior: 'smooth'
         };
@@ -254,7 +258,7 @@ export class UpdatesComponent implements OnInit {
     }, 10);
   }
 
-  fixPostLen(value, args) {
+  fixPostLen(value: any, args: any) {
     let v = value.length > args ? value.slice(0, args) + '...' : value;
     return v;
   }
