@@ -61,8 +61,6 @@ export class UpdatesComponent implements OnInit {
 
   public createButton: boolean = false;
 
-  public developmentView: any;
-
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
@@ -162,8 +160,6 @@ export class UpdatesComponent implements OnInit {
    * @description Detect scroll direction. Returns true if down or false.
    */
   isScrollDown(): boolean {
-    this.developmentView = 'scrolling... ' + this.content.scrollY + ' ' + document.documentElement.scrollTop;
-
     let st = this.content.scrollY || document.documentElement.scrollTop;
     let type = st > this.lastScrollTop;
     this.lastScrollTop = st <= 0 ? 0 : st;
