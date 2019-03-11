@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LandingComponent } from './landing.component';
+import { EmailVerifyComponent } from './email-verify.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: EmailVerifyComponent
+  },
+  {
+    path: '',
     pathMatch: 'full',
-    component: LandingComponent
+    redirectTo: '/email-verify/:_id'
   }
 ];
 
@@ -15,4 +19,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class LandingRoutingModule { }
+export class EmailVerifyRoutingModule { }

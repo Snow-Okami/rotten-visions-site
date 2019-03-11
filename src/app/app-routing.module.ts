@@ -17,6 +17,10 @@ const routes: Routes = [
     loadChildren: './components/dashboard/dashboard.module#DashboardModule'
   },
   {
+    path: 'email-verify/:_id',
+    loadChildren: './components/email-verify/email-verify.module#EmailVerifyModule'
+  },
+  {
     path: '**',
     loadChildren: './components/notfound/notfound.module#NotfoundModule'
   }
