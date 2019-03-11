@@ -1,7 +1,39 @@
 <div class="container">
   <div class="content-wrapper">
     <div class="body">
-      <p> Verify works! </p>
+
+      <div class="row t-al-center" *ngIf="state.initial">
+        <div class="col">
+          <div class="view-wrapper">
+            <p> Loading... </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="state.loaded && response.success">
+        <div class="col t-al-center">
+
+          <div class="view-wrapper">
+            <p class="font-25 p-b-12"> WELCOME TO PSYNAPSUS! </p>
+            <p class="font-20 p-b-9"> Thank you for signing up. Now you can access Psynapsus chat & share your feedback on Rotten visions. </p>
+            <p class="font-16 p-b-10"> Please <a routerLink="/" class="color-primary text-d-none">login</a> again. </p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row" *ngIf="state.loaded && response.error">
+        <div class="col t-al-center">
+
+          <div class="view-wrapper">
+            <p class="font-25 p-b-12"> INVALID CODE! </p>
+            <p class="font-20 p-b-9"> Please try with a valid URL. </p>
+            <p class="font-16 p-b-10"> Please <a routerLink="/" class="color-primary text-d-none">login</a> here. </p>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

@@ -19,6 +19,17 @@ export class EmailVerifyComponent {
   public mobileQuery: MediaQueryList;
   private progressBar: any;
 
+  public state = {
+    initial: true,
+    loading: false,
+    loaded: false
+  };
+
+  public response = {
+    error: false,
+    success: false
+  };
+
   constructor(
     private http: HttpService,
     private store: StoreService,
@@ -29,18 +40,25 @@ export class EmailVerifyComponent {
   ) { }
 
   async ngOnInit() {
-    this.progressBar = document.getElementsByClassName('progressbar')[0];
-    let r = await this.http.verifyEmail(this.route.snapshot.params).toPromise();
-
-    console.log(r);
   }
 
-  ngAfterViewInit() {
-
+  async ngAfterViewInit() {
+    this.progressBar = document.getElementsByClassName('progressbar')[0];
     /**
      * @description Hide Progress Bar When Page is Loaded.
      */
     this.progressBar.classList.add('hidden');
+
+    let r = await this.http.verifyEmail(this.route.snapshot.params).toPromise();
+
+    this.state.initial = false;
+    this.state.loaded = true;
+
+    this.response.error = r['message']['type'] === 'error';
+    this.response.success = !this.response.error;
+    // this.response.success = true;
+
+    console.log(this.response);
   }
 
 }
