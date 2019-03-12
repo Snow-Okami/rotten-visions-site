@@ -132,7 +132,7 @@ export class ViewUpdateComponent {
     document.getElementsByClassName('route-progress-bar')[0].classList.remove('hidden');
 
     let c = _.pick(this.post, ['_id', 'id']);
-    let form = Object.assign(f.value, {'createdBy': this.senderEmail.comment.data['fullName'], 'createdFor': c._id, 'postId': c.id});
+    let form = Object.assign(f.value, {'createdBy': this.senderEmail.comment.data['username'], 'createdFor': c._id, 'postId': c.id});
     let r = await this.http.comment(form).toPromise();
 
     this.commentFNative.nativeElement.reset();
@@ -148,7 +148,7 @@ export class ViewUpdateComponent {
     document.getElementsByClassName('route-progress-bar')[0].classList.remove('hidden');
 
     let c = _.pick(com, ['_id', 'id']);
-    let form = Object.assign(f.value, {'createdBy': this.senderEmail.reply.data['fullName'], 'createdFor': c._id, 'commentId': c.id});
+    let form = Object.assign(f.value, {'createdBy': this.senderEmail.reply.data['username'], 'createdFor': c._id, 'commentId': c.id});
     e.target['parentElement'].classList.add('hidden');
     let r = await this.http.reply(form).toPromise();
     if(r['message']['type'] !== 'error') { this.store.openSnackBar('Thanks! for your reply.'); com.replies.push(r['data']); }
