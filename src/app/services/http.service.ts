@@ -167,4 +167,12 @@ export class HttpService {
       catchError(this.handleError('verify', {}))
     );
   }
+
+  hasUser(username: string): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/hasuser/' + username;
+    return this.http.get<any>(url).pipe(
+      tap(message => message),
+      catchError(this.handleError('username', {}))
+    );
+  }
 }

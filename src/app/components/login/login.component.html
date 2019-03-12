@@ -82,6 +82,25 @@
       </div>
 
       <!-- 
+        
+      -->
+      <div class="row">
+        <mat-form-field class="contact-input">
+          <input matInput placeholder="Choose your username" autocomplete="off" [formControl]="username" (blur)="hasUsername($event)" required>
+          
+          <mat-icon matSuffix class="mat-error" *ngIf="!availableUser.hasError"> error_outline </mat-icon>
+          <mat-icon matSuffix class="green-done" *ngIf="availableUser.hasError"> done </mat-icon>
+
+          <mat-error *ngIf="!username.hasError('required')">
+            This username is already taken
+          </mat-error>
+          <mat-error *ngIf="username.hasError('required')">
+            Username is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- 
         Email input field with Regular Expression updated validation checking.
         -->
       <div class="row">

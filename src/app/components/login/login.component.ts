@@ -23,7 +23,12 @@ export class LoginComponent {
   public hidePass: boolean = true;
   public hideConPass: boolean = true;
   public disableClick: boolean = false;
-  private progressBar;
+  private progressBar: any;
+
+  public availableUser = {
+    data: {},
+    hasError: true
+  };
 
   /**
    * @description Login Form Controls Are Defined Below.
@@ -31,6 +36,7 @@ export class LoginComponent {
   public firstName = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.name ]);
   public lastName = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.name ]);
   public email = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.email ]);
+  public username = new FormControl({ value: '', disabled: false }, [ Validators.required ]);
   public password = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.password ]);
   public confirmPassword = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.password ]);
   public capability = new FormControl({ value: '', disabled: false }, [ Validators.required ]);
@@ -143,6 +149,7 @@ export class LoginComponent {
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,
+      username: this.username,
       password: this.password,
       confirmPassword: this.confirmPassword,
       capability: this.capability
@@ -213,6 +220,13 @@ export class LoginComponent {
         this.openSnackBar(resp['message']['text'], '');
       }
     });
+  }
+
+  async hasUsername(e: Event) {
+    if(this.username.errors) { return; }
+    let r = await this.http.hasUser(this.username.value).toPromise();
+    this.availableUser.hasError = r['message']['type'] === 'error';
+    this.availableUser.data = this.availableUser.hasError ? {} : r['data'];
   }
 
 }
