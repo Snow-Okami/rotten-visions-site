@@ -305,7 +305,7 @@ export class MessagesComponent {
      */
     let auth = Object.assign({}, this.store.cookieString());
     this.socket.emit('typing', 
-      Object.assign({ message: { query: { cid: this.chat.id, text: t, createdBy: { email: this.user.email, fullName: this.user.fullName } } } }, auth)
+      Object.assign({ message: { query: { cid: this.chat.id, text: t, createdBy: { username: this.user.username, email: this.user.email, fullName: this.user.fullName } } } }, auth)
     );
   }
 
@@ -314,7 +314,7 @@ export class MessagesComponent {
    */
   private hideTyping() {
     this.socket.emit('typed', 
-      Object.assign({ message: { query: { cid: this.chat.id, createdBy: { email: this.user.email, fullName: this.user.fullName } } } })
+      Object.assign({ message: { query: { cid: this.chat.id, createdBy: { username: this.user.username, email: this.user.email, fullName: this.user.fullName } } } })
     );
   }
 
