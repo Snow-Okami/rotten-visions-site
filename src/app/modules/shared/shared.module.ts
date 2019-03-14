@@ -10,10 +10,12 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
  */
 import { TrimwordPipe } from '../../pipes/trimword.pipe';
 import { NameonlyPipe } from '../../pipes/nameonly.pipe';
+import { UnameonlyPipe } from '../../pipes/unameonly.pipe';
 
 import { FooterComponent } from '../../components/footer/footer.component';
 
 import { environment } from '../../../environments/environment';
+
 /**
  * @description domain update with production type.
  */
@@ -36,6 +38,8 @@ const config: SocketIoConfig = { url: apiurl, options: {} };
      */
     TrimwordPipe,
     NameonlyPipe,
+    UnameonlyPipe,
+
     /**
      * @description Shared Components For Lazy Routing Modules.
      */
@@ -47,6 +51,7 @@ const config: SocketIoConfig = { url: apiurl, options: {} };
      */
     TrimwordPipe,
     NameonlyPipe,
+    UnameonlyPipe,
 
     /**
      * @description Shared modules are stored here.

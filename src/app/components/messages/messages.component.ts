@@ -51,7 +51,7 @@ export class MessagesComponent {
     users: [{ fullName: 'Recipient Name', email: 'recipient@example.com' }],
     isTyping: { show: false, lastMessage: { cid: '', createdBy: { email: '', fullName: '' }, text: '' } }
   };
-  public user = { firstName: 'User', fullName: 'User Name', email: 'user@example.com' };
+  public user = { username: 'username', firstName: 'User', fullName: 'User Name', email: 'user@example.com' };
 
   private progressBar: any;
   public config: PerfectScrollbarConfigInterface = { };
@@ -335,7 +335,7 @@ export class MessagesComponent {
      */
     let auth = Object.assign({}, this.store.cookieString());
     this.socket.emit('text', 
-      Object.assign({ message: { query: { cid: this.chat.id, text: t, createdBy: { email: this.user.email, fullName: this.user.fullName } } } }, auth)
+      Object.assign({ message: { query: { cid: this.chat.id, text: t, createdBy: { username: this.user.username, email: this.user.email, fullName: this.user.fullName } } } }, auth)
     );
 
     this.text.setValue('');
@@ -469,6 +469,8 @@ export class MessagesComponent {
       t_i.showDate = t_d !== d; d = t_d;
     });
 
+    console.log(that.chats);
+
     /**
      * @description scroll to bottom of the messages.
      */
@@ -535,7 +537,7 @@ export class MessagesComponent {
    */
   private onTyped(res: any) {
     let c = _.find(that.chats, { 'id': res.cid });
-    c['isTyping'] = { show: false, lastMessage: { cid: '', createdBy: { email: '', fullName: '' }, text: '' } };
+    c['isTyping'] = { show: false, lastMessage: { cid: '', createdBy: { username: '', email: '', fullName: '' }, text: '' } };
     /**
      * @description delay scroll is maintained.
      */
