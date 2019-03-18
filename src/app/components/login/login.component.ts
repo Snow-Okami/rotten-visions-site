@@ -35,8 +35,9 @@ export class LoginComponent {
    */
   public firstName = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.name ]);
   public lastName = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.name ]);
+  public username = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.username ]);
   public email = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.email ]);
-  public username = new FormControl({ value: '', disabled: false }, [ Validators.required ]);
+  public confirmEmail = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.email ]);
   public password = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.password ]);
   public confirmPassword = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.password ]);
   public capability = new FormControl({ value: '', disabled: false }, [ Validators.required ]);
@@ -149,6 +150,7 @@ export class LoginComponent {
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,
+      confirmEmail: this.confirmEmail,
       username: this.username,
       password: this.password,
       confirmPassword: this.confirmPassword,
@@ -156,6 +158,11 @@ export class LoginComponent {
     }); // , [ Validators.required, this.regx.registerForm ]
 
     if(!this.registerForm.valid) { return false; }
+
+    if(this.registerForm.value.confirmEmail !== this.registerForm.value.email) {
+      this.openSnackBar('Confirm email don\'t match!', '');
+      return false;
+    }
 
     if(this.registerForm.value.confirmPassword !== this.registerForm.value.password) {
       this.openSnackBar('Confirm password don\'t match!', '');

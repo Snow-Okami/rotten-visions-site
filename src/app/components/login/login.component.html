@@ -86,16 +86,19 @@
       -->
       <div class="row">
         <mat-form-field class="contact-input">
-          <input matInput placeholder="Choose your username" autocomplete="off" [formControl]="username" (blur)="hasUsername($event)" required>
-          
+          <input matInput minlength="5" maxlength="32" placeholder="Choose your username" autocomplete="off" [formControl]="username" (blur)="hasUsername($event)" required>
+
           <mat-icon matSuffix class="mat-error" *ngIf="!availableUser.hasError"> error_outline </mat-icon>
           <mat-icon matSuffix class="green-done" *ngIf="availableUser.hasError"> done </mat-icon>
 
-          <mat-error *ngIf="!username.hasError('required')">
-            This username is already taken
+          <mat-error *ngIf="username.hasError('invalid_username')">
+            Please enter a valid email username
           </mat-error>
           <mat-error *ngIf="username.hasError('required')">
             Username is required
+          </mat-error>
+          <mat-error *ngIf="username.hasError('minlength')">
+            Username must have {{ username.errors.minlength.requiredLength }} charactes
           </mat-error>
         </mat-form-field>
       </div>
@@ -110,6 +113,18 @@
             Please enter a valid email address
           </mat-error>
           <mat-error *ngIf="email.hasError('required')">
+            Email is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="contact-input">
+          <input matInput placeholder="Confirm your email" autocomplete="off" [formControl]="confirmEmail" required>
+          <mat-error *ngIf="!confirmEmail.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="confirmEmail.hasError('required')">
             Email is required
           </mat-error>
         </mat-form-field>
@@ -145,7 +160,7 @@
           <input matInput placeholder="Confirm your password" [type]="hideConPass ? 'password' : 'text'" [formControl]="confirmPassword" autocomplete="off" required>
           <mat-icon matSuffix (click)="hideConPass = !hideConPass">{{hideConPass ? 'visibility_off' : 'visibility'}}</mat-icon>
           <mat-error *ngIf="confirmPassword.hasError('invalid')">
-            Confirm don't contain space and minimum 6 characters
+            Password don't contain space and minimum 6 characters
           </mat-error>
           <mat-error *ngIf="confirmPassword.hasError('required')">
             Confirm password is required
