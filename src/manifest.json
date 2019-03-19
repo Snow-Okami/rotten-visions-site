@@ -1,7 +1,7 @@
 {
-  "name": "angular8QuickStart",
-  "short_name": "angular8QuickStart",
-  "theme_color": "#1976d2",
+  "name": "Psynapsus",
+  "short_name": "Psynapsus",
+  "theme_color": "#a93647",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",
