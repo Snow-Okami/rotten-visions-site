@@ -3,12 +3,13 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatSnackBar, MatChipInputEvent } from '@angular/material';
+import { MatChipInputEvent } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 
 import { User } from '../../classes/user';
 
+import { ActionsService } from '../../services/actions.service';
 import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
 import { ValidatorsService } from '../../services/validators.service';
@@ -72,6 +73,7 @@ export class ViewUpdateComponent {
   public hiddenContent: boolean = true;
 
   constructor(
+    private action: ActionsService,
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
     public page: Location,
@@ -80,7 +82,6 @@ export class ViewUpdateComponent {
     private store: StoreService,
     private http: HttpService,
     private regx: ValidatorsService,
-    public snackBar: MatSnackBar,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 800px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -127,15 +128,6 @@ export class ViewUpdateComponent {
 
   ngAfterViewInit() {
 
-  }
-
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      verticalPosition: 'top',
-      horizontalPosition: 'right',
-      direction: 'ltr',
-      duration: 6000,
-    });
   }
 
   /**
@@ -199,7 +191,7 @@ export class ViewUpdateComponent {
 
   async saveOrPublish(event: any) {
     if(this.postForm.invalid) {
-      this.openSnackBar('Invalid form detected!', ''); return;
+      this.action.openSnackBarComponent('Invalid form detected!', 'warning'); return;
     }
 
     /**
@@ -244,9 +236,9 @@ export class ViewUpdateComponent {
     this.progressBar.classList.add('hidden');
 
     if(r['message']['type'] !== 'error') {
-      this.openSnackBar('Post has been updated successfully!', '');
+      this.action.openSnackBarComponent('Post has been updated successfully!', 'success');
     } else {
-      this.openSnackBar(r['message']['text'], '');
+      this.action.openSnackBarComponent(r['message']['text'], 'error');
     }
   }
 

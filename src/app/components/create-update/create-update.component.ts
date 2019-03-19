@@ -3,12 +3,13 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatSnackBar, MatChipInputEvent } from '@angular/material';
+import { MatChipInputEvent } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 
 import { User } from '../../classes/user';
 
+import { ActionsService } from '../../services/actions.service';
 import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
 import { ValidatorsService } from '../../services/validators.service';
@@ -61,6 +62,7 @@ export class CreateUpdateComponent {
   public hiddenContent: boolean = true;
 
   constructor(
+    private action: ActionsService,
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
     public page: Location,
@@ -68,7 +70,6 @@ export class CreateUpdateComponent {
     private http: HttpService,
     private store: StoreService,
     private regx: ValidatorsService,
-    public snackBar: MatSnackBar,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 800px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -103,15 +104,6 @@ export class CreateUpdateComponent {
      * @description Hide Progress Bar When Page is Loaded.
      */
     this.progressBar.classList.add('hidden');
-  }
-
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      verticalPosition: 'top',
-      horizontalPosition: 'right',
-      direction: 'ltr',
-      duration: 6000,
-    });
   }
 
   /**
@@ -173,7 +165,7 @@ export class CreateUpdateComponent {
     this.postPublish.setValue(false);
   }
 
-  saveOrPublish(event) {
+  saveOrPublish(event: any) {
     if(this.postForm.valid) {
       /**
        * @description Disable buttons, inputs & enable loader.
@@ -220,7 +212,7 @@ export class CreateUpdateComponent {
            * @description Show SNACK Message On Response.
            */
           let snackMessage: string = resp['data']['publish'] ? 'Update has been published successfully!' : 'Update has been saved successfully!';
-          this.openSnackBar(snackMessage, '');
+          this.action.openSnackBarComponent(snackMessage, 'success');
 
           /**
            * @description Enable buttons & disable loader.
@@ -237,11 +229,11 @@ export class CreateUpdateComponent {
           /**
            * @description ERROR detected with API response.
            */
-          this.openSnackBar(resp['message']['text'], '');
+          this.action.openSnackBarComponent(resp['message']['text'], 'error');
         }
       });
     } else {
-      this.openSnackBar('Invalid form detected!', '');
+      this.action.openSnackBarComponent('Invalid form detected!', 'warning');
     }
   }
 

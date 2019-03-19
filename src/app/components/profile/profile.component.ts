@@ -31,8 +31,4 @@ export class ProfileComponent implements OnInit {
     this.progressBar.classList.add('hidden');
   }
 
-  showSnack() {
-    this.action.openSnackBarComponent('Abhisek', 'success');
-  }
-
 }

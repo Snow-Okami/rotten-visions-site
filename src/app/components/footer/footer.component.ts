@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
-import { MatSnackBar } from '@angular/material';
 
 import { environment } from '../../../environments/environment';
 
+import { ActionsService } from '../../services/actions.service';
 import { StoreService } from '../../services/store.service';
 import { HttpService } from '../../services/http.service';
 
@@ -20,8 +20,8 @@ export class FooterComponent implements OnInit {
   public update: boolean = false;
 
   constructor(
+    private action: ActionsService,
     public appUpdate: SwUpdate,
-    public snackBar: MatSnackBar,
     private http: HttpService,
     private store: StoreService
   ) {
@@ -35,7 +35,7 @@ export class FooterComponent implements OnInit {
     }
   }
 
-  updatedMessage() { this.openSnackBar('Psynapsus is updated!', ''); }
+  updatedMessage() { this.action.openSnackBarComponent('Psynapsus is updated!', ''); }
 
   ngOnInit() {
     
@@ -46,15 +46,6 @@ export class FooterComponent implements OnInit {
     if(v['message']['type'] !== 'error') {
       if(v['data']['clientLatest'] !== this.version) { console.log('update available.'); this.store.update.data = v['data']; this.store.update.synced = true; /* this.update = true; */ }
     }
-  }
-
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      verticalPosition: 'top',
-      horizontalPosition: 'right',
-      direction: 'ltr',
-      duration: 3000,
-    });
   }
 
 }

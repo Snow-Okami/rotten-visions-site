@@ -17,19 +17,20 @@ export class ActionsService {
       verticalPosition: 'top',
       horizontalPosition: 'right',
       direction: 'ltr',
-      duration: 6000,
+      duration: 10000,
     });
   }
 
-  openSnackBarComponent(message: string, status: string) {
-    this.snackBar.openFromComponent(SnackbarComponent, {
+  openSnackBarComponent(message: string, status: string, option?: any) {
+    this.snackBar.openFromComponent(SnackbarComponent, Object.assign({
       data: {
         message: message,
         status: status
       },
       verticalPosition: 'top',
       horizontalPosition: 'right',
-      direction: 'ltr'
-    });
+      direction: 'ltr',
+      duration: 10000
+    }, option));
   }
 }

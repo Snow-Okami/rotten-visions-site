@@ -2,11 +2,11 @@ import { Component, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/co
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MatSnackBar } from '@angular/material';
 import { Socket } from 'ngx-socket-io';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 import * as _ from 'lodash';
 
+import { ActionsService } from '../../services/actions.service';
 import { StoreService } from '../../services/store.service';
 import { HttpService } from '../../services/http.service';
 import { ValidatorsService } from '../../services/validators.service';
@@ -91,12 +91,12 @@ export class MessagesComponent {
   private _mobileQueryListener: () => void;
 
   constructor(
+    private action: ActionsService,
     private socket: Socket,
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
     private http: HttpService,
     private store: StoreService,
-    public snackBar: MatSnackBar,
     private regx: ValidatorsService,
     public sanitizer: DomSanitizer
   ) {
@@ -376,7 +376,7 @@ export class MessagesComponent {
    * @description creates a chat for the user when the chat does not extsts.
    */
   public createChat(event: any) {
-    if(!this.selectedUsers.length || (!this.createChatForm.valid && this.selectedUsers.length > 1)) { this.openSnackBar('Please choose user(s) and group name!', ''); return; }
+    if(!this.selectedUsers.length || (!this.createChatForm.valid && this.selectedUsers.length > 1)) { this.action.openSnackBarComponent('Please choose user(s) and group name!', 'warning'); return; }
     /**
      * @description stores the fullName as required.
      */
@@ -571,19 +571,5 @@ export class MessagesComponent {
     _.remove(this.selectedUsers, (o) => { return o.email === u.email; });
     let tu = _.find(this.searchedUsers, ['email', u.email]);
     if(tu) { tu.selected = false; }
-  }
-
-  /**
-   * @description opens the snack bar when required.
-   * @param message the string that is to be shown.
-   * @param action supporting message when required.
-   */
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      verticalPosition: 'top',
-      horizontalPosition: 'right',
-      direction: 'ltr',
-      duration: 6000,
-    });
   }
 }

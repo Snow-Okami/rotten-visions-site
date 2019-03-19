@@ -1,12 +1,12 @@
 import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
 import * as _ from 'lodash';
 import 'hammerjs';
 
 import { User } from '../../classes/user';
 
+import { ActionsService } from '../../services/actions.service';
 import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
 
@@ -47,12 +47,12 @@ export class DashboardComponent {
   private user: User;
 
   constructor(
+    private action: ActionsService,
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     private store: StoreService,
     private http: HttpService,
     private router: Router,
-    public snackBar: MatSnackBar,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -166,15 +166,6 @@ export class DashboardComponent {
     }
   }
 
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      verticalPosition: 'top',
-      horizontalPosition: 'right',
-      direction: 'ltr',
-      duration: 6000,
-    });
-  }
-
   logout() {
     /**
      * @description Enable loader.
@@ -193,8 +184,8 @@ export class DashboardComponent {
       this.store.setCookie('ps-u-a-p', '', 0);
       this.store.user.synced = false;
 
-      if(resp['message']['type'] !== 'error') { this.openSnackBar('You have successfully logged out!', ''); }
-      else { this.openSnackBar(resp['message']['text'], ''); }
+      if(resp['message']['type'] !== 'error') { this.action.openSnackBarComponent('You have successfully logged out!', 'success'); }
+      else { this.action.openSnackBarComponent(resp['message']['text'], 'error'); }
       /**
        * @description redirect to login page.
        */
