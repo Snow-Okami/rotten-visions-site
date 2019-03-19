@@ -109,15 +109,16 @@ export class ValidatorsService extends Validators  {
    */
   username(control: FormControl) {
     if (control.value && control.value.length >= 5) {
-      // let v = control.value.trim().toLowerCase().split(' ');
-      // const matches = _.find(v, it => _.includes(that.badWords, it));
-      // return matches ? { invalid_username: true } : null;
+      let v = control.value.trim().toLowerCase();
+
+      let regex = /(desysia|psynapsus|rottenvisions)/im;
+      let matches = regex.test(v);
+      if(matches) { return { invalid_username: true }; }
 
       /**
        * @description This process might slow down the system.
        */
-      let v = control.value.trim().toLowerCase();
-      const matches = _.find(that.badWords, it => _.includes(v, it));
+      matches = _.find(that.badWords, it => _.includes(v, it));
       return matches ? { invalid_username: true } : null;
     } else {
       return null;
