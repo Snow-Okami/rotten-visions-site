@@ -44,7 +44,7 @@ export class FooterComponent implements OnInit {
   async checkForUpdate() {
     let v = await this.http.getVersion({}).toPromise();
     if(v['message']['type'] !== 'error') {
-      if(v['data']['clientLatest'] !== this.version) { console.log('update available.'); this.store.update.data = v['data']; this.store.update.synced = true; /* this.update = true; */ }
+      if(v['data']['clientLatest'] !== this.version) { this.store.update.data = v['data']; this.store.update.synced = true; /* this.update = true; */ }
     }
   }
 

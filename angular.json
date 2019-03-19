@@ -3,7 +3,7 @@
   "version": 5,
   "newProjectRoot": "projects",
   "projects": {
-    "angular8QuickStart": {
+    "psynapsus": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular8QuickStart",
+            "outputPath": "dist/psynapsus",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -65,18 +65,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular8QuickStart:build"
+            "browserTarget": "psynapsus:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular8QuickStart:build:production"
+              "browserTarget": "psynapsus:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular8QuickStart:build"
+            "browserTarget": "psynapsus:build"
           }
         },
         "test": {
@@ -111,7 +111,7 @@
         }
       }
     },
-    "angular8QuickStart-e2e": {
+    "psynapsus-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -120,11 +120,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular8QuickStart:serve"
+            "devServerTarget": "psynapsus:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular8QuickStart:serve:production"
+              "devServerTarget": "psynapsus:serve:production"
             }
           }
         },
@@ -140,5 +140,5 @@
       }
     }
   },
-  "defaultProject": "angular8QuickStart"
+  "defaultProject": "psynapsus"
 }

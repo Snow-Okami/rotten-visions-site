@@ -1,5 +1,5 @@
 {
-  "name": "psynapsus-site",
+  "name": "psynapsus",
   "version": "3.1.5",
   "scripts": {
     "ng": "ng",
