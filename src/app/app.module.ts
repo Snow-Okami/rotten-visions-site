@@ -9,9 +9,15 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
+
 @NgModule({
   declarations: [
     AppComponent,
+    SnackbarComponent
+  ],
+  entryComponents: [
+    SnackbarComponent
   ],
   imports: [
     BrowserModule,

@@ -12,9 +12,9 @@ import { TrimwordPipe } from '../../pipes/trimword.pipe';
 import { NameonlyPipe } from '../../pipes/nameonly.pipe';
 import { UnameonlyPipe } from '../../pipes/unameonly.pipe';
 
-import { FooterComponent } from '../../components/footer/footer.component';
-
 import { environment } from '../../../environments/environment';
+
+import { FooterComponent } from '../../components/footer/footer.component';
 
 /**
  * @description domain update with production type.

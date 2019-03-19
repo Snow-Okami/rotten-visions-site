@@ -51,6 +51,11 @@ $theme:   mat-dark-theme($primary, $accent, $warn);
   min-width: 88px !important;
 }
 
+.mat-snack-bar-container {
+  padding: 0 !important;
+  min-height: auto !important;
+}
+
 .mat-drawer-container {
   background-color: transparent;
 }

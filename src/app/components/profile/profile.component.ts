@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ActionsService } from '../../services/actions.service';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -11,9 +13,11 @@ export class ProfileComponent implements OnInit {
    */
   private title = 'Psynapsus - Profile Dashboard';
 
-  private progressBar;
+  private progressBar: any;
 
-  constructor() { }
+  constructor(
+    private action: ActionsService
+  ) { }
 
   ngOnInit() {
     this.progressBar = document.getElementsByClassName('progressbar')[0];
@@ -25,6 +29,10 @@ export class ProfileComponent implements OnInit {
      * @description Hide Progress Bar When Page is Loaded.
      */
     this.progressBar.classList.add('hidden');
+  }
+
+  showSnack() {
+    this.action.openSnackBarComponent('Abhisek', 'success');
   }
 
 }

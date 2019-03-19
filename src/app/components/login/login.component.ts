@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import * as _ from 'lodash';
 
+import { ActionsService } from '../../services/actions.service';
 import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
 import { ValidatorsService } from '../../services/validators.service';
@@ -62,6 +63,7 @@ export class LoginComponent {
   public login = true;
 
   constructor(
+    private action: ActionsService,
     private store: StoreService,
     private http: HttpService,
     private router: Router,
@@ -74,15 +76,6 @@ export class LoginComponent {
   }
 
   ngAfterViewInit() { }
-
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      verticalPosition: 'top',
-      horizontalPosition: 'right',
-      direction: 'ltr',
-      duration: 6000,
-    });
-  }
 
   loginFun() {
 
@@ -127,7 +120,7 @@ export class LoginComponent {
           this.store.setCookie('ps-u-a-p', btoa(loginForm.email), 3);
           this.router.navigate(['/dashboard']);
 
-          this.openSnackBar('You have successfully logged in!', '');
+          this.action.openSnackBar('You have successfully logged in!', '');
         } else {
 
           /**
@@ -136,7 +129,7 @@ export class LoginComponent {
           this.disableClick = false;
           this.progressBar.classList.add('hidden');
 
-          this.openSnackBar(resp['message']['text'], '');
+          this.action.openSnackBar(resp['message']['text'], '');
         }
       });
     }
@@ -160,12 +153,12 @@ export class LoginComponent {
     if(!this.registerForm.valid) { return false; }
 
     if(this.registerForm.value.confirmEmail !== this.registerForm.value.email) {
-      this.openSnackBar('Confirm email don\'t match!', '');
+      this.action.openSnackBar('Confirm email don\'t match!', '');
       return false;
     }
 
     if(this.registerForm.value.confirmPassword !== this.registerForm.value.password) {
-      this.openSnackBar('Confirm password don\'t match!', '');
+      this.action.openSnackBar('Confirm password don\'t match!', '');
       return false;
     }
 
@@ -198,7 +191,7 @@ export class LoginComponent {
         this.disableClick = false;
         this.progressBar.classList.add('hidden');
 
-        this.openSnackBar('please validate the email!', '');
+        this.action.openSnackBar('please validate the email!', '');
       }
       else {
         /**
@@ -207,7 +200,7 @@ export class LoginComponent {
         this.disableClick = false;
         this.progressBar.classList.add('hidden');
 
-        this.openSnackBar(resp['message']['text'], '');
+        this.action.openSnackBar(resp['message']['text'], '');
       }
     });
   }
