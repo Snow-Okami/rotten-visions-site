@@ -80,7 +80,7 @@ export class LoginComponent {
       verticalPosition: 'top',
       horizontalPosition: 'right',
       direction: 'ltr',
-      duration: 3000,
+      duration: 6000,
     });
   }
 

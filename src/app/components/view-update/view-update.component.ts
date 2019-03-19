@@ -134,7 +134,7 @@ export class ViewUpdateComponent {
       verticalPosition: 'top',
       horizontalPosition: 'right',
       direction: 'ltr',
-      duration: 4000,
+      duration: 6000,
     });
   }
 

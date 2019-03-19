@@ -583,7 +583,7 @@ export class MessagesComponent {
       verticalPosition: 'top',
       horizontalPosition: 'right',
       direction: 'ltr',
-      duration: 3000,
+      duration: 6000,
     });
   }
 }
