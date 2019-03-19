@@ -1,6 +1,6 @@
 {
-  "name": "angular8-quick-start",
-  "version": "3.1.4",
+  "name": "psynapsus-site",
+  "version": "3.1.5",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
