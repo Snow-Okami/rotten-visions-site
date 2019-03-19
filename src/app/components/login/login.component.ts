@@ -192,30 +192,13 @@ export class LoginComponent {
     this.http.register(registerForm)
     .subscribe(resp => {
       if(resp['message']['type'] !== 'error') {
+        /**
+         * @description Disable buttons & enable loader.
+         */
+        this.disableClick = false;
+        this.progressBar.classList.add('hidden');
 
-        this.http.login(_.pick(registerForm, ['email', 'password']))
-        .subscribe(loginResp => {
-          if(loginResp['message']['type'] !== 'error') {
-            /**
-             * @description Store tokens and redirect to dashboard.
-             */
-            this.store.setCookie('ps-t-a-p', loginResp['data']['token'], 3);
-            this.store.setCookie('ps-u-a-p', btoa(registerForm.email), 3);
-            this.router.navigate(['/dashboard']);
-
-            this.openSnackBar('You have successfully logged in!', '');
-          }
-          else {
-            /**
-             * @description Disable buttons & enable loader.
-             */
-            this.disableClick = false;
-            this.progressBar.classList.add('hidden');
-
-            this.openSnackBar(loginResp['message']['text'], '');
-          }
-        });
-
+        this.openSnackBar('please validate the email!', '');
       }
       else {
         /**
