@@ -111,12 +111,23 @@ export class ValidatorsService extends Validators  {
     if (control.value && control.value.length >= 5) {
       let v = control.value.trim().toLowerCase();
 
+      /**
+       * @description Matches if the name starts with desysia, psynapsus or rottenvisions words.
+       */
       let regex = /(desysia|psynapsus|rottenvisions)/im;
       let matches = regex.test(v);
       if(matches) { return { invalid_username: true }; }
 
       /**
-       * @description This process might slow down the system.
+       * @description Matches for characters except A-Z, a-z, 0-9, -, _ & a non white space character then throws and invalid_username error.
+       */
+      let tv = v.split(''), tvr = [];
+      _.forEach(tv, it => {regex = /[a-z0-9\_\-]/img;tvr.push(!regex.test(it));});
+      if(_.find(tvr, it => it)) { return { invalid_username: true }; }
+
+      /**
+       * @description Matches bad words and throws and invalid_username error.
+       * This process might slow down the system.
        */
       matches = _.find(that.badWords, it => _.includes(v, it));
       return matches ? { invalid_username: true } : null;

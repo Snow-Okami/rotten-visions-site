@@ -219,37 +219,4 @@ export class LoginComponent {
     this.availableUser.data = this.availableUser.hasError ? {} : r['data'];
   }
 
-  public keyCode: number;
-
-  async preventInvalid(e: KeyboardEvent) {
-
-    this.keyCode = e.keyCode;
-    console.log('keyCodes', e.keyCode);
-
-    if(
-      // ASCII of backspace key
-      e.keyCode != 8
-      // ASCII of tab key
-      && e.keyCode != 9
-      // ASCII of enter key
-      && e.keyCode != 13
-      // ASCII of shift key
-      && e.keyCode != 16
-      // ASCII of caps lock on Mac OS
-      && e.keyCode != 20
-      // ASCII of left arrow key on Mac OS
-      && e.keyCode != 37
-      // ASCII of right arrow key on Mac OS
-      && e.keyCode != 39
-      // ASCII of numeric keys
-      && (e.keyCode < 48 || e.keyCode > 57)
-      // ASCII of alphabatic keys on Mac OS
-      && (e.keyCode < 65 || e.keyCode > 90)
-      // ASCII of _ & - on Mac OS
-      && e.keyCode != 189
-      ) {
-      e.preventDefault();
-    }
-  }
-
 }
