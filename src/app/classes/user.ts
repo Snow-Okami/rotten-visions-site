@@ -13,5 +13,6 @@ export class User {
   lastName?: string;
   online?: boolean;
   updatedAt?: string;
+  username?: string;
   _id?: string;
 }

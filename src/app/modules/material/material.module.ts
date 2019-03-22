@@ -27,6 +27,7 @@ import { MatMenuModule } from '@angular/material/menu';
  */
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatNativeDateModule } from '@angular/material';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
@@ -34,6 +35,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -65,6 +67,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatMenuModule,
     MatMomentDateModule,
     MatNativeDateModule,
+    MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatRadioModule,
@@ -72,6 +75,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSelectModule,
     MatSlideToggleModule,
     MatSnackBarModule,
+    MatSortModule,
     MatTableModule,
     MatTabsModule,
     MatTooltipModule
@@ -100,6 +104,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatMenuModule,
     MatMomentDateModule,
     MatNativeDateModule,
+    MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatRadioModule,
@@ -107,6 +112,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSelectModule,
     MatSlideToggleModule,
     MatSnackBarModule,
+    MatSortModule,
     MatTableModule,
     MatTabsModule,
     MatTooltipModule

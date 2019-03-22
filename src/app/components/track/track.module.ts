@@ -4,11 +4,14 @@ import { CommonModule } from '@angular/common';
 import { TrackRoutingModule } from './track-routing.module';
 import { TrackComponent } from './track.component';
 
+import { MaterialModule } from '../../modules/material/material.module';
+
 @NgModule({
   declarations: [TrackComponent],
   imports: [
     CommonModule,
-    TrackRoutingModule
+    TrackRoutingModule,
+    MaterialModule
   ]
 })
 export class TrackModule { }

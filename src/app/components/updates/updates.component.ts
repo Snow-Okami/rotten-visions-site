@@ -35,7 +35,7 @@ export class UpdatesComponent implements OnInit {
   };
 
   public mobileQuery: MediaQueryList;
-  private progressBar;
+  private progressBar: any;
   /**
    * @description Update Text Changes As Required Before Or After HTTP Request & Response.
    */

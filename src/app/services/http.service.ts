@@ -92,6 +92,18 @@ export class HttpService {
   }
 
   /**
+   * @description gets all users details.
+   */
+  users(): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/users';
+
+    return this.http.get<any>(url, this.option({ 'Content-Type':  'application/json' })).pipe(
+      tap(message => message),
+      catchError(this.handleError('user', {}))
+    );
+  }
+
+  /**
    * @description Post New Update POST HTTP Request.
    */
   post(data: any): Observable<HttpResponse<any>> {
