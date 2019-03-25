@@ -43,18 +43,23 @@
                       [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
                       <ul>
                         <li class="row">
-                          <!-- <div class="col w100 p-t-5 p-b-5"> DB Id: {{element._id}} </div> -->
-                          <div class="col w100 p-t-5 p-b-5"> Email: {{element.email}} </div>
-                          <div class="col w100 p-t-5 p-b-5"> Name: {{element.fullName}} </div>
-                          <div class="col w100 p-t-5 p-b-5"> User Id: {{element.id}} </div>
-                          <div class="col w100 p-t-5 p-b-5"> Username: {{element.username}} </div>
-                          <div class="col w100 p-t-5 p-b-5"> Capability: {{element.capability}} </div>
-                          <div class="col w100 p-t-5 p-b-5"> Email Validated: 
-                            <mat-slide-toggle class="example-toggle" [checked]="element.emailValidated"> {{element.emailValidated}} </mat-slide-toggle>
-                          </div>
-                          <div class="col w100 p-t-5 p-b-5"> Allowed to Access:
-                            <mat-slide-toggle class="example-toggle" [checked]="element.allowedToAccess"> {{element.allowedToAccess}} </mat-slide-toggle>
-                          </div>
+                          <!-- <form [formGroup]="userUpdateForm" (ngSubmit)="updateUser($event);"> -->
+                            <!-- <div class="col w100 p-t-5 p-b-5"> DB Id: {{element._id}} </div> -->
+                            <div class="col w100 p-t-5 p-b-5"> Email: {{element.email}} </div>
+                            <div class="col w100 p-t-5 p-b-5"> Name: {{element.fullName}} </div>
+                            <div class="col w100 p-t-5 p-b-5"> User Id: {{element.id}} </div>
+                            <div class="col w100 p-t-5 p-b-5"> Username: {{element.username}} </div>
+                            <div class="col w100 p-t-5 p-b-5"> Capability: {{element.capability}} </div>
+                            <div class="col w100 p-t-5 p-b-5"> Email Validated: 
+                              <mat-slide-toggle class="example-toggle" [checked]="element.emailValidated" [disabled]="disableToggle" (change)="update($event, element, 'emailValidated')"></mat-slide-toggle>
+                            </div>
+                            <div class="col w100 p-t-5 p-b-5"> Allowed to Access:
+                              <mat-slide-toggle class="example-toggle" [checked]="element.allowedToAccess" [disabled]="disableToggle" (change)="update($event, element, 'allowedToAccess')"></mat-slide-toggle>
+                            </div>
+                            <!-- <div class="col w100 p-t-5 p-b-5">
+                              <button mat-raised-button type="button" color="primary" [ngClass]="{'right': !mobileQuery.matches}" [disabled]="disableClick" (click)="update($event, element)"> Update </button>
+                            </div> -->
+                          <!-- </form> -->
                           <!-- <mat-divider></mat-divider> -->
                         </li>
                       </ul>

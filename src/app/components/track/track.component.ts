@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { HttpService } from '../../services/http.service';
 
@@ -15,7 +16,7 @@ import { User } from '../../classes/user';
     trigger('detailExpand', [
       state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
       state('expanded', style({height: '*'})),
-      transition('collapsed <=> expanded', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+      transition('expanded <=> collapsed', animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ]
 })
@@ -28,6 +29,11 @@ export class TrackComponent implements OnInit {
 
   private progressBar: any;
   public mobileQuery: MediaQueryList;
+
+  public disableToggle: boolean = false;
+
+  public emailValidated = new FormControl({ value: '', disabled: false });
+  public allowedToAccess = new FormControl({ value: '', disabled: false });
 
   constructor(
     private http: HttpService,
@@ -82,6 +88,10 @@ export class TrackComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  async update(e: Event, d: any, t: string) {
+    console.log(e, d, t);
   }
 
 }
