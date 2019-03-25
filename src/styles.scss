@@ -461,6 +461,9 @@ body.mobile-view {
   &0 {
     padding: 0px;
   }
+  &16 {
+    padding: 16px;
+  }
   &t- {
     &1 {
       padding-top: 1px;
@@ -753,4 +756,12 @@ span.writable-update {
 
 .green-done {
   color: #4caf50;
+}
+
+.mat-table {
+  background: #212121;
+}
+
+.mat-paginator {
+  background: #212121;
 }

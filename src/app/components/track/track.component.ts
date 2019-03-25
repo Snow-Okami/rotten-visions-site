@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 import { HttpService } from '../../services/http.service';
 
@@ -9,7 +10,14 @@ import { User } from '../../classes/user';
 @Component({
   selector: 'app-track',
   templateUrl: './track.component.html',
-  styleUrls: ['./track.component.scss']
+  styleUrls: ['./track.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
+      state('expanded', style({height: '*'})),
+      transition('collapsed <=> expanded', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ]
 })
 export class TrackComponent implements OnInit {
 
@@ -26,7 +34,7 @@ export class TrackComponent implements OnInit {
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher
   ) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQuery = media.matchMedia('(max-width: 940px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
@@ -51,7 +59,7 @@ export class TrackComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.displayedColumns = this.mobileQuery.matches
-    ? ['username']
+    ? ['fullName']
     : ['id', 'username', 'email', 'firstName', 'lastName', 'emailValidated', 'allowedToAccess'];
 
     /**
@@ -61,6 +69,7 @@ export class TrackComponent implements OnInit {
 
   }
 
+  expandedElement: User | null;
   displayedColumns: string[];
   dataSource: MatTableDataSource<User>;
 
