@@ -40,7 +40,7 @@
                 <ng-container matColumnDef="expandedDetail">
                   <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
                     <div class="example-element-detail"
-                      [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                      [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
                       <ul>
                         <li class="row">
                           <!-- <div class="col w100 p-t-5 p-b-5"> DB Id: {{element._id}} </div> -->
