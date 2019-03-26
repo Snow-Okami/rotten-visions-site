@@ -43,23 +43,23 @@
                       [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
                       <ul>
                         <li class="row">
-                          <!-- <form [formGroup]="userUpdateForm" (ngSubmit)="updateUser($event);"> -->
                             <!-- <div class="col w100 p-t-5 p-b-5"> DB Id: {{element._id}} </div> -->
                             <div class="col w100 p-t-5 p-b-5"> Email: {{element.email}} </div>
                             <div class="col w100 p-t-5 p-b-5"> Name: {{element.fullName}} </div>
                             <div class="col w100 p-t-5 p-b-5"> User Id: {{element.id}} </div>
                             <div class="col w100 p-t-5 p-b-5"> Username: {{element.username}} </div>
-                            <div class="col w100 p-t-5 p-b-5"> Capability: {{element.capability}} </div>
+                            <div class="col w100 p-t-5 p-b-5"> Capability:
+                              <mat-radio-group aria-label="Choose your type" value="{{element.capability}}" [disabled]="(store.user.data['email'] === element.email) || disableToggle" (change)="updateCapability($event, element, 'capability')">
+                                <mat-radio-button value="1" class="m-r-10">Regular user</mat-radio-button>
+                                <mat-radio-button value="2">Project admin</mat-radio-button>
+                              </mat-radio-group>
+                            </div>
                             <div class="col w100 p-t-5 p-b-5"> Email Validated: 
-                              <mat-slide-toggle class="example-toggle" [checked]="element.emailValidated" [disabled]="disableToggle" (change)="update($event, element, 'emailValidated')"></mat-slide-toggle>
+                              <mat-slide-toggle class="example-toggle" [color]="primary" [checked]="element.emailValidated" [disabled]="(store.user.data['email'] === element.email) || disableToggle" (change)="updatePermission($event, element, 'emailValidated')"></mat-slide-toggle>
                             </div>
                             <div class="col w100 p-t-5 p-b-5"> Allowed to Access:
-                              <mat-slide-toggle class="example-toggle" [checked]="element.allowedToAccess" [disabled]="disableToggle" (change)="update($event, element, 'allowedToAccess')"></mat-slide-toggle>
+                              <mat-slide-toggle class="example-toggle" [color]="primary" [checked]="element.allowedToAccess" [disabled]="(store.user.data['email'] === element.email) || disableToggle" (change)="updatePermission($event, element, 'allowedToAccess')"></mat-slide-toggle>
                             </div>
-                            <!-- <div class="col w100 p-t-5 p-b-5">
-                              <button mat-raised-button type="button" color="primary" [ngClass]="{'right': !mobileQuery.matches}" [disabled]="disableClick" (click)="update($event, element)"> Update </button>
-                            </div> -->
-                          <!-- </form> -->
                           <!-- <mat-divider></mat-divider> -->
                         </li>
                       </ul>

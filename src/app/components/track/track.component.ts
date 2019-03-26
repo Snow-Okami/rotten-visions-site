@@ -3,8 +3,12 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatRadioChange } from '@angular/material/radio';
 
+import { StoreService } from '../../services/store.service';
 import { HttpService } from '../../services/http.service';
+import { ActionsService } from '../../services/actions.service';
 
 import { User } from '../../classes/user';
 
@@ -36,9 +40,11 @@ export class TrackComponent implements OnInit {
   public allowedToAccess = new FormControl({ value: '', disabled: false });
 
   constructor(
+    public store: StoreService,
     private http: HttpService,
     public changeDetectorRef: ChangeDetectorRef,
-    public media: MediaMatcher
+    public media: MediaMatcher,
+    private action: ActionsService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 940px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -90,8 +96,56 @@ export class TrackComponent implements OnInit {
     }
   }
 
-  async update(e: Event, d: any, t: string) {
-    console.log(e, d, t);
+  async updateCapability(e: MatRadioChange, d: any, t: string) {
+    /**
+     * @description Show Progress Bar When HTTP request Started.
+     */
+    this.progressBar.classList.remove('hidden');
+
+    let o = {}; o[t] = e.value;
+    let p = { email: d.email };
+    this.disableToggle = true;
+
+    let r = await this.http.updatePermission(p, o).toPromise();
+    if(r['message']['type'] !== 'error') {
+      Object.assign(d, o);
+      this.action.openSnackBarComponent('Capability updated successfully!', 'success');
+    } else {
+      this.disableToggle = false; o[t] = !o[t]; Object.assign(d, o);
+      this.action.openSnackBarComponent(r['message']['text'], 'error');
+    }
+
+    this.disableToggle = false;
+    /**
+     * @description Hide Progress Bar When HTTP request is completed.
+     */
+    this.progressBar.classList.add('hidden');
+  }
+
+  async updatePermission(e: MatSlideToggleChange, d: any, t: string) {
+    /**
+     * @description Show Progress Bar When HTTP request Started.
+     */
+    this.progressBar.classList.remove('hidden');
+
+    let o = {}; o[t] = e.checked;
+    let p = { email: d.email };
+    this.disableToggle = true;
+
+    let r = await this.http.updatePermission(p, o).toPromise();
+    if(r['message']['type'] !== 'error') {
+      Object.assign(d, o);
+      this.action.openSnackBarComponent('Permission updated successfully!', 'success');
+    } else {
+      this.disableToggle = false; o[t] = !o[t]; Object.assign(d, o);
+      this.action.openSnackBarComponent(r['message']['text'], 'error');
+    }
+
+    this.disableToggle = false;
+    /**
+     * @description Hide Progress Bar When HTTP request is completed.
+     */
+    this.progressBar.classList.add('hidden');
   }
 
 }

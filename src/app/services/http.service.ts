@@ -103,6 +103,15 @@ export class HttpService {
     );
   }
 
+  updatePermission(param: any, data: any): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/permission/' + param.email;
+
+    return this.http.put<any>(url, data, this.option({ 'Content-Type':  'application/json' })).pipe(
+      tap(message => message),
+      catchError(this.handleError('permission', {}))
+    );
+  }
+
   /**
    * @description Post New Update POST HTTP Request.
    */
