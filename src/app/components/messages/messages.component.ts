@@ -207,7 +207,6 @@ export class MessagesComponent {
   }
 
   public loadChats(event: any): void {
-    // console.log(event);
   }
 
   public loadMessages(event: any): void {
@@ -468,8 +467,6 @@ export class MessagesComponent {
       let t_d = t_t.getFullYear() + '-' + t_t.getMonth() + '-' + t_t.getDate();
       t_i.showDate = t_d !== d; d = t_d;
     });
-
-    console.log(that.chats);
 
     /**
      * @description scroll to bottom of the messages.

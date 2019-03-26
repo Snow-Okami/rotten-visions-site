@@ -57,8 +57,6 @@ export class EmailVerifyComponent {
     this.response.error = r['message']['type'] === 'error';
     this.response.success = !this.response.error;
     // this.response.success = true;
-
-    console.log(this.response);
   }
 
 }
