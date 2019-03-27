@@ -45,8 +45,11 @@
                   <mat-form-field class="contact-input" appearance="outline">
                     <mat-label> Enter post title </mat-label>
                     <input matInput placeholder="eg.: Coming on 8th" autocomplete="off" [formControl]="postTitle" required>
-                    <mat-error *ngIf="!postTitle.hasError('required')">
-                      Minimum 2 words. No space at begining.
+                    <mat-error *ngIf="postTitle.hasError('invalid_characters')">
+                      Minimum 2 words. Invalid character at the begining.
+                    </mat-error>
+                    <mat-error *ngIf="postTitle.hasError('badword') && !postTitle.hasError('invalid_characters')">
+                      Please do not use bad word.
                     </mat-error>
                     <mat-error *ngIf="postTitle.hasError('required')">
                       Title is required

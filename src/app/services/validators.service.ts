@@ -49,9 +49,10 @@ export class ValidatorsService extends Validators  {
    */
   title(control: FormControl) {
     if (control.value && control.value.length > 0) {
+      let v = control.value.trim().toLowerCase();
       let regex = /^[A-Za-z]{1,}\s[A-Za-z]{1,}/gm;
       const matches = regex.test(control.value);
-      return !matches ? { invalid_characters: matches } : null;
+      return !matches ? { invalid_characters: true } : _.find(that.badWords, it => _.includes(v, it)) ? { badword: true }: null;
     } else {
       return null;
     }
