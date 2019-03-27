@@ -73,12 +73,13 @@ export class ValidatorsService extends Validators  {
    */
   description(control: FormControl) {
     if (control.value && control.value.length > 0) {
-      let regex = /^[a-z0-9\<\>\s]/img;
+      let v = control.value.trim().toLowerCase();
+      let regex = /^[a-z0-9\<\>\@]/gmi;
       let matches = regex.test(control.value);
       let wordList = _.filter(_.split(_.replace(control.value, /\n/gm, ' '), ' '), (o) => {
         return o.length > 0;
       });
-      return wordList.length >= 10 ? matches ? null : { invalid_description: true } : { invalid_description: true };
+      return wordList.length ? matches ? _.find(that.badWords, it => _.includes(v, it)) ? { badword: true }: null : { invalid_description: true } : { invalid_description: true };
     } else {
       return null;
     }
