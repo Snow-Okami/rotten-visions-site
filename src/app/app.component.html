@@ -1,16 +1,23 @@
+<div class="video-wrapper">
+  <iframe src="http://localhost:5000/embed/rottenvisions-bgv.html"
+    frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+  </iframe>
+</div>
+
+
 <router-outlet (activate)="routeChange($event)"></router-outlet>
 
 <!-- Background Video -->
-<video #movie loop preload="metadata" class="movie">
+<!-- <video #movie loop preload="metadata" class="movie">
   <source src="/assets/video/movie.mp4" type="video/mp4">
   Your browser does not support the video tag.
-</video>
+</video> -->
 
 <!-- Background Overlay -->
-<div class="mobile-bg"></div>
+<!-- <div class="mobile-bg"></div> -->
 
 <!-- Accept Cookie Popup  -->
-<div class="cookie-popup" *ngIf="cookiePopup">
+<!-- <div class="cookie-popup" *ngIf="cookiePopup">
   <span class="icon-holder"> <i class="material-icons" (click)="playMovie();"> close </i> </span>
   <p class="default"> By closing this popup, you are allowing to autoplay videos on Rotten Visions. </p>
-</div>
+</div> -->

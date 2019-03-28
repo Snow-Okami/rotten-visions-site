@@ -4,6 +4,10 @@
   margin: 0;
 }
 
+html, body {
+  height: 100% !important;
+}
+
 a, p {
   text-decoration: none;
   font-family: 'Roboto Mono', monospace;

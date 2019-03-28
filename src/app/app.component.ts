@@ -11,11 +11,11 @@ let that: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @ViewChild('movie') movie: any;
+  // @ViewChild('movie') movie: any;
   private preloadImages = {
     cache: []
   };
-  public cookiePopup = environment.production;
+  // public cookiePopup = environment.production;
   constructor() {
     that = this;
     this.cacheImages();
@@ -41,12 +41,14 @@ export class AppComponent {
    * 
    * @param c is the child route component. All available variables and funtions will be returned.
    */
-  routeChange(c) {}
-
-  playMovie() {
-    this.movie.nativeElement.play();
-    this.cookiePopup = false;
-  }
+  routeChange(c: any) {}
+  /**
+   * @description play the video manually
+   */
+  // playMovie() {
+  //   this.movie.nativeElement.play();
+  //   this.cookiePopup = false;
+  // }
 
   cacheImages() {
     if(!this.preloadImages.cache.length) {
