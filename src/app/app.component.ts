@@ -15,7 +15,7 @@ export class AppComponent {
   private preloadImages = {
     cache: []
   };
-  // public cookiePopup = environment.production;
+  public url = environment.production ? 'https://psynapsus.herokuapp.com/embed/rottenvisions-bgv.html' : 'http://localhost:5000/embed/rottenvisions-bgv.html';
   constructor() {
     that = this;
     this.cacheImages();
