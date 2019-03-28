@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import * as _ from 'lodash';
 
+import { StoreService } from './services/store.service';
 import { environment } from '../environments/environment';
 
 let that: any;
@@ -11,12 +12,13 @@ let that: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // @ViewChild('movie') movie: any;
   private preloadImages = {
     cache: []
   };
   public url = environment.production ? 'https://psynapsus.herokuapp.com/embed/rottenvisions-bgv.html' : 'http://localhost:5000/embed/rottenvisions-bgv.html';
-  constructor() {
+  constructor(
+    public store: StoreService
+  ) {
     that = this;
     this.cacheImages();
   }
@@ -42,13 +44,6 @@ export class AppComponent {
    * @param c is the child route component. All available variables and funtions will be returned.
    */
   routeChange(c: any) {}
-  /**
-   * @description play the video manually
-   */
-  // playMovie() {
-  //   this.movie.nativeElement.play();
-  //   this.cookiePopup = false;
-  // }
 
   cacheImages() {
     if(!this.preloadImages.cache.length) {

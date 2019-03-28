@@ -48,4 +48,13 @@ export class StoreService {
       direction: 'ltr',
     });
   }
+
+  public isDevice = {
+    Android: navigator.userAgent.match(/Android/i) || false,
+    BlackBerry: navigator.userAgent.match(/BlackBerry/i) || false,
+    iOS: navigator.userAgent.match(/iPhone|iPad|iPod/i) || false,
+    Opera: navigator.userAgent.match(/Opera Mini/i) || false,
+    Windows: navigator.userAgent.match(/IEMobile/i) || false,
+    Macintosh: navigator.userAgent.match(/Macintosh/i) || false
+  };
 }
