@@ -238,6 +238,15 @@ body.mobile-view {
 
 .right {
   float: right;
+
+  &-0 {
+    &px {
+      right: 0px;
+    }
+    &px {
+      right: 0%;
+    }
+  }
 }
 
 .t-al-right {
@@ -751,6 +760,18 @@ span.writable-update {
   }
   &-25 {
     font-size: 25px;
+  }
+}
+
+.pos {
+  &-r {
+    position: relative;
+  }
+  &-a {
+    position: absolute;
+  }
+  &-f {
+    position: fixed;
   }
 }
 

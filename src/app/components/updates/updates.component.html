@@ -55,7 +55,13 @@
 
               <!-- Keep the description in here -->
               <div [ngClass]="{'w60': update.image !== '', 'w100': update.image == '', 'col': true}">
-                <div [ngClass]="{'m-l-20': update.image !== ''}">
+                <div [ngClass]="{'m-l-20': update.image !== '', 'pos-r': true}">
+
+                  <div class="pos-a right-0px">
+                    <button mat-icon-button color="primary" aria-label="icon-button with a settings icon">
+                      <mat-icon>settings</mat-icon>
+                    </button>
+                  </div>
 
                   <!-- POST TAGS Should Stay Here -->
                   <div class="row" *ngIf="update.tags.length > 0">

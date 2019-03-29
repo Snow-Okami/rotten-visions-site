@@ -13,6 +13,10 @@ const routes: Routes = [
     loadChildren: '../view-update/view-update.module#ViewUpdateModule'
   },
   {
+    path: 'view-public/:id',
+    loadChildren: '../view-public-update/view-public-update.module#ViewPublicUpdateModule'
+  },
+  {
     path: 'create',
     loadChildren: '../create-update/create-update.module#CreateUpdateModule'
   },
