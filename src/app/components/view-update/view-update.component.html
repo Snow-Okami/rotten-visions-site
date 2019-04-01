@@ -25,7 +25,8 @@
             [defaultImage]="image.defaultImage"
             [lazyLoad]="post.image"
             [offset]="image.offset"
-            alt="missing image">
+            alt="missing image"
+            *ngIf="post.image !== ''">
           
           </div>
   
