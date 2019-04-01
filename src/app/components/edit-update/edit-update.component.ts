@@ -7,7 +7,8 @@ import { MatChipInputEvent } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 
-import { User } from '../../classes/user';
+import { User } from '../../interfaces/user';
+import { Post } from '../../interfaces/post';
 
 import { ActionsService } from '../../services/actions.service';
 import { HttpService } from '../../services/http.service';
@@ -18,16 +19,6 @@ let that: any;
 
 export interface Tag {
   name: string;
-}
-
-export interface Post {
-  createdAt?: string;
-  description?: string;
-  id?: string;
-  image?: string;
-  publish?: boolean;
-  title?: string;
-  tags?: string;
 }
 
 @Component({
@@ -43,7 +34,7 @@ export class EditUpdateComponent {
 
   public disableClick: boolean = false;
   public mobileQuery: MediaQueryList;
-  private progressBar;
+  private progressBar: any;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   public tags: Tag[] = [
     {name: 'Social'},

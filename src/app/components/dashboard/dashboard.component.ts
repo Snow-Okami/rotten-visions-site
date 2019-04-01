@@ -4,7 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import * as _ from 'lodash';
 import 'hammerjs';
 
-import { User } from '../../classes/user';
+import { User } from '../../interfaces/user';
 
 import { ActionsService } from '../../services/actions.service';
 import { HttpService } from '../../services/http.service';

@@ -7,7 +7,7 @@ import { MatChipInputEvent } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 
-import { User } from '../../classes/user';
+import { User } from '../../interfaces/user';
 
 import { ActionsService } from '../../services/actions.service';
 import { HttpService } from '../../services/http.service';

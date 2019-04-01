@@ -10,7 +10,7 @@ import { StoreService } from '../../services/store.service';
 import { HttpService } from '../../services/http.service';
 import { ActionsService } from '../../services/actions.service';
 
-import { User } from '../../classes/user';
+import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-track',

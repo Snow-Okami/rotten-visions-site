@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as _ from 'lodash';
 
-import { User } from '../../classes/user';
+import { User } from '../../interfaces/user';
 
 import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
