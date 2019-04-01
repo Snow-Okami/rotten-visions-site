@@ -94,7 +94,7 @@ export class ViewUpdateComponent {
     if(r['message']['type'] !== 'error') { this.postList = r['data']; }
     this.progressBar.classList.add('hidden');
 
-    console.log(this.post, this.postList);
+    // console.log(this.post, this.postList);
   }
 
 }

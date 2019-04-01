@@ -6,7 +6,6 @@
 }
 
 .title {
-  // font-family: 'Roboto Mono', monospace;
   text-transform: uppercase;
 }
 
@@ -14,4 +13,10 @@
   background: #c3233f;
   border-radius: 4px;
   font-family: 'Montserrat', sans-serif;
+}
+
+.post-image {
+  // max-width: 100%;
+  max-height: 400px;
+  border-radius: 5px;
 }

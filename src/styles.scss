@@ -674,8 +674,25 @@ body.mobile-view {
   vertical-align: middle;
 }
 
-.m-w-90 {
-  max-width: 90%;
+.m {
+  &-w {
+    &-90{
+      &pr {
+        max-width: 90%;
+      }
+      &px {
+        max-width: 90px;
+      }
+    }
+    &-100{
+      &pr {
+        max-width: 100%;
+      }
+      &px {
+        max-width: 100px;
+      }
+    }
+  }
 }
 
 perfect-scrollbar > .ps.ps--scrolling-y > .ps__rail-y {

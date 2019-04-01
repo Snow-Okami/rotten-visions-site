@@ -1,49 +1,53 @@
 <div class="content-wrapper" [ngClass]="{'hidden': hiddenContent}">
 
   <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
+
+    <div class="col w60 m-b-30" [ngClass]="{'mobile': mobileQuery.matches}">
+      
+      <div class="image-wrapper" [ngClass]="{'p-15': !mobileQuery.matches}">
+        <div class="row">
+      
+          <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
     
-    <div class="image-wrapper" [ngClass]="{'p-15': !mobileQuery.matches}">
-      <div class="row">
-
-        <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
+            <div class="">
   
-          <div class="">
-
-            <div class="image-title p-b-10">
+              <div class="image-title p-b-10">
+              
+                <div class="row">
+                  <div class="title font-30"> {{post?.title ? post?.title : 'Loading title...'}} </div>
+                </div>
+                <div class="date p-b-6 p-t-6 font-12"> Posted on: {{post.createdAt | date}} </div>
+                <div class="tag p-b-10 p-t-10">
+                  <div class="col inline tag-item m-r-5 p-t-3 p-b-3 p-l-5 p-r-5 font-10" *ngFor="let t of post.tags"> {{t}} </div>
+                </div>
+    
+              </div>
+  
+              <img [ngClass]="{'mobile': mobileQuery.matches, 'post-image': true, 'm-w-100': true}"
+              [defaultImage]="image.defaultImage"
+              [lazyLoad]="post.image"
+              [offset]="image.offset"
+              alt="missing image"
+              *ngIf="post.image !== ''">
             
-              <div class="row">
-                <div class="title font-30"> {{post?.title ? post?.title : 'Loading title...'}} </div>
-              </div>
-              <div class="date p-b-6 p-t-6 font-12"> Posted on: {{post.createdAt | date}} </div>
-              <div class="tag p-b-10 p-t-10">
-                <div class="col inline tag-item m-r-5 p-t-3 p-b-3 p-l-5 p-r-5 font-10" *ngFor="let t of post.tags"> {{t}} </div>
-              </div>
-  
             </div>
-
-            <img [ngClass]="{'mobile': mobileQuery.matches, 'post-image': true}"
-            [defaultImage]="image.defaultImage"
-            [lazyLoad]="post.image"
-            [offset]="image.offset"
-            alt="missing image"
-            *ngIf="post.image !== ''">
-          
+    
+          </div>
+    
+        </div>
+  
+      </div>
+  
+      <div class="desc-wrapper" [ngClass]="{'p-15': !mobileQuery.matches}">
+        <div class="row">
+  
+          <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
+            <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(post?.description)" class="writable-update"></span>
           </div>
   
         </div>
-  
       </div>
 
-    </div>
-
-    <div class="desc-wrapper" [ngClass]="{'p-15': !mobileQuery.matches}">
-      <div class="row">
-
-        <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
-          <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(post?.description)" class="writable-update"></span>
-        </div>
-
-      </div>
     </div>
 
   </div>
