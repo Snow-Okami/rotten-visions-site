@@ -1,4 +1,5 @@
 export interface Post {
+  comments?: Array<any>;
   createdAt?: string;
   description?: string;
   id?: string;

@@ -1,22 +1,3 @@
-<!-- <div class="content-wrapper">
-    <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
-    
-      <div class="row">
-        <p> View Update Contents Will Appear Here </p>
-        <img alt="missing post images!" [ngClass]="{'post-image': true}"
-          [defaultImage]="image.defaultImage"
-          [lazyLoad]="post.image"
-          [offset]="image.offset"
-        >
-      </div>
-
-      <div class="row">
-        <button mat-stroked-button type="button" color="primary" (click)="this.page.back();">
-          <mat-icon aria-label="Example icon-button with a heart icon"> chevron_left </mat-icon>
-        </button>
-      </div>
-  </div>
-</div> -->
 
 <div class="content-wrapper" [ngClass]="{'hidden': hiddenContent}">
   <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
