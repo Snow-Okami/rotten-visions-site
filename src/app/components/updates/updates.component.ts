@@ -139,13 +139,18 @@ export class UpdatesComponent implements OnInit {
     this.router.navigate(['/dashboard/updates/create']);
   }
 
-  viewThisUpdate(id: string) {
+  editThisUpdate(id: string) {
     if(this.user.capability !== 2) { return; }
     /**
      * @description Show Progress Bar When Page is Loading.
      */
     this.progressBar.classList.remove('hidden');
 
+    this.router.navigate(['/dashboard/updates/edit/' + id]);
+  }
+
+  viewThisUpdate(id: string) {
+    this.progressBar.classList.remove('hidden');
     this.router.navigate(['/dashboard/updates/view/' + id]);
   }
 

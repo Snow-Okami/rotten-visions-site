@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ViewPublicUpdateComponent } from './view-public-update.component';
+import { EditUpdateComponent } from './edit-update.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ViewPublicUpdateComponent
+    component: EditUpdateComponent
   },
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/dashboard/updates/view-public/:id'
+    redirectTo: '/dashboard/updates/edit/:id'
   }
 ];
 
@@ -19,5 +19,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ViewPublicUpdateRoutingModule { }
-
+export class EditUpdateRoutingModule { }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewPublicUpdateComponent } from './view-public-update.component';
+import { EditUpdateComponent } from './edit-update.component';
 
-describe('ViewPublicUpdateComponent', () => {
-  let component: ViewPublicUpdateComponent;
-  let fixture: ComponentFixture<ViewPublicUpdateComponent>;
+describe('EditUpdateComponent', () => {
+  let component: EditUpdateComponent;
+  let fixture: ComponentFixture<EditUpdateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewPublicUpdateComponent ]
+      declarations: [ EditUpdateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewPublicUpdateComponent);
+    fixture = TestBed.createComponent(EditUpdateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

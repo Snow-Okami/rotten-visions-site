@@ -9,12 +9,12 @@ const routes: Routes = [
     component: UpdatesComponent
   },
   {
-    path: 'view/:id',
-    loadChildren: '../view-update/view-update.module#ViewUpdateModule'
+    path: 'edit/:id',
+    loadChildren: '../edit-update/edit-update.module#EditUpdateModule'
   },
   {
-    path: 'view-public/:id',
-    loadChildren: '../view-public-update/view-public-update.module#ViewPublicUpdateModule'
+    path: 'view/:id',
+    loadChildren: '../view-update/view-update.module#ViewUpdateModule'
   },
   {
     path: 'create',

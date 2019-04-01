@@ -17,9 +17,10 @@ import { ViewUpdateComponent } from './view-update.component';
 @NgModule({
   declarations: [ViewUpdateComponent],
   imports: [
-    CommonModule, FormsModule, ReactiveFormsModule,
-    MaterialModule, LazyLoadImageModule, SharedModule,
-    ViewUpdateRoutingModule
+    CommonModule,
+    ViewUpdateRoutingModule,
+    FormsModule, ReactiveFormsModule,
+    MaterialModule, LazyLoadImageModule, SharedModule
   ]
 })
 export class ViewUpdateModule { }

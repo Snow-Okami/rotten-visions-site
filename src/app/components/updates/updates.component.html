@@ -40,9 +40,9 @@
 
           <li class="row" *ngFor="let update of updates">
 
-            <div class="update-con-wrapper" (click)="viewThisUpdate(update.id);">
+            <div class="update-con-wrapper">
               <!-- Keep the image in here -->
-              <div class="col w40" *ngIf="update.image !== ''">
+              <div class="col w40" *ngIf="update.image !== ''" (click)="viewThisUpdate(update.id);">
                 <div class="row">
                   <img alt="missing post images!" [ngClass]="{'post-image': true}"
                     [defaultImage]="image.defaultImage"
@@ -58,7 +58,7 @@
                 <div [ngClass]="{'m-l-20': update.image !== '', 'pos-r': true}">
 
                   <div class="pos-a right-0px">
-                    <button mat-icon-button color="primary" aria-label="icon-button with a settings icon">
+                    <button mat-icon-button color="primary" aria-label="icon-button with a settings icon" (click)="editThisUpdate(update.id);">
                       <mat-icon>settings</mat-icon>
                     </button>
                   </div>
@@ -71,12 +71,12 @@
                   </div>
 
                   <!-- POST TITLE Should Stay Here -->
-                  <div class="row">
+                  <div class="row" (click)="viewThisUpdate(update.id);">
                     <p class="title"> {{ update.title | trimword: 20 }} </p>
                   </div>
 
                   <!-- POST DESCRIPTION Should Stay Here -->
-                  <div class="row">
+                  <div class="row" (click)="viewThisUpdate(update.id);">
                     <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(fixPostLen(update.description, 200))" class="writable-update"></span>
                   </div>
 

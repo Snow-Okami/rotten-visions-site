@@ -11,16 +11,15 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
  * @description SharedModule contains the shared Components & Pipes throughout Psynapsus.
  */
 import { SharedModule } from '../../modules/shared/shared.module';
-import { ViewPublicUpdateRoutingModule } from './view-public-update-routing.module';
-import { ViewPublicUpdateComponent } from './view-public-update.component';
+import { EditUpdateRoutingModule } from './edit-update-routing.module';
+import { EditUpdateComponent } from './edit-update.component';
 
 @NgModule({
-  declarations: [ViewPublicUpdateComponent],
+  declarations: [EditUpdateComponent],
   imports: [
-    CommonModule,
-    ViewPublicUpdateRoutingModule,
-    FormsModule, ReactiveFormsModule,
-    MaterialModule, LazyLoadImageModule, SharedModule
+    CommonModule, FormsModule, ReactiveFormsModule,
+    MaterialModule, LazyLoadImageModule, SharedModule,
+    EditUpdateRoutingModule
   ]
 })
-export class ViewPublicUpdateModule { }
+export class EditUpdateModule { }
