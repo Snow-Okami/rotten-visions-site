@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -32,6 +32,8 @@ export class ViewUpdateComponent {
   public hiddenContent: boolean = true;
   private _mobileQueryListener: () => void;
 
+  @ViewChild('postImage') postImage: ElementRef;
+
   public post: Post = {
     image: '',
     description: 'Loading content...'
@@ -42,7 +44,8 @@ export class ViewUpdateComponent {
    */
   public image = {
     offset: 100,
-    defaultImage: '/assets/logo/img-ex-light.png'
+    defaultImage: '/assets/logo/img-ex-light.png',
+    defaultHeight: 0
   };
 
   public postList: Array<Post> = [];
@@ -61,20 +64,23 @@ export class ViewUpdateComponent {
     private regx: ValidatorsService,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 800px)');
-    this._mobileQueryListener = () => this.detectChanges();
+    // this._mobileQueryListener = () => this.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
     that = this;
   }
 
   detectChanges(data?: any) {
-    console.log('change detected!', data);
+    console.log('change detected!');
   }
 
   async ngOnInit() {
     this.progressBar = document.getElementsByClassName('progressbar')[0];
 
     this.hiddenContent = false;
+  }
+
+  async ngAfterContentInit() {
   }
 
   async ngAfterViewInit() {
@@ -92,9 +98,17 @@ export class ViewUpdateComponent {
 
     r = await this.http.posts(option).toPromise();
     if(r['message']['type'] !== 'error') { this.postList = r['data']; }
+    /**
+     * @description adjust image height after image load.
+     */
+    if(this.postImage) {
+      let boundary = await this.action.getBoundingClientRect(this.postImage);
+      this.image.defaultHeight = (boundary['width'] / 16) * 9;
+    }
+    /**
+     * @description hide the loader
+     */
     this.progressBar.classList.add('hidden');
-
-    // console.log(this.post, this.postList);
   }
 
 }

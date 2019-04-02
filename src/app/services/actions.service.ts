@@ -1,7 +1,8 @@
-import { Injectable, Component } from '@angular/core';
+import { Injectable, Component, ElementRef } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 
 import { SnackbarComponent } from '../components/snackbar/snackbar.component';
+import { element } from '@angular/core/src/render3';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,11 @@ export class ActionsService {
       direction: 'ltr',
       duration: 10000
     }, option));
+  }
+
+  async getBoundingClientRect(elem: ElementRef) {
+    return new Promise((resolve, reject) => {
+      let timer = setInterval(() => {if(elem) { clearInterval(timer); resolve(elem.nativeElement.getBoundingClientRect()); }}, 500);
+    });
   }
 }

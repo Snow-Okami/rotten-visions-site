@@ -709,7 +709,7 @@ span.writable.mat-line {
 }
 
 span.writable, span.writable p, span.writable h1, span.writable h2, span.writable h3, span.writable h4, span.writable h5, span.writable h6 {
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: 'Open Sans Condensed', sans-serif !important;
   word-break: break-word;
 }
 
@@ -719,6 +719,7 @@ span.writable, span.writable p {
 
 span.writable-update {
   line-height: 25px;
+  // font-family: 'Open Sans Condensed', sans-serif;
 }
 
 .mobile .message-list-wrapper .mat-list-item-content {

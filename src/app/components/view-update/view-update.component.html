@@ -23,12 +23,14 @@
     
               </div>
   
-              <img [ngClass]="{'mobile': mobileQuery.matches, 'post-image': true, 'm-w-100': true}"
-              [defaultImage]="image.defaultImage"
-              [lazyLoad]="post.image"
-              [offset]="image.offset"
-              alt="missing image"
-              *ngIf="post.image !== ''">
+              <img #postImage
+                [ngClass]="{'mobile': mobileQuery.matches, 'post-image': true, 'm-w-100': true}"
+                [defaultImage]="image.defaultImage"
+                [lazyLoad]="post.image"
+                [offset]="image.offset"
+                alt="missing image"
+                [style.height.px]="image.defaultHeight"
+                *ngIf="post.image !== ''">
             
             </div>
     
@@ -42,7 +44,7 @@
         <div class="row">
   
           <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
-            <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(post?.description)" class="writable-update"></span>
+            <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(post?.description)" class="writable-update font-18"></span>
           </div>
   
         </div>
