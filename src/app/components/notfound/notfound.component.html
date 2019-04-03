@@ -28,7 +28,7 @@
 
     </div>
 
-    <div class="footer">
+    <div [ngClass]="{'footer': true, 'mobile': mobileQuery.matches}">
       <app-footer></app-footer>
     </div>
   </div>

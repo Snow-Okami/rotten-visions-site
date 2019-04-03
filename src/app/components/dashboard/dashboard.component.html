@@ -25,7 +25,7 @@
 
       <!-- Footer Will Appear Here -->
       <div class="content-wrapper" [ngClass]="{ 'hidden': hideFooter }">
-        <div class="footer">
+        <div [ngClass]="{'footer': true, 'mobile': mobileQuery.matches}">
           <app-footer></app-footer>
         </div>
       </div>
