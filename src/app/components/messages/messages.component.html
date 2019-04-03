@@ -56,7 +56,7 @@
                 <mat-list-item *ngFor="let c of chats">
                   <mat-icon mat-list-icon class="chat-image"> person </mat-icon>
                   <h4 mat-line class="chat-name" (click)="showItsMessages(c)"> {{ c.type ? c.fullName : c.users | unameonly: user }} </h4>
-                  <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(c.lastMessage.text)" class="writable" mat-line></span>
+                  <span [innerHTML]="c?.lastMessage.text" class="writable" mat-line></span>
                   <mat-divider></mat-divider>
                 </mat-list-item>
 
@@ -105,7 +105,7 @@
                     <!-- <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div> -->
 
                     <div class="col wauto">
-                      <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(m.text)" class="writable"></span>
+                      <span [innerHTML]="m?.text" class="writable"></span>
                       <h4 class="mat-line"> {{ m.createdBy.username }}, {{ m.createdAt | date : 'h:mm a' }} </h4>
                     </div>
                   </div>
@@ -116,7 +116,10 @@
                     <!-- <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div> -->
 
                     <div class="col wauto">
-                      <span [ngClass]="{ 'hidden': !chat.isTyping.lastMessage.text.length }" [innerHTML]="sanitizer.bypassSecurityTrustHtml(chat.isTyping.lastMessage.text)" class="writable"></span>
+
+                      <!-- sanitizer.bypassSecurityTrustHtml(chat.isTyping.lastMessage.text) -->
+
+                      <span [ngClass]="{ 'hidden': !chat.isTyping.lastMessage.text.length }" [innerHTML]="chat?.isTyping.lastMessage.text" class="writable"></span>
                       <h6 class="mat-line"> {{ chat.isTyping.lastMessage.createdBy.username }} is typing... </h6>
                     </div>
                   </div>
@@ -272,7 +275,7 @@
             <mat-list-item *ngFor="let c of chats" class="mobile-chat-ui">
               <mat-icon mat-list-icon class="chat-image"> person </mat-icon>
               <h4 mat-line class="chat-name" (click)="showItsMessages(c)"> {{ c.type ? c.fullName : c.users | unameonly: user }} </h4>
-              <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(c.lastMessage.text)" class="writable" mat-line></span>
+              <span [innerHTML]="c?.lastMessage.text" class="writable" mat-line></span>
               <mat-divider></mat-divider>
             </mat-list-item>
 
@@ -313,7 +316,7 @@
                 <!-- <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div> -->
   
                 <div class="col wauto">
-                  <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(m.text)" class="writable"></span>
+                  <span [innerHTML]="m?.text" class="writable"></span>
                   <h4 class="mat-line"> {{ m.createdBy.username }}, {{ m.createdAt | date : 'h:mm a' }} </h4>
                 </div>
               </div>
@@ -324,7 +327,7 @@
                 <!-- <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div> -->
   
                 <div class="col wauto">
-                  <span [ngClass]="{ 'hidden': !chat.isTyping.lastMessage.text.length }" [innerHTML]="sanitizer.bypassSecurityTrustHtml(chat.isTyping.lastMessage.text)" class="writable"></span>
+                  <span [ngClass]="{ 'hidden': !chat.isTyping.lastMessage.text.length }" [innerHTML]="chat?.isTyping.lastMessage.text" class="writable"></span>
                   <h6 class="mat-line"> {{ chat.isTyping.lastMessage.createdBy.username }} is typing... </h6>
                 </div>
               </div>

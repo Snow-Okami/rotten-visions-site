@@ -708,9 +708,32 @@ span.writable.mat-line {
   line-height: 27px;
 }
 
-span.writable, span.writable p, span.writable h1, span.writable h2, span.writable h3, span.writable h4, span.writable h5, span.writable h6 {
+span.writable,
+span.writable p,
+span.writable h1,
+span.writable h2,
+span.writable h3,
+span.writable h4,
+span.writable h5,
+span.writable h6,
+
+span.writable-update,
+span.writable-update strong,
+span.writable-update i,
+span.writable-update b,
+span.writable-update p,
+span.writable-update h1,
+span.writable-update h2,
+span.writable-update h3,
+span.writable-update h4,
+span.writable-update h5,
+span.writable-update h6 {
   font-family: 'Open Sans Condensed', sans-serif !important;
   word-break: break-word;
+}
+
+span.writable img, span.writable-update img {
+  width: 100%;
 }
 
 span.writable, span.writable p {
@@ -719,7 +742,6 @@ span.writable, span.writable p {
 
 span.writable-update {
   line-height: 25px;
-  // font-family: 'Open Sans Condensed', sans-serif;
 }
 
 .mobile .message-list-wrapper .mat-list-item-content {

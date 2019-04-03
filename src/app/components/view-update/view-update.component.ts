@@ -70,10 +70,6 @@ export class ViewUpdateComponent {
     that = this;
   }
 
-  detectChanges(data?: any) {
-    console.log('change detected!');
-  }
-
   async ngOnInit() {
     this.progressBar = document.getElementsByClassName('progressbar')[0];
 

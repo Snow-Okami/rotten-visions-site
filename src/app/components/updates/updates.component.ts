@@ -70,7 +70,7 @@ export class UpdatesComponent implements OnInit {
     public sanitizer: DomSanitizer
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 840px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
     that = this;
