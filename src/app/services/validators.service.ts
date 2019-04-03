@@ -29,7 +29,7 @@ export class ValidatorsService extends Validators  {
    */
   email(control: FormControl) {
     if (control.value && control.value.length > 0) {
-      let regex = /[A-Za-z0-9\.\-\_]{3,}@[A-Za-z0-9\-\_]{3,}\.[A-Za-z]{2,}/gm;
+      let regex = /^[A-Za-z0-9\.\-\_]{3,}@[A-Za-z0-9\-\_]{3,}\.[A-Za-z]{2,}$/;
       let spaceex = /\s/gm;
       return (!spaceex.test(control.value) && regex.test(control.value)) ? null : { invalid_characters: true };
     }

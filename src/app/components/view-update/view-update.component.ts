@@ -3,6 +3,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import * as _ from 'lodash';
 
 import { User } from '../../interfaces/user';
@@ -31,6 +32,8 @@ export class ViewUpdateComponent {
   private user: User;
   public hiddenContent: boolean = true;
   private _mobileQueryListener: () => void;
+  public commentF: FormGroup;
+  public replyF: FormGroup;
 
   @ViewChild('postImage') postImage: ElementRef;
 
@@ -57,6 +60,7 @@ export class ViewUpdateComponent {
     private router: Router,
     private route: ActivatedRoute,
     public sanitizer: DomSanitizer,
+    public form: FormBuilder,
 
     private action: ActionsService,
     private store: StoreService,
@@ -68,6 +72,18 @@ export class ViewUpdateComponent {
     this.mobileQuery.addListener(this._mobileQueryListener);
 
     that = this;
+
+    this.commentF = this.form.group({
+      text: new FormControl('', Validators.compose([
+        Validators.required, regx.description
+      ]))
+    });
+
+    this.replyF = this.form.group({
+      text: new FormControl('', Validators.compose([
+        Validators.required, regx.description
+      ]))
+    });
   }
 
   async ngOnInit() {
@@ -105,6 +121,46 @@ export class ViewUpdateComponent {
      * @description hide the loader
      */
     this.progressBar.classList.add('hidden');
+  }
+
+  /**
+   * @description get the native form element
+   */
+  @ViewChild('comment') commentFNative: ElementRef;
+  
+  async commentNow(e: Event, f: FormGroup) {
+    if(!e.isTrusted || f.invalid) { return; }
+
+    this.progressBar.classList.remove('hidden');
+
+    let c = _.pick(this.post, ['_id', 'id']);
+    let form = Object.assign(f.value, {'createdBy': this.store.user.data.username, 'createdFor': c._id, 'postId': c.id});
+    let r = await this.http.comment(form).toPromise();
+    if(r['message']['type'] !== 'error') { this.action.openSnackBarComponent('Thanks! for commenting', 'success'); this.post.comments.splice(0, 0, r['data']); }
+    this.commentFNative.nativeElement.reset();
+
+    this.progressBar.classList.add('hidden');
+  }
+
+  async replyNow(e: Event, f: FormGroup, com: any) {
+    if(!e.isTrusted || f.invalid) { return; }
+
+    this.progressBar.classList.remove('hidden');
+
+    let c = _.pick(com, ['_id', 'id']);
+    let form = Object.assign(f.value, {'createdBy': this.store.user.data.username, 'createdFor': c._id, 'commentId': c.id});
+    e.target['parentElement'].classList.add('hidden');
+    let r = await this.http.reply(form).toPromise();
+    if(r['message']['type'] !== 'error') { this.action.openSnackBarComponent('Thanks! for reply', 'success'); com.replies.push(r['data']); }
+
+    this.progressBar.classList.add('hidden');
+  }
+
+  alterForm(e: Event, ex: boolean) {
+    let el = ex ? e.target['parentElement']['parentElement']['parentElement']['nextSibling'] : e.target['parentElement']['nextSibling'];
+    let t = el.classList.value.includes('hidden')
+    ? el.classList.remove('hidden')
+    : el.classList.add('hidden');
   }
 
 }

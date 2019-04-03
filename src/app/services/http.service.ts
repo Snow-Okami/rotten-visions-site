@@ -196,4 +196,22 @@ export class HttpService {
       catchError(this.handleError('username', {}))
     );
   }
+
+  comment(data: any): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/postcomment';
+
+    return this.http.post<any>(url, data).pipe(
+      tap(message => message),
+      catchError(this.handleError('comment', {}))
+    );
+  }
+
+  reply(data: any): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/commentreply';
+
+    return this.http.post<any>(url, data).pipe(
+      tap(message => message),
+      catchError(this.handleError('reply', {}))
+    );
+  }
 }

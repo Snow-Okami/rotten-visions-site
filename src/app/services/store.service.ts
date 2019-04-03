@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from '../../environments/environment';
 
+import { User } from '../interfaces/user';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,12 +27,13 @@ export class StoreService {
   /**
    * @description Save User in Store.
    */
+  private u: User;
   public user = {
-    data: {},
+    data: this.u,
     synced: false
   };
 
-  constructor() { }
+  constructor() {}
 
   /**
    * @description message passing service between Components.

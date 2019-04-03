@@ -7,4 +7,5 @@ export interface Post {
   publish?: boolean;
   title?: string;
   tags?: string;
+  _id?: string;
 }

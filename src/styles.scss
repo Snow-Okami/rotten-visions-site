@@ -676,6 +676,14 @@ body.mobile-view {
 
 .m {
   &-w {
+    &-46{
+      &pr {
+        max-width: 46%;
+      }
+      &px {
+        max-width: 46px;
+      }
+    }
     &-90{
       &pr {
         max-width: 90%;
@@ -691,6 +699,15 @@ body.mobile-view {
       &px {
         max-width: 100px;
       }
+    }
+  }
+}
+
+.w {
+  &100 {
+    width: 100%;
+    &px {
+      width: 100px;
     }
   }
 }
