@@ -44,7 +44,7 @@
         <div class="row">
   
           <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
-            <span [innerHTML]="post?.description" class="writable-update font-18"></span>
+            <span [innerHTML]="post?.description" class="writable-update font-light font-18"></span>
           </div>
   
         </div>
@@ -88,9 +88,9 @@
               <li class="comment-box p-b-10 p-t-10" *ngFor="let com of post.comments; index as i;">
 
                 <div class="comment-container">
-                  <div class="user-title p-b-5 p-t-5 font-22"> {{com.createdBy}} </div>
+                  <div class="user-title p-b-5 p-t-5 font-22"> {{com.createdBy | titlecase}} </div>
                   <div class="comment-time p-b-5 p-t-5 font-12"> {{com.createdAt | date: 'fullDate'}} </div>
-                  <div class="user-comment p-b-5 p-t-5 font-18"> {{com.text}} </div>
+                  <div class="user-comment font-light p-b-5 p-t-5 font-18"> {{com.text}} </div>
                 </div>
 
                 <ul class="reply-container">
@@ -131,9 +131,9 @@
 
                     <div class="col w80 inline">
                       <div class="reply-wrapper">
-                        <div class="user-title p-b-5 p-t-5 font-22"> {{rep.createdBy}} </div>
+                        <div class="user-title p-b-5 p-t-5 font-22"> {{rep.createdBy | titlecase}} </div>
                         <div class="comment-time p-b-5 p-t-5 font-12"> {{rep.createdAt | date: 'fullDate'}} </div>
-                        <div class="user-comment p-b-5 p-t-5 font-18"> {{rep.text}} </div>
+                        <div class="user-comment font-light p-b-5 p-t-5 font-18"> {{rep.text}} </div>
                         <div class="p-b-5 p-t-10">
                           <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8" (click)="alterForm($event, true);"> Reply </div>
                           <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8"> Share </div>

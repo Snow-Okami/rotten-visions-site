@@ -745,7 +745,7 @@ span.writable-update h3,
 span.writable-update h4,
 span.writable-update h5,
 span.writable-update h6 {
-  font-family: 'Open Sans Condensed', sans-serif !important;
+  font-family: 'Montserrat', sans-serif !important;
   word-break: break-word;
 }
 
@@ -758,7 +758,7 @@ span.writable, span.writable p {
 }
 
 span.writable-update {
-  line-height: 25px;
+  line-height: 30px;
 }
 
 .mobile .message-list-wrapper .mat-list-item-content {
@@ -770,6 +770,23 @@ span.writable-update {
 }
 
 .font {
+
+  &-light {
+    font-weight: 300;
+  }
+  &-regular {
+    font-weight: 400;
+  }
+  &-medium {
+    font-weight: 500;
+  }
+  &-semi-bold {
+    font-weight: 600;
+  }
+  &-bold {
+    font-weight: 700;
+  }
+
   &-10 {
     font-size: 10px;
   }
