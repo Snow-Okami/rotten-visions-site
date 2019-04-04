@@ -16,7 +16,7 @@ export class FooterComponent implements OnInit {
   /**
    * @description version is the app version.
    */
-  public version: string = '3.2.4';
+  public version: string = '3.2.5';
   public update: boolean = false;
 
   constructor(
@@ -25,7 +25,7 @@ export class FooterComponent implements OnInit {
     private http: HttpService,
     private store: StoreService
   ) {
-    this.appUpdate.available.subscribe(e => { this.update = true; });
+    // this.appUpdate.available.subscribe(e => { this.update = true; });
     this.checkForUpdate();
   }
 
