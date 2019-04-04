@@ -70,9 +70,6 @@
                     <mat-error *ngIf="postDescription.hasError('invalid_description') && !postDescription.hasError('minlength')">
                       Invalid character at the begining. Minimum 1 word.
                     </mat-error>
-                    <mat-error *ngIf="postDescription.hasError('badword') && !postDescription.hasError('minlength') && !postDescription.hasError('invalid_description')">
-                      Please do not use bad word.
-                    </mat-error>
                     <mat-error *ngIf="postDescription.hasError('required')">
                       Description is <strong>required</strong>
                     </mat-error>

@@ -80,7 +80,7 @@ export class ValidatorsService extends Validators  {
       let wordList = _.filter(_.split(_.replace(control.value, /\n/gm, ' '), ' '), (o) => {
         return o.length > 0;
       });
-      return wordList.length ? matches ? _.find(that.badWords, it => _.includes(v.split(' '), it)) ? { badword: true }: null : { invalid_description: true } : { invalid_description: true };
+      return wordList.length ? matches ? null : { invalid_description: true } : { invalid_description: true };
     } else {
       return null;
     }
