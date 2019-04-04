@@ -135,8 +135,13 @@ body.mobile-view {
   background: #000;
 }
 
-.opacity-q4 {
-  opacity: 0.4 !important;
+.opacity {
+  &-q4 {
+    opacity: 0.4 !important;
+  }
+  &-q75 {
+    opacity: 0.75 !important;
+  }
 }
 
 /**
