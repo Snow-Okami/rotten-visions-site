@@ -98,6 +98,11 @@ export class ViewUpdateComponent {
   async ngAfterViewInit() {
     let params = {'id': this.route.snapshot.paramMap.get('id')};
     let r = await this.http.postDetails(params.id).toPromise();
+    /**
+     * @description stop showing loader when post not found.
+     */
+    if(r['message']['type'] === 'error') { this.action.openSnackBarComponent(r['message']['text'], 'error'); this.progressBar.classList.add('hidden'); return; }
+
     this.post = r['data'];
     this.post.tags = JSON.parse(this.post.tags);
 
