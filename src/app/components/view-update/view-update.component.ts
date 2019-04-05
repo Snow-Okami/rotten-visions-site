@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
@@ -8,6 +8,7 @@ import * as _ from 'lodash';
 import { RegxFormService } from '../../services/regx-form.service';
 import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
+import { ActionsService } from '../../services/actions.service';
 
 let that: any;
 
@@ -26,8 +27,11 @@ export class ViewUpdateComponent {
 
   public image = {
     offset: 100,
-    defaultImage: '/assets/logo/small-logo.png'
+    defaultImage: '/assets/logo/small-logo.png',
+    defaultHeight: 0
   };
+
+  @ViewChild('postImage') postImage: ElementRef;
 
   public post: any = {
     image: '',
@@ -61,7 +65,8 @@ export class ViewUpdateComponent {
     public sanitizer: DomSanitizer,
     private route: ActivatedRoute,
     public form: FormBuilder,
-    private Rxjs: RegxFormService
+    private Rxjs: RegxFormService,
+    public action: ActionsService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -116,6 +121,13 @@ export class ViewUpdateComponent {
 
     r = await this.http.posts(option).toPromise();
     if(r['message']['type'] !== 'error') { this.postList = r['data']; }
+    /**
+     * @description adjust image height after image load.
+     */
+    if(this.postImage) {
+      let boundary = await this.action.getBoundingClientRect(this.postImage);
+      this.image.defaultHeight = (boundary['width'] / 16) * 9;
+    }
     document.getElementsByClassName('route-progress-bar')[0].classList.add('hidden');
   }
 

@@ -17,11 +17,11 @@
   width: 100%;
 }
 
-.head {
-  padding: 15px;
+.hidden .head, .hidden .body, .hidden .footer, .head.mobile, .body.mobile, .footer.mobile {
+  padding: 0px;
 }
 
-.body {
+.head, .body, .footer {
   padding: 15px;
 }
 

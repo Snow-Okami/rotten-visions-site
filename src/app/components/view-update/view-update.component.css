@@ -2,15 +2,11 @@
   width: 100%;
 }
 
-.head {
-  padding: 15px;
-}
-
-.head.mobile {
+.hidden .head, .hidden .body, .hidden .footer, .head.mobile, .body.mobile, .footer.mobile {
   padding: 0px;
 }
 
-.body {
+.head, .body, .footer {
   padding: 15px;
 }
 
@@ -56,9 +52,7 @@
 }
 
 .post-image {
-  max-width: 100%;
-  max-height: 400px;
-  border-radius: 5px;
+  width: 100%;
 }
 
 .image-wrapper {
@@ -170,7 +164,7 @@
 }
 
 span.writable-update {
-  line-height: 25px;
+  line-height: 30px;
   font-family: 'Montserrat', sans-serif;
 }
 

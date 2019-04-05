@@ -125,3 +125,7 @@ mat-form-field div, mat-form-field span {
 .green-done {
   color: #4caf50;
 }
+
+span.writable-update img {
+  max-width: 100%;
+}
