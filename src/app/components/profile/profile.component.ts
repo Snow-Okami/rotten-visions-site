@@ -75,12 +75,12 @@ export class ProfileComponent {
       r = await this.http.user(email).toPromise();
       if(r['message']['type'] !== 'error') { this.user = r['data']; }
     }
-
-    this.user = _.pick(this.user, ['firstName', 'lastName', 'username', 'email']);
-
-    this.profileForm.setValue(this.user)
-
-    console.log(this.profileForm.value);
+    /**
+     * @description set the profile form's values
+     */
+    this.profileForm.setValue(
+      _.pick(this.user, ['firstName', 'lastName', 'username', 'email'])
+    );
 
     /**
      * @description Hide Progress Bar When Page is Loaded.
