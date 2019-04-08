@@ -11,6 +11,8 @@ import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
 import { ValidatorsService } from '../../services/validators.service';
 
+let that: any;
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -60,6 +62,8 @@ export class ProfileComponent {
     this.mobileQuery = media.matchMedia('(max-width: 800px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+
+    that = this;
   }
 
   private _mobileQueryListener: () => void;
@@ -91,6 +95,31 @@ export class ProfileComponent {
 
   ngAfterViewInit() {
 
+  }
+
+  public hideImage: boolean = true;
+  @ViewChild('dropImage') image: any;
+  @ViewChild('dropFile') file: any;
+
+  showImage(event: any): void {
+    let image = this.image.nativeElement;
+    let file = this.file.nativeElement;
+    let reader  = new FileReader();
+
+    reader.addEventListener("load", function () {
+      image['src'] = reader.result;
+      that.hideImage = false;
+    }, false);
+
+    if (file['files'][0]) {
+      reader.readAsDataURL(file['files'][0]);
+    }
+  }
+
+  removeImage(): void {
+    this.hideImage = true;
+    this.image.nativeElement['src'] = '';
+    this.file.nativeElement.value = null;
   }
 
   updateProfile(event: any) {

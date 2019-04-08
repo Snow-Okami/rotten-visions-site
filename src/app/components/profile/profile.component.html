@@ -44,7 +44,37 @@
               </div>
 
             </div>
+
+            <!-- Image drag & drop section column -->
             <div class="col w40">
+
+              <div class="m-l-50 p-t-6 p-b-6">
+                <!-- Image heading container -->
+                <div class="row">
+                  <h2 class="heading c-red"> {{ mobileQuery.matches ? 'Tap to add image here' : 'Drag & drop image here' }} </h2>
+                </div>
+
+                <!-- Image Container -->
+                <div class="row">
+                  <div class="drop-image-cover m-l-2">
+                    <input type="file" class="drop-file" #dropFile (change)="showImage($event)" [ngClass]="{'hidden': !hideImage}">
+                    <img src="" alt="Image preview..." #dropImage [ngClass]="{'hidden': hideImage}" class="drop-image">
+                    <img src="/assets/logo/close.png" alt="Missing close!" class="drop-image-close" [ngClass]="{'hidden': hideImage}" (click)="removeImage()">
+                  </div>
+                </div>
+
+                <!-- Image requirement description row -->
+                <div class="row">
+                  <h2 class="heading c-red"> Notes </h2>
+                </div>
+                <div class="row">
+                  <ul class="default">
+                    <li> Choose 16:9 image dimention for best view </li>
+                    <li> Maximum file size is 5.0MB </li>
+                    <li> No image will be shown when not uploaded </li>
+                  </ul>
+                </div>
+              </div>
 
             </div>
 
