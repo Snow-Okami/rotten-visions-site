@@ -36,17 +36,24 @@ export class ProfileComponent {
   /**
    * @description Form controls and Groups are as follows
    */
-  public firstName = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.name ]);
-  public lastName = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.name ]);
-  public username = new FormControl({ value: '', disabled: true }, [ Validators.required, this.regx.username ]);
-  public email = new FormControl({ value: '', disabled: true }, [ Validators.required, this.regx.email ]);
+  public firstName = new FormControl({ value: '', disabled: false }, [ this.regx.name ]);
+  public lastName = new FormControl({ value: '', disabled: false }, [ this.regx.name ]);
+  public username = new FormControl({ value: '', disabled: true }, [ this.regx.username ]);
+  public email = new FormControl({ value: '', disabled: true }, [ this.regx.email ]);
+  public currentPassword = new FormControl({ value: '', disabled: false }, [ this.regx.password ]);
+  public password = new FormControl({ value: '', disabled: false }, [ this.regx.password ]);
+  public confirmPassword = new FormControl({ value: '', disabled: false }, [ this.regx.password ]);
 
   @ViewChild('profileCreateFormElement') profileCreateFormElement: ElementRef;
   public profileForm = new FormGroup({
     firstName: this.firstName,
     lastName: this.lastName,
     username: this.username,
-    email: this.email
+    email: this.email,
+
+    currentPassword: this.currentPassword,
+    password: this.password,
+    confirmPassword: this.confirmPassword
   });
 
   constructor(
@@ -83,7 +90,11 @@ export class ProfileComponent {
      * @description set the profile form's values
      */
     this.profileForm.setValue(
-      _.pick(this.user, ['firstName', 'lastName', 'username', 'email'])
+      Object.assign(_.pick(this.user, ['firstName', 'lastName', 'username', 'email']), {
+        currentPassword: '',
+        password: '',
+        confirmPassword: ''
+      })
     );
 
     /**
@@ -123,7 +134,7 @@ export class ProfileComponent {
   }
 
   updateProfile(event: any) {
-    console.log(this.profileForm.value);
+    console.log(this.profileForm.valid);
   }
 
 }

@@ -39,7 +39,7 @@ export class ValidatorsService extends Validators  {
   password(control: FormControl) {
     if (control.value && control.value.length > 0) {
       let spaceex = /\s/gm;
-      return (spaceex.test(control.value) || control.value.length < 6) ? { invalid: true } : null;
+      return (spaceex.test(control.value) || control.value.length < 6) ? { invalid: { requiredPattern: spaceex.toString(), actualValue: control.value, message: 'Must be of 6 characters without space' } } : null;
     }
     return null;
   }
@@ -93,7 +93,7 @@ export class ValidatorsService extends Validators  {
     if (control.value && control.value.length > 0) {
       let regex = /^[A-Z][a-z]/gm;
       const matches = regex.test(control.value.trim());
-      return !matches ? { invalid_characters: matches } : null;
+      return !matches ? { invalid_characters: { requiredPattern: regex.toString(), actualValue: control.value, message: 'Only first character should be capital.' } } : null;
     } else {
       return null;
     }

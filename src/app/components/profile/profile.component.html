@@ -19,6 +19,12 @@
                 <mat-form-field class="contact-input" appearance="outline">
                   <mat-label> First name </mat-label>
                   <input matInput placeholder="eg.: John Doe" autocomplete="off" [formControl]="firstName" required>
+                  <mat-error *ngIf="firstName.hasError('invalid_characters')">
+                    {{firstName.errors?.invalid_characters?.message}}
+                  </mat-error>
+                  <mat-error *ngIf="firstName.hasError('required')">
+                    First name is required
+                  </mat-error>
                 </mat-form-field>
               </div>
 
@@ -26,20 +32,60 @@
                 <mat-form-field class="contact-input" appearance="outline">
                   <mat-label> Last name </mat-label>
                   <input matInput placeholder="eg.: John Doe" autocomplete="off" [formControl]="lastName" required>
+                  <mat-error *ngIf="lastName.hasError('invalid_characters')">
+                    {{lastName.errors?.invalid_characters?.message}}
+                  </mat-error>
+                  <mat-error *ngIf="lastName.hasError('required')">
+                    Last name is required
+                  </mat-error>
                 </mat-form-field>
               </div>
 
               <div class="row">
                 <mat-form-field class="contact-input" appearance="outline">
                   <mat-label> Username </mat-label>
-                  <input matInput placeholder="eg.: John Doe" autocomplete="off" [formControl]="username" required>
+                  <input matInput placeholder="eg.: John Doe" autocomplete="off" [formControl]="username">
                 </mat-form-field>
               </div>
 
               <div class="row">
                 <mat-form-field class="contact-input" appearance="outline">
                   <mat-label> Email </mat-label>
-                  <input matInput placeholder="eg.: John Doe" autocomplete="off" [formControl]="email" required>
+                  <input matInput placeholder="eg.: John Doe" autocomplete="off" [formControl]="email">
+                </mat-form-field>
+              </div>
+
+              <div class="row">
+                <h2 class="heading c-red"> Profile password </h2>
+              </div>
+
+              <div class="row">
+                <mat-form-field class="contact-input" appearance="outline">
+                  <mat-label> Current password </mat-label>
+                  <input matInput autocomplete="off" type="password" [formControl]="currentPassword">
+                  <mat-error *ngIf="currentPassword.hasError('invalid')">
+                    {{currentPassword.errors?.invalid?.message}}
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="row">
+                <mat-form-field class="contact-input" appearance="outline">
+                  <mat-label> New password </mat-label>
+                  <input matInput autocomplete="off" type="password" [formControl]="password">
+                  <mat-error *ngIf="password.hasError('invalid')">
+                    {{password.errors?.invalid?.message}}
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="row">
+                <mat-form-field class="contact-input" appearance="outline">
+                  <mat-label> Confirm new password </mat-label>
+                  <input matInput autocomplete="off" type="password" [formControl]="confirmPassword">
+                  <mat-error *ngIf="confirmPassword.hasError('invalid')">
+                    {{confirmPassword.errors?.invalid?.message}}
+                  </mat-error>
                 </mat-form-field>
               </div>
 
