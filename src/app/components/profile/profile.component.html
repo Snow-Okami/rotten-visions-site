@@ -1,5 +1,89 @@
-<div class="content-wrapper">
-  <div class="body">
-    <p> Profile works! </p>
+<div class="content-wrapper" [ngClass]="{'hidden': hiddenContent}">
+  <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
+
+    <div class="row">
+
+      <div class="col w100 p-t-6 p-b-6">
+
+        <form #profileCreateFormElement [formGroup]="profileForm" (ngSubmit)="updateProfile($event);">
+
+          <!-- Enter or Select post details row -->
+          <div class="row">
+
+            <div class="col w60">
+              <div class="row">
+                <h2 class="heading c-red"> Profile details </h2>
+              </div>
+
+              <div class="row">
+                <mat-form-field class="contact-input" appearance="outline">
+                  <mat-label> First name </mat-label>
+                  <input matInput placeholder="eg.: John Doe" autocomplete="off" [formControl]="firstName" required>
+                </mat-form-field>
+              </div>
+
+              <div class="row">
+                <mat-form-field class="contact-input" appearance="outline">
+                  <mat-label> Last name </mat-label>
+                  <input matInput placeholder="eg.: John Doe" autocomplete="off" [formControl]="lastName" required>
+                </mat-form-field>
+              </div>
+
+              <div class="row">
+                <mat-form-field class="contact-input" appearance="outline">
+                  <mat-label> Username </mat-label>
+                  <input matInput placeholder="eg.: John Doe" autocomplete="off" [formControl]="username" required>
+                </mat-form-field>
+              </div>
+
+              <div class="row">
+                <mat-form-field class="contact-input" appearance="outline">
+                  <mat-label> Email </mat-label>
+                  <input matInput placeholder="eg.: John Doe" autocomplete="off" [formControl]="email" required>
+                </mat-form-field>
+              </div>
+
+            </div>
+            <div class="col w40">
+
+            </div>
+
+          </div>
+
+          <!-- Save or Publish button row -->
+          <div class="row">
+
+            <div class="col inline" [ngClass]="{'w100': mobileQuery.matches, 'w60': !mobileQuery.matches}">
+
+              <!-- Publish or Save button column for desktop -->
+              <div class="col inline" *ngIf="!mobileQuery.matches" [ngClass]="{'right': mobileQuery.matches}">
+                <button [disabled]="disableClick" mat-raised-button type="submit" color="primary"> Update </button>
+              </div>
+
+              <!-- Back button column for desktop or mobile -->
+              <div class="col inline" [ngClass]="{'right': mobileQuery.matches}">
+                <div class="m-l-10 force">
+
+                  <button [disabled]="disableClick" mat-stroked-button type="button" color="primary" (click)="this.page.back();">
+                    <mat-icon aria-label="Example icon-button with a heart icon"> chevron_left </mat-icon>
+                  </button>
+
+                </div>
+              </div>
+
+              <!-- Publish or Save button column for mobile -->
+              <div class="col inline" *ngIf="mobileQuery.matches" [ngClass]="{'right': mobileQuery.matches}">
+                <button [disabled]="disableClick" mat-raised-button type="submit" color="primary"> Update </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
   </div>
 </div>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../../modules/material/material.module';
 
@@ -9,7 +10,7 @@ import { ProfileComponent } from './profile.component';
 @NgModule({
   declarations: [ProfileComponent],
   imports: [
-    CommonModule,
+    CommonModule, FormsModule, ReactiveFormsModule,
     ProfileRoutingModule,
     MaterialModule
   ]
