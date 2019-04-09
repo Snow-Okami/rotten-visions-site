@@ -133,8 +133,20 @@ export class ProfileComponent {
     this.file.nativeElement.value = null;
   }
 
-  updateProfile(event: any) {
-    console.log(this.profileForm.valid);
+  async updateProfile(event: any) {
+    /**
+     * @description do nothing with invalid form
+     */
+    if(this.profileForm.invalid) { return false; }
+    /**
+     * @description warn when password change feild in invalid
+     */
+    if(this.profileForm.value.currentPassword || this.profileForm.value.password || this.profileForm.value.confirmPassword) {
+      if(!this.profileForm.value.currentPassword) { this.action.openSnackBarComponent('Current password is empty!', 'warning'); }
+      else if(!this.profileForm.value.password) { this.action.openSnackBarComponent('Password is empty!', 'warning'); }
+      else if(!this.profileForm.value.confirmPassword) { this.action.openSnackBarComponent('Confirm password is empty!', 'warning'); }
+      return false;
+    }
   }
 
 }
