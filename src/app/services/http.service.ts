@@ -13,11 +13,11 @@ export class HttpService {
   /**
    * @description domain update with production type.
    */
-  // private apiurl = environment.production ? 'https://psynapsus.herokuapp.com/api/v1' : 'http://localhost:5000/api/v1';
+  private apiurl = environment.production ? 'https://psynapsus.herokuapp.com/api/v1' : 'http://localhost:5000/api/v1';
   /**
    * @description Select domain available only on Heroku.
    */
-  private apiurl = 'https://psynapsus.herokuapp.com/api/v1';
+  // private apiurl = 'https://psynapsus.herokuapp.com/api/v1';
 
   constructor(
     private http: HttpClient,
@@ -100,6 +100,24 @@ export class HttpService {
     return this.http.get<any>(url, this.option({ 'Content-Type':  'application/json' })).pipe(
       tap(message => message),
       catchError(this.handleError('user', {}))
+    );
+  }
+
+  updateUser(param: any, data: any): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/user/' + param.email;
+
+    return this.http.put<any>(url, data, this.option({ 'Content-Type':  'application/json' })).pipe(
+      tap(message => message),
+      catchError(this.handleError('update user', {}))
+    );
+  }
+
+  updatePassword(param: any, data: any): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/userpassword/' + param.email;
+
+    return this.http.put<any>(url, data, this.option({ 'Content-Type':  'application/json' })).pipe(
+      tap(message => message),
+      catchError(this.handleError('update user', {}))
     );
   }
 

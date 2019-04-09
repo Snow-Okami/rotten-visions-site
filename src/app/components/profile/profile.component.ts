@@ -142,11 +142,48 @@ export class ProfileComponent {
      * @description warn when password change feild in invalid
      */
     if(this.profileForm.value.currentPassword || this.profileForm.value.password || this.profileForm.value.confirmPassword) {
-      if(!this.profileForm.value.currentPassword) { this.action.openSnackBarComponent('Current password is empty!', 'warning'); }
-      else if(!this.profileForm.value.password) { this.action.openSnackBarComponent('Password is empty!', 'warning'); }
-      else if(!this.profileForm.value.confirmPassword) { this.action.openSnackBarComponent('Confirm password is empty!', 'warning'); }
-      return false;
+      if(!this.profileForm.value.currentPassword) { this.action.openSnackBarComponent('Current password is empty!', 'warning'); return false; }
+      else if(!this.profileForm.value.password) { this.action.openSnackBarComponent('Password is empty!', 'warning'); return false; }
+      else if(!this.profileForm.value.confirmPassword) { this.action.openSnackBarComponent('Confirm password is empty!', 'warning'); return false; }
     }
+    /**
+     * @description disable the update button click
+     */
+    this.disableClick = true;
+    this.progressBar.classList.remove('hidden');
+    /**
+     * @description update the user with required fields
+     */
+    let data = _.pick(this.profileForm.value, ['firstName', 'lastName']);
+    let r = await this.http.updateUser({email: this.user.email}, data).toPromise();
+    if(r['message']['type'] === 'error') {
+      this.action.openSnackBarComponent(r['message']['text'], 'error');
+      return this.stopLoading();
+    }
+    /**
+     * @description update the synced user data
+     */
+    Object.assign(this.store.user.data, data);
+
+    /**
+     * @description update password when available
+     */
+    if(this.profileForm.value.currentPassword && this.profileForm.value.password && this.profileForm.value.confirmPassword) {
+      if(this.profileForm.value.password !== this.profileForm.value.confirmPassword) {
+        this.action.openSnackBarComponent('Confirm password doesn\'t match!', 'warning');
+        return this.stopLoading();
+      }
+      let data = _.pick(this.profileForm.value, ['currentPassword', 'password']);
+      let r = await this.http.updatePassword({email: this.user.email}, data).toPromise();
+      if(r['message']['type'] === 'error') { this.action.openSnackBarComponent(r['message']['text'], 'error'); return this.stopLoading(); }
+      this.store.setCookie('ps-t-a-p', r['data']['token'], 3);
+    }
+
+    return this.stopLoading();
+  }
+
+  stopLoading() {
+    this.disableClick = false; this.progressBar.classList.add('hidden'); return false;
   }
 
 }

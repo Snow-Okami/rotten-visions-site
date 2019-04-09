@@ -19,11 +19,11 @@ import { FooterComponent } from '../../components/footer/footer.component';
 /**
  * @description domain update with production type.
  */
-// const apiurl = environment.production ? 'https://psynapsus.herokuapp.com' : 'http://localhost:5000';
+const apiurl = environment.production ? 'https://psynapsus.herokuapp.com' : 'http://localhost:5000';
 /**
  * @description Select domain available only on Heroku.
  */
-const apiurl = 'https://psynapsus.herokuapp.com';
+// const apiurl = 'https://psynapsus.herokuapp.com';
 const config: SocketIoConfig = { url: apiurl, options: {} };
 
 @NgModule({
