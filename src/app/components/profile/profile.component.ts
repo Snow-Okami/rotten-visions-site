@@ -133,6 +133,10 @@ export class ProfileComponent {
     this.file.nativeElement.value = null;
   }
 
+  async updateProfileBypass(event: any) {
+    console.log(this.profileForm);
+  }
+
   async updateProfile(event: any) {
     /**
      * @description do nothing with invalid form
