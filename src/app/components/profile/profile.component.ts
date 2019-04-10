@@ -97,6 +97,7 @@ export class ProfileComponent {
       })
     );
     if(this.user.avatar !== '') {this.image.nativeElement['src'] = this.user.avatar; this.hideImage = false; this.image.nativeElement.addEventListener('load', () => { this.hiddenContent = this.stopLoading(); }); }
+    else {this.hiddenContent = this.stopLoading();}
   }
 
   ngAfterViewInit() {
