@@ -96,8 +96,10 @@ export class ProfileComponent {
         confirmPassword: ''
       })
     );
-    if(this.user.avatar !== '') {this.image.nativeElement['src'] = this.user.avatar; this.hideImage = false; this.image.nativeElement.addEventListener('load', () => { this.hiddenContent = this.stopLoading(); }); }
-    else {this.hiddenContent = this.stopLoading();}
+    if(this.user.avatar !== '') {this.image.nativeElement['src'] = this.user.avatar; this.hideImage = false; this.image.nativeElement.addEventListener('load', () => { let tr = this.stopLoading(); }); }
+    else {let tr = this.stopLoading();}
+
+    this.hiddenContent = false;
   }
 
   ngAfterViewInit() {
