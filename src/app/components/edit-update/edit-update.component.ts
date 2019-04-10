@@ -234,7 +234,7 @@ export class EditUpdateComponent {
   }
 
   hasImage(url: string): boolean {
-    let ao = ['https://res.cloudinary.com/', 'data:image/png;base64'];    
+    let ao = ['https://res.cloudinary.com/', 'data:image/png;base64', 'data:image/jpg;base64', 'data:image/jpeg;base64', 'data:image/gif;base64'];    
     return _.find(ao, o => { return url.includes(o); }) ? true : false;
   }
 }

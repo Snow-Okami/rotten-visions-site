@@ -106,7 +106,7 @@ export class HttpService {
   updateUser(param: any, data: any): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/user/' + param.email;
 
-    return this.http.put<any>(url, data, this.option({ 'Content-Type':  'application/json' })).pipe(
+    return this.http.put<any>(url, data, this.option({ 'enctype': 'multipart/form-data' })).pipe(
       tap(message => message),
       catchError(this.handleError('update user', {}))
     );

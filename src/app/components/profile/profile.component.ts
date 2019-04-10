@@ -96,12 +96,7 @@ export class ProfileComponent {
         confirmPassword: ''
       })
     );
-
-    /**
-     * @description Hide Progress Bar When Page is Loaded.
-     */
-    this.hiddenContent = false;
-    this.progressBar.classList.add('hidden');
+    if(this.user.avatar !== '') {this.image.nativeElement['src'] = this.user.avatar; this.hideImage = false; this.image.nativeElement.addEventListener('load', () => { this.hiddenContent = this.stopLoading(); }); }
   }
 
   ngAfterViewInit() {
@@ -133,10 +128,6 @@ export class ProfileComponent {
     this.file.nativeElement.value = null;
   }
 
-  async updateProfileBypass(event: any) {
-    console.log(this.profileForm);
-  }
-
   async updateProfile(event: any) {
     /**
      * @description do nothing with invalid form
@@ -159,8 +150,24 @@ export class ProfileComponent {
      * @description update the user with required fields
      */
     let data = _.pick(this.profileForm.value, ['firstName', 'lastName']);
-    let r = await this.http.updateUser({email: this.user.email}, data).toPromise();
+    /**
+     * @description binds the image file or URL as needed
+     */
+    if(!this.hasImage(this.image.nativeElement['src'])) {
+      Object.assign(data, {avatar: ''});
+    } else if(this.hasImage(this.image.nativeElement['src']) && this.file.nativeElement['files'].length) {
+      Object.assign(data, {avatar: this.file.nativeElement['files'][0]});
+    }
+    /**
+     * @description upload data as FormData to API
+     */
+    let form: FormData = this.getFormData(data);
+    let r = await this.http.updateUser({email: this.user.email}, form).toPromise();
     if(r['message']['type'] === 'error') {
+      /**
+       * @description Set file field empty.
+       */
+      this.file.nativeElement.value = null;
       this.action.openSnackBarComponent(r['message']['text'], 'error');
       return this.stopLoading();
     }
@@ -182,12 +189,17 @@ export class ProfileComponent {
       if(r['message']['type'] === 'error') { this.action.openSnackBarComponent(r['message']['text'], 'error'); return this.stopLoading(); }
       this.store.setCookie('ps-t-a-p', r['data']['token'], 3);
     }
-
     return this.stopLoading();
   }
 
-  stopLoading() {
-    this.disableClick = false; this.progressBar.classList.add('hidden'); return false;
-  }
+  stopLoading() { this.disableClick = false; this.progressBar.classList.add('hidden'); return false; }
+  /**
+   * @description generates a form data from JSON object
+   */
+  getFormData(ob: any): FormData { let f = new FormData(), ot = _.forIn(ob,(v,k)=>f.append(k, v)); return f; }
+  /**
+   * @description detects a genuine image from its URL
+   */
+  hasImage(url: string): boolean { let ao = ['https://res.cloudinary.com/', 'data:image/png;base64', 'data:image/jpg;base64', 'data:image/jpeg;base64', 'data:image/gif;base64']; return _.find(ao, o => url.includes(o)) ? true : false; }
 
 }
