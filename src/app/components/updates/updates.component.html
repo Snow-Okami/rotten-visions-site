@@ -55,7 +55,7 @@
 
               <!-- Keep the description in here -->
               <div [ngClass]="{'w60': update.image !== '', 'w100': update.image == '', 'col': true}">
-                <div [ngClass]="{'m-l-20': update.image !== '', 'pos-r': true}">
+                <div [ngClass]="{'m-l-20': update.image !== '', 'pos-r': true, 'o-flow-hidden': true}" [style.height.px]="imgHeight">
 
                   <div class="pos-a right-0px" *ngIf="createButton">
                     <button mat-icon-button color="primary" aria-label="icon-button with a settings icon" (click)="editThisUpdate(update.id);">

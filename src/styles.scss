@@ -662,6 +662,12 @@ body.mobile-view {
   }
 }
 
+.o-flow {
+  &-hidden {
+    overflow: hidden;
+  }
+}
+
 .check {
   margin: 0 10px;
 }
