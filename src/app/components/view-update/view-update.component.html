@@ -88,7 +88,7 @@
               <li class="comment-box p-b-10 p-t-10" *ngFor="let com of post?.comments; index as i;">
 
                 <div class="comment-container">
-                  <div class="user-title p-b-5 p-t-5 font-22"> {{com.createdBy | titlecase}} </div>
+                  <div class="user-title p-b-5 p-t-5 font-22"> {{com.createdBy.username | titlecase}} </div>
                   <div class="comment-time p-b-5 p-t-5 font-12"> {{com.createdAt | date: 'fullDate'}} </div>
                   <div class="user-comment font-light p-b-5 p-t-5 font-18"> {{com.text}} </div>
                 </div>
@@ -125,13 +125,13 @@
 
                   <li class="reply-box opacity-q75 p-b-5 p-t-5" *ngFor="let rep of com.replies; index as ri;">
 
-                    <div class="col w20 inline p-t-10 m-w-46px">
-                      <img src="../../../assets/logo/reply.png" alt="missing logo" class="reply-icon">
+                    <div class="col w20 inline p-t-5 m-w-65px">
+                      <img [src]="rep.createdBy?.avatar" alt="missing logo" class="reply-icon">
                     </div>
 
                     <div class="col w80 inline">
                       <div class="reply-wrapper">
-                        <div class="user-title p-b-5 p-t-5 font-22"> {{rep.createdBy | titlecase}} </div>
+                        <div class="user-title p-b-5 p-t-5 font-22"> {{rep.createdBy.username | titlecase}} </div>
                         <div class="comment-time p-b-5 p-t-5 font-12"> {{rep.createdAt | date: 'fullDate'}} </div>
                         <div class="user-comment font-light p-b-5 p-t-5 font-18"> {{rep.text}} </div>
                         <div class="p-b-5 p-t-10">

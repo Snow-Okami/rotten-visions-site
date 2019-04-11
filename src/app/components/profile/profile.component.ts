@@ -193,6 +193,10 @@ export class ProfileComponent {
       if(r['message']['type'] === 'error') { this.action.openSnackBarComponent(r['message']['text'], 'error'); return this.stopLoading(); }
       this.store.setCookie('ps-t-a-p', r['data']['token'], 3);
     }
+    /**
+     * @description show success snacBar
+     */
+    this.action.openSnackBarComponent('Profile has been updated successfully!', 'success');
     return this.stopLoading();
   }
 

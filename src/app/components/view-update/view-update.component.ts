@@ -139,7 +139,7 @@ export class ViewUpdateComponent {
     this.progressBar.classList.remove('hidden');
 
     let c = _.pick(this.post, ['_id', 'id']);
-    let form = Object.assign(f.value, {'createdBy': this.store.user.data.username, 'createdFor': c._id, 'postId': c.id});
+    let form = Object.assign(f.value, {'createdBy': this.store.user.data._id, 'createdFor': c._id, 'postId': c.id});
     let r = await this.http.comment(form).toPromise();
     if(r['message']['type'] !== 'error') { this.action.openSnackBarComponent('Thanks! for commenting', 'success'); this.post.comments.splice(0, 0, r['data']); }
     this.commentFNative.nativeElement.reset();
@@ -153,7 +153,7 @@ export class ViewUpdateComponent {
     this.progressBar.classList.remove('hidden');
 
     let c = _.pick(com, ['_id', 'id']);
-    let form = Object.assign(f.value, {'createdBy': this.store.user.data.username, 'createdFor': c._id, 'commentId': c.id});
+    let form = Object.assign(f.value, {'createdBy': this.store.user.data._id, 'createdFor': c._id, 'commentId': c.id});
     e.target['parentElement'].classList.add('hidden');
     let r = await this.http.reply(form).toPromise();
     if(r['message']['type'] !== 'error') { this.action.openSnackBarComponent('Thanks! for reply', 'success'); com.replies.push(r['data']); }
