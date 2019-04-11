@@ -56,6 +56,10 @@ export class ProfileComponent {
     confirmPassword: this.confirmPassword
   });
 
+  public hideImage: boolean = true;
+  @ViewChild('dropImage') image: any;
+  @ViewChild('dropFile') file: any;
+
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
@@ -86,6 +90,9 @@ export class ProfileComponent {
       r = await this.http.user(email).toPromise();
       if(r['message']['type'] !== 'error') { this.user = r['data']; }
     }
+
+    this.hiddenContent = false;
+
     /**
      * @description set the profile form's values
      */
@@ -96,19 +103,13 @@ export class ProfileComponent {
         confirmPassword: ''
       })
     );
-    if(this.user.avatar !== '') {this.image.nativeElement['src'] = this.user.avatar; this.hideImage = false; this.image.nativeElement.addEventListener('load', () => { let tr = this.stopLoading(); }); }
+    if(this.user.avatar !== '') {console.log(this.user); this.image.nativeElement['src'] = this.user.avatar; this.hideImage = false; this.image.nativeElement.addEventListener('load', () => { let tr = that.stopLoading(); }); }
     else {let tr = this.stopLoading();}
-
-    this.hiddenContent = false;
   }
 
   ngAfterViewInit() {
 
   }
-
-  public hideImage: boolean = true;
-  @ViewChild('dropImage') image: any;
-  @ViewChild('dropFile') file: any;
 
   showImage(event: any): void {
     let image = this.image.nativeElement;
@@ -177,7 +178,7 @@ export class ProfileComponent {
     /**
      * @description update the synced user data
      */
-    Object.assign(this.store.user.data, data);
+    this.store.user.synced = false;
 
     /**
      * @description update password when available
