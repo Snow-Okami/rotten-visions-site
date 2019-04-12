@@ -126,7 +126,10 @@
                   <li class="reply-box opacity-q75 p-b-5 p-t-5" *ngFor="let rep of com.replies; index as ri;">
 
                     <div class="col w20 inline p-t-5 m-w-65px">
-                      <img [src]="rep.createdBy?.avatar" alt="missing logo" class="reply-icon">
+                      <img alt="missing logo" class="reply-icon"
+                        [defaultImage]="image.defaultImage"
+                        [lazyLoad]="rep.createdBy?.avatar"
+                        [offset]="image.offset">
                     </div>
 
                     <div class="col w80 inline">
