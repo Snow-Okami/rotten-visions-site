@@ -51,6 +51,10 @@
   max-width: 46px;
 }
 
+.m-w-65 {
+  max-width: 65px;
+}
+
 .post-image {
   width: 100%;
 }
@@ -222,6 +226,8 @@ ul.default {
 }
 
 .reply-icon {
-  width: 25px;
+  width: 55px;
+  height: 54px;
   opacity: 0.75;
+  border-radius: 50%;
 }
