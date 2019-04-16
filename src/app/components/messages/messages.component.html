@@ -21,10 +21,10 @@
           </button>
 
           <mat-icon matPrefix class="title-item"> chat </mat-icon>
-          <h4 class="title-item m-l-5" [ngClass]="{ 'hidden': !chatView }"> Messages - {{ chat.type ? chat.fullName : chat.users | unameonly: user | uppercase }} </h4>
+          <h4 class="title-item m-l-5" [ngClass]="{ 'hidden': !chatView }"> Messages - {{ chat.type ? chat.fullName : chat.users | unameonly: user | titlecase }} </h4>
 
           <!-- User's own name appears when no chat selected. -->
-          <h4 class="title-item m-l-5" [ngClass]="{ 'hidden': chatView }"> Welcome {{ user.username | uppercase }}! </h4>
+          <h4 class="title-item m-l-5" [ngClass]="{ 'hidden': chatView }"> Welcome {{ user.username | titlecase }}! </h4>
 
           <button mat-icon-button matTooltip="Show/Hide your text before send" [matTooltipPosition]="'above'" class="visibility" [ngClass]="{ 'hidden': !chatView }" (click)="alterQuickText()">
             <mat-icon aria-label="icon-button" [ngClass]="{ 'hidden': quickText }">visibility_off</mat-icon>
@@ -55,7 +55,7 @@
                 <!-- Messages will be loaded here -->
                 <mat-list-item *ngFor="let c of chats">
                   <mat-icon mat-list-icon class="chat-image"> person </mat-icon>
-                  <h4 mat-line class="chat-name" (click)="showItsMessages(c)"> {{ c.type ? c.fullName : c.users | unameonly: user }} </h4>
+                  <h4 mat-line class="chat-name" (click)="showItsMessages(c)"> {{ c.type ? c.fullName : c.users | unameonly: user | titlecase }} </h4>
                   <span [innerHTML]="c?.lastMessage.text" class="writable" mat-line></span>
                   <mat-divider></mat-divider>
                 </mat-list-item>
@@ -106,7 +106,7 @@
 
                     <div class="col wauto">
                       <span [innerHTML]="m?.text" class="writable"></span>
-                      <h4 class="mat-line"> {{ m.createdBy.username }}, {{ m.createdAt | date : 'h:mm a' }} </h4>
+                      <h4 class="mat-line"> {{ m.createdBy.username | titlecase }}, {{ m.createdAt | date : 'h:mm a' }} </h4>
                     </div>
                   </div>
                 </li>
@@ -120,7 +120,7 @@
                       <!-- sanitizer.bypassSecurityTrustHtml(chat.isTyping.lastMessage.text) -->
 
                       <span [ngClass]="{ 'hidden': !chat.isTyping.lastMessage.text.length }" [innerHTML]="chat?.isTyping.lastMessage.text" class="writable"></span>
-                      <h6 class="mat-line"> {{ chat.isTyping.lastMessage.createdBy.username }} is typing... </h6>
+                      <h6 class="mat-line"> {{ chat.isTyping.lastMessage.createdBy.username | titlecase }} is typing... </h6>
                     </div>
                   </div>
                 </li>
@@ -188,7 +188,7 @@
                     <mat-chip-list #chipList>
                       <mat-chip *ngFor="let u of selectedUsers" [selectable]="true"
                               [removable]="true" (removed)="remove(u)">
-                        {{ u.username | uppercase }}
+                        {{ u.username | titlecase }}
                         <mat-icon matChipRemove>cancel</mat-icon>
                       </mat-chip>
                       <input placeholder="Selected user..."
@@ -216,8 +216,8 @@
 
               <!-- Messages will be loaded here -->
               <mat-list-item *ngFor="let u of searchedUsers">
-                <h4 mat-line class="chat-name"> {{ u.username }} </h4>
-                <p> {{ u.email}} </p>
+                <h4 mat-line class="chat-name"> {{ u.username | titlecase }} </h4>
+                <p> {{ u.email }} </p>
                 <mat-checkbox class="suser-select-margin" [(ngModel)]="u.selected" (change)="alterSelected(u)"></mat-checkbox>
                 <mat-divider></mat-divider>
               </mat-list-item>
@@ -239,7 +239,7 @@
         <mat-toolbar-row>
           <!-- Help to improve the performance. -->
           <button aria-label="navigate-back" mat-icon-button [ngClass]="{ 'hidden': !chatView && !createView }" (click)="hideMessages()"><mat-icon aria-label="icon-button">arrow_back</mat-icon></button>
-          <h1 class="psynapsus-chat-title" [ngClass]="{ 'hidden': !chatView }"> {{ chat.type ? chat.fullName : chat.users | unameonly: user | uppercase }} </h1>
+          <h1 class="psynapsus-chat-title" [ngClass]="{ 'hidden': !chatView }"> {{ chat.type ? chat.fullName : chat.users | unameonly: user | titlecase }} </h1>
           <div class="option-wrapper" [ngClass]="{ 'hidden': !chatView }">
             <button mat-icon-button [matMenuTriggerFor]="menu">
               <mat-icon matSuffix class="material-icons"> more_vert </mat-icon>
@@ -274,7 +274,7 @@
             <!-- Messages will be loaded here -->
             <mat-list-item *ngFor="let c of chats" class="mobile-chat-ui">
               <mat-icon mat-list-icon class="chat-image"> person </mat-icon>
-              <h4 mat-line class="chat-name" (click)="showItsMessages(c)"> {{ c.type ? c.fullName : c.users | unameonly: user }} </h4>
+              <h4 mat-line class="chat-name" (click)="showItsMessages(c)"> {{ c.type ? c.fullName : c.users | unameonly: user | titlecase }} </h4>
               <span [innerHTML]="c?.lastMessage.text" class="writable" mat-line></span>
               <mat-divider></mat-divider>
             </mat-list-item>
@@ -317,7 +317,7 @@
 
                 <div class="col wauto">
                   <span [innerHTML]="m?.text" class="writable"></span>
-                  <h4 class="mat-line"> {{ m.createdBy.username }}, {{ m.createdAt | date : 'h:mm a' }} </h4>
+                  <h4 class="mat-line"> {{ m.createdBy.username | titlecase }}, {{ m.createdAt | date : 'h:mm a' }} </h4>
                 </div>
               </div>
             </li>
@@ -328,7 +328,7 @@
   
                 <div class="col wauto">
                   <span [ngClass]="{ 'hidden': !chat.isTyping.lastMessage.text.length }" [innerHTML]="chat?.isTyping.lastMessage.text" class="writable"></span>
-                  <h6 class="mat-line"> {{ chat.isTyping.lastMessage.createdBy.username }} is typing... </h6>
+                  <h6 class="mat-line"> {{ chat.isTyping.lastMessage.createdBy.username | titlecase }} is typing... </h6>
                 </div>
               </div>
             </li>
@@ -388,7 +388,7 @@
                   <mat-chip-list #chipList>
                     <mat-chip *ngFor="let u of selectedUsers" [selectable]="true"
                             [removable]="true" (removed)="remove(u)">
-                      {{ u.username | uppercase }}
+                      {{ u.username | titlecase }}
                       <mat-icon matChipRemove>cancel</mat-icon>
                     </mat-chip>
                     <input placeholder="Selected user..."
@@ -408,7 +408,7 @@
 
               <li class="row" *ngFor="let u of searchedUsers">
                 <div class="col w80 inline">
-                  <h4 class="chat-name"> {{ u.username | uppercase }} </h4>
+                  <h4 class="chat-name"> {{ u.username | titlecase }} </h4>
                   <p> {{ u.email }} </p>
                 </div>
                 <div class="col w20 inline">
