@@ -314,7 +314,7 @@
               <div class="chat-wrapper" [ngClass]="{ 'right': m.createdBy.email === user.email, 'm-r-30': m.createdBy.email !== user.email, 'm-l-30': m.createdBy.email === user.email, 'force': mobileQuery.matches }">
                 <!-- CSS Line Number 47 For STYLES DETAILS -->
                 <!-- <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div> -->
-  
+
                 <div class="col wauto">
                   <span [innerHTML]="m?.text" class="writable"></span>
                   <h4 class="mat-line"> {{ m.createdBy.username }}, {{ m.createdAt | date : 'h:mm a' }} </h4>

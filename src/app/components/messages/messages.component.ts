@@ -292,6 +292,8 @@ export class MessagesComponent {
    */
   public blur(event: FocusEvent) { this.hideTyping(); }
 
+  private typingTimer: any;
+
   /**
    * @description Sends show typing text.
    */
@@ -306,12 +308,17 @@ export class MessagesComponent {
     this.socket.emit('typing', 
       Object.assign({ message: { query: { cid: this.chat.id, text: t, createdBy: { username: this.user.username, email: this.user.email, fullName: this.user.fullName } } } }, auth)
     );
+
+    clearTimeout(this.typingTimer);
+    this.typingTimer = setTimeout(() => { this.hideTyping(); }, 5000);
   }
 
   /**
    * @description Hides show typing text.
    */
   private hideTyping() {
+    clearTimeout(this.typingTimer);
+
     this.socket.emit('typed', 
       Object.assign({ message: { query: { cid: this.chat.id, createdBy: { username: this.user.username, email: this.user.email, fullName: this.user.fullName } } } })
     );
