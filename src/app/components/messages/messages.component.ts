@@ -43,6 +43,9 @@ export class MessagesComponent {
   public quickText: boolean = false;
   public createView: boolean = false;
 
+  public boxHeight: number = 414;
+  public window: any;
+
   public chat = {
     id: '0',
     type: 0,
@@ -114,6 +117,7 @@ export class MessagesComponent {
      * @description Initializes the progress bar.
      */
     this.progressBar = document.getElementsByClassName('progressbar')[0];
+    this.window = window;
     /**
      * @description subscribe to store variables.
      */
@@ -426,6 +430,8 @@ export class MessagesComponent {
      * @description hide the chat loader.
      */
     that.chatLoader = false;
+
+    that.boxHeight = that.window.innerHeight;
   }
 
   private onCPacket(res: any) {

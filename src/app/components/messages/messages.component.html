@@ -49,7 +49,7 @@
 
           <!-- Chat list wrapper. -->
           <div [ngClass]="{ 'hidden': !(!chatLoader && chats.length) }"> <!-- *ngIf="!chatLoader && chats.length" -->
-            <perfect-scrollbar #chatList style="position: relative; max-width: 230px; max-height: 414px; min-height: 414px;" [config]="config" (psYReachEnd)="loadChats($event)">
+            <perfect-scrollbar #chatList style="position: relative; max-width: 230px; min-height: 414px;" [config]="config" [style.height.px]="boxHeight - 200" (psYReachEnd)="loadChats($event)">
               <mat-list>
 
                 <!-- Messages will be loaded here -->
@@ -77,14 +77,14 @@
 
         </div>
 
-        <div class="col w2"> <mat-divider style="max-height: 414px; min-height: 414px;" [vertical]="true"></mat-divider> </div>
+        <div class="col w2"> <mat-divider style="min-height: 414px;" [style.height.px]="boxHeight - 200" [vertical]="true"></mat-divider> </div>
 
         <div class="col w2"> </div>
 
         <!-- SHOW for the messages -->
         <div class="col w70" [ngClass]="{ 'hidden': !chatView || createView }">
 
-          <perfect-scrollbar #messageList style="position: relative; max-width: 750px; max-height: 336px; min-height: 336px;" [config]="config" (psYReachStart)="loadMessages($event)">
+          <perfect-scrollbar #messageList style="position: relative; max-width: 750px; min-height: 336px;" [style.height.px]="boxHeight - 278" [config]="config" (psYReachStart)="loadMessages($event)">
             <mat-list>
 
               <ul>
@@ -211,7 +211,7 @@
 
           </div>
 
-          <perfect-scrollbar #userList style="position: relative; max-width: 750px; max-height: 314px; min-height: 314px;" [config]="config">
+          <perfect-scrollbar #userList style="position: relative; max-width: 750px; min-height: 314px;" [style.height.px]="boxHeight - 300" [config]="config">
             <mat-list>
 
               <!-- Messages will be loaded here -->

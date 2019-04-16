@@ -19,7 +19,7 @@
       </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content [style.marginTop.px]="hideMatToolbar.length ? 0 : 56" [style.minHeight.px]="window.innerHeight - 56">
+    <mat-sidenav-content [style.marginTop.px]="hideMatToolbar.length ? 0 : 64" [style.minHeight.px]="window.innerHeight - 56">
       <!-- Routing Components Will Appear Here -->
       <router-outlet (activate)="routeChange($event)"></router-outlet>
 
