@@ -36,4 +36,11 @@
 .link-sm {
   outline: none;
   cursor: pointer;
+
+  transition: 0.2s ease-in-out all;
+
+  &:hover {
+    background: #212121;
+    opacity: 1;
+  }
 }

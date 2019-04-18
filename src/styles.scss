@@ -142,6 +142,9 @@ body.mobile-view {
   &-q75 {
     opacity: 0.75 !important;
   }
+  &-q75nImp {
+    opacity: 0.75;
+  }
 }
 
 /**
@@ -292,6 +295,9 @@ body.mobile-view {
   }
   &0 {
     margin: 0px;
+  }
+  &16 {
+    margin: 16px;
   }
   &t- {
     &1 {
@@ -887,4 +893,10 @@ span.writable-update {
 
 .mat-sort-header-arrow {
   color: #a93647;
+}
+
+.desc-sm {
+  img {
+    width: 100%;
+  }
 }

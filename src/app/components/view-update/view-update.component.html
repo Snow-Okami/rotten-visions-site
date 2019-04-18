@@ -190,32 +190,46 @@
     </div>
 
     <div class="col w40" *ngIf="!mobileQuery.matches">
-      <div class="p-l-30">
-        <ul>
+      <div class="p-l-30 ">
 
-          <li *ngFor="let p of postList; index as i;" [routerLink]="['/dashboard/updates/view/' + p.id]" class="link-sm m-0">
-            <div class="row p-0">
-              <div class="p-16">
-                
-                <div class="col w40" *ngIf="p?.image">
-                  <img [src]="p?.image"
-                    alt="missing logo"
-                    [style.width.px]="100"
-                  >
+        <div class="sticky-item">
+          <perfect-scrollbar #posts style="position: relative;" [config]="config" [style.height.px]="window?.innerHeight - 100">
+            <ul>
+  
+              <li *ngFor="let p of postList; index as i;" [routerLink]="['/dashboard/updates/view/' + p.id]" class="link-sm m-0 opacity-q75nImp">
+                <div class="row p-0">
+                  <div class="p-16">
+  
+                    <div class=" o-flow-hidden" [style.height.px]="85">
+                      <div class="col w40" *ngIf="p?.image">
+                        <img [src]="p?.image"
+                          alt="missing logo"
+                          [style.width.px]="144"
+                          [style.height.px]="81"
+                        >
+                      </div>
+      
+                      <div class="col" [ngClass]="{'w60': p?.image, 'w100': !p?.image}">
+                        <div class="row p-0"> <div class="title font-16 c-red"> {{p.title}} </div> </div>
+                        <div class="row p-0"> <span class="desc-sm writable-update font-light font-13" [innerHTML]="p.description"> </span> </div>
+                      </div>
+                    </div>
+  
+                  </div>
+      
                 </div>
-
-                <div class="col" [ngClass]="{'w60': p?.image, 'w100': !p?.image}"></div>
-              </div>
   
-            </div>
+                <!-- Divider Appears Here -->
+                <div class="row p-0">
+                  <mat-divider></mat-divider>
+                </div>
+              </li>
+      
+            </ul>
+          </perfect-scrollbar>
+        </div>
 
-            <!-- Divider Appears Here -->
-            <div class="row p-0">
-              <mat-divider></mat-divider>
-            </div>
-          </li>
-  
-        </ul>
+        <div class="item-fixer"></div>
       </div>
 
     </div>

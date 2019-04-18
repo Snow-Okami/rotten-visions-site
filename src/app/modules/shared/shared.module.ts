@@ -6,6 +6,10 @@ import { MaterialModule } from '../material/material.module';
  */
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 /**
+ * @description Perfect scroll bar settings.
+ */
+import { PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+/**
  * @description Custom Trim Word Pipe.
  */
 import { TrimwordPipe } from '../../pipes/trimword.pipe';
@@ -26,10 +30,16 @@ const apiurl = environment.production ? 'https://psynapsus.herokuapp.com' : 'htt
 // const apiurl = 'https://psynapsus.herokuapp.com';
 const config: SocketIoConfig = { url: apiurl, options: {} };
 
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true,
+  suppressScrollY: false
+};
+
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
+    PerfectScrollbarModule,
     SocketIoModule.forRoot(config),
   ],
   declarations: [
@@ -57,6 +67,7 @@ const config: SocketIoConfig = { url: apiurl, options: {} };
      * @description Shared modules are stored here.
      */
     SocketIoModule,
+    PerfectScrollbarModule,
 
     /**
      * @description Shared Components For Lazy Routing Modules.

@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { PerfectScrollbarConfigInterface, PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 import * as _ from 'lodash';
 
 import { User } from '../../interfaces/user';
@@ -52,6 +53,14 @@ export class ViewUpdateComponent {
   };
 
   public postList: Array<Post> = [];
+
+  public window: any;
+  private stickyItem: any;
+  private fixerItem: any;
+  private fixerTop: number = 63;
+
+  public config: PerfectScrollbarConfigInterface = { };
+  @ViewChild('posts') posts?: PerfectScrollbarComponent;
 
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
@@ -119,7 +128,7 @@ export class ViewUpdateComponent {
      */
     let option = {
       skip: 0,
-      limit: 5
+      limit: 6
     };
 
     r = await this.http.posts(option).toPromise();
@@ -135,6 +144,17 @@ export class ViewUpdateComponent {
      * @description hide the loader
      */
     this.progressBar.classList.add('hidden');
+
+    this.window = window;
+    this.stickyItem = document.getElementsByClassName('sticky-item')[0];
+    this.fixerItem = document.getElementsByClassName('item-fixer')[0];
+
+    this.window.scrollTo({ top: this.window.screenTop, left: 0, behavior: 'smooth' });
+    this.window.addEventListener('scroll', this.onScroll, false);
+  }
+
+  ngOnDestroy() {
+    this.window.removeEventListener('scroll', this.onScroll, false);
   }
 
   /**
@@ -175,6 +195,30 @@ export class ViewUpdateComponent {
     let t = el.classList.value.includes('hidden')
     ? el.classList.remove('hidden')
     : el.classList.add('hidden');
+  }
+
+  onScroll(event: Event) {
+    let wST = that.window.scrollY;
+    let pos = that.stickyItem.getBoundingClientRect();
+    let sST = pos.top;
+    if(sST < 64 && !that.stickyItem.classList.value.includes('pos-f')) {
+      that.fixerTop = wST;
+      that.stickyItem.classList.add('pos-f');
+      that.fixerItem.style.height = pos.height + 'px';
+      /**
+       * @description Fixes the header at top.
+       */
+      Object.assign(that.stickyItem.style, {position: 'fixed', top: '63px', width: `${pos.width}px`});
+    } else if(wST < that.fixerTop) {
+      that.fixerTop = 63;
+      that.stickyItem.classList.remove('pos-f');
+      /**
+       * @description Fixes the header at top.
+       */
+      Object.assign(that.stickyItem.style, {position: 'relative', top: 'auto', width: 'auto'});
+
+      that.fixerItem.style.height = '0px';
+    }
   }
 
 }
