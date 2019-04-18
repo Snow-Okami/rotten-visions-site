@@ -189,6 +189,37 @@
 
     </div>
 
+    <div class="col w40" *ngIf="!mobileQuery.matches">
+      <div class="p-l-30">
+        <ul>
+
+          <li *ngFor="let p of postList; index as i;" [routerLink]="['/dashboard/updates/view/' + p.id]" class="link-sm m-0">
+            <div class="row p-0">
+              <div class="p-16">
+                
+                <div class="col w40" *ngIf="p?.image">
+                  <img [src]="p?.image"
+                    alt="missing logo"
+                    [style.width.px]="100"
+                  >
+                </div>
+
+                <div class="col" [ngClass]="{'w60': p?.image, 'w100': !p?.image}"></div>
+              </div>
+  
+            </div>
+
+            <!-- Divider Appears Here -->
+            <div class="row p-0">
+              <mat-divider></mat-divider>
+            </div>
+          </li>
+  
+        </ul>
+      </div>
+
+    </div>
+
   </div>
 
 </div>

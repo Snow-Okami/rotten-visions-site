@@ -96,6 +96,14 @@ export class ViewUpdateComponent {
   }
 
   async ngAfterViewInit() {
+    /**
+     * @description reroute after router param changes.
+     */
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      this.progressBar.classList.remove('hidden');
+      return false;
+    }
+
     let params = {'id': this.route.snapshot.paramMap.get('id')};
     let r = await this.http.postDetails(params.id).toPromise();
     /**
@@ -110,7 +118,8 @@ export class ViewUpdateComponent {
      * @description SET UP skip, limit & sort options here.
      */
     let option = {
-      skip: params.id
+      skip: 0,
+      limit: 5
     };
 
     r = await this.http.posts(option).toPromise();
