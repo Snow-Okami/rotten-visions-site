@@ -77,7 +77,7 @@
 
                   <!-- POST DESCRIPTION Should Stay Here -->
                   <div class="row" (click)="viewThisUpdate(update.id);">
-                    <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(fixPostLen(update.description, 200))" class="writable-update"></span>
+                    <span [innerHTML]="fixPostLen(update?.description, 150)" class="writable-update"></span>
                   </div>
 
                 </div>
