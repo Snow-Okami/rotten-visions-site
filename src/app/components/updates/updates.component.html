@@ -27,10 +27,10 @@
               </div>
               <div class="row">
                 <!-- {{ post.tags }} -->
-                <p class="col"> NO COMMENTS </p> 
+                <p class="col"> {{ post?.comments.length }} comments </p>
               </div>
               <div class="row">
-                <p> {{ post.description | trimword: 150 }} </p>
+                <p > {{ post?.description | trimword: 150 }} </p>
               </div>
             </div>
           </div>

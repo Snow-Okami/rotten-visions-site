@@ -158,5 +158,10 @@ export class UpdatesComponent {
     }
   }
 
+  fixPostLen(value: any, args: any) {
+    let v = value.length > args ? value.slice(0, args) + '...' : value;
+    return v;
+  }
+
 }
 
