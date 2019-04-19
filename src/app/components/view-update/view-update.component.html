@@ -204,11 +204,10 @@
                       <div class="col w40" *ngIf="p?.image">
                         <img [src]="p?.image"
                           alt="missing logo"
-                          [style.width.px]="144"
-                          [style.height.px]="81"
+                          [ngStyle]="{'max-width': '95%', 'width.px': 144, 'height.px': 81}"
                         >
                       </div>
-      
+
                       <div class="col" [ngClass]="{'w60': p?.image, 'w100': !p?.image}">
                         <div class="row p-0"> <div class="title font-16 c-red"> {{p.title}} </div> </div>
                         <div class="row p-0"> <span class="desc-sm writable-update font-light font-13" [innerHTML]="p.description"> </span> </div>

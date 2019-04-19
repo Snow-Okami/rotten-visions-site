@@ -149,11 +149,13 @@ export class ViewUpdateComponent {
     this.stickyItem = document.getElementsByClassName('sticky-item')[0];
     this.fixerItem = document.getElementsByClassName('item-fixer')[0];
 
-    this.window.scrollTo({ top: this.window.screenTop, left: 0, behavior: 'smooth' });
+    this.stickItem(1);
+    this.window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     this.window.addEventListener('scroll', this.onScroll, false);
   }
 
   ngOnDestroy() {
+    this.window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     this.window.removeEventListener('scroll', this.onScroll, false);
   }
 
@@ -198,7 +200,11 @@ export class ViewUpdateComponent {
   }
 
   onScroll(event: Event) {
-    let wST = that.window.scrollY;
+    that.stickItem(0);
+  }
+
+  stickItem(sY: number) {
+    let wST = sY || that.window.scrollY;
     let pos = that.stickyItem.getBoundingClientRect();
     let sST = pos.top;
     if(sST < 64 && !that.stickyItem.classList.value.includes('pos-f')) {
