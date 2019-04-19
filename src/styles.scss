@@ -295,6 +295,9 @@ body.mobile-view {
   }
   &0 {
     margin: 0px;
+    &nImp {
+      margin: 0px !important;
+    }
   }
   &16 {
     margin: 16px;
@@ -480,6 +483,9 @@ body.mobile-view {
 .p- {
   &0 {
     padding: 0px;
+    &nImp {
+      padding: 0px !important;
+    }
   }
   &16 {
     padding: 16px;
