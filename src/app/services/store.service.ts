@@ -33,6 +33,8 @@ export class StoreService {
     synced: false
   };
 
+  public snackBarRef: any;
+
   constructor() {}
 
   /**

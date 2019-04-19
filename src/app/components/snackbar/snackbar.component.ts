@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_SNACK_BAR_DATA } from '@angular/material';
 
-import { ActionsService } from '../../services/actions.service';
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-snackbar',
@@ -18,14 +18,14 @@ export class SnackbarComponent {
 
   constructor(
     @Inject(MAT_SNACK_BAR_DATA) public data: any,
-    private action: ActionsService
+    private store: StoreService
   ) { }
 
   ngOnInit() {
   }
 
   close() {
-    this.action.closeSnackBar();
+    this.store.snackBarRef.dismiss();
   }
 
 }
