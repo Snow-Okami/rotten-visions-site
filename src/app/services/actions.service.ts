@@ -8,12 +8,14 @@ import { SnackbarComponent } from '../components/snackbar/snackbar.component';
 })
 export class ActionsService {
 
+  private snackBarRef: any;
+
   constructor(
     public snackBar: MatSnackBar
   ) { }
 
   openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
+    this.snackBarRef = this.snackBar.open(message, action, {
       verticalPosition: 'top',
       horizontalPosition: 'right',
       direction: 'ltr',
@@ -22,7 +24,7 @@ export class ActionsService {
   }
 
   openSnackBarComponent(message: string, status: string, option?: any) {
-    this.snackBar.openFromComponent(SnackbarComponent, Object.assign({
+    this.snackBarRef = this.snackBar.openFromComponent(SnackbarComponent, Object.assign({
       data: {
         message: message,
         status: status
@@ -32,6 +34,10 @@ export class ActionsService {
       direction: 'ltr',
       duration: 10000
     }, option));
+  }
+
+  closeSnackBar() {
+    this.snackBarRef.dismiss();
   }
 
   async getBoundingClientRect(elem: ElementRef) {

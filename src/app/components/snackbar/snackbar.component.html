@@ -1,3 +1,22 @@
-<div [ngClass]="[data?.status, 'customSnack']">
-  {{ data?.message }}
+
+<div class="row p-0nImp">
+  <div [ngClass]="[data?.status, 'customSnack']">
+    {{ data?.message }}
+  </div>
+  
+  <div class="close">
+    <button mat-icon-button
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleDisabled]="disabled"
+      [matRippleUnbounded]="unbounded"
+      [matRippleRadius]="radius"
+      [matRippleColor]="color"
+
+      (click)="close()"
+    >
+      <mat-icon aria-label="icon-button with a close icon">close</mat-icon>
+    </button>
+  </div>
 </div>
+

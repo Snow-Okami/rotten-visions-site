@@ -101,6 +101,8 @@ export class UpdatesComponent implements OnInit {
       if(r['message']['type'] !== 'error') { this.user = r['data']; }
     }
 
+    console.log('user in updates', this.user);
+
     if(this.user.capability === 2) {
       this.createButton = true;
     }

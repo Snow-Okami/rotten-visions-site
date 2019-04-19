@@ -87,6 +87,8 @@ export class DashboardComponent {
       }
     }
 
+    console.log('user in dashboard', this.user);
+
     if(this.user.capability === 2) {
       /**
        * @description Add updates in the navList.
