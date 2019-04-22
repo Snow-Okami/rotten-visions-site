@@ -47,7 +47,7 @@ export class HttpService {
    * @description GET posts with Limitation.
    */
   posts(option: any): Observable<HttpResponse<any>> {
-    let url = this.apiurl + '/post?skip=' + option.skip;
+    let url = `${this.apiurl}/post?skip=${option.skip}&limit=${option.limit}`;
 
     return this.http.get<any>(url).pipe(
       tap(message => message),

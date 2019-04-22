@@ -14,7 +14,8 @@
 
 
 .container {
-  width: 100%;
+  width: 90%;
+  margin: auto;
 }
 
 .hidden .head, .hidden .body, .hidden .footer, .head.mobile, .body.mobile, .footer.mobile {

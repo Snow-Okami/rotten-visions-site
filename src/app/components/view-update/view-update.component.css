@@ -1,5 +1,6 @@
 .container {
-  width: 100%;
+  width: 90%;
+  margin: auto;
 }
 
 .hidden .head, .hidden .body, .hidden .footer, .head.mobile, .body.mobile, .footer.mobile {
@@ -65,6 +66,14 @@
   position: relative;
 }
 
+.m-0 {
+  margin: 0px;
+}
+
+.m-0nImp {
+  margin: 0px !important;
+}
+
 .m-l-10 {
   margin-left: 10px;
 }
@@ -85,12 +94,24 @@
   margin-bottom: 30px;
 }
 
+.p-0 {
+  padding: 0;
+}
+
+.p-0nImp {
+  padding: 0 !important;
+}
+
 .p-10 {
   padding: 10px;
 }
 
 .p-15 {
   padding: 15px;
+}
+
+.p-16 {
+  padding: 16px;
 }
 
 .p-30 {
@@ -151,7 +172,7 @@
 }
 
 .title-sm {
-  font-size: 20px;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .date {
@@ -202,8 +223,18 @@ ul.default {
 }
 
 .link-sm {
-  outline: none;
+  outline: 0;
   cursor: pointer;
+  transition: .2s ease-in-out all;
+}
+
+.link-sm:hover {
+  background: #212121;
+  opacity: 1;
+}
+
+.desc-sm img {
+  width: 100%;
 }
 
 .comment-title {

@@ -76,8 +76,32 @@ mat-form-field div, mat-form-field span {
   left: -20px;
 }
 
+.pos-f {
+  position: fixed;
+}
+
+.o-flow-hidden {
+  overflow: hidden;
+}
+
+.op-4 {
+  opacity: 0.4;
+}
+
+.op-4nImp {
+  opacity: 0.4 !important;
+}
+
 .op-5 {
   opacity: 0.5;
+}
+
+.op-75 {
+  opacity: 0.75;
+}
+
+.op-75nImp {
+  opacity: 0.75 !important;
 }
 
 .font-10 {
@@ -128,4 +152,24 @@ mat-form-field div, mat-form-field span {
 
 span.writable-update img {
   max-width: 100%;
+}
+
+.c-red {
+  color: #c3233f;
+}
+
+perfect-scrollbar > .ps.ps--scrolling-y > .ps__rail-y {
+  background-color: transparent !important;
+}
+
+.ps .ps__rail-y:hover {
+  background-color: transparent !important;
+}
+
+.ps .ps__rail-y .ps__thumb-y {
+  width: 3px !important;
+}
+
+.ps .ps__rail-y:hover > .ps__thumb-y {
+  width: 4px !important;
 }

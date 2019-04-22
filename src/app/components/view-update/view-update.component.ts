@@ -3,6 +3,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { PerfectScrollbarConfigInterface, PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 import * as _ from 'lodash';
 
 import { RegxFormService } from '../../services/regx-form.service';
@@ -39,6 +40,14 @@ export class ViewUpdateComponent {
   };
 
   public postList: any = [];
+
+  public window: any;
+  private stickyItem: any;
+  private fixerItem: any;
+  private fixerTop: number = 129;
+
+  public config: PerfectScrollbarConfigInterface = { };
+  @ViewChild('posts') posts?: PerfectScrollbarComponent;
 
   public newsletterform: FormGroup;
   public commentF: FormGroup;
@@ -116,7 +125,8 @@ export class ViewUpdateComponent {
      * @description SET UP skip, limit & sort options here.
      */
     let option = {
-      skip: param.id
+      skip: 0,
+      limit: 10
     };
 
     r = await this.http.posts(option).toPromise();
@@ -129,6 +139,14 @@ export class ViewUpdateComponent {
       this.image.defaultHeight = (boundary['width'] / 16) * 9;
     }
     document.getElementsByClassName('route-progress-bar')[0].classList.add('hidden');
+
+    this.window = window;
+    this.stickyItem = document.getElementsByClassName('sticky-item')[0];
+    this.fixerItem = document.getElementsByClassName('item-fixer')[0];
+
+    this.stickItem(1);
+    this.window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    this.window.addEventListener('scroll', this.onScroll, false);
   }
 
   submit(event: Event, f: FormGroup) {
@@ -191,6 +209,34 @@ export class ViewUpdateComponent {
     let r = await this.http.userName(this.replyF.value.createdBy).toPromise();
     this.senderEmail.reply.hasError = r['message']['type'] === 'error';
     this.senderEmail.reply.data = this.senderEmail.reply.hasError ? {} : r['data'];
+  }
+
+  onScroll(event: Event) {
+    that.stickItem(0);
+  }
+
+  stickItem(sY: number) {
+    let wST = sY || that.window.scrollY;
+    let pos = that.stickyItem.getBoundingClientRect();
+    let sST = pos.top;
+    if(sST < 130 && !that.stickyItem.classList.value.includes('pos-f')) {
+      that.fixerTop = wST;
+      that.stickyItem.classList.add('pos-f');
+      that.fixerItem.style.height = pos.height + 'px';
+      /**
+       * @description Fixes the header at top.
+       */
+      Object.assign(that.stickyItem.style, {position: 'fixed', top: '129px', width: `${pos.width}px`});
+    } else if(wST < that.fixerTop) {
+      that.fixerTop = 129;
+      that.stickyItem.classList.remove('pos-f');
+      /**
+       * @description Fixes the header at top.
+       */
+      Object.assign(that.stickyItem.style, {position: 'relative', top: 'auto', width: 'auto'});
+
+      that.fixerItem.style.height = '0px';
+    }
   }
 
 }

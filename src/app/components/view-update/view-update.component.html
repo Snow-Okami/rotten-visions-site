@@ -246,7 +246,54 @@
     </div>
 
     <div class="col w40" [ngClass]="{'mobile': mobileQuery.matches}">
-      <div class="newsletter-wrapper" [ngClass]="{'p-15 m-l-30': !mobileQuery.matches}">
+
+      <div class="more-update-wrapper" [ngClass]="{'m-l-30': !mobileQuery.matches}" *ngIf="!mobileQuery.matches">
+
+        <div class="sticky-item">
+
+          <perfect-scrollbar #posts style="position: relative;" [config]="config" [style.height.px]="window?.innerHeight - 166">
+
+            <ul class="default">
+  
+              <li *ngFor="let p of postList; index as i;" [routerLink]="['/updates/view/' + p.id]" class="link-sm m-0nImp op-75">
+                <div class="row p-0nImp">
+    
+                  <div class="p-16">
+    
+                    <div class=" o-flow-hidden" [style.height.px]="85">
+                      <div class="col w40" *ngIf="p?.image">
+                        <img [src]="p?.image"
+                          alt="missing logo"
+                          [ngStyle]="{'max-width': '95%', 'width.px': 144, 'height.px': 81}"
+                        >
+                      </div>
+    
+                      <div class="col" [ngClass]="{'w60': p?.image, 'w100': !p?.image}">
+                        <div class="row p-0"> <div class="title-sm font-16 c-red"> {{p.title}} </div> </div>
+                        <div class="row p-0"> <span class="desc-sm writable-update font-13" [innerHTML]="p?.description"> </span> </div>
+                      </div>
+                    </div>
+    
+                  </div>
+    
+                </div>
+    
+                <div class="row p-0nImp">
+                  <mat-divider></mat-divider>
+                </div>
+              </li>
+    
+            </ul>
+  
+          </perfect-scrollbar>
+
+        </div>
+
+        <div class="item-fixer"></div>
+
+      </div>
+
+      <!-- <div class="newsletter-wrapper" [ngClass]="{'p-15 m-l-30': !mobileQuery.matches}">
 
         <mat-card>
           <mat-card-title> Subscribe to the best creative feed. </mat-card-title>
@@ -277,32 +324,8 @@
 
         </mat-card>
 
-      </div>
+      </div> -->
 
-      <div class="more-update-wrapper" [ngClass]="{'m-l-30': !mobileQuery.matches}" *ngIf="!mobileQuery.matches">
-        <ul class="default">
-
-          <li *ngFor="let p of postList; index as i;" [routerLink]="['/updates/view/' + p.id]" class="link-sm">
-            <div class="row">
-              <div class="col w100">
-                <div class="wrapper">
-                  <div class="row">
-                    <p class="col title-sm"> {{p.title}} </p>
-                  </div>
-                  <div class="row">
-                    <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(p.description)" class="writable-update-sm"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <mat-divider></mat-divider>
-            </div>
-          </li>
-
-        </ul>
-      </div>
     </div>
 
   </div>
