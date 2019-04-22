@@ -1,7 +1,7 @@
 import { Component, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 import * as _ from 'lodash';
@@ -72,6 +72,7 @@ export class ViewUpdateComponent {
     private store: StoreService,
     private http: HttpService,
     public sanitizer: DomSanitizer,
+    private router: Router,
     private route: ActivatedRoute,
     public form: FormBuilder,
     private Rxjs: RegxFormService,
@@ -116,6 +117,13 @@ export class ViewUpdateComponent {
   }
 
   async ngAfterViewInit() {
+    /**
+     * @description reroute after router param changes.
+     */
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      document.getElementsByClassName('route-progress-bar')[0].classList.remove('hidden');
+      return false;
+    }
     let param = {'id': this.route.snapshot.paramMap.get('id')};
     let r = await this.http.post(param).toPromise();
     this.post = r['data'];
