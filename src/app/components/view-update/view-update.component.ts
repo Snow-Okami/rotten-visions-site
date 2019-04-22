@@ -144,9 +144,11 @@ export class ViewUpdateComponent {
     this.stickyItem = document.getElementsByClassName('sticky-item')[0];
     this.fixerItem = document.getElementsByClassName('item-fixer')[0];
 
-    this.stickItem(1);
-    this.window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-    this.window.addEventListener('scroll', this.onScroll, false);
+    if(this.stickyItem) {
+      this.stickItem(1);
+      this.window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      this.window.addEventListener('scroll', this.onScroll, false);
+    }
   }
 
   submit(event: Event, f: FormGroup) {
