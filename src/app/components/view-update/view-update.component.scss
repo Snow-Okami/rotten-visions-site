@@ -1,3 +1,17 @@
+.b-r-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 1;
+}
+
+.b-l-btn {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  z-index: 1;
+}
+
 .image-title {
   left: 0px;
   bottom: 10px;

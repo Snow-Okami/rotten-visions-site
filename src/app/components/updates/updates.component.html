@@ -2,7 +2,7 @@
   <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
 
     <!-- Create Post Button -->
-    <button *ngIf="createButton" (click)="visitCreate()" mat-fab class="create-post" matTooltip="Create New" matTooltipPosition="before">
+    <button *ngIf="createButton" (click)="visitCreate()" mat-fab class="b-r-btn" matTooltip="Create New" matTooltipPosition="before">
       <mat-icon aria-label="Create new post icon">add</mat-icon>
     </button>
 
@@ -58,8 +58,8 @@
                 <div [ngClass]="{'m-l-20': update.image !== '', 'pos-r': true, 'o-flow-hidden': true}" [style.height.px]="imgHeight">
 
                   <div class="pos-a right-0px" *ngIf="createButton">
-                    <button mat-icon-button color="primary" aria-label="icon-button with a settings icon" (click)="editThisUpdate(update.id);">
-                      <mat-icon>settings</mat-icon>
+                    <button mat-icon-button color="primary" matTooltip="Edit post" matTooltipPosition="before" aria-label="icon-button with a settings icon" (click)="editThisUpdate(update.id);">
+                      <mat-icon>edit</mat-icon>
                     </button>
                   </div>
 

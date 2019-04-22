@@ -747,8 +747,18 @@ perfect-scrollbar > .ps.ps--scrolling-y > .ps__rail-y {
   background-color: transparent !important;
 }
 
-.ps .ps__rail-y:hover {
-  background-color: transparent !important;
+.ps .ps__rail-y {
+  &:hover {
+    background-color: transparent !important;
+
+    > .ps__thumb-y {
+      width: 4px !important;
+    }
+  }
+
+  .ps__thumb-y {
+    width: 3px !important;
+  }
 }
 
 span.writable.mat-line {

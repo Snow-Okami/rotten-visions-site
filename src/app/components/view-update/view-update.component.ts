@@ -53,6 +53,7 @@ export class ViewUpdateComponent {
   };
 
   public postList: Array<Post> = [];
+  public createButton: boolean = false;
 
   public window: any;
   private stickyItem: any;
@@ -102,6 +103,18 @@ export class ViewUpdateComponent {
   }
 
   async ngAfterContentInit() {
+    this.user = this.store.user.data;
+    let r: any;
+
+    if(!this.store.user.synced) {
+      let email = atob(this.store.getCookie('ps-u-a-p'));
+      r = await this.http.user(email).toPromise();
+      if(r['message']['type'] !== 'error') { this.user = r['data']; }
+    }
+
+    if(this.user.capability === 2) {
+      this.createButton = true;
+    }
   }
 
   async ngAfterViewInit() {
@@ -128,7 +141,7 @@ export class ViewUpdateComponent {
      */
     let option = {
       skip: 0,
-      limit: 6
+      limit: 10
     };
 
     r = await this.http.posts(option).toPromise();
@@ -149,9 +162,11 @@ export class ViewUpdateComponent {
     this.stickyItem = document.getElementsByClassName('sticky-item')[0];
     this.fixerItem = document.getElementsByClassName('item-fixer')[0];
 
-    this.stickItem(1);
-    this.window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-    this.window.addEventListener('scroll', this.onScroll, false);
+    if(this.stickyItem) {
+      this.stickItem(1);
+      this.window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      this.window.addEventListener('scroll', this.onScroll, false);
+    }
   }
 
   ngOnDestroy() {
@@ -225,6 +240,25 @@ export class ViewUpdateComponent {
 
       that.fixerItem.style.height = '0px';
     }
+  }
+
+  editThisUpdate(id: string) {
+    if(this.user.capability !== 2) { return; }
+    /**
+     * @description Show Progress Bar When Page is Loading.
+     */
+    this.progressBar.classList.remove('hidden');
+
+    this.router.navigate(['/dashboard/updates/edit/' + id]);
+  }
+
+  backToUpdates() {
+    /**
+     * @description Show Progress Bar When Page is Loading.
+     */
+    this.progressBar.classList.remove('hidden');
+
+    this.router.navigate(['/dashboard/updates']);
   }
 
 }

@@ -2,233 +2,247 @@
 
   <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
 
-    <div class="col w60 m-b-30" [ngClass]="{'mobile': mobileQuery.matches}">
+    <!-- Create post button -->
+    <button *ngIf="createButton" mat-fab class="b-r-btn" matTooltip="Edit post" matTooltipPosition="before" (click)="editThisUpdate(post?.id);">
+      <mat-icon aria-label="Update the post icon">edit</mat-icon>
+    </button>
+
+    <!-- Back to updates -->
+    <button mat-fab class="b-l-btn" matTooltip="Back to updates" matTooltipPosition="before" (click)="backToUpdates();">
+      <mat-icon aria-label="Back to all updates">arrow_back_ios</mat-icon>
+    </button>
+
+    <div class="row">
+
+      <div class="col w60 m-b-30" [ngClass]="{'mobile': mobileQuery.matches}">
       
-      <div class="image-wrapper" [ngClass]="{'p-15': !mobileQuery.matches}">
-        <div class="row">
-      
-          <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
-    
-            <div class="">
-  
-              <div class="image-title p-b-10">
-              
-                <div class="row">
-                  <div class="title font-30"> {{post?.title ? post?.title : 'Loading title...'}} </div>
-                </div>
-                <div class="date p-b-6 p-t-6 font-12"> Posted on: {{post?.createdAt | date}} </div>
-                <div class="tag p-b-10 p-t-10">
-                  <div class="col inline tag-item m-r-5 p-t-3 p-b-3 p-l-5 p-r-5 font-10" *ngFor="let t of post?.tags"> {{t}} </div>
-                </div>
-    
-              </div>
-  
-              <img #postImage
-                [ngClass]="{'mobile': mobileQuery.matches, 'post-image': true, 'm-w-100': true}"
-                [defaultImage]="image.defaultImage"
-                [lazyLoad]="post?.image"
-                [offset]="image.offset"
-                alt="missing image"
-                [style.height.px]="image.defaultHeight"
-                *ngIf="post?.image !== ''">
-            
-            </div>
-    
-          </div>
-    
-        </div>
-  
-      </div>
-  
-      <div class="desc-wrapper" [ngClass]="{'p-15': !mobileQuery.matches}">
-        <div class="row">
-  
-          <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
-            <span [innerHTML]="post?.description" class="writable-update font-light font-18"></span>
-          </div>
-  
-        </div>
-      </div>
-
-      <!-- Started working on comments section -->
-      <div class="comment-wrapper" [ngClass]="{'p-15': !mobileQuery.matches}">
-
-        <div class="row">
-
-          <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true, 'p-t-20': true}">
-
-            <div class="comment-title font-25">Comments:</div>
-
-            <div class=" p-b-10 p-t-10">
-              
-              <form #comment class="comment-form" [formGroup]="commentF" (ngSubmit)="commentNow($event, commentF)">
-    
-                <mat-form-field class="w100 textarea" appearance="outline">
-                  <mat-label> Leave your comment </mat-label>
-                  <textarea matInput #comment [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="100" maxlength="800" placeholder="eg.: The above post is ..." formControlName="text"></textarea>
-                  <mat-error *ngIf="commentF.controls.text.hasError('required')">
-                    Comment is required
-                  </mat-error>
-                  <mat-error *ngIf="commentF.controls.text.hasError('minlength')">
-                    Comment must have 100 characters
-                  </mat-error>
-                  <mat-hint align="end">{{comment.value.length}} / 800</mat-hint>
-                </mat-form-field>
-    
-                <div class="row">
-                  <button mat-raised-button type="submit" color="primary"> <mat-icon>send</mat-icon> </button>
-                </div>
-    
-              </form>
-    
-            </div>
-    
-            <ul class="">
-
-              <li class="comment-box p-b-10 p-t-10" *ngFor="let com of post?.comments; index as i;">
-
-                <div class="comment-container">
-                  <div class="user-title p-b-5 p-t-5 font-22"> {{com.createdBy.username | titlecase}} </div>
-                  <div class="comment-time p-b-5 p-t-5 font-12"> {{com.createdAt | date: 'fullDate'}} </div>
-                  <div class="user-comment font-light p-b-5 p-t-5 font-18"> {{com.text}} </div>
-                </div>
-
-                <ul class="reply-container">
-
-                  <li class="p-b-10 p-t-10">
-                    <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8" (click)="alterForm($event, false);"> Reply </div>
-                    <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8"> Share </div>
-                  </li>
-
-                  <li class="reply-form hidden p-b-10 p-t-10">
-
-                    <form class="comment-form" [formGroup]="replyF" (ngSubmit)="replyNow($event, replyF, com);">
-
-                      <mat-form-field class="w100 textarea" appearance="outline">
-                        <mat-label> Leave your reply </mat-label>
-                        <textarea matInput #reply [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="20" maxlength="800" placeholder="eg.: The above comment is ..." formControlName="text"></textarea>
-                        <mat-error *ngIf="replyF.controls.text.hasError('required')">
-                          Reply is required
-                        </mat-error>
-                        <mat-error *ngIf="replyF.controls.text.hasError('minlength')">
-                          Reply must have 20 characters
-                        </mat-error>
-                        <mat-hint align="end">{{reply.value.length}} / 800</mat-hint>
-                      </mat-form-field>
+        <div class="image-wrapper" [ngClass]="{'p-15': !mobileQuery.matches}">
+          <div class="row">
         
-                      <div class="row">
-                        <button mat-raised-button type="submit" color="primary"> <mat-icon>send</mat-icon> </button>
-                      </div>
-                    </form>
-
-                  </li>
-
-                  <li class="reply-box opacity-q75 p-b-5 p-t-5" *ngFor="let rep of com.replies; index as ri;">
-
-                    <div class="col w20 inline p-t-5 m-w-65px">
-                      <img alt="missing logo" class="reply-icon"
-                        [defaultImage]="image.defaultImage"
-                        [lazyLoad]="rep.createdBy?.avatar"
-                        [offset]="image.offset">
-                    </div>
-
-                    <div class="col w80 inline">
-                      <div class="reply-wrapper">
-                        <div class="user-title p-b-5 p-t-5 font-22"> {{rep.createdBy.username | titlecase}} </div>
-                        <div class="comment-time p-b-5 p-t-5 font-12"> {{rep.createdAt | date: 'fullDate'}} </div>
-                        <div class="user-comment font-light p-b-5 p-t-5 font-18"> {{rep.text}} </div>
-                        <div class="p-b-5 p-t-10">
-                          <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8" (click)="alterForm($event, true);"> Reply </div>
-                          <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8"> Share </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col w100 hidden">
-                      <div class="reply-form p-b-10 p-t-10">
-
-                        <form class="comment-form" [formGroup]="replyF" (ngSubmit)="replyNow($event, replyF, com);">
-                            
-                          <mat-form-field class="w100 textarea" appearance="outline">
-                            <mat-label> Leave your reply </mat-label>
-                            <textarea matInput #reply [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="20" maxlength="800" placeholder="eg.: The above comment is ..." formControlName="text"></textarea>
-                            <mat-error *ngIf="replyF.controls.text.hasError('required')">
-                              Reply is required
-                            </mat-error>
-                            <mat-error *ngIf="replyF.controls.text.hasError('minlength')">
-                              Reply must have 20 characters
-                            </mat-error>
-                            <mat-hint align="end">{{reply.value.length}} / 800</mat-hint>
-                          </mat-form-field>
-            
-                          <div class="row">
-                            <button mat-raised-button type="submit" color="primary"> <mat-icon>send</mat-icon> </button>
-                          </div>
-                        </form>
+            <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
+      
+              <div class="">
     
-                      </div>
-                    </div>
-
-                  </li>
-
-                </ul>
-
-                <div class="row">
-                  <mat-divider></mat-divider>
-                </div>
-
-              </li>
-
-            </ul>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="col w40" *ngIf="!mobileQuery.matches">
-      <div class="p-l-30 ">
-
-        <div class="sticky-item">
-          <perfect-scrollbar #posts style="position: relative;" [config]="config" [style.height.px]="window?.innerHeight - 100">
-            <ul>
-  
-              <li *ngFor="let p of postList; index as i;" [routerLink]="['/dashboard/updates/view/' + p.id]" class="link-sm m-0nImp opacity-q75nImp">
-                <div class="row p-0nImp">
-                  <div class="p-16">
-  
-                    <div class=" o-flow-hidden" [style.height.px]="85">
-                      <div class="col w40" *ngIf="p?.image">
-                        <img [src]="p?.image"
-                          alt="missing logo"
-                          [ngStyle]="{'max-width': '95%', 'width.px': 144, 'height.px': 81}"
-                        >
-                      </div>
-
-                      <div class="col" [ngClass]="{'w60': p?.image, 'w100': !p?.image}">
-                        <div class="row p-0"> <div class="title font-16 c-red"> {{p.title}} </div> </div>
-                        <div class="row p-0"> <span class="desc-sm writable-update font-light font-13" [innerHTML]="p.description"> </span> </div>
-                      </div>
-                    </div>
-  
+                <div class="image-title p-b-10">
+                
+                  <div class="row">
+                    <div class="title font-30"> {{post?.title ? post?.title : 'Loading title...'}} </div>
+                  </div>
+                  <div class="date p-b-6 p-t-6 font-12"> Posted on: {{post?.createdAt | date}} </div>
+                  <div class="tag p-b-10 p-t-10">
+                    <div class="col inline tag-item m-r-5 p-t-3 p-b-3 p-l-5 p-r-5 font-10" *ngFor="let t of post?.tags"> {{t}} </div>
                   </div>
       
                 </div>
-  
-                <!-- Divider Appears Here -->
-                <div class="row p-0nImp">
-                  <mat-divider></mat-divider>
-                </div>
-              </li>
+    
+                <img #postImage
+                  [ngClass]="{'mobile': mobileQuery.matches, 'post-image': true, 'm-w-100': true}"
+                  [defaultImage]="image.defaultImage"
+                  [lazyLoad]="post?.image"
+                  [offset]="image.offset"
+                  alt="missing image"
+                  [style.height.px]="image.defaultHeight"
+                  *ngIf="post?.image !== ''">
+              
+              </div>
       
-            </ul>
-          </perfect-scrollbar>
+            </div>
+      
+          </div>
+    
         </div>
-
-        <div class="item-fixer"></div>
+    
+        <div class="desc-wrapper" [ngClass]="{'p-15': !mobileQuery.matches}">
+          <div class="row">
+    
+            <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
+              <span [innerHTML]="post?.description" class="writable-update font-light font-18"></span>
+            </div>
+    
+          </div>
+        </div>
+  
+        <!-- Started working on comments section -->
+        <div class="comment-wrapper" [ngClass]="{'p-15': !mobileQuery.matches}">
+  
+          <div class="row">
+  
+            <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true, 'p-t-20': true}">
+  
+              <div class="comment-title font-25">Comments:</div>
+  
+              <div class=" p-b-10 p-t-10">
+                
+                <form #comment class="comment-form" [formGroup]="commentF" (ngSubmit)="commentNow($event, commentF)">
+      
+                  <mat-form-field class="w100 textarea" appearance="outline">
+                    <mat-label> Leave your comment </mat-label>
+                    <textarea matInput #comment [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="100" maxlength="800" placeholder="eg.: The above post is ..." formControlName="text"></textarea>
+                    <mat-error *ngIf="commentF.controls.text.hasError('required')">
+                      Comment is required
+                    </mat-error>
+                    <mat-error *ngIf="commentF.controls.text.hasError('minlength')">
+                      Comment must have 100 characters
+                    </mat-error>
+                    <mat-hint align="end">{{comment.value.length}} / 800</mat-hint>
+                  </mat-form-field>
+      
+                  <div class="row">
+                    <button mat-raised-button type="submit" color="primary"> <mat-icon>send</mat-icon> </button>
+                  </div>
+      
+                </form>
+      
+              </div>
+      
+              <ul class="">
+  
+                <li class="comment-box p-b-10 p-t-10" *ngFor="let com of post?.comments; index as i;">
+  
+                  <div class="comment-container">
+                    <div class="user-title p-b-5 p-t-5 font-22"> {{com.createdBy.username | titlecase}} </div>
+                    <div class="comment-time p-b-5 p-t-5 font-12"> {{com.createdAt | date: 'fullDate'}} </div>
+                    <div class="user-comment font-light p-b-5 p-t-5 font-18"> {{com.text}} </div>
+                  </div>
+  
+                  <ul class="reply-container">
+  
+                    <li class="p-b-10 p-t-10">
+                      <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8" (click)="alterForm($event, false);"> Reply </div>
+                      <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8"> Share </div>
+                    </li>
+  
+                    <li class="reply-form hidden p-b-10 p-t-10">
+  
+                      <form class="comment-form" [formGroup]="replyF" (ngSubmit)="replyNow($event, replyF, com);">
+  
+                        <mat-form-field class="w100 textarea" appearance="outline">
+                          <mat-label> Leave your reply </mat-label>
+                          <textarea matInput #reply [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="20" maxlength="800" placeholder="eg.: The above comment is ..." formControlName="text"></textarea>
+                          <mat-error *ngIf="replyF.controls.text.hasError('required')">
+                            Reply is required
+                          </mat-error>
+                          <mat-error *ngIf="replyF.controls.text.hasError('minlength')">
+                            Reply must have 20 characters
+                          </mat-error>
+                          <mat-hint align="end">{{reply.value.length}} / 800</mat-hint>
+                        </mat-form-field>
+          
+                        <div class="row">
+                          <button mat-raised-button type="submit" color="primary"> <mat-icon>send</mat-icon> </button>
+                        </div>
+                      </form>
+  
+                    </li>
+  
+                    <li class="reply-box opacity-q75 p-b-5 p-t-5" *ngFor="let rep of com.replies; index as ri;">
+  
+                      <div class="col w20 inline p-t-5 m-w-65px">
+                        <img alt="missing logo" class="reply-icon"
+                          [defaultImage]="image.defaultImage"
+                          [lazyLoad]="rep.createdBy?.avatar"
+                          [offset]="image.offset">
+                      </div>
+  
+                      <div class="col w80 inline">
+                        <div class="reply-wrapper">
+                          <div class="user-title p-b-5 p-t-5 font-22"> {{rep.createdBy.username | titlecase}} </div>
+                          <div class="comment-time p-b-5 p-t-5 font-12"> {{rep.createdAt | date: 'fullDate'}} </div>
+                          <div class="user-comment font-light p-b-5 p-t-5 font-18"> {{rep.text}} </div>
+                          <div class="p-b-5 p-t-10">
+                            <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8" (click)="alterForm($event, true);"> Reply </div>
+                            <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8"> Share </div>
+                          </div>
+                        </div>
+                      </div>
+  
+                      <div class="col w100 hidden">
+                        <div class="reply-form p-b-10 p-t-10">
+  
+                          <form class="comment-form" [formGroup]="replyF" (ngSubmit)="replyNow($event, replyF, com);">
+                              
+                            <mat-form-field class="w100 textarea" appearance="outline">
+                              <mat-label> Leave your reply </mat-label>
+                              <textarea matInput #reply [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="20" maxlength="800" placeholder="eg.: The above comment is ..." formControlName="text"></textarea>
+                              <mat-error *ngIf="replyF.controls.text.hasError('required')">
+                                Reply is required
+                              </mat-error>
+                              <mat-error *ngIf="replyF.controls.text.hasError('minlength')">
+                                Reply must have 20 characters
+                              </mat-error>
+                              <mat-hint align="end">{{reply.value.length}} / 800</mat-hint>
+                            </mat-form-field>
+              
+                            <div class="row">
+                              <button mat-raised-button type="submit" color="primary"> <mat-icon>send</mat-icon> </button>
+                            </div>
+                          </form>
+      
+                        </div>
+                      </div>
+  
+                    </li>
+  
+                  </ul>
+  
+                  <div class="row">
+                    <mat-divider></mat-divider>
+                  </div>
+  
+                </li>
+  
+              </ul>
+  
+            </div>
+  
+          </div>
+  
+        </div>
+  
+      </div>
+  
+      <div class="col w40" *ngIf="!mobileQuery.matches">
+        <div class="p-l-30 ">
+  
+          <div class="sticky-item">
+            <perfect-scrollbar #posts style="position: relative;" [config]="config" [style.height.px]="window?.innerHeight - 100">
+              <ul>
+    
+                <li *ngFor="let p of postList; index as i;" [routerLink]="['/dashboard/updates/view/' + p.id]" class="link-sm m-0nImp opacity-q75nImp">
+                  <div class="row p-0nImp">
+                    <div class="p-16">
+    
+                      <div class="o-flow-hidden" [style.height.px]="85">
+                        <div class="col w40" *ngIf="p?.image">
+                          <img [src]="p?.image"
+                            alt="missing logo"
+                            [ngStyle]="{'max-width': '95%', 'width.px': 144, 'height.px': 81}"
+                          >
+                        </div>
+  
+                        <div class="col" [ngClass]="{'w60': p?.image, 'w100': !p?.image}">
+                          <div class="row p-0"> <div class="title font-16 c-red"> {{p.title}} </div> </div>
+                          <div class="row p-0"> <span class="desc-sm writable-update font-light font-13" [innerHTML]="p.description"> </span> </div>
+                        </div>
+                      </div>
+    
+                    </div>
+        
+                  </div>
+    
+                  <!-- Divider Appears Here -->
+                  <div class="row p-0nImp">
+                    <mat-divider></mat-divider>
+                  </div>
+                </li>
+        
+              </ul>
+            </perfect-scrollbar>
+          </div>
+  
+          <div class="item-fixer"></div>
+        </div>
+  
       </div>
 
     </div>
