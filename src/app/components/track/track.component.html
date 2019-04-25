@@ -10,7 +10,10 @@
         <!-- Repeat should be here -->
         <ul>
           <li class="row">
-            <div class="col w100">
+            <div class="col w100" [@openClose]="displayedColumns?.length ? 'closed' : 'open'">
+              <p class="t-al-center pg-bg"> Checking for details... </p>
+            </div>
+            <div class="col w100" [@openClose]="!displayedColumns?.length ? 'closed' : 'open'">
 
               <mat-form-field>
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">

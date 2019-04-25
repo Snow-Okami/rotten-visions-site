@@ -3,6 +3,14 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as _ from 'lodash';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
 
 import { User } from '../../interfaces/user';
 
@@ -14,7 +22,16 @@ let that: any;
 @Component({
   selector: 'app-updates',
   templateUrl: './updates.component.html',
-  styleUrls: ['./updates.component.scss']
+  styleUrls: ['./updates.component.scss'],
+  animations: [
+    trigger('openClose', [
+      // ...
+      state('open', style({ overflow: 'hidden' })),
+      state('closed', style({ height: '0px', overflow: 'hidden' })),
+      transition('open => closed', [ animate('0.4s') ]),
+      transition('closed => open', [ animate('0.7s') ]),
+    ])
+  ]
 })
 export class UpdatesComponent implements OnInit {
   /**
@@ -100,8 +117,6 @@ export class UpdatesComponent implements OnInit {
       r = await this.http.user(email).toPromise();
       if(r['message']['type'] !== 'error') { this.user = r['data']; }
     }
-
-    console.log('user in updates', this.user);
 
     if(this.user.capability === 2) {
       this.createButton = true;

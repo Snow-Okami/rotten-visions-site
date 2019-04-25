@@ -31,13 +31,15 @@
         <mat-divider></mat-divider>
 
         <!-- Repeat should be here -->
-        <ul>
-          <li class="row pg-bg" *ngIf="!updates.length">
+        <ul [@openClose]="updates.length ? 'closed' : 'open'">
+          <li class="row pg-bg">
             <div class="col w100">
               <p class="t-al-center"> {{updateText}} </p>
             </div>
           </li>
-
+        </ul>
+        
+        <ul [@openClose]="!updates.length ? 'closed' : 'open'">
           <li class="row" *ngFor="let update of updates">
 
             <div class="update-con-wrapper">
