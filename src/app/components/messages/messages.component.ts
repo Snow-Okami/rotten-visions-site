@@ -5,6 +5,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Socket } from 'ngx-socket-io';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 import * as _ from 'lodash';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
 
 import { ActionsService } from '../../services/actions.service';
 import { StoreService } from '../../services/store.service';
@@ -20,7 +28,16 @@ export interface Fruit {
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.scss']
+  styleUrls: ['./messages.component.scss'],
+  animations: [
+    trigger('openClose', [
+      // ...
+      state('open', style({display: 'block'})),
+      state('closed', style({ height: '0px', width: '0px', display: 'none' })),
+      transition('open => closed', [ animate('2s') ]),
+      transition('closed => open', [ animate('1s') ]),
+    ])
+  ]
 })
 export class MessagesComponent {
   /**
