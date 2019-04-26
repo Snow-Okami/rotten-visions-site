@@ -1,0 +1,16 @@
+
+.container {
+  width: 100%;
+}
+
+.hidden .head, .hidden .body, .hidden .footer, .head.mobile, .body.mobile, .footer.mobile {
+  padding: 0px;
+}
+
+.head, .body, .footer {
+  padding: 15px;
+}
+
+.row {
+  padding: 10px 0;
+}

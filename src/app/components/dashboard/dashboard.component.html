@@ -1,0 +1,46 @@
+<div class="psynapsus-container" [class.psynapsus-is-mobile]="true">
+  <mat-toolbar color="primary" [ngClass]="{'mobile': mobileQuery.matches, 'psynapsus-toolbar': true, 'default': true}">
+    <mat-progress-bar mode="indeterminate" class="route-progress-bar" [style.height.px]="2"></mat-progress-bar>
+    
+    <mat-toolbar-row [ngClass]="{'mobile': mobileQuery.matches}">
+
+      <!-- Set [ngClass]="{'hidden': true}" to hide mobile nav button. -->
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <div class="logo-wrapper" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <img *ngIf="!mobileQuery.matches" src="/assets/logo/final-logo.png" alt="Rotten Visions Logo" class="site-logo"
+        (click)="showRouteProgress($event)">
+      </div>
+      <div class="search-holder">
+        <input type="search" [ngClass]="{'mobile': mobileQuery.matches}" [(ngModel)]="searchText" (keyup)="search()">
+        <img class="search-icon" src="/assets/icon/search.png" alt="Search Logo">
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="psynapsus-sidenav-container default" [style.marginTop.px]="mobileQuery.matches ? 60 : 130">
+
+    <!-- Remove opened attribute to hide side nav after page load. -->
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="true" [fixedTopGap]="mobileQuery.matches ? 60 : 130" class="default"
+      [ngClass]="{'mobile': mobileQuery.matches}">
+      <mat-nav-list>
+
+        <!-- Router Links Should Stay Here -->
+        <a mat-list-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="mobileQuery.matches" (click)="snav.toggle();showRouteProgress($event);">Home</a>
+        <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="snav.toggle();showRouteProgress($event);">About</a>
+        <a mat-list-item routerLink="/projects" routerLinkActive="active" (click)="snav.toggle();showRouteProgress($event);">Projects</a>
+        <a mat-list-item routerLink="/updates" routerLinkActive="active" (click)="snav.toggle();showRouteProgress($event);">Updates</a>
+        <a mat-list-item routerLink="/contact" routerLinkActive="active" (click)="snav.toggle();showRouteProgress($event);">Contact</a>
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <!-- Static Contents Should Stay Here -->
+
+      <!-- Page Will Be Rendered Here -->
+      <router-outlet (activate)="routeChange($event)"></router-outlet>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

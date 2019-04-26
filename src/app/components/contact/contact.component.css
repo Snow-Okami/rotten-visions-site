@@ -1,0 +1,26 @@
+
+.container {
+  width: 90%;
+  margin: auto;
+}
+
+.hidden .head, .hidden .body, .hidden .footer, .head.mobile, .body.mobile, .footer.mobile {
+  padding: 0px;
+}
+
+.head, .body, .footer {
+  padding: 15px;
+}
+
+.row {
+  padding: 10px 0;
+}
+
+.contact-input {
+  width: 100%;
+  max-width: 700px; 
+}
+
+.send {
+  cursor: pointer;
+}

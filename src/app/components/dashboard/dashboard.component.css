@@ -1,0 +1,124 @@
+.psynapsus-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.psynapsus-is-mobile .psynapsus-toolbar {
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+}
+
+.psynapsus-sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+
+.psynapsus-is-mobile .psynapsus-sidenav-container {
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+     `<body>` to be our scrolling element for mobile layouts. */
+  flex: 1 0 auto;
+}
+
+mat-toolbar-row {
+  height: 130px;
+}
+
+mat-toolbar-row.mobile {
+  height: 60px;
+}
+
+.site-logo {
+  width: 115px;
+  outline: none;
+  cursor: pointer;
+}
+
+.search-holder {
+  display: flex;
+  justify-content: flex-end;
+  width: -webkit-fill-available;
+}
+
+.search-holder input {
+  color: #fff;
+  border: none;
+  background: #fafafa00;
+  background-image: url(/assets/icon/search-text.png);
+  background-repeat: no-repeat;
+  padding: 5px 16px;
+  width: 120px;
+  max-width: 240px;
+  height: 50%;
+  -webkit-appearance: none;
+  outline: 0;
+}
+
+.search-icon {
+  width: 30px;
+  height: 25px;
+}
+
+.search-holder input:focus {
+  width: 170px;
+  transition: width .05s ease-in-out;
+  background: #fafafa00;
+}
+
+.mat-drawer-content {
+  overflow-y: auto;
+}
+
+.mat-drawer-container.default, .mat-drawer.default {
+  background: #21212100;
+}
+
+.mat-drawer.default.mobile {
+  background: #000;
+}
+
+.mat-toolbar.mat-primary.default {
+  background: #212121;
+}
+
+/*  */
+.mat-nav-list .mat-list-item {
+  background: none;
+  background-image: url(/assets/icon/white-bg.png);
+  transition: 0.2s ease-in-out all;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 30px;
+  width: 250px;
+  margin: 10px 5px;
+}
+
+.mat-nav-list .mat-list-item:hover, .mat-nav-list .mat-list-item.active {
+  background-image: url(/assets/icon/red-bg.png);
+  transition: 0.2s ease-in-out all;
+}
+
+.mat-icon-button {
+  padding: 0;
+  min-width: 0;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  line-height: 40px;
+  border-radius: 50%;
+}
+
+mat-progress-bar.mat-progress-bar.mat-primary.route-progress-bar.hidden {
+  display: none;
+}
+
+.logo-wrapper {
+  outline: none;
+}

@@ -1,10 +1,14 @@
-# DesysiaSite
+# Angular quick start
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.4.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Live server
+
+Visit `https://practical-benz-6bc9a1.netlify.com/`. Application is deployed here.
 
 ## Code scaffolding
 
