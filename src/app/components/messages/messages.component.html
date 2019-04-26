@@ -116,9 +116,6 @@
                     <!-- <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div> -->
 
                     <div class="col wauto">
-
-                      <!-- sanitizer.bypassSecurityTrustHtml(chat.isTyping.lastMessage.text) -->
-
                       <span [ngClass]="{ 'hidden': !chat.isTyping.lastMessage.text.length }" [innerHTML]="chat?.isTyping.lastMessage.text" class="writable"></span>
                       <h6 class="mat-line"> {{ chat.isTyping.lastMessage.createdBy.username | titlecase }} is typing... </h6>
                     </div>
