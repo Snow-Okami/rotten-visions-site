@@ -113,8 +113,6 @@
 
                 <li *ngIf="chat.isTyping.show" class="row chat-row-wrapper opacity-q4">
                   <div class="chat-wrapper m-r-30">
-                    <!-- <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div> -->
-
                     <div class="col wauto">
                       <span [ngClass]="{ 'hidden': !chat.isTyping.lastMessage.text.length }" [innerHTML]="chat?.isTyping.lastMessage.text" class="writable"></span>
                       <h6 class="mat-line"> {{ chat.isTyping.lastMessage.createdBy.username | titlecase }} is typing... </h6>
