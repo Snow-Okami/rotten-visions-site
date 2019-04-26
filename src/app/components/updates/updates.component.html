@@ -7,6 +7,17 @@
       <li class="row" *ngIf="!mobileQuery.matches">
         <mat-divider></mat-divider>
       </li>
+    </ul>
+
+    <ul class="default" [@openClose]="postList.length ? 'closed' : 'open'">
+      <li class="row">
+        <div class="col w100">
+          <p> Loading posts... </p>
+        </div>
+      </li>
+    </ul>
+
+    <ul class="default" [@openClose]="!postList.length ? 'closed' : 'open'">
       <li *ngFor="let post of postList | updatefilter: searchText">
         <div class="row chat-view-wrapper" [routerLink]="['/updates/view/' + post.id]" (click)="showRouteProgress($event)">
           <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w40': true}">

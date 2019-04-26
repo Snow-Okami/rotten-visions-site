@@ -5,12 +5,30 @@ import * as _ from 'lodash';
 import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
 
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
+
 let that;
 
 @Component({
   selector: 'app-updates',
   templateUrl: './updates.component.html',
-  styleUrls: ['./updates.component.css']
+  styleUrls: ['./updates.component.css'],
+  animations: [
+    trigger('openClose', [
+      // ...
+      state('open', style({ overflow: 'hidden' })),
+      state('closed', style({ height: '0px', overflow: 'hidden' })),
+      transition('open => closed', [ animate('0.4s') ]),
+      transition('closed => open', [ animate('1s') ]),
+    ])
+  ]
 })
 export class UpdatesComponent {
   public title = 'Rotten Visions | Updates';
