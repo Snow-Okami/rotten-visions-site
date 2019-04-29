@@ -450,8 +450,6 @@ export class MessagesComponent {
     that.chatLoader = false;
 
     that.boxHeight = that.window.innerHeight;
-
-    // console.log('chats', that.chats);
   }
 
   private onCPacket(res: any) {
@@ -506,17 +504,12 @@ export class MessagesComponent {
      */
     if(c['messages'].length <= 10) { that.scrollToBottom(); }
     else { that.scrollYDown(that.messageListElem, 20); }
-
-    console.log('messages', c['messages']);
   }
 
   /**
    * @description when user sends or receives a text.
    */
   private onTexted(res: any) {
-
-    console.log(res);
-
     let c = _.find(that.chats, { 'id': res.lastMessage.cid });
 
     let t_t = new Date(c['lastMessage']['createdAt']);
