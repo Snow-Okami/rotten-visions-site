@@ -101,14 +101,28 @@
 
                   <div class="row date-wrapper" *ngIf="m.showDate"> {{ m.createdAt | date : 'fullDate' }} </div>
 
-                  <div class="chat-wrapper" [ngClass]="{ 'right': m.createdBy.email === user.email, 'm-r-30': m.createdBy.email !== user.email, 'm-l-30': m.createdBy.email === user.email }">
-                    <!-- <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div> -->
+                  <div class="row p-0">
 
-                    <div class="col wauto">
-                      <span [innerHTML]="m?.text" class="writable"></span>
-                      <h4 class="mat-line"> {{ m.createdBy.username | titlecase }}, {{ m.createdAt | date : 'h:mm a' }} </h4>
+                    <div class="col inline" [ngClass]="{ 'right': m.createdBy.email === user.email }">
+                      <div class="m-w-65px" [ngClass]="{ 'p-r-20': m.createdBy.email !== user.email, 'p-l-20': m.createdBy.email === user.email }">
+                        <img alt="missing logo" class="avatar-icon"
+                          [defaultImage]="image.defaultImage"
+                          [lazyLoad]="m.createdBy?.avatar"
+                          [offset]="image.offset">
+                      </div>
                     </div>
+
+                    <div class="chat-wrapper col inline" [ngClass]="{ 'right': m.createdBy.email === user.email, 'm-r-30': m.createdBy.email !== user.email, 'm-l-30': m.createdBy.email === user.email }">
+                      <!-- <div class="t-al-center chat-image"><mat-icon mat-list-icon> person </mat-icon></div> -->
+  
+                      <div class="col wauto">
+                        <span [innerHTML]="m?.text" class="writable"></span>
+                        <h4 class="mat-line"> {{ m.createdBy.username | titlecase }}, {{ m.createdAt | date : 'h:mm a' }} </h4>
+                      </div>
+                    </div>
+
                   </div>
+
                 </li>
 
                 <li *ngIf="chat.isTyping.show" class="row chat-row-wrapper opacity-q4">

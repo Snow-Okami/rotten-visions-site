@@ -97,6 +97,15 @@ export class MessagesComponent {
   private lastScrollTop = -1;
 
   /**
+   * @description Default Post Image To Be Loaded.
+   */
+  public image = {
+    offset: 100,
+    defaultImage: '/assets/logo/img-ex-light.png',
+    defaultHeight: 0
+  };
+
+  /**
    * @description search users section for create message.
    */
   public searchInput = new FormControl({ value: '', disabled: false }, []);
@@ -474,6 +483,9 @@ export class MessagesComponent {
    * @description response from socket server with messages.
    */
   private onMessages(res: any) {
+
+    console.log(res);
+
     /**
      * @description hide the loader when message is loaded. And enables the load more event.
      */
@@ -510,6 +522,9 @@ export class MessagesComponent {
    * @description when user sends or receives a text.
    */
   private onTexted(res: any) {
+
+    console.log(res);
+
     let c = _.find(that.chats, { 'id': res.lastMessage.cid });
 
     let t_t = new Date(c['lastMessage']['createdAt']);
