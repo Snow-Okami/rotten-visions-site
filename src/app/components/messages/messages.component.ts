@@ -71,7 +71,7 @@ export class MessagesComponent {
     users: [{ fullName: 'Recipient Name', email: 'recipient@example.com' }],
     isTyping: { show: false, lastMessage: { cid: '', createdBy: { email: '', fullName: '' }, text: '' } }
   };
-  public user = { username: 'username', firstName: 'User', fullName: 'User Name', email: 'user@example.com' };
+  public user = { username: 'username', firstName: 'User', fullName: 'User Name', email: 'user@example.com', _id: '' };
 
   private progressBar: any;
   public config: PerfectScrollbarConfigInterface = { };
@@ -361,8 +361,9 @@ export class MessagesComponent {
      * @description Passes the Query with auth for messages.
      */
     let auth = Object.assign({}, this.store.cookieString());
+
     this.socket.emit('text', 
-      Object.assign({ message: { query: { cid: this.chat.id, text: t, createdBy: { username: this.user.username, email: this.user.email, fullName: this.user.fullName } } } }, auth)
+      Object.assign({ message: { query: { cid: this.chat.id, text: t, createdBy: this.user._id } } }, auth)
     );
 
     this.text.setValue('');
@@ -449,6 +450,8 @@ export class MessagesComponent {
     that.chatLoader = false;
 
     that.boxHeight = that.window.innerHeight;
+
+    // console.log('chats', that.chats);
   }
 
   private onCPacket(res: any) {
@@ -503,12 +506,17 @@ export class MessagesComponent {
      */
     if(c['messages'].length <= 10) { that.scrollToBottom(); }
     else { that.scrollYDown(that.messageListElem, 20); }
+
+    console.log('messages', c['messages']);
   }
 
   /**
    * @description when user sends or receives a text.
    */
   private onTexted(res: any) {
+
+    console.log(res);
+
     let c = _.find(that.chats, { 'id': res.lastMessage.cid });
 
     let t_t = new Date(c['lastMessage']['createdAt']);
