@@ -916,3 +916,8 @@ span.writable-update {
     width: 100%;
   }
 }
+
+.nowrap {
+  white-space: nowrap;
+  overflow: hidden;
+}

@@ -458,6 +458,8 @@ export class MessagesComponent {
      */
     that.chatLoader = false;
 
+    console.log(that.chats);
+
     that.boxHeight = that.window.innerHeight;
   }
 
