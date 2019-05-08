@@ -50,17 +50,6 @@
           <!-- Chat list wrapper. -->
           <div [ngClass]="{ 'hidden': !(!chatLoader && chats.length) }"> <!-- *ngIf="!chatLoader && chats.length" -->
             <perfect-scrollbar #chatList style="position: relative; max-width: 230px; min-height: 414px;" [config]="config" [style.height.px]="boxHeight - 200" (psYReachEnd)="loadChats($event)">
-              <!-- <mat-list>
-
-                <mat-list-item *ngFor="let c of chats">
-                  <mat-icon mat-list-icon class="chat-image"> person </mat-icon>
-                  <h4 mat-line class="chat-name" (click)="showItsMessages(c)"> {{ c.type ? c.fullName : c.users | unameonly: user | titlecase }} </h4>
-                  <span [innerHTML]="c?.lastMessage.text" class="writable" mat-line></span>
-                  <mat-divider></mat-divider>
-                </mat-list-item>
-
-              </mat-list> -->
-
               <ul>
                 <li class="row o-flow-hidden pos-r mat-list-item" *ngFor="let c of chats; index as i;">                  
 
@@ -68,10 +57,10 @@
                     <div class="chat-avatar-image">
                       <img alt="missing logo" class="avatar-icon"
                         [defaultImage]="image.defaultImage"
-                        [lazyLoad]="c?.avatar"
+                        [lazyLoad]="c.type ? '/assets/logo/person.png' : c.users | avataronly: user"
                         [offset]="image.offset">
                     </div>
-                    <div class="p-l-60">
+                    <div class="p-l-60 min-h-45">
                       <h4 mat-line class="chat-name" (click)="showItsMessages(c)"> {{ c.type ? c.fullName : c.users | unameonly: user | titlecase }} </h4>
                       <span [innerHTML]="c?.lastMessage.text" class="writable nowrap" mat-line></span>
                     </div>

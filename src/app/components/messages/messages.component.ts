@@ -101,7 +101,7 @@ export class MessagesComponent {
    */
   public image = {
     offset: 100,
-    defaultImage: '/assets/logo/img-ex-light.png',
+    defaultImage: '/assets/logo/person.png',
     defaultHeight: 0
   };
 
@@ -458,8 +458,6 @@ export class MessagesComponent {
      */
     that.chatLoader = false;
 
-    console.log(that.chats);
-
     that.boxHeight = that.window.innerHeight;
   }
 
@@ -485,9 +483,6 @@ export class MessagesComponent {
    * @description response from socket server with messages.
    */
   private onMessages(res: any) {
-
-    console.log(res);
-
     /**
      * @description hide the loader when message is loaded. And enables the load more event.
      */
@@ -524,9 +519,6 @@ export class MessagesComponent {
    * @description when user sends or receives a text.
    */
   private onTexted(res: any) {
-
-    console.log(res);
-
     let c = _.find(that.chats, { 'id': res.lastMessage.cid });
 
     let t_t = new Date(c['lastMessage']['createdAt']);

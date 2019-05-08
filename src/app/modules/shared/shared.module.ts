@@ -15,6 +15,7 @@ import { PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfi
 import { TrimwordPipe } from '../../pipes/trimword.pipe';
 import { NameonlyPipe } from '../../pipes/nameonly.pipe';
 import { UnameonlyPipe } from '../../pipes/unameonly.pipe';
+import { AvataronlyPipe } from '../../pipes/avataronly.pipe';
 
 import { environment } from '../../../environments/environment';
 
@@ -49,6 +50,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     TrimwordPipe,
     NameonlyPipe,
     UnameonlyPipe,
+    AvataronlyPipe,
 
     /**
      * @description Shared Components For Lazy Routing Modules.
@@ -62,6 +64,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     TrimwordPipe,
     NameonlyPipe,
     UnameonlyPipe,
+    AvataronlyPipe,
 
     /**
      * @description Shared modules are stored here.

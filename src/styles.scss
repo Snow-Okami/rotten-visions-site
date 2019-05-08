@@ -749,6 +749,14 @@ body.mobile-view {
   }
 }
 
+.min {
+  &-h {
+    &-45 {
+      min-height: 45px;
+    }
+  }
+}
+
 perfect-scrollbar > .ps.ps--scrolling-y > .ps__rail-y {
   background-color: transparent !important;
 }
