@@ -62,20 +62,26 @@
               </mat-list> -->
 
               <ul>
-                <li class="row" *ngFor="let c of chats">
-                  <div class="col w30">
-                    <div class="">
+                <li class="row o-flow-hidden pos-r mat-list-item" *ngFor="let c of chats; index as i;">                  
+
+                  <div class="col w100">
+                    <div class="chat-avatar-image">
                       <img alt="missing logo" class="avatar-icon"
                         [defaultImage]="image.defaultImage"
                         [lazyLoad]="c?.avatar"
                         [offset]="image.offset">
                     </div>
+                    <div class="p-l-60">
+                      <h4 mat-line class="chat-name" (click)="showItsMessages(c)"> {{ c.type ? c.fullName : c.users | unameonly: user | titlecase }} </h4>
+                      <span [innerHTML]="c?.lastMessage.text" class="writable nowrap" mat-line></span>
+                    </div>
+                    <div class="p-t-15" *ngIf="i < chats.length - 1">
+                      <mat-divider></mat-divider>
+                    </div>
                   </div>
-                  <div class="col w70">
-                    <h4 mat-line class="chat-name" (click)="showItsMessages(c)"> {{ c.type ? c.fullName : c.users | unameonly: user | titlecase }} </h4>
-                    <span [innerHTML]="c?.lastMessage.text" class="writable nowrap" mat-line></span>
-                  </div>
+
                 </li>
+
               </ul>
 
             </perfect-scrollbar>

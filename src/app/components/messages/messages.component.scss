@@ -139,6 +139,14 @@
   transform: translateY(-50%);
 }
 
+.chat-avatar-image {
+  width: 50px;
+  position: absolute;
+  left: 0;
+  top: 44%;
+  transform: translateY(-50%);
+}
+
 .arrow-back {
   cursor: pointer;
 }
