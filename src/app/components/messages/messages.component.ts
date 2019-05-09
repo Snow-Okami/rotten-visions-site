@@ -431,13 +431,13 @@ export class MessagesComponent {
     /**
      * @description generates the request parameters.
      */
-    let ch = Object.assign({}, this.createChatForm.value, { users: this.selectedUsers });
+    let ch = Object.assign({}, this.createChatForm.value, { users: _.map(this.selectedUsers, '_id') });
     /**
      * @description Passes the Query with auth for a new chat.
      */
     let auth = Object.assign({}, this.store.cookieString());
 
-    // console.log(Object.assign({ message: { query: ch } }, auth));
+    console.log(Object.assign({ message: { query: ch } }, auth));
 
     this.socket.emit('chat',
       Object.assign({ message: { query: ch } }, auth)
