@@ -403,7 +403,7 @@ export class MessagesComponent {
      * @description Passes the Query with auth for messages.
      */
     let auth = Object.assign({}, this.store.cookieString());
-    this.socket.emit('search', 
+    this.socket.emit('search',
       Object.assign({ message: { query: { text: v } } }, auth)
     );
 
@@ -436,6 +436,9 @@ export class MessagesComponent {
      * @description Passes the Query with auth for a new chat.
      */
     let auth = Object.assign({}, this.store.cookieString());
+
+    // console.log(Object.assign({ message: { query: ch } }, auth));
+
     this.socket.emit('chat',
       Object.assign({ message: { query: ch } }, auth)
     );
@@ -462,6 +465,9 @@ export class MessagesComponent {
   }
 
   private onCPacket(res: any) {
+
+    console.log(res);
+
     /**
      * @description push the new chat.
      */
