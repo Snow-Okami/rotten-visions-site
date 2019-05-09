@@ -47,12 +47,12 @@
                       <ul>
                         <li class="row">
                             <!-- <div class="col w100 p-t-5 p-b-5"> DB Id: {{element._id}} </div> -->
-                            <div class="col w100 p-t-5 p-b-5"> Email: {{element.email}} </div>
-                            <div class="col w100 p-t-5 p-b-5"> Name: {{element.fullName}} </div>
-                            <div class="col w100 p-t-5 p-b-5"> User Id: {{element.id}} </div>
-                            <div class="col w100 p-t-5 p-b-5"> Username: {{element.username}} </div>
+                            <div class="col w100 p-t-5 p-b-5"> Email: {{element?.email}} </div>
+                            <div class="col w100 p-t-5 p-b-5"> Name: {{element?.fullName}} </div>
+                            <div class="col w100 p-t-5 p-b-5"> User Id: {{element?.id}} </div>
+                            <div class="col w100 p-t-5 p-b-5"> Username: {{element?.username}} </div>
                             <div class="col w100 p-t-5 p-b-5"> Capability:
-                              <mat-radio-group aria-label="Choose your type" value="{{element.capability}}" [disabled]="(store.user.data['email'] === element.email) || disableToggle" (change)="updateCapability($event, element, 'capability')">
+                              <mat-radio-group aria-label="Choose your type" value="{{element?.capability}}" [disabled]="(store.user.data['email'] === element?.email) || disableToggle" (change)="updateCapability($event, element, 'capability')">
                                 <mat-radio-button value="1" class="m-r-10">Regular user</mat-radio-button>
                                 <mat-radio-button value="2">Project admin</mat-radio-button>
                               </mat-radio-group>

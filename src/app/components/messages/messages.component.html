@@ -56,8 +56,8 @@
                   <div class="col w100">
                     <div class="chat-avatar-image">
                       <img alt="missing logo" class="avatar-icon"
-                        [defaultImage]="image.defaultImage"
-                        [lazyLoad]="c.type ? '/assets/logo/person.png' : c.users | avataronly: user"
+                        [defaultImage]="'/assets/logo/person.png'"
+                        [lazyLoad]="c.type ? '/assets/logo/group.png' : c.users | avataronly: user"
                         [offset]="image.offset">
                     </div>
                     <div class="p-l-60 min-h-45">
@@ -281,7 +281,6 @@
       <div class="col w100" *ngIf="!createView && !chatView">
           
         <div [ngClass]="{ 'hidden': !chatLoader && chats.length === 0 }">
-          <mat-list>
 
             <!-- Message loader will be shown here -->
             <ul *ngIf="chatLoader">
@@ -292,15 +291,28 @@
               </li>
             </ul>
 
-            <!-- Messages will be loaded here -->
-            <mat-list-item *ngFor="let c of chats" class="mobile-chat-ui">
-              <mat-icon mat-list-icon class="chat-image"> person </mat-icon>
-              <h4 mat-line class="chat-name" (click)="showItsMessages(c)"> {{ c.type ? c.fullName : c.users | unameonly: user | titlecase }} </h4>
-              <span [innerHTML]="c?.lastMessage.text" class="writable" mat-line></span>
-              <mat-divider></mat-divider>
-            </mat-list-item>
+            <ul>
+              <li class="row o-flow-hidden pos-r mat-list-item mobile-chat-ui" *ngFor="let c of chats; index as i;">                  
 
-          </mat-list>
+                <div class="col w100">
+                  <div class="chat-avatar-image">
+                    <img alt="missing logo" class="avatar-icon"
+                      [defaultImage]="'/assets/logo/person.png'"
+                      [lazyLoad]="c.type ? '/assets/logo/group.png' : c.users | avataronly: user"
+                      [offset]="image.offset">
+                  </div>
+                  <div class="p-l-60 min-h-45">
+                    <h4 mat-line class="chat-name" (click)="showItsMessages(c)"> {{ c.type ? c.fullName : c.users | unameonly: user | titlecase }} </h4>
+                    <span [innerHTML]="c?.lastMessage.text" class="writable nowrap" mat-line></span>
+                  </div>
+                  <div class="p-t-15" *ngIf="i < chats.length - 1">
+                    <mat-divider></mat-divider>
+                  </div>
+                </div>
+  
+              </li>
+            </ul>
+
         </div>
 
         <div [ngClass]="{ 'hidden': chatLoader || chats.length > 0 }">
