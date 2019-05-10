@@ -26,10 +26,29 @@
           <!-- User's own name appears when no chat selected. -->
           <h4 class="title-item m-l-5" [ngClass]="{ 'hidden': chatView }"> Welcome {{ user.username | titlecase }}! </h4>
 
-          <button mat-icon-button matTooltip="Show/Hide your text before send" [matTooltipPosition]="'above'" class="visibility" [ngClass]="{ 'hidden': !chatView }" (click)="alterQuickText()">
+          <!-- <button mat-icon-button matTooltip="Show/Hide your text before send" [matTooltipPosition]="'above'" class="visibility" [ngClass]="{ 'hidden': !chatView }" (click)="alterQuickText()">
             <mat-icon aria-label="icon-button" [ngClass]="{ 'hidden': quickText }">visibility_off</mat-icon>
             <mat-icon aria-label="icon-button" [ngClass]="{ 'hidden': !quickText }">visibility</mat-icon>
+          </button> -->
+
+          <button mat-icon-button [matMenuTriggerFor]="menu" class="visibility" [ngClass]="{ 'hidden': !chatView }">
+            <mat-icon matSuffix class="material-icons"> more_vert </mat-icon>
           </button>
+          <mat-menu #menu="matMenu" [xPosition]="'before'">
+
+            <button mat-menu-item>
+              <mat-icon aria-label="icon-button">info</mat-icon>
+              <span class="font-Montserrat font-light font-13">Chat info</span>
+            </button>
+            
+            <button mat-menu-item matTooltip="Show/Hide your text before send" [matTooltipPosition]="'left'" class="visibility" (click)="alterQuickText()">
+              <mat-icon aria-label="icon-button" [ngClass]="{ 'hidden': quickText }">visibility_off</mat-icon>
+              <mat-icon aria-label="icon-button" [ngClass]="{ 'hidden': !quickText }">visibility</mat-icon>
+              <span class="font-Montserrat font-light font-13">Quick text</span>
+            </button>
+
+          </mat-menu>
+          
         </div>
 
       </div>
@@ -265,11 +284,17 @@
             <button mat-icon-button [matMenuTriggerFor]="menu">
               <mat-icon matSuffix class="material-icons"> more_vert </mat-icon>
             </button>
-            <mat-menu #menu="matMenu">
+            <mat-menu #menu="matMenu" [xPosition]="'before'">
+
+              <button mat-menu-item>
+                <mat-icon aria-label="icon-button">info</mat-icon>
+                <span class="font-Montserrat font-light font-13">Chat info</span>
+              </button>
+
               <button mat-menu-item (click)="alterQuickText()">
                 <mat-icon aria-label="icon-button" [ngClass]="{ 'hidden': quickText }">visibility_off</mat-icon>
                 <mat-icon aria-label="icon-button" [ngClass]="{ 'hidden': !quickText }">visibility</mat-icon>
-                <span>Quick text</span>
+                <span class="font-Montserrat font-light font-13">Quick text</span>
               </button>
             </mat-menu>
           </div>

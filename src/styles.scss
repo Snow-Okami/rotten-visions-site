@@ -59,6 +59,10 @@ $theme:   mat-dark-theme($primary, $accent, $warn);
   background-color: #212121;
 }
 
+.mat-menu-panel {
+  background: #3c3c3c;
+}
+
 .content-wrapper {
   width: 90%;
   margin: 0 auto;
@@ -830,6 +834,13 @@ span.writable-update {
 }
 
 .font {
+
+  &-Montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+  &-Source-Sans-Pro {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
 
   &-light {
     font-weight: 300;
