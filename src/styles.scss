@@ -59,6 +59,10 @@ $theme:   mat-dark-theme($primary, $accent, $warn);
   background-color: #212121;
 }
 
+.mat-dialog-container {
+  background: #212121;
+}
+
 .mat-menu-panel {
   background: #3c3c3c;
 }

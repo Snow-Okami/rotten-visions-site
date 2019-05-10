@@ -13,11 +13,14 @@ import {
   transition,
   // ...
 } from '@angular/animations';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { ActionsService } from '../../services/actions.service';
 import { StoreService } from '../../services/store.service';
 import { HttpService } from '../../services/http.service';
 import { ValidatorsService } from '../../services/validators.service';
+
+import { UserListComponent } from '../dialogs/user-list/user-list.component';
 
 let that: any;
 
@@ -127,7 +130,8 @@ export class MessagesComponent {
     private http: HttpService,
     private store: StoreService,
     private regx: ValidatorsService,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    public dialog: MatDialog
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 699px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -614,5 +618,20 @@ export class MessagesComponent {
     _.remove(this.selectedUsers, (o) => { return o.email === u.email; });
     let tu = _.find(this.searchedUsers, ['email', u.email]);
     if(tu) { tu.selected = false; }
+  }
+
+  animal: string;
+  name: string;
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(UserListComponent, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
   }
 }

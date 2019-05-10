@@ -103,7 +103,7 @@ export class ProfileComponent {
         confirmPassword: ''
       })
     );
-    if(this.user.avatar !== '') {console.log(this.user); this.image.nativeElement['src'] = this.user.avatar; this.hideImage = false; this.image.nativeElement.addEventListener('load', () => { let tr = that.stopLoading(); }); }
+    if(this.user.avatar !== '') { this.image.nativeElement['src'] = this.user.avatar; this.hideImage = false; this.image.nativeElement.addEventListener('load', () => { let tr = that.stopLoading(); }); }
     else {let tr = this.stopLoading();}
   }
 

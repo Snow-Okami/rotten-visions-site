@@ -20,6 +20,7 @@ import { AvataronlyPipe } from '../../pipes/avataronly.pipe';
 import { environment } from '../../../environments/environment';
 
 import { FooterComponent } from '../../components/footer/footer.component';
+import { UserListComponent } from '../../components/dialogs/user-list/user-list.component';
 
 /**
  * @description domain update with production type.
@@ -55,7 +56,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     /**
      * @description Shared Components For Lazy Routing Modules.
      */
-    FooterComponent
+    FooterComponent,
+    UserListComponent
   ],
   exports: [
     /**
@@ -75,7 +77,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     /**
      * @description Shared Components For Lazy Routing Modules.
      */
-    FooterComponent
+    FooterComponent,
+    UserListComponent
+  ],
+  entryComponents: [
+    UserListComponent
   ]
 })
 export class SharedModule { }
