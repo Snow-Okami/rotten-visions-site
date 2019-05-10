@@ -1,11 +1,21 @@
-<h1 mat-dialog-title>Hi {{data.name}}</h1>
+<h1 mat-dialog-title> Chat details - Total {{users.length}} recipients  </h1>
 <div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field>
-    <input matInput>
-  </mat-form-field>
+  <mat-list>
+    <mat-list-item *ngFor="let u of users; index as i;">
+      <img matListAvatar alt="missing logo"
+          [defaultImage]="image.default"
+          [lazyLoad]="u?.avatar"
+          [offset]="image.offset">
+      <h3 matLine class="t-red"> {{ u?.username | titlecase }} </h3>
+      <p matLine>
+        <span class="font-Montserrat font-12"> {{ u?.email }} </span>
+        <!-- <span class="demo-2"> -- Sample message </span> -->
+      </p>
+      <mat-divider *ngIf="i < users.length - 1"></mat-divider>
+    </mat-list-item>
+  </mat-list>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+  <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
+  <button mat-raised-button color="primary" [mat-dialog-close]="'closed'" cdkFocusInitial class="right">Ok</button>
 </div>

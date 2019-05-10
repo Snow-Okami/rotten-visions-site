@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 /**
+ * @description
+ */
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+/**
  * @description Socket Modules for Social Chat.
  */
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
@@ -41,6 +45,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   imports: [
     CommonModule,
     MaterialModule,
+    LazyLoadImageModule,
     PerfectScrollbarModule,
     SocketIoModule.forRoot(config),
   ],

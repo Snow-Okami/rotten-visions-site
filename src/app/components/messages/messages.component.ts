@@ -13,7 +13,7 @@ import {
   transition,
   // ...
 } from '@angular/animations';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 import { ActionsService } from '../../services/actions.service';
 import { StoreService } from '../../services/store.service';
@@ -620,18 +620,11 @@ export class MessagesComponent {
     if(tu) { tu.selected = false; }
   }
 
-  animal: string;
-  name: string;
-
   openDialog(): void {
-    const dialogRef = this.dialog.open(UserListComponent, {
-      width: '250px',
-      data: {name: this.name, animal: this.animal}
-    });
+    const dialogRef = this.dialog.open(UserListComponent, { width: '400px', data: this.chat.users });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
+      console.log('The dialog was closed', result);
     });
   }
 }
