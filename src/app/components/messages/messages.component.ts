@@ -206,9 +206,12 @@ export class MessagesComponent {
 
     let wn = document.querySelector('.message-wrapper');
     let mi = document.querySelector('.message-wrapper ul').getBoundingClientRect();
-    let dw = document.querySelector('.mat-drawer-container').getBoundingClientRect();
+    let dw: any = document.querySelector('.mat-drawer-container');
+    let dwa = document.querySelector('.mat-drawer-container').getBoundingClientRect();
     let nv = document.querySelector('.psynapsus-toolbar.mobile').getBoundingClientRect();
     let inp = document.querySelector('.input-box-wrapper').getBoundingClientRect();
+
+    // if(this.mobileQuery.matches && dwa.height < window.innerHeight) { Object.assign(dw.style, { height: `${window.innerHeight}px` }); }
 
     if(mi.height > (window.innerHeight - nv.height - inp.height)) { wn.setAttribute('style', `margin-bottom: ${inp.height - 10}px`); this.scrollYDown(window, mi.height); }
   }
