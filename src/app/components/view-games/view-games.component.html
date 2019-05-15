@@ -1,3 +1,5 @@
-<p>
-  view-games works!
-</p>
+<div class="content-wrapper">
+  <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
+    <p> You are at view games </p>
+  </div>
+</div>

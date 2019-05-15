@@ -9,6 +9,10 @@ const routes: Routes = [
     component: GamesComponent
   },
   {
+    path: 'view/:id',
+    loadChildren: '../view-games/view-games.module#ViewGamesModule'
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: '/dashboard/games'

@@ -14,7 +14,7 @@
     </ul>
 
     <mat-list [@openClose]="!games.length ? 'closed' : 'open'">
-      <mat-list-item *ngFor="let g of games; index as i;">
+      <mat-list-item *ngFor="let g of games; index as i;" (click)="viewThisGame(i);">
         <img matListAvatar alt="missing logo"
             [defaultImage]="image.default"
             [lazyLoad]="image.defaultUrl"

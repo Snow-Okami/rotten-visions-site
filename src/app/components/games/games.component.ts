@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import {
   trigger,
@@ -47,6 +48,7 @@ export class GamesComponent implements OnInit {
     private action: ActionsService,
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
+    private router: Router,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 840px)');
     // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -78,6 +80,11 @@ export class GamesComponent implements OnInit {
      * @description Hide Progress Bar When Page is Loaded.
      */
     this.progressBar.classList.add('hidden');
+  }
+
+  viewThisGame(id: string) {
+    this.progressBar.classList.remove('hidden');
+    this.router.navigate([`/dashboard/games/view/${id}`]);
   }
 
 }
