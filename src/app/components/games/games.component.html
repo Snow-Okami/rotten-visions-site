@@ -1,7 +1,32 @@
 <div class="content-wrapper">
-  <div class="body">
-    <p> Games Work! </p>
-    <!-- <p *ngFor="let content of fillerContent">{{content}}</p> -->
+  <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
+
+    <div class="game-tab"> ALL GAMES </div>
+    <mat-divider></mat-divider>
+
+    <!-- Repeat should be here -->
+    <ul [@openClose]="games.length ? 'closed' : 'open'">
+      <li class="row pg-bg">
+        <div class="col w100">
+          <p class="t-al-center"> Loading all games... </p>
+        </div>
+      </li>
+    </ul>
+
+    <mat-list [@openClose]="!games.length ? 'closed' : 'open'">
+      <mat-list-item *ngFor="let g of games; index as i;">
+        <img matListAvatar alt="missing logo"
+            [defaultImage]="image.default"
+            [lazyLoad]="image.defaultUrl"
+            [offset]="image.offset">
+        <h3 matLine class="t-red"> {{ g?.title | titlecase }} </h3>
+        <p matLine>
+          <span class="font-Montserrat font-12"> {{ g?.subtitle }} </span>
+          <!-- <span class="demo-2"> -- Sample message </span> -->
+        </p>
+        <mat-divider *ngIf="i < games.length - 1"></mat-divider>
+      </mat-list-item>
+    </mat-list>
 
   </div>
 </div>

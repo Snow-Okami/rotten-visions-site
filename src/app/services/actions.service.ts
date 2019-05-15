@@ -44,4 +44,13 @@ export class ActionsService {
       let timer = setInterval(() => {if(elem) { clearInterval(timer); resolve(elem.nativeElement.getBoundingClientRect()); }}, 500);
     });
   }
+
+  /**
+   * @param d number in seconds
+   */
+  async wait(d: number) {
+    return new Promise((res, rej) => {
+      setTimeout(() => { res(true); }, d * 1000);
+    });
+  }
 }
