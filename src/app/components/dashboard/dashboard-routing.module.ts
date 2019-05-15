@@ -17,6 +17,10 @@ const routes: Routes = [
         loadChildren: '../games/games.module#GamesModule'
       },
       {
+        path: 'achievements',
+        loadChildren: '../achievements/achievements.module#AchievementsModule'
+      },
+      {
         path: 'track',
         loadChildren: '../track/track.module#TrackModule'
       },

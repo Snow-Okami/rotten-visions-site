@@ -22,6 +22,7 @@ export class DashboardComponent {
   public mobileQuery: MediaQueryList;
   public navList = [
     { nav: 'Profile', url: '/dashboard/profile' },
+    { nav: 'Achievements', url: '/dashboard/achievements' },
     { nav: 'Games', url: '/dashboard/games' },
     { nav: 'Messages', url: '/dashboard/messages' },
     { nav: 'Updates', url: '/dashboard/updates' }
@@ -92,7 +93,7 @@ export class DashboardComponent {
        * @description Add updates in the navList.
        */
       let n = _.find(this.navList, ['nav', 'Track Users']);
-      if(n === undefined) { this.navList.splice(2, 0, { nav: 'Track Users', url: '/dashboard/track' }); }
+      if(n === undefined) { this.navList.splice(3, 0, { nav: 'Track Users', url: '/dashboard/track' }); }
     }
   }
 
