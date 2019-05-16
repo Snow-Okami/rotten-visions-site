@@ -1,3 +1,45 @@
-<p>
-  achievements works!
-</p>
+<div class="content-wrapper">
+  <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
+
+    <div class="dark-tab"> ALL ACHIEVEMENTS </div>
+    <mat-divider></mat-divider>
+
+    <ul>
+      
+    </ul>
+
+    <!-- Repeat should be here -->
+    <ul [@openClose]="achievements.length ? 'closed' : 'open'">
+      <li class="row pg-bg">
+        <div class="col w100">
+          <p class="t-al-center"> Loading all achievements... </p>
+        </div>
+      </li>
+      <li class="row" *ngIf="loadingBar">
+        <div class="col w100">
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+      </li>
+    </ul>
+
+    <ul [@openClose]="!achievements.length ? 'closed' : 'open'">
+      <li class="col flex-container" *ngFor="let a of achievements; index as i;">
+        <div class="row flex-container">
+          <div class="flex p-10">
+            <img alt="missing logo"
+            [defaultImage]="image.default"
+            [lazyLoad]="image.defaultUrl"
+            [offset]="image.offset">
+          </div>
+          <div class="col p-10 flex-container v-center h-left">
+            <div class="flex"> <h3 class="t-red font-16"> {{ a?.title | titlecase }} </h3> </div>
+            <div class="flex"> <span class="font-Montserrat font-12"> {{ a?.description }} </span> </div>
+          </div>
+        </div>
+        <div class="flex"> <mat-divider></mat-divider> </div>
+      </li>
+    </ul>
+
+  </div>
+</div>
+  

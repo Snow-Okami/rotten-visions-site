@@ -240,6 +240,33 @@ body.mobile-view {
   width: 100%
 }
 
+.flex-container {
+  display: flex;
+
+  &.row {
+    flex-direction: row;
+  }
+
+  &.col {
+    flex-direction: column;
+  }
+
+  &.v {
+    &-center {
+      justify-content: center;
+    }
+  }
+
+  &.h {
+    &-left {
+      align-items: left;
+    }
+    &-center {
+      align-items: center;
+    }
+  }
+}
+
 .wrapper {
   padding: 0 20px;
 }
@@ -497,6 +524,12 @@ body.mobile-view {
     padding: 0px;
     &nImp {
       padding: 0px !important;
+    }
+  }
+  &10 {
+    padding: 10px;
+    &nImp {
+      padding: 10px !important;
     }
   }
   &16 {
@@ -956,4 +989,10 @@ span.writable-update {
 .nowrap {
   white-space: nowrap;
   overflow: hidden;
+}
+
+.dark-tab {
+  width: fit-content;
+  padding: 7px 10px;
+  background: #212121;
 }

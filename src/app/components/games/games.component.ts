@@ -33,6 +33,7 @@ export class GamesComponent implements OnInit {
   private title: string = 'Psynapsus - Games Dashboard';
 
   private progressBar: Element;
+  private loadingBar: boolean = true;
 
   public image = {
     defaultUrl: '/assets/logo/game-controller.png',
@@ -59,6 +60,10 @@ export class GamesComponent implements OnInit {
 
   ngOnInit() {
     this.progressBar = document.getElementsByClassName('progressbar')[0];
+    /**
+     * @description Hide Progress Bar When Page is Loaded.
+     */
+    this.progressBar.classList.add('hidden');
   }
 
   async ngAfterViewInit() {
@@ -76,10 +81,7 @@ export class GamesComponent implements OnInit {
       }
     ];
 
-    /**
-     * @description Hide Progress Bar When Page is Loaded.
-     */
-    this.progressBar.classList.add('hidden');
+    this.loadingBar = false;
   }
 
   viewThisGame(id: string) {

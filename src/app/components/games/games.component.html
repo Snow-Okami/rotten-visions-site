@@ -4,11 +4,20 @@
     <div class="game-tab"> ALL GAMES </div>
     <mat-divider></mat-divider>
 
+    <ul>
+      
+    </ul>
+
     <!-- Repeat should be here -->
     <ul [@openClose]="games.length ? 'closed' : 'open'">
       <li class="row pg-bg">
         <div class="col w100">
           <p class="t-al-center"> Loading all games... </p>
+        </div>
+      </li>
+      <li class="row" *ngIf="loadingBar">
+        <div class="col w100">
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         </div>
       </li>
     </ul>
