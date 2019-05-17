@@ -57,7 +57,7 @@ export class AchievementsComponent implements OnInit {
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher
   ) {
-    this.mobileQuery = media.matchMedia('(max-width: 840px)');
+    this.mobileQuery = media.matchMedia('(max-width: 770px)');
     // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }

@@ -21,15 +21,15 @@
     <ul [@openClose]="!achievements.length ? 'closed' : 'open'">
       <li class="col flex-container w100" *ngFor="let a of achievements; index as i;">
         <div class="wrap flex-container">
-          <div class="flex p-10">
+          <div class="flex p-10" *ngIf="!mobileQuery.matches">
             <img alt="missing logo" class="achievement-thumbnail"
             [defaultImage]="image.default"
             [lazyLoad]="image.defaultUrl"
             [offset]="image.offset">
           </div>
-          <div class="col p-10 flex-container v-center h-left">
-            <div class="flex w500px"> <h3 class="t-red font-16"> {{ a?.title | titlecase }} </h3> </div>
-            <div class="flex w500px"> <span class="font-Montserrat font-12"> {{ a?.description }} </span> </div>
+          <div class="col p-10 flex-container v-center h-left" [ngClass]="!mobileQuery.matches ? '' : 'w100'">
+            <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <h3 class="t-red font-16"> {{ a?.title | titlecase }} </h3> </div>
+            <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <span class="font-Montserrat font-12"> {{ a?.description }} </span> </div>
           </div>
           <div class="col p-10 flex-container v-center h-left">
             <div class="row flex-container"> 
