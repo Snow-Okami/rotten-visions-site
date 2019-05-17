@@ -33,7 +33,7 @@ export class GamesComponent implements OnInit {
   private title: string = 'Psynapsus - Games Dashboard';
 
   private progressBar: Element;
-  private loadingBar: boolean = true;
+  public loadingBar: boolean = true;
 
   public image = {
     defaultUrl: '/assets/logo/game-controller.png',
