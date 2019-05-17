@@ -251,6 +251,10 @@ body.mobile-view {
     flex-direction: column;
   }
 
+  &.wrap {
+    flex-wrap: wrap;
+  }
+
   &.v {
     &-center {
       justify-content: center;
@@ -259,7 +263,7 @@ body.mobile-view {
 
   &.h {
     &-left {
-      align-items: left;
+      align-items: flex-start;
     }
     &-center {
       align-items: center;
@@ -790,6 +794,18 @@ body.mobile-view {
     width: 100%;
     &px {
       width: 100px;
+    }
+  }
+  &200 {
+    width: 200%;
+    &px {
+      width: 200px;
+    }
+  }
+  &500 {
+    width: 500%;
+    &px {
+      width: 500px;
     }
   }
 }

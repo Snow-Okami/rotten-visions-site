@@ -44,11 +44,11 @@ export class AchievementsComponent implements OnInit {
   };
 
   public achievements = [
-    { title: 'Front and Center', description: 'Get a scoped headshot over 150m', score: 3, img: '' },
-    { title: 'Mousetrap Fuse', description: 'Use a trip mine to kill an enemy who is trying to assault your position', score: 3, img: '' },
-    { title: 'Ear Plugs', description: 'Kill an enemy while your rifle fire is masked by a loud sound', score: 3, img: '' },
-    { title: 'Fuel Tank', description: 'Destroy a tank by sniping the fuel supply', score: 3, img: '' },
-    { title: 'Silent but Deadly', description: 'Covertly kill 25 unaware enemies', score: 3, img: '' },
+    { title: 'Front and Center', description: 'Get a scoped headshot over 150m', score: 1, target: 130, img: '' },
+    { title: 'Mousetrap Fuse', description: 'Use a trip mine to kill an enemy who is trying to assault your position enemy who is trying to assault your position.', score: 6, target: 130, img: '' },
+    { title: 'Ear Plugs', description: 'Kill an enemy while your rifle fire is masked by a loud sound', score: 13, target: 130, img: '' },
+    { title: 'Fuel Tank', description: 'Destroy a tank by sniping the fuel supply', score: 11, target: 130, img: '' },
+    { title: 'Silent but Deadly', description: 'Covertly kill 25 unaware enemies', score: 24, target: 130, img: '' },
   ];
 
   constructor(
