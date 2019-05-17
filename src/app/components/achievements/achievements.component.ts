@@ -32,7 +32,7 @@ export class AchievementsComponent implements OnInit {
    */
   private title = 'Psynapsus - Achievements';
 
-  private loadingBar: boolean = true;
+  public loadingBar: boolean = true;
   private progressBar: Element;
 
   public mobileQuery: MediaQueryList;
