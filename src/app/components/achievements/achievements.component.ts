@@ -44,13 +44,9 @@ export class AchievementsComponent implements OnInit {
     offset: 100
   };
 
-  public achievements = [
-    { title: 'Front and Center', description: 'Get a scoped headshot over 150m', score: 1, target: 130, img: '' },
-    { title: 'Mousetrap Fuse', description: 'Use a trip mine to kill an enemy who is trying to assault your position enemy who is trying to assault your position.', score: 6, target: 130, img: '' },
-    { title: 'Ear Plugs', description: 'Kill an enemy while your rifle fire is masked by a loud sound', score: 13, target: 130, img: '' },
-    { title: 'Fuel Tank', description: 'Destroy a tank by sniping the fuel supply', score: 11, target: 130, img: '' },
-    { title: 'Silent but Deadly', description: 'Covertly kill 25 unaware enemies', score: 24, target: 130, img: '' },
-  ];
+  public totalUser: number = 0;
+
+  public achievements: any = [];
 
   constructor(
     private action: ActionsService,
@@ -75,7 +71,11 @@ export class AchievementsComponent implements OnInit {
   }
 
   async ngAfterViewInit() {
-    // await this.http.achievements().toPromise();
+    let cu = await this.http.countUser().toPromise();
+    this.totalUser = cu['data'];
+
+    let r = await this.http.achievements().toPromise();
+    this.achievements = r['data'];
     this.loadingBar = false;
   }
 

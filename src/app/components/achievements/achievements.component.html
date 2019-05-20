@@ -24,7 +24,7 @@
           <div class="flex p-10" *ngIf="!mobileQuery.matches">
             <img alt="missing logo" class="achievement-thumbnail"
             [defaultImage]="image.default"
-            [lazyLoad]="image.defaultUrl"
+            [lazyLoad]="a.thumbnail || image.defaultUrl"
             [offset]="image.offset">
           </div>
           <div class="col p-10 flex-container v-center h-left" [ngClass]="!mobileQuery.matches ? '' : 'w100'">
@@ -33,9 +33,9 @@
           </div>
           <div class="col p-10 flex-container v-center h-left">
             <div class="row flex-container"> 
-              <div class="flex p-r-5"> <span class="font-Montserrat font-12"> {{a.score}} </span> </div>
-              <div class="flex w200px p-t-5"> <mat-progress-bar class="achieved-progress" mode="determinate" [value]="(a.score / a.target) * 100"></mat-progress-bar> </div>
-              <div class="flex p-l-5"> <span class="font-Montserrat font-12"> {{a.target}} </span> </div>
+              <div class="flex p-r-5"> <span class="font-Montserrat font-12"> {{a.users?.length}} </span> </div>
+              <div class="flex w200px p-t-5"> <mat-progress-bar class="achieved-progress" mode="determinate" [value]="(a.users?.length / totalUser) * 100"></mat-progress-bar> </div>
+              <div class="flex p-l-5"> <span class="font-Montserrat font-12"> {{totalUser}} </span> </div>
             </div>            
           </div>
         </div>
