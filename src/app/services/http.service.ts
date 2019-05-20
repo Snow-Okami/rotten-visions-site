@@ -112,6 +112,15 @@ export class HttpService {
     );
   }
 
+  countUser(): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/users/countAll';
+
+    return this.http.get<any>(url, this.option({ 'Content-Type':  'application/json' })).pipe(
+      tap(message => message),
+      catchError(this.handleError('count users', {}))
+    );
+  }
+
   updatePassword(param: any, data: any): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/userpassword/' + param.email;
 
@@ -172,6 +181,15 @@ export class HttpService {
     return this.http.put<any>(url, data, this.option({ 'enctype': 'multipart/form-data' })).pipe(
       tap(message => message),
       catchError(this.handleError('update', {}))
+    );
+  }
+
+  achievements(): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/achievements';
+
+    return this.http.get<any>(url, this.option({ 'Content-Type':  'application/json' })).pipe(
+      tap(message => message),
+      catchError(this.handleError('achievements', {}))
     );
   }
 

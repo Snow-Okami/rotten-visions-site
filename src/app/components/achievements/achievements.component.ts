@@ -11,6 +11,7 @@ import {
 } from '@angular/animations';
 
 import { ActionsService } from '../../services/actions.service';
+import { HttpService } from '../../services/http.service';
 
 @Component({
   selector: 'app-achievements',
@@ -55,7 +56,8 @@ export class AchievementsComponent implements OnInit {
     private action: ActionsService,
     private router: Router,
     public changeDetectorRef: ChangeDetectorRef,
-    public media: MediaMatcher
+    public media: MediaMatcher,
+    private http: HttpService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 770px)');
     // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -73,7 +75,7 @@ export class AchievementsComponent implements OnInit {
   }
 
   async ngAfterViewInit() {
-    await this.action.wait(3);
+    // await this.http.achievements().toPromise();
     this.loadingBar = false;
   }
 
