@@ -46,8 +46,8 @@ export class AchievementsComponent implements OnInit {
   };
 
   public achvUpForm = new FormGroup({
-    id: new FormControl({ value: '', disabled: false }, [ Validators.required ]),
-    user: new FormControl({ value: '', disabled: false }, [ Validators.required ])
+    id: new FormControl({ value: '', disabled: false }, []),
+    user: new FormControl({ value: '', disabled: false }, [])
   });
 
   public totalUser: number = 0;

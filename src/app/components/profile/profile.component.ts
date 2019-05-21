@@ -71,7 +71,7 @@ export class ProfileComponent {
     private regx: ValidatorsService,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 800px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
     that = this;

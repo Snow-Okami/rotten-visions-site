@@ -15,22 +15,26 @@
 
                   <div class="wrap flex-container">
 
-                    <div class="flex p-r-10">
-                      <mat-form-field class="contact-input" appearance="outline">
+                    <div class="flex p-r-10" [ngClass]="{'p-r-10': !mobileQuery.matches, 'w100': mobileQuery.matches}">
+                      <mat-form-field class="contact-input w100" appearance="outline">
                         <mat-label> Achievement id </mat-label>
-                        <input matInput placeholder="eg.: 888271231" autocomplete="off" formControlName="id" required>
+                        <input matInput placeholder="eg.: 888271231" autocomplete="off" formControlName="id">
                       </mat-form-field>
                     </div>
 
-                    <div class="flex p-l-10 p-r-10">
-                      <mat-form-field class="contact-input" appearance="outline">
+                    <div class="flex" [ngClass]="{'p-l-10 p-r-10': !mobileQuery.matches, 'w100': mobileQuery.matches}">
+                      <mat-form-field class="contact-input w100" appearance="outline">
                         <mat-label> User id </mat-label>
-                        <input matInput placeholder="eg.: 519251253" autocomplete="off" formControlName="user" required>
+                        <input matInput placeholder="eg.: 519251253" autocomplete="off" formControlName="user">
                       </mat-form-field>
                     </div>
 
-                    <div class="flex p-l-10 p-r-10">
-                      <button mat-raised-button type="submit" color="primary"> Update </button>
+                    <div class="col flex-container v-center" [ngClass]="{'p-l-10 p-r-10 p-b-24': !mobileQuery.matches, 'w100': mobileQuery.matches}">
+                      <button mat-mini-fab color="primary" type="submit" *ngIf="!mobileQuery.matches">
+                        <mat-icon aria-label="icon-button with a heart icon">navigate_next</mat-icon>
+                      </button>
+
+                      <button mat-raised-button color="primary" type="submit" *ngIf="mobileQuery.matches" class="right"> Update </button>
                     </div>
 
                   </div>
