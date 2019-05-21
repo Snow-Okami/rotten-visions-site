@@ -13,6 +13,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { ActionsService } from '../../services/actions.service';
 import { HttpService } from '../../services/http.service';
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-achievements',
@@ -55,6 +56,7 @@ export class AchievementsComponent implements OnInit {
   public achievements: any = [];
 
   constructor(
+    public store: StoreService,
     private action: ActionsService,
     private router: Router,
     public changeDetectorRef: ChangeDetectorRef,
@@ -86,7 +88,7 @@ export class AchievementsComponent implements OnInit {
   }
 
   async updateAchv(e: Event) {
-
+    console.log(this.store);
   }
 }
 

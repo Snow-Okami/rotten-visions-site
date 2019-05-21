@@ -1,7 +1,7 @@
 <div class="content-wrapper">
   <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
 
-    <div class="row">
+    <div class="row" *ngIf="store.user.data?.capability === 2">
       <div class="col w100">
         <div class="dark-tab"> UPDATE ACHIEVEMENT </div>
         <mat-divider></mat-divider>
