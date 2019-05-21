@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AchievementsRoutingModule } from './achievements-routing.module';
 import { AchievementsComponent } from './achievements.component';
@@ -20,7 +21,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     SharedModule,
     MaterialModule,
     LazyLoadImageModule,
-    AchievementsRoutingModule
+    AchievementsRoutingModule,
+    FormsModule, ReactiveFormsModule
   ]
 })
 export class AchievementsModule { }

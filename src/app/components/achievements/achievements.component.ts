@@ -9,6 +9,7 @@ import {
   transition,
   // ...
 } from '@angular/animations';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { ActionsService } from '../../services/actions.service';
 import { HttpService } from '../../services/http.service';
@@ -43,6 +44,11 @@ export class AchievementsComponent implements OnInit {
     default: '/assets/logo/person.png',
     offset: 100
   };
+
+  public achvUpForm = new FormGroup({
+    id: new FormControl({ value: '', disabled: false }, [ Validators.required ]),
+    user: new FormControl({ value: '', disabled: false }, [ Validators.required ])
+  });
 
   public totalUser: number = 0;
 
@@ -79,5 +85,8 @@ export class AchievementsComponent implements OnInit {
     this.loadingBar = false;
   }
 
+  async updateAchv(e: Event) {
+
+  }
 }
 

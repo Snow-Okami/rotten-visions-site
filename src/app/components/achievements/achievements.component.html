@@ -1,47 +1,95 @@
 <div class="content-wrapper">
   <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
 
-    <div class="dark-tab"> ALL ACHIEVEMENTS </div>
-    <mat-divider></mat-divider>
+    <div class="row">
+      <div class="col w100">
+        <div class="dark-tab"> UPDATE ACHIEVEMENT </div>
+        <mat-divider></mat-divider>
+    
+        <div>
+          <form #achvUpFormElem [formGroup]="achvUpForm" (ngSubmit)="updateAchv($event);">
 
-    <!-- Repeat should be here -->
-    <ul [@openClose]="achievements.length ? 'closed' : 'open'">
-      <li class="row pg-bg">
-        <div class="col w100">
-          <p class="t-al-center"> Loading all achievements... </p>
-        </div>
-      </li>
-      <li class="row" *ngIf="loadingBar">
-        <div class="col w100">
-          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-        </div>
-      </li>
-    </ul>
+              <div class="row">
 
-    <ul [@openClose]="!achievements.length ? 'closed' : 'open'">
-      <li class="col flex-container w100" *ngFor="let a of achievements; index as i;">
-        <div class="wrap flex-container">
-          <div class="flex p-10" *ngIf="!mobileQuery.matches">
-            <img alt="missing logo" class="achievement-thumbnail"
-            [defaultImage]="image.default"
-            [lazyLoad]="a.thumbnail || image.defaultUrl"
-            [offset]="image.offset">
-          </div>
-          <div class="col p-10 flex-container v-center h-left" [ngClass]="!mobileQuery.matches ? '' : 'w100'">
-            <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <h3 class="t-red font-16"> {{ a?.title | titlecase }} </h3> </div>
-            <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <span class="font-Montserrat font-12"> {{ a?.description }} </span> </div>
-          </div>
-          <div class="col p-10 flex-container v-center h-left">
-            <div class="row flex-container"> 
-              <div class="flex p-r-5"> <span class="font-Montserrat font-12"> {{a.users?.length}} </span> </div>
-              <div class="flex w200px p-t-5"> <mat-progress-bar class="achieved-progress" mode="determinate" [value]="(a.users?.length / totalUser) * 100"></mat-progress-bar> </div>
-              <div class="flex p-l-5"> <span class="font-Montserrat font-12"> {{totalUser}} </span> </div>
-            </div>            
-          </div>
+                <div class="col flex-container w100">
+
+                  <div class="wrap flex-container">
+
+                    <div class="flex p-r-10">
+                      <mat-form-field class="contact-input" appearance="outline">
+                        <mat-label> Achievement id </mat-label>
+                        <input matInput placeholder="eg.: 888271231" autocomplete="off" formControlName="id" required>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="flex p-l-10 p-r-10">
+                      <mat-form-field class="contact-input" appearance="outline">
+                        <mat-label> User id </mat-label>
+                        <input matInput placeholder="eg.: 519251253" autocomplete="off" formControlName="user" required>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="flex p-l-10 p-r-10">
+                      <button mat-raised-button type="submit" color="primary"> Update </button>
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+          </form>
         </div>
-        <div class="flex"> <mat-divider></mat-divider> </div>
-      </li>
-    </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col w100">
+
+        <div class="dark-tab"> ALL ACHIEVEMENTS </div>
+        <mat-divider></mat-divider>
+    
+        <!-- Repeat should be here -->
+        <ul [@openClose]="achievements.length ? 'closed' : 'open'">
+          <li class="row pg-bg">
+            <div class="col w100">
+              <p class="t-al-center"> Loading all achievements... </p>
+            </div>
+          </li>
+          <li class="row" *ngIf="loadingBar">
+            <div class="col w100">
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </div>
+          </li>
+        </ul>
+    
+        <ul [@openClose]="!achievements.length ? 'closed' : 'open'">
+          <li class="col flex-container w100" *ngFor="let a of achievements; index as i;">
+            <div class="wrap flex-container">
+              <div class="flex p-10" *ngIf="!mobileQuery.matches">
+                <img alt="missing logo" class="achievement-thumbnail"
+                [defaultImage]="image.default"
+                [lazyLoad]="a.thumbnail || image.defaultUrl"
+                [offset]="image.offset">
+              </div>
+              <div class="col p-10 flex-container v-center h-left" [ngClass]="!mobileQuery.matches ? '' : 'w100'">
+                <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <h3 class="t-red font-16"> {{ a?.title | titlecase }} </h3> </div>
+                <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <span class="font-Montserrat font-12"> {{ a?.description }} </span> </div>
+              </div>
+              <div class="col p-10 flex-container v-center h-left">
+                <div class="row flex-container"> 
+                  <div class="flex p-r-5"> <span class="font-Montserrat font-12"> {{a.users?.length}} </span> </div>
+                  <div class="flex w200px p-t-5"> <mat-progress-bar class="achieved-progress" mode="determinate" [value]="(a.users?.length / totalUser) * 100"></mat-progress-bar> </div>
+                  <div class="flex p-l-5"> <span class="font-Montserrat font-12"> {{totalUser}} </span> </div>
+                </div>            
+              </div>
+            </div>
+            <div class="flex"> <mat-divider></mat-divider> </div>
+          </li>
+        </ul>
+      </div>
+    </div>
 
   </div>
 </div>
