@@ -61,5 +61,6 @@ export class ActionsService {
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
+    this.openSnackBarComponent('Data is copied to clipboard', 'success');
   };
 }

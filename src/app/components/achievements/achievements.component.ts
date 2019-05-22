@@ -10,6 +10,7 @@ import {
   // ...
 } from '@angular/animations';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import * as _ from 'lodash';
 
 import { ActionsService } from '../../services/actions.service';
 import { HttpService } from '../../services/http.service';
@@ -88,7 +89,10 @@ export class AchievementsComponent implements OnInit {
   }
 
   async updateAchv(e: Event) {
-    console.log(this.store);
+    let r: any = await this.http.achievement(this.achvUpForm.value).toPromise();
+    if(r.error) { return; }
+    r.data.users = _.concat(r.data.users, this.achvUpForm.value.user);
+    console.log(r.data.users);
   }
 }
 
