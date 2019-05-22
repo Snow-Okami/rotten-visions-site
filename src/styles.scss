@@ -245,14 +245,17 @@ body.mobile-view {
 
   &.row {
     flex-direction: row;
+    display: flex;
   }
 
   &.col {
     flex-direction: column;
+    display: flex;
   }
 
   &.wrap {
     flex-wrap: wrap;
+    display: flex;
   }
 
   &.v {
