@@ -53,4 +53,13 @@ export class ActionsService {
       setTimeout(() => { res(true); }, d * 1000);
     });
   }
+
+  public copyToClipboard(str: string) {
+    const el = document.createElement('textarea');
+    el.value = str;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+  };
 }

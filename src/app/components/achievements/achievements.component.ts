@@ -57,7 +57,7 @@ export class AchievementsComponent implements OnInit {
 
   constructor(
     public store: StoreService,
-    private action: ActionsService,
+    public action: ActionsService,
     private router: Router,
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
