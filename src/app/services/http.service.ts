@@ -202,6 +202,15 @@ export class HttpService {
     );
   }
 
+  updateAchievement(param: any, data: any): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/achievement/' + param.id;
+
+    return this.http.put<any>(url, data, this.option({ 'Content-Type':  'application/json' })).pipe(
+      tap(message => message),
+      catchError(this.handleError('update achievement', {}))
+    );
+  }
+
   /**
    * @description GET response from the server.
    */

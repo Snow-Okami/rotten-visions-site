@@ -49,7 +49,7 @@ export class AchievementsComponent implements OnInit {
 
   public achvUpForm = new FormGroup({
     id: new FormControl({ value: '', disabled: false }, []),
-    user: new FormControl({ value: '', disabled: false }, [])
+    email: new FormControl({ value: '', disabled: false }, [])
   });
 
   public totalUser: number = 0;
@@ -89,10 +89,24 @@ export class AchievementsComponent implements OnInit {
   }
 
   async updateAchv(e: Event) {
+    this.progressBar.classList.remove('hidden');
+
     let r: any = await this.http.achievement(this.achvUpForm.value).toPromise();
-    if(r.error) { return; }
-    r.data.users = _.concat(r.data.users, this.achvUpForm.value.user);
-    console.log(r.data.users);
+    if(r.message.type === 'error') { this.progressBar.classList.add('hidden'); this.action.openSnackBarComponent(r.message.text, 'error'); return; }
+
+    let u: any = await this.http.user(this.achvUpForm.value.email).toPromise();
+    if(u.message.type === 'error') { this.progressBar.classList.add('hidden'); this.action.openSnackBarComponent(u.message.text, 'error'); return; }
+    let users = _.uniq(_.concat(r.data.users, u.data._id));
+
+    let rs: any = await this.http.updateAchievement(this.achvUpForm.value, {users: users}).toPromise();
+    if(rs.message.type === 'error') { this.progressBar.classList.add('hidden'); this.action.openSnackBarComponent(rs.message.text, 'error'); return; }
+
+    let a: any = _.find(this.achievements, {_id: this.achvUpForm.value.id});
+    a.users = users;
+    this.achvUpForm.setValue({id: '', email: ''});
+
+    this.progressBar.classList.add('hidden'); 
+    this.action.openSnackBarComponent('Achievement updated successfully!', 'success');
   }
 }
 
