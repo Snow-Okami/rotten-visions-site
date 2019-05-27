@@ -50,7 +50,7 @@ export class MessagesComponent {
   /**
    * @description data to be received by the dashboard.
    */
-  private hideFooter: boolean = true;
+  private hideFooter: boolean = false;
   private hideMatToolbar: string = '';
 
   /**
@@ -217,30 +217,21 @@ export class MessagesComponent {
   }
 
   private scrollToBottom(): void {
-    if(that.store.isDevice.iOS) {
-      // setTimeout(() => {
-        let wn: any = document.querySelector('.message-wrapper');
-        let mi = document.querySelector('.message-wrapper ul');
-        let mia = mi ? mi.getBoundingClientRect() : { height: 0 };
-        let dw: any = document.querySelector('.mat-drawer-container');
-        let nv = document.querySelector('.psynapsus-toolbar.mobile');
-        let nva = nv ? nv.getBoundingClientRect() : { height: 0 };
-        let inp = document.querySelector('.input-box-wrapper');
-        let inpa = inp ? inp.getBoundingClientRect() : { height: 0 };
-        let r = wn && Object.assign(wn.style, { 'margin-bottom': `${inpa.height - 10}px` });
-        r = mi && (mia.height > (window.innerHeight - nva.height - inpa.height)) && Object.assign(dw.style, { height: `${window.innerHeight}px` });
-
-        console.log(wn, dw, inp);
-      // }, 300);
-      return;
-    }
+    /**
+     * @description stop scrolls for iOS devices
+     */
+    if(that.store.isDevice.iOS) { return; }
 
     if(!this.mobileQuery.matches) { setTimeout(() => { this.messageList.directiveRef.scrollToBottom(); }, 300); }
     else { setTimeout(() => { this.fixMobileScroll(); }, 300); }
   }
 
-  private scrollYDown(elem: any, y: any): void { 
+  private scrollYDown(elem: any, y: any): void {
+    /**
+     * @description stop scrolls for iOS devices
+     */
     if(that.store.isDevice.iOS) { return; }
+
     let op = { top: (elem.scrollTop ? elem.scrollTop : 0) + y, left: 0, behavior: 'smooth' };
     setTimeout(() => { elem.scrollTo(op); setTimeout(() => { that.loadMore.messages = true; }, 500); }, 500);
   }
@@ -288,15 +279,6 @@ export class MessagesComponent {
    * @description Hide the messages view section.
    */
   public hideMessages() {
-    if(that.store.isDevice.iOS) {
-      // setTimeout(() => {
-        let wn: any = document.querySelector('.message-wrapper');
-        let dw: any = document.querySelector('.mat-drawer-container');
-        let r = wn && Object.assign(wn.style, { 'margin-bottom': `${0}px` });
-        Object.assign(dw.style, { height: `unset` });
-      // }, 100);
-    }
-
     this.createView = this.chatView = this.quickText = this.messageLoader = false;
     /**
      * @description alter the material toolbal on the mobile view.
