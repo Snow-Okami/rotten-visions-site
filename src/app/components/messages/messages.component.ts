@@ -200,7 +200,6 @@ export class MessagesComponent {
   }
 
   private fixMobileScroll(): void {
-    console.log('fixing mobile scroll');
     /*
     wn.setAttribute('style', 'margin-bottom: 70px');
      */
@@ -218,13 +217,21 @@ export class MessagesComponent {
   }
 
   private scrollToBottom(): void {
-    let wn: any = document.querySelector('.message-wrapper');
-    let dw: any = document.querySelector('.mat-drawer-container');
-    let inp = document.querySelector('.input-box-wrapper');
     if(that.store.isDevice.iOS) {
-      let inpa = inp ? inp.getBoundingClientRect() : { height: 0 };
-      let r = wn && Object.assign(wn.style, { 'margin-bottom': `${inpa.height - 10}px` });
-      Object.assign(dw.style, { height: `${window.innerHeight}px` });
+      // setTimeout(() => {
+        let wn: any = document.querySelector('.message-wrapper');
+        let mi = document.querySelector('.message-wrapper ul');
+        let mia = mi ? mi.getBoundingClientRect() : { height: 0 };
+        let dw: any = document.querySelector('.mat-drawer-container');
+        let nv = document.querySelector('.psynapsus-toolbar.mobile');
+        let nva = nv ? nv.getBoundingClientRect() : { height: 0 };
+        let inp = document.querySelector('.input-box-wrapper');
+        let inpa = inp ? inp.getBoundingClientRect() : { height: 0 };
+        let r = wn && Object.assign(wn.style, { 'margin-bottom': `${inpa.height - 10}px` });
+        r = mi && (mia.height > (window.innerHeight - nva.height - inpa.height)) && Object.assign(dw.style, { height: `${window.innerHeight}px` });
+
+        console.log(wn, dw, inp);
+      // }, 300);
       return;
     }
 
@@ -233,7 +240,7 @@ export class MessagesComponent {
   }
 
   private scrollYDown(elem: any, y: any): void { 
-    if(that.store.isDevice.iOS) { return; } console.log('scrolling y down');
+    if(that.store.isDevice.iOS) { return; }
     let op = { top: (elem.scrollTop ? elem.scrollTop : 0) + y, left: 0, behavior: 'smooth' };
     setTimeout(() => { elem.scrollTo(op); setTimeout(() => { that.loadMore.messages = true; }, 500); }, 500);
   }
@@ -242,8 +249,6 @@ export class MessagesComponent {
    * @description Detect scroll direction. Returns true if down or false.
    */
   isScrollDown(elem: any) {
-    console.log('checking scrolling down');
-
     let st = elem.scrollTop;
     let type = st > this.lastScrollTop ? true : false;
     this.lastScrollTop = st <= 0 ? 0 : st;
@@ -283,6 +288,15 @@ export class MessagesComponent {
    * @description Hide the messages view section.
    */
   public hideMessages() {
+    if(that.store.isDevice.iOS) {
+      // setTimeout(() => {
+        let wn: any = document.querySelector('.message-wrapper');
+        let dw: any = document.querySelector('.mat-drawer-container');
+        let r = wn && Object.assign(wn.style, { 'margin-bottom': `${0}px` });
+        Object.assign(dw.style, { height: `unset` });
+      // }, 100);
+    }
+
     this.createView = this.chatView = this.quickText = this.messageLoader = false;
     /**
      * @description alter the material toolbal on the mobile view.
@@ -458,8 +472,6 @@ export class MessagesComponent {
      */
     let auth = Object.assign({}, this.store.cookieString());
 
-    console.log(Object.assign({ message: { query: ch } }, auth));
-
     this.socket.emit('chat',
       Object.assign({ message: { query: ch } }, auth)
     );
@@ -486,9 +498,6 @@ export class MessagesComponent {
   }
 
   private onCPacket(res: any) {
-
-    console.log(res);
-
     /**
      * @description push the new chat.
      */
@@ -641,7 +650,6 @@ export class MessagesComponent {
     const dialogRef = this.dialog.open(UserListComponent, { width: '400px', data: this.chat.users });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
     });
   }
 }
