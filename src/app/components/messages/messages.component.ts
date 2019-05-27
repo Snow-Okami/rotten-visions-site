@@ -220,7 +220,7 @@ export class MessagesComponent {
     /**
      * @description stop scrolls for iOS devices
      */
-    if(that.store.isDevice.iOS) { let wn: any = document.querySelector('.message-wrapper'); let r = wn ? Object.assign(wn.style, {'min-height': `${window.innerHeight - 100}px`}) : false; return; }
+    if(that.store.isDevice.iOS) { return; }
 
     if(!this.mobileQuery.matches) { setTimeout(() => { this.messageList.directiveRef.scrollToBottom(); }, 300); }
     else { setTimeout(() => { this.fixMobileScroll(); }, 300); }
@@ -289,7 +289,7 @@ export class MessagesComponent {
   /**
    * @description show messages when user clicks on an individual chat.
    */
-  public showItsMessages(c: any): void {
+  public showItsMessages(c: any) {
     this.chat = c; this.chatView = this.messageLoader = true; this.createView = false;
     /**
      * @description alter the material toolbal on the mobile view.
@@ -303,6 +303,15 @@ export class MessagesComponent {
      * @description scroll to bottom of the messages.
      */
     this.scrollToBottom();
+    /**
+     * @description stop scrolls for iOS devices
+     */
+    if(that.store.isDevice.iOS) {
+      // await this.action.wait(0.3);
+      setTimeout(() => {
+        let wn: any = document.querySelector('.message-wrapper'); let r = wn ? Object.assign(wn.style, {'min-height': `${window.innerHeight - 50}px`}) : false; return;
+      }, 300);
+    }
     /**
      * @description do not fetch messages when already have some.
      */
