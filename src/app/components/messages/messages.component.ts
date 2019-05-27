@@ -459,6 +459,10 @@ export class MessagesComponent {
     );
   }
 
+  public showReply() {
+    console.log('working on show reply');
+  }
+
   /**
    * @description response from socket server with user details.
    */

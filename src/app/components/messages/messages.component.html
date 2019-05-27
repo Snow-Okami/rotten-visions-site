@@ -286,7 +286,7 @@
             </button>
             <mat-menu #menu="matMenu" [xPosition]="'before'">
 
-              <button mat-menu-item>
+              <button mat-menu-item (click)="openDialog()">
                 <mat-icon aria-label="icon-button">info</mat-icon>
                 <span class="font-Montserrat font-light font-13">Chat info</span>
               </button>
