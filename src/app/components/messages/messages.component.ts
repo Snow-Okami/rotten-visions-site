@@ -200,6 +200,7 @@ export class MessagesComponent {
   }
 
   private fixMobileScroll(): void {
+    console.log('fixing mobile scroll');
     /*
     wn.setAttribute('style', 'margin-bottom: 70px');
      */
@@ -217,11 +218,22 @@ export class MessagesComponent {
   }
 
   private scrollToBottom(): void {
+    let wn: any = document.querySelector('.message-wrapper');
+    let dw: any = document.querySelector('.mat-drawer-container');
+    let inp = document.querySelector('.input-box-wrapper');
+    if(that.store.isDevice.iOS) {
+      let inpa = inp ? inp.getBoundingClientRect() : { height: 0 };
+      let r = wn && Object.assign(wn.style, { 'margin-bottom': `${inpa.height - 10}px` });
+      Object.assign(dw.style, { height: `${window.innerHeight}px` });
+      return;
+    }
+
     if(!this.mobileQuery.matches) { setTimeout(() => { this.messageList.directiveRef.scrollToBottom(); }, 300); }
     else { setTimeout(() => { this.fixMobileScroll(); }, 300); }
   }
 
-  private scrollYDown(elem: any, y: any): void {
+  private scrollYDown(elem: any, y: any): void { 
+    if(that.store.isDevice.iOS) { return; } console.log('scrolling y down');
     let op = { top: (elem.scrollTop ? elem.scrollTop : 0) + y, left: 0, behavior: 'smooth' };
     setTimeout(() => { elem.scrollTo(op); setTimeout(() => { that.loadMore.messages = true; }, 500); }, 500);
   }
@@ -230,6 +242,8 @@ export class MessagesComponent {
    * @description Detect scroll direction. Returns true if down or false.
    */
   isScrollDown(elem: any) {
+    console.log('checking scrolling down');
+
     let st = elem.scrollTop;
     let type = st > this.lastScrollTop ? true : false;
     this.lastScrollTop = st <= 0 ? 0 : st;
