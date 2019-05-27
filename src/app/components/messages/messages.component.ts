@@ -220,7 +220,7 @@ export class MessagesComponent {
     /**
      * @description stop scrolls for iOS devices
      */
-    if(that.store.isDevice.iOS) { return; }
+    if(that.store.isDevice.iOS) { let wn: any = document.querySelector('.message-wrapper'); let r = wn ? Object.assign(wn.style, {'min-height': `${window.innerHeight - 100}px`}) : false; return; }
 
     if(!this.mobileQuery.matches) { setTimeout(() => { this.messageList.directiveRef.scrollToBottom(); }, 300); }
     else { setTimeout(() => { this.fixMobileScroll(); }, 300); }
