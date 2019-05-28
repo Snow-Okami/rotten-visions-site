@@ -253,6 +253,14 @@ button.start-chat.mat-fab.mat-accent {
   z-index: 5;
 }
 
+.mobile .input-box-wrapper-ios {
+  position: fixed;
+  bottom: 80px;
+  right: 15px;
+  left: 15px;
+  z-index: 4;
+}
+
 .mobile .message-wrapper {
   position: relative;
   z-index: 4;

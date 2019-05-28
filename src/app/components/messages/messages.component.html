@@ -421,6 +421,27 @@
           <mat-icon aria-label="Create new message icon"> reply </mat-icon>
         </button>
 
+        <!-- [@detailExpand]="iosReplyInput ? 'expanded' : 'collapsed'" -->
+        <div class="input-box-wrapper-ios row" *ngIf="iosReplyInput"> 
+
+            <mat-card class="chat-input-wrapper">
+              <mat-card-content>
+                  <div class="col w90 inline t-al-center">
+                    <mat-form-field>
+                      <textarea matInput #message matTextareaAutosize placeholder="Say something..." [formControl]="text" (keydown)="keyDown($event)" (keyup)="keyUp($event)" (blur)="blur($event)"></textarea>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="col w10 inline t-al-center v-al-b send-btn">
+                    <button mat-icon-button (click)="sendThis()">
+                      <mat-icon aria-label="send-button"> send </mat-icon>
+                    </button>
+                  </div>
+              </mat-card-content>
+            </mat-card>
+
+        </div>
+
       </div>
 
       <!-- [ngClass]="{ 'hidden': !createView }" -->

@@ -33,12 +33,16 @@ export interface Fruit {
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.scss'],
   animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
+    ]),
     trigger('openClose', [
-      // ...
-      state('open', style({display: 'block'})),
       state('closed', style({ height: '0px', width: '0px', display: 'none' })),
-      transition('open => closed', [ animate('2s') ]),
-      transition('closed => open', [ animate('1s') ]),
+      state('open', style({ height: 'auto', width: 'auto', display: 'block' })),
+      transition('closed => open', [ animate('0.5s') ]),
+      transition('open => closed', [ animate('0.5s') ]),
     ])
   ]
 })
@@ -52,6 +56,8 @@ export class MessagesComponent {
    */
   private hideFooter: boolean = false;
   private hideMatToolbar: string = '';
+
+  public iosReplyInput: boolean = false;
 
   /**
    * @description Holds all the available chats for the user.
@@ -469,7 +475,8 @@ export class MessagesComponent {
   }
 
   public showReply() {
-    console.log('working on show reply');
+    this.iosReplyInput = !this.iosReplyInput;
+    console.log('change detected', this.iosReplyInput);
   }
 
   /**
