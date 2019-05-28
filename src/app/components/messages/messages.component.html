@@ -417,12 +417,12 @@
           </div>
         </div>
 
-        <button (click)="showReply()" mat-fab class="new-message index-4">
+        <button (click)="showReply();toggleReplyButton();" mat-fab class="new-message index-4">
           <mat-icon aria-label="Create new message icon"> reply </mat-icon>
         </button>
 
         <!-- [@detailExpand]="iosReplyInput ? 'expanded' : 'collapsed'" -->
-        <div class="input-box-wrapper-ios row" *ngIf="iosReplyInput"> 
+        <div class="input-box-wrapper-ios row"> 
 
             <mat-card class="chat-input-wrapper">
               <mat-card-content>

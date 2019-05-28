@@ -4,16 +4,9 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Socket } from 'ngx-socket-io';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
-import * as _ from 'lodash';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-  // ...
-} from '@angular/animations';
 import { MatDialog } from '@angular/material';
+import * as _ from 'lodash';
+import { tween, styler, easing } from 'popmotion';
 
 import { ActionsService } from '../../services/actions.service';
 import { StoreService } from '../../services/store.service';
@@ -31,20 +24,7 @@ export interface Fruit {
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.scss'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
-    ]),
-    trigger('openClose', [
-      state('closed', style({ height: '0px', width: '0px', display: 'none' })),
-      state('open', style({ height: 'auto', width: 'auto', display: 'block' })),
-      transition('closed => open', [ animate('0.5s') ]),
-      transition('open => closed', [ animate('0.5s') ]),
-    ])
-  ]
+  styleUrls: ['./messages.component.scss']
 })
 export class MessagesComponent {
   /**
@@ -57,6 +37,8 @@ export class MessagesComponent {
   private hideFooter: boolean = false;
   private hideMatToolbar: string = '';
 
+  private iosReplyButtonElement: any;
+  private iosReplyInputElement: any;
   public iosReplyInput: boolean = false;
 
   /**
@@ -313,9 +295,15 @@ export class MessagesComponent {
      * @description stop scrolls for iOS devices
      */
     if(that.store.isDevice.iOS) {
-      // await this.action.wait(0.3);
       setTimeout(() => {
-        let wn: any = document.querySelector('.message-wrapper'); let r = wn ? Object.assign(wn.style, {'min-height': `${window.innerHeight - 50}px`}) : false; return;
+        this.iosReplyInputElement = styler(document.querySelector('.input-box-wrapper-ios'));
+        this.iosReplyInputElement.set({ x: 0, scale: this.iosReplyInput ? 1 : 0 });
+
+        this.iosReplyButtonElement = styler(document.querySelector('.new-message'));
+        this.iosReplyButtonElement.set({ y: this.iosReplyInput ? -70 : 0 });
+      }, 50);
+      setTimeout(() => {
+        let wn: any = document.querySelector('.message-wrapper'); let r = wn ? Object.assign(wn.style, {'min-height': `${window.innerHeight - 40}px`}) : false; return;
       }, 300);
     }
     /**
@@ -475,8 +463,27 @@ export class MessagesComponent {
   }
 
   public showReply() {
-    this.iosReplyInput = !this.iosReplyInput;
-    console.log('change detected', this.iosReplyInput);
+    tween({
+      from: { x: 0, scale: this.iosReplyInput ? 1 : 0 },
+      to: { x: 0, scale: !this.iosReplyInput ? 1 : 0 },
+      ease: easing.cubicBezier(0.4, 0.0, 0.2, 1),
+      duration: 300
+    }).start({
+      update: (v: any) => this.iosReplyInputElement.set(v),
+      complete: () => {}
+    });
+  }
+
+  public toggleReplyButton() {
+    tween({
+      from: { y: this.iosReplyInput ? -70 : 0 },
+      to: { y: !this.iosReplyInput ? -70 : 0 },
+      ease: easing.cubicBezier(0.4, 0.0, 0.2, 1),
+      duration: 300
+    }).start({
+      update: (v: any) => this.iosReplyButtonElement.set(v),
+      complete: () => { this.iosReplyInput = !this.iosReplyInput; }
+    });
   }
 
   /**
