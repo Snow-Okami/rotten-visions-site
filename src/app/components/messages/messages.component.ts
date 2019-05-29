@@ -214,7 +214,7 @@ export class MessagesComponent {
     /**
      * @description stop scrolls for iOS devices
      */
-    if(that.store.isDevice.iOS) { return; }
+    if(!that.store.isDevice.iOS) { return; }
 
     let el = document.querySelector('.message-wrapper');
     if(!el) { return; }
