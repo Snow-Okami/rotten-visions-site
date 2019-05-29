@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row p-t-10 p-b-10">
   <div class="col wauto inline"> <p> Version: {{ version }} </p> </div>
   <div class="col wauto inline" *ngIf="update"> <mat-icon matSuffix class="material-icons m-l-5" style="margin-top: 2px;cursor: pointer;" (click)="updateApplication()"> sync_problem </mat-icon> </div>
   <div class="col wauto inline" *ngIf="!update"> <mat-icon matSuffix class="material-icons m-l-5" style="margin-top: 2px;cursor: pointer;" (click)="updatedMessage()"> sync </mat-icon> </div>

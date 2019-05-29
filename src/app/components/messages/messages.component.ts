@@ -220,7 +220,7 @@ export class MessagesComponent {
     if(!el) { return; }
 
     let pos = el.getBoundingClientRect();
-    window.scrollTo({top: pos.bottom, left: 0, behavior: 'smooth'});
+    window.scrollTo({top: pos.height + 10000, left: 0, behavior: 'smooth'});
   }
 
   private scrollYDown(elem: any, y: any): void {
