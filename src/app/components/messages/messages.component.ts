@@ -17,10 +17,6 @@ import { UserListComponent } from '../dialogs/user-list/user-list.component';
 
 let that: any;
 
-export interface Fruit {
-  name: string;
-}
-
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
@@ -214,6 +210,19 @@ export class MessagesComponent {
     else { setTimeout(() => { this.fixMobileScroll(); }, 300); }
   }
 
+  private scrollToBottomIOS(): void {
+    /**
+     * @description stop scrolls for iOS devices
+     */
+    if(that.store.isDevice.iOS) { return; }
+
+    let el = document.querySelector('.message-wrapper');
+    if(!el) { return; }
+
+    let pos = el.getBoundingClientRect();
+    window.scrollTo({top: pos.bottom, left: 0, behavior: 'smooth'});
+  }
+
   private scrollYDown(elem: any, y: any): void {
     /**
      * @description stop scrolls for iOS devices
@@ -291,6 +300,7 @@ export class MessagesComponent {
      * @description scroll to bottom of the messages.
      */
     this.scrollToBottom();
+    this.scrollToBottomIOS();
     /**
      * @description stop scrolls for iOS devices
      */
@@ -579,6 +589,7 @@ export class MessagesComponent {
      * @description scroll to bottom after chat is loaded.
      */
     that.scrollToBottom();
+    that.scrollToBottomIOS();
     /**
      * @description adjust the last updated chat position.
      */
@@ -612,6 +623,7 @@ export class MessagesComponent {
      * @description delay scroll is maintained.
      */
     that.scrollToBottom();
+    that.scrollToBottomIOS();
   }
 
   /**
@@ -624,6 +636,7 @@ export class MessagesComponent {
      * @description delay scroll is maintained.
      */
     that.scrollToBottom();
+    that.scrollToBottomIOS();
   }
 
   /**
