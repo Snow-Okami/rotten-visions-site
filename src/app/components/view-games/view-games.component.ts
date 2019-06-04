@@ -19,9 +19,11 @@ export class ViewGamesComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,    
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher
   ) {
+    // console.log(this.route.snapshot.params, this.route.snapshot.queryParams);
     this.mobileQuery = media.matchMedia('(max-width: 840px)');
     // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

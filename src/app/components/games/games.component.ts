@@ -86,7 +86,7 @@ export class GamesComponent implements OnInit {
 
   viewThisGame(id: string) {
     this.progressBar.classList.remove('hidden');
-    this.router.navigate([`/dashboard/games/view/${id}`]);
+    this.router.navigate([`/dashboard/games/view/${id}`, {}], { queryParams: {} });
   }
 
 }
