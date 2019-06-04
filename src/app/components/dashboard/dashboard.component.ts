@@ -85,6 +85,8 @@ export class DashboardComponent {
       if(r['message']['type'] !== 'error') {
         this.store.user.data = this.user = r['data'];
         this.store.user.synced = true;
+      } else {
+        this.action.openSnackBarComponent(r['message']['text'], 'error'); return;
       }
     }
 

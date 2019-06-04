@@ -116,6 +116,7 @@ export class UpdatesComponent implements OnInit {
       let email = atob(this.store.getCookie('ps-u-a-p'));
       r = await this.http.user(email).toPromise();
       if(r['message']['type'] !== 'error') { this.user = r['data']; }
+      else { return; }
     }
 
     if(this.user.capability === 2) {
