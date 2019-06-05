@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="col flex-container v-center" *ngIf="!mobileQuery.matches" [ngClass]="'p-l-10 p-r-10 p-b-24'">
-                      <button [disabled]="disableClick" mat-mini-fab color="primary" type="button">
+                      <button [disabled]="disableClick" mat-mini-fab color="primary" type="button" (click)="deleteUserFromAchievement($event);">
                         <mat-icon aria-label="icon-button with a heart icon">remove</mat-icon>
                       </button>
                     </div>
@@ -46,7 +46,7 @@
                       <!-- Back button column for desktop or mobile -->
                       <div class="col inline" [ngClass]="['right']">
                         <div class="m-l-10 force">
-                          <button [disabled]="disableClick" mat-stroked-button type="button" color="primary"> Remove </button>
+                          <button [disabled]="disableClick" mat-stroked-button type="button" color="primary" (click)="deleteUserFromAchievement($event);"> Remove </button>
                         </div>
                       </div>
         

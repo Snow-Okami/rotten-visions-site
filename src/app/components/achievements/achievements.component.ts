@@ -120,5 +120,29 @@ export class AchievementsComponent implements OnInit {
     this.achvUpFormElem.nativeElement.reset();
     this.disableClick = state;
   }
+
+  async deleteUserFromAchievement(e: Event) {
+    if(this.achvUpForm.invalid) { this.action.openSnackBarComponent('Empty fields detected!', 'warning'); return; }
+
+    /**
+     * @description actual codes
+     */
+    this.disableClick = true;
+    this.progressBar.classList.remove('hidden');
+
+    let rs: any = await this.http.deleteUserFromAchievement(this.achvUpForm.value, _.pick(this.achvUpForm.value, 'email')).toPromise();
+    if(rs.message.type === 'error') { this.resetForm(false); this.progressBar.classList.add('hidden'); this.action.openSnackBarComponent(rs.message.text, 'error'); return; }
+
+    let r: any = await this.http.achievement(this.achvUpForm.value).toPromise();
+    if(r.message.type === 'error') { this.resetForm(false); this.progressBar.classList.add('hidden'); this.action.openSnackBarComponent(r.message.text, 'error'); return; }
+
+    let a: any = _.find(this.achievements, {_id: this.achvUpForm.value.id});
+    a.users = r.data.users;
+    this.achvUpForm.setValue({id: '', email: ''});
+
+    this.resetForm(false);
+    this.progressBar.classList.add('hidden'); 
+    this.action.openSnackBarComponent('Achievement updated successfully!', 'success');
+  }
 }
 

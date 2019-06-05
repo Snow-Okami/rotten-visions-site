@@ -220,6 +220,15 @@ export class HttpService {
     );
   }
 
+  deleteUserFromAchievement(param: any, data: any): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/deleteUserFromAchievement/' + param.id;
+
+    return this.http.put<any>(url, data, this.option({ 'Content-Type':  'application/json' })).pipe(
+      tap(message => message),
+      catchError(this.handleError('update achievement', {}))
+    );
+  }
+
   /**
    * @description GET response from the server.
    */
