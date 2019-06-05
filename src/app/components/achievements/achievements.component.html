@@ -29,12 +29,32 @@
                       </mat-form-field>
                     </div>
 
-                    <div class="col flex-container v-center" [ngClass]="{'p-l-10 p-r-10 p-b-24': !mobileQuery.matches, 'w100': mobileQuery.matches}">
-                      <button mat-mini-fab color="primary" type="submit" *ngIf="!mobileQuery.matches">
-                        <mat-icon aria-label="icon-button with a heart icon">navigate_next</mat-icon>
+                    <div class="col flex-container v-center" *ngIf="!mobileQuery.matches" [ngClass]="'p-l-10 p-r-10 p-b-24'">
+                      <button [disabled]="disableClick" mat-mini-fab color="primary" type="button">
+                        <mat-icon aria-label="icon-button with a heart icon">remove</mat-icon>
                       </button>
+                    </div>
 
-                      <button mat-raised-button color="primary" type="submit" *ngIf="mobileQuery.matches" class="right"> Update </button>
+                    <div class="col flex-container v-center" *ngIf="!mobileQuery.matches" [ngClass]="'p-l-10 p-r-10 p-b-24'">
+                      <button [disabled]="disableClick" mat-mini-fab color="primary" type="submit">
+                        <mat-icon aria-label="icon-button with a heart icon">add</mat-icon>
+                      </button>
+                    </div>
+
+                    <div class="col flex-container v-center" [ngClass]="['w100']" *ngIf="mobileQuery.matches">
+        
+                      <!-- Back button column for desktop or mobile -->
+                      <div class="col inline" [ngClass]="['right']">
+                        <div class="m-l-10 force">
+                          <button [disabled]="disableClick" mat-stroked-button type="button" color="primary"> Remove </button>
+                        </div>
+                      </div>
+        
+                      <!-- Publish or Save button column for mobile -->
+                      <div class="col inline" [ngClass]="['right']">
+                        <button [disabled]="disableClick" mat-raised-button type="submit" color="primary"> Add </button>
+                      </div>
+        
                     </div>
 
                   </div>

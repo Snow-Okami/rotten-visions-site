@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import {
@@ -47,9 +47,11 @@ export class AchievementsComponent implements OnInit {
     offset: 100
   };
 
+  @ViewChild('achvUpFormElem') achvUpFormElem: ElementRef;
+
   public achvUpForm = new FormGroup({
-    id: new FormControl({ value: '', disabled: false }, []),
-    email: new FormControl({ value: '', disabled: false }, [])
+    id: new FormControl({ value: '', disabled: false }, [ Validators.required ]),
+    email: new FormControl({ value: '', disabled: false }, [ Validators.required ])
   });
 
   public totalUser: number = 0;
@@ -88,24 +90,35 @@ export class AchievementsComponent implements OnInit {
     this.loadingBar = false;
   }
 
+  public disableClick: boolean = false;
+
   async updateAchv(e: Event) {
+    if(this.achvUpForm.invalid) { this.action.openSnackBarComponent('Empty fields detected!', 'warning'); return; }
+
     /**
      * @description actual codes
      */
+    this.disableClick = true;
     this.progressBar.classList.remove('hidden');
 
     let rs: any = await this.http.updateUsersInAchievement(this.achvUpForm.value, _.pick(this.achvUpForm.value, 'email')).toPromise();
-    if(rs.message.type === 'error') { this.progressBar.classList.add('hidden'); this.action.openSnackBarComponent(rs.message.text, 'error'); return; }
+    if(rs.message.type === 'error') { this.resetForm(false); this.progressBar.classList.add('hidden'); this.action.openSnackBarComponent(rs.message.text, 'error'); return; }
 
     let r: any = await this.http.achievement(this.achvUpForm.value).toPromise();
-    if(r.message.type === 'error') { this.progressBar.classList.add('hidden'); this.action.openSnackBarComponent(r.message.text, 'error'); return; }
+    if(r.message.type === 'error') { this.resetForm(false); this.progressBar.classList.add('hidden'); this.action.openSnackBarComponent(r.message.text, 'error'); return; }
 
     let a: any = _.find(this.achievements, {_id: this.achvUpForm.value.id});
     a.users = r.data.users;
     this.achvUpForm.setValue({id: '', email: ''});
 
+    this.resetForm(false);
     this.progressBar.classList.add('hidden'); 
     this.action.openSnackBarComponent('Achievement updated successfully!', 'success');
+  }
+
+  resetForm(state: boolean) {
+    this.achvUpFormElem.nativeElement.reset();
+    this.disableClick = state;
   }
 }
 
