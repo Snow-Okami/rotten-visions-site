@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { Router } from '@angular/router';
 
 import { User } from '../../interfaces/user';
 
@@ -26,7 +27,8 @@ export class CreateAchievementComponent implements OnInit {
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
     private http: HttpService,
-    private store: StoreService
+    private store: StoreService,
+    public router: Router
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 840px)');
     // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -54,6 +56,9 @@ export class CreateAchievementComponent implements OnInit {
 
     if(this.user.capability === 2) {
       this.isAdmin = true;
+    } else {
+      this.router.navigate(['/dashboard/achievements']);
+      return;
     }
   }
 
