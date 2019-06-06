@@ -9,6 +9,10 @@ const routes: Routes = [
     component: AchievementsComponent
   },
   {
+    path: 'create',
+    loadChildren: '../create-achievement/create-achievement.module#CreateAchievementModule'
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: '/dashboard/achievements'

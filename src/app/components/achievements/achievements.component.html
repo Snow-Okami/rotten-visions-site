@@ -1,6 +1,11 @@
 <div class="content-wrapper">
   <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
 
+    <!-- Create Post Button -->
+    <button *ngIf="isAdmin" mat-fab class="b-r-btn" matTooltip="Create achievement" matTooltipPosition="before" aria-label="icon-button with an add icon" routerLink="/dashboard/achievements/create">
+      <mat-icon aria-label="Create new post icon">add</mat-icon>
+    </button>
+
     <div class="row" *ngIf="store.user.data?.capability === 2">
       <div class="col w100">
         <div class="dark-tab"> UPDATE ACHIEVEMENT </div>

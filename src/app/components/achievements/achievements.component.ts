@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { User } from '../../interfaces/user';
 import {
   trigger,
   state,
@@ -41,6 +42,10 @@ export class AchievementsComponent implements OnInit {
 
   public mobileQuery: MediaQueryList;
 
+  public isAdmin: boolean = false;
+
+  private user: User;
+
   public image = {
     defaultUrl: '/assets/logo/game-controller.png',
     default: '/assets/logo/person.png',
@@ -79,6 +84,22 @@ export class AchievementsComponent implements OnInit {
      * @description Hide Progress Bar When Page is Loaded.
      */
     this.progressBar.classList.add('hidden');
+  }
+
+  async ngAfterContentInit() {
+    this.user = this.store.user.data;
+    let r: any;
+
+    if(!this.store.user.synced) {
+      let email = atob(this.store.getCookie('ps-u-a-p'));
+      r = await this.http.user(email).toPromise();
+      if(r['message']['type'] !== 'error') { this.user = r['data']; }
+      else { return; }
+    }
+
+    if(this.user.capability === 2) {
+      this.isAdmin = true;
+    }
   }
 
   async ngAfterViewInit() {
