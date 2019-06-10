@@ -54,12 +54,8 @@ export class CreateAchievementComponent implements OnInit {
       else { return; }
     }
 
-    if(this.user.capability === 2) {
-      this.isAdmin = true;
-    } else {
-      this.router.navigate(['/dashboard/achievements']);
-      return;
-    }
+    if(this.user.capability === 2) { this.isAdmin = true; }
+    else { this.router.navigate(['/dashboard/achievements']); return; }
   }
 
 }
