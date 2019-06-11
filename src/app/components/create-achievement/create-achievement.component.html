@@ -37,7 +37,7 @@
                 <div class="row">
                   <mat-form-field class="contact-input textarea" appearance="outline">
                     <mat-label> Enter achievement description </mat-label>
-                    <textarea [style.minHeight.px]="90" matInput #message matTextareaAutosize minlength="10" maxlength="32768" placeholder="eg.: Kill atleast 2 opponent..." required formControlName="description"></textarea>
+                    <textarea [style.minHeight.px]="!mobileQuery.matches ? 200 : 90" matInput #message matTextareaAutosize minlength="10" maxlength="32768" placeholder="eg.: Kill atleast 2 opponent..." required formControlName="description"></textarea>
                     <mat-hint align="start" *ngIf="!mobileQuery.matches"><strong>Don't disclose personal info</strong> </mat-hint>
                     <mat-hint align="start" *ngIf="mobileQuery.matches"><strong>It's public</strong> </mat-hint>
                     <mat-hint align="end">{{message.value.length}} / 32768</mat-hint>
