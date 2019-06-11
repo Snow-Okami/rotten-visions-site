@@ -44,6 +44,10 @@ export class CreateAchievementComponent implements OnInit {
   }
 
   async ngAfterContentInit() {
+    
+  }
+
+  async ngAfterViewInit() {
     this.user = this.store.user.data;
     let r: any;
 
@@ -56,6 +60,12 @@ export class CreateAchievementComponent implements OnInit {
 
     if(this.user.capability === 2) { this.isAdmin = true; }
     else { this.router.navigate(['/dashboard/achievements']); return; }
+
+    /**
+     * @description Hide Progress Bar When Page is Loaded.
+     */
+    this.progressBar.classList.add('hidden');
+
   }
 
 }
