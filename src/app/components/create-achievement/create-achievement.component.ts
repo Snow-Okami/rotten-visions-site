@@ -88,7 +88,7 @@ export class CreateAchievementComponent implements OnInit {
   }
 
   async editOrCreate(e: Event) {
-    console.log('form submit event', e);
+    console.log('form submit event', this.achievementForm);
 
     /**
      * @description Disable buttons, inputs & enable loader.
