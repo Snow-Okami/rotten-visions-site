@@ -3,12 +3,14 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import * as _ from 'lodash';
 
 import { User } from '../../interfaces/user';
 
 import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
 import { ValidatorsService } from '../../services/validators.service';
+import { ActionsService } from '../../services/actions.service';
 
 let that: any;
 
@@ -29,6 +31,7 @@ export class CreateAchievementComponent implements OnInit {
   public isAdmin: boolean = false;
 
   public achievementForm: FormGroup;
+  @ViewChild('achievementFormElement') achievementFormElement: ElementRef
 
   public hideImage: boolean = true;
   @ViewChild('dropImage') image: ElementRef;
@@ -42,7 +45,8 @@ export class CreateAchievementComponent implements OnInit {
     public router: Router,
     public form: FormBuilder,
     private regx: ValidatorsService,
-    public page: Location
+    public page: Location,
+    private action: ActionsService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 840px)');
     // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -88,13 +92,47 @@ export class CreateAchievementComponent implements OnInit {
   }
 
   async editOrCreate(e: Event) {
-    console.log('form submit event', this.achievementForm);
+    if(this.achievementForm.invalid) { this.action.openSnackBarComponent('Invalid form detected!', 'warning'); return; }
 
     /**
      * @description Disable buttons, inputs & enable loader.
      */
     this.disableClick = true;
     this.progressBar.classList.remove('hidden');
+    /**
+     * @description Create FormData to be POST to API.
+     */
+    let form = new FormData();
+    
+    /**
+     * @description Append File and Tag only when they are available.
+     */
+    if(this.file.nativeElement['files'].length) {
+      form.append('thumbnail', this.file.nativeElement['files'][0]);
+    }
+
+    /**
+     * @description REQUIRED FromData Fields.
+     */
+    form.append('title', this.achievementForm.value.title);
+    form.append('description', _.split(_.trim(this.achievementForm.value.description), '\n').join('<br>'));
+
+    this.resetForm();
+
+    let r: any = await this.http.createAchievement(form).toPromise();
+    if(r['message']['type'] !== 'error') { this.action.openSnackBarComponent('Achievement added successfully!', 'success'); }
+    else { this.action.openSnackBarComponent(r['message']['text'], 'error'); }
+
+    this.disableClick = false;
+    this.progressBar.classList.add('hidden');
+  }
+
+  resetForm(): void {
+    this.removeImage();
+    /**
+     * @description Set form fields empty.
+     */
+    this.achievementFormElement.nativeElement.reset();
   }
 
   async showImage(e: Event) {

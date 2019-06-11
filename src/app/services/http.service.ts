@@ -184,6 +184,15 @@ export class HttpService {
     );
   }
 
+  createAchievement(data: any): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/achievement';
+
+    return this.http.post<any>(url, data, this.option({ 'enctype': 'multipart/form-data' })).pipe(
+      tap(message => message),
+      catchError(this.handleError('create achievement', {}))
+    );
+  }
+
   achievement(param: any): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/achievement/' + param.id;
 
