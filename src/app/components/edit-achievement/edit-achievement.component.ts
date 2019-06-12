@@ -31,8 +31,6 @@ export class EditAchievementComponent implements OnInit {
 
   public isAdmin: boolean = false;
 
-  private achievementId: any;
-
   public achievementForm: FormGroup;
   @ViewChild('achievementFormElement') achievementFormElement: ElementRef
 
@@ -84,7 +82,6 @@ export class EditAchievementComponent implements OnInit {
     if(this.user.capability === 2) { this.isAdmin = true; }
     else { this.router.navigate(['/dashboard/achievements']); return; }
 
-    this.achievementId = this.route.snapshot.params;
     r = await this.http.achievement(this.route.snapshot.params).toPromise();
 
     if(r['message']['type'] == 'error') { this.progressBar.classList.add('hidden'); return; }
@@ -96,9 +93,6 @@ export class EditAchievementComponent implements OnInit {
      * @description Hide Progress Bar When Page is Loaded.
      */
     this.progressBar.classList.add('hidden');
-
-    console.log(this.achievementId, r);
-
   }
 
   resetForm(): void {
@@ -130,4 +124,45 @@ export class EditAchievementComponent implements OnInit {
     this.file.nativeElement.value = null;
   }
 
+  hasImage(url: string): boolean {
+    let ao = ['https://res.cloudinary.com/', 'data:image/png;base64', 'data:image/jpg;base64', 'data:image/jpeg;base64', 'data:image/gif;base64'];    
+    return _.find(ao, o => { return url.includes(o); }) ? true : false;
+  }
+
+  async editOrCreate(e: Event) {
+    if(this.achievementForm.invalid) { this.action.openSnackBarComponent('Invalid form detected!', 'warning'); return; }
+    /**
+     * @description Disable buttons, inputs & enable loader.
+     */
+    this.disableClick = true;
+    this.progressBar.classList.remove('hidden');
+    /**
+     * @description Create FormData to be POST to API.
+     */
+    let form = new FormData();
+
+    /**
+     * @description Append File and Tag only when they are available.
+     */
+    if(!this.hasImage(this.image.nativeElement['src'])) {
+      form.append('thumbnail', '');
+    } else if(this.hasImage(this.image.nativeElement['src']) && this.file.nativeElement['files'].length) {
+      form.append('thumbnail', this.file.nativeElement['files'][0]);
+    }
+
+    /**
+     * @description REQUIRED FromData Fields.
+     */
+    form.append('title', this.achievementForm.value.title);
+    form.append('description', _.split(_.trim(this.achievementForm.value.description), '\n').join('<br>'));
+
+    this.resetForm();
+
+    let r: any = await this.http.updateAchievement(this.route.snapshot.params, form).toPromise();
+    if(r['message']['type'] !== 'error') { this.action.openSnackBarComponent('Achievement updated successfully!', 'success'); }
+    else { this.action.openSnackBarComponent(r['message']['text'], 'error'); }
+
+    this.disableClick = false;
+    this.progressBar.classList.add('hidden');
+  }
 }
