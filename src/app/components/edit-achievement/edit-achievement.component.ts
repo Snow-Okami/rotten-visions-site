@@ -101,4 +101,33 @@ export class EditAchievementComponent implements OnInit {
 
   }
 
+  resetForm(): void {
+    this.removeImage();
+    /**
+     * @description Set form fields empty.
+     */
+    this.achievementFormElement.nativeElement.reset();
+  }
+
+  async showImage(e: Event) {
+    let image = this.image.nativeElement;
+    let file = this.file.nativeElement;
+    let reader  = new FileReader();
+
+    reader.addEventListener("load", function () {
+      image['src'] = reader.result;
+      that.hideImage = false;
+    }, false);
+
+    if (file['files'][0]) {
+      reader.readAsDataURL(file['files'][0]);
+    }
+  }
+
+  removeImage(): void {
+    this.hideImage = true;
+    this.image.nativeElement['src'] = '';
+    this.file.nativeElement.value = null;
+  }
+
 }
