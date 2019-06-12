@@ -25,6 +25,7 @@ import { environment } from '../../../environments/environment';
 
 import { FooterComponent } from '../../components/footer/footer.component';
 import { UserListComponent } from '../../components/dialogs/user-list/user-list.component';
+import { ConfirmComponent } from '../../components/dialogs/confirm/confirm.component';
 
 /**
  * @description domain update with production type.
@@ -62,7 +63,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
      * @description Shared Components For Lazy Routing Modules.
      */
     FooterComponent,
-    UserListComponent
+    UserListComponent,
+    ConfirmComponent
   ],
   exports: [
     /**
@@ -83,10 +85,12 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
      * @description Shared Components For Lazy Routing Modules.
      */
     FooterComponent,
-    UserListComponent
+    UserListComponent,
+    ConfirmComponent
   ],
   entryComponents: [
-    UserListComponent
+    UserListComponent,
+    ConfirmComponent
   ]
 })
 export class SharedModule { }
