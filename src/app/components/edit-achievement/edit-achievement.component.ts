@@ -156,8 +156,6 @@ export class EditAchievementComponent implements OnInit {
     form.append('title', this.achievementForm.value.title);
     form.append('description', _.split(_.trim(this.achievementForm.value.description), '\n').join('<br>'));
 
-    this.resetForm();
-
     let r: any = await this.http.updateAchievement(this.route.snapshot.params, form).toPromise();
     if(r['message']['type'] !== 'error') { this.action.openSnackBarComponent('Achievement updated successfully!', 'success'); }
     else { this.action.openSnackBarComponent(r['message']['text'], 'error'); }
