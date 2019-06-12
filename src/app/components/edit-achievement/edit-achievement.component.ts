@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material';
 import * as _ from 'lodash';
 
 import { User } from '../../interfaces/user';
@@ -11,6 +12,8 @@ import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
 import { ValidatorsService } from '../../services/validators.service';
 import { ActionsService } from '../../services/actions.service';
+
+import { ConfirmComponent } from '../dialogs/confirm/confirm.component';
 
 let that: any;
 
@@ -48,7 +51,8 @@ export class EditAchievementComponent implements OnInit {
     public form: FormBuilder,
     private regx: ValidatorsService,
     public page: Location,
-    private action: ActionsService
+    private action: ActionsService,
+    public dialog: MatDialog
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 840px)');
     // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -164,7 +168,25 @@ export class EditAchievementComponent implements OnInit {
     this.progressBar.classList.add('hidden');
   }
 
-  confirmDelete() {
-    console.log('confirm to delete');
+  confirmDelete(): void {
+    const dialogRef = this.dialog.open(ConfirmComponent, { width: '400px', data: {heading: 'Confirm to delete?', message: 'This achievement will be removed properly from the database.'} });
+    dialogRef.afterClosed().subscribe(this.removeAchievement);
+  }
+
+  async removeAchievement(d: any) {
+    if(!d) { return; }
+
+    /**
+     * @description Disable buttons, inputs & enable loader.
+     */
+    that.disableClick = true;
+    that.progressBar.classList.remove('hidden');
+
+    let r: any = await that.http.deleteAchievement(that.route.snapshot.params).toPromise();
+    if(r['message']['type'] !== 'error') { that.action.openSnackBarComponent('Achievement removed successfully!', 'success'); }
+    else { that.action.openSnackBarComponent(r['message']['text'], 'error'); }
+
+    that.disableClick = false;
+    that.router.navigate(['/dashboard/achievements']);
   }
 }

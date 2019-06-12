@@ -510,6 +510,9 @@ body.mobile-view {
     }
     &10 {
       margin-left: 10px;
+      &-imp {
+        margin-left: 10px !important;
+      }
     }
     &20 {
       margin-left: 20px;
