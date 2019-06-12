@@ -13,6 +13,10 @@ const routes: Routes = [
     loadChildren: '../create-achievement/create-achievement.module#CreateAchievementModule'
   },
   {
+    path: 'edit/:_id',
+    loadChildren: '../edit-achievement/edit-achievement.module#EditAchievementModule'
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: '/dashboard/achievements'

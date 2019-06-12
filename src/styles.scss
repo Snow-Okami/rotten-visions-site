@@ -741,6 +741,12 @@ body.mobile-view {
   }
 }
 
+.c {
+  &-pointer {
+    cursor: pointer;
+  }
+}
+
 .check {
   margin: 0 10px;
 }

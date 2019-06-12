@@ -96,16 +96,22 @@
         <ul [@openClose]="!achievements.length ? 'closed' : 'open'">
           <li class="col flex-container w100" *ngFor="let a of achievements; index as i;">
             <div class="wrap flex-container">
-              <div class="flex p-10" *ngIf="!mobileQuery.matches">
+
+              <!-- achievement thumbnail -->
+              <div class="flex p-10 c-pointer" *ngIf="!mobileQuery.matches" [routerLink]="'/dashboard/achievements/edit/' + a._id">
                 <img alt="missing logo" class="achievement-thumbnail"
-                [defaultImage]="image.default"
+                [defaultImage]="image.defaultUrl"
                 [lazyLoad]="a.thumbnail || image.defaultUrl"
                 [offset]="image.offset">
               </div>
-              <div class="col p-10 flex-container v-center h-left" [ngClass]="!mobileQuery.matches ? '' : 'w100'">
+
+              <!-- achievement description -->
+              <div class="col p-10 flex-container v-center h-left c-pointer" [routerLink]="'/dashboard/achievements/edit/' + a._id" [ngClass]="!mobileQuery.matches ? '' : 'w100'">
                 <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <h3 class="t-red font-16"> {{ a?.title | titlecase }} </h3> </div>
                 <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <span class="font-Montserrat font-12"> {{ a?.description }} </span> </div>
               </div>
+
+              <!-- achievement completion progress -->
               <div class="col p-10 flex-container v-center h-left">
                 <div class="row flex-container"> 
                   <div class="flex p-r-5"> <span class="font-Montserrat font-12"> {{a.users?.length}} </span> </div>
@@ -113,6 +119,8 @@
                   <div class="flex p-l-5"> <span class="font-Montserrat font-12"> {{totalUser}} </span> </div>
                 </div>            
               </div>
+
+              <!-- copy achievement id -->
               <div class="col p-10 flex-container v-center h-left" *ngIf="store.user.data?.capability === 2">
                 <button mat-icon-button (click)="action.copyToClipboard(a?._id);" matTooltip="Copy" matTooltipPosition="after">
                   <mat-icon aria-label="icon-button with a heart icon"> file_copy </mat-icon>

@@ -26,6 +26,8 @@ export class CreateAchievementComponent implements OnInit {
 
   private user: User;
 
+  private title: string = 'Psynapsus - Create Achievement';
+
   public disableClick: boolean = false;
 
   public isAdmin: boolean = false;
