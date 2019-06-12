@@ -1,6 +1,11 @@
 <div class="content-wrapper">
   <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
 
+    <!-- Create Post Button -->
+    <button *ngIf="isAdmin" mat-fab [ngClass]="{'b-l-btn': mobileQuery.matches, 'b-r-btn': !mobileQuery.matches}" matTooltip="Remove achievement" matTooltipPosition="before" aria-label="icon-button with an add icon" (click)="confirmDelete();">
+      <mat-icon aria-label="Remove post icon">delete</mat-icon>
+    </button>
+
     <div class="row">
       <div class="col w100">
         

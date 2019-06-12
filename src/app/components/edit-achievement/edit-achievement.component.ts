@@ -163,4 +163,8 @@ export class EditAchievementComponent implements OnInit {
     this.disableClick = false;
     this.progressBar.classList.add('hidden');
   }
+
+  confirmDelete() {
+    console.log('confirm to delete');
+  }
 }

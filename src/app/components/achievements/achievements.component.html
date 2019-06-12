@@ -1,7 +1,7 @@
 <div class="content-wrapper">
   <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
 
-    <!-- Create Post Button -->
+    <!-- Create Achievement Button -->
     <button *ngIf="isAdmin" mat-fab class="b-r-btn" matTooltip="Create achievement" matTooltipPosition="before" aria-label="icon-button with an add icon" (click)="visitCreate();">
       <mat-icon aria-label="Create new post icon">add</mat-icon>
     </button>
