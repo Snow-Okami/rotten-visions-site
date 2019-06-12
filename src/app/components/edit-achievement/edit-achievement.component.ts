@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef } from '@an
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 
 import { User } from '../../interfaces/user';
@@ -31,6 +31,8 @@ export class EditAchievementComponent implements OnInit {
 
   public isAdmin: boolean = false;
 
+  private achievementId: any;
+
   public achievementForm: FormGroup;
   @ViewChild('achievementFormElement') achievementFormElement: ElementRef
 
@@ -44,6 +46,7 @@ export class EditAchievementComponent implements OnInit {
     private http: HttpService,
     private store: StoreService,
     public router: Router,
+    private route: ActivatedRoute,
     public form: FormBuilder,
     private regx: ValidatorsService,
     public page: Location,
@@ -81,10 +84,20 @@ export class EditAchievementComponent implements OnInit {
     if(this.user.capability === 2) { this.isAdmin = true; }
     else { this.router.navigate(['/dashboard/achievements']); return; }
 
+    this.achievementId = this.route.snapshot.params;
+    r = await this.http.achievement(this.route.snapshot.params).toPromise();
+
+    if(r['message']['type'] == 'error') { this.progressBar.classList.add('hidden'); return; }
+
+    this.achievementForm.setValue(_.pick(r.data, ['title', 'description']));
+    if(r.data.thumbnail !== '') { this.image.nativeElement['src'] = r.data.thumbnail; this.hideImage = false; this.image.nativeElement.addEventListener('load', () => { that.progressBar.classList.add('hidden'); }); }
+
     /**
      * @description Hide Progress Bar When Page is Loaded.
      */
     this.progressBar.classList.add('hidden');
+
+    console.log(this.achievementId, r);
 
   }
 

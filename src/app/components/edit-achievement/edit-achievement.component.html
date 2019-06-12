@@ -101,7 +101,7 @@
 
               <!-- Publish or Save button column for desktop -->
               <div class="col inline" *ngIf="!mobileQuery.matches" [ngClass]="{'right': mobileQuery.matches}">
-                <button [disabled]="disableClick" mat-raised-button type="submit" color="primary"> Create </button>
+                <button [disabled]="disableClick" mat-raised-button type="submit" color="primary"> Update </button>
               </div>
 
               <!-- Back button column for desktop or mobile -->
@@ -117,7 +117,7 @@
 
               <!-- Publish or Save button column for mobile -->
               <div class="col inline" *ngIf="mobileQuery.matches" [ngClass]="{'right': mobileQuery.matches}">
-                <button [disabled]="disableClick" mat-raised-button type="submit" color="primary"> Create </button>
+                <button [disabled]="disableClick" mat-raised-button type="submit" color="primary"> Update </button>
               </div>
 
             </div>

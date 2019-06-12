@@ -194,7 +194,7 @@ export class HttpService {
   }
 
   achievement(param: any): Observable<HttpResponse<any>> {
-    let url = this.apiurl + '/achievement/' + param.id;
+    let url = this.apiurl + '/achievement/' + param._id;
 
     return this.http.get<any>(url, this.option({ 'Content-Type':  'application/json' })).pipe(
       tap(message => message),
