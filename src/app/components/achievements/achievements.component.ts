@@ -174,5 +174,14 @@ export class AchievementsComponent implements OnInit {
 
     this.router.navigate(['/dashboard/achievements/create']);
   }
+
+  visitDetails(_id: number) {
+    /**
+     * @description Show Progress Bar When Page is Loading.
+     */
+    this.progressBar.classList.remove('hidden');
+
+    this.router.navigate([`/dashboard/achievements/edit/${_id}`]);
+  }
 }
 

@@ -98,7 +98,7 @@
             <div class="wrap flex-container">
 
               <!-- achievement thumbnail -->
-              <div class="flex p-10 c-pointer" *ngIf="!mobileQuery.matches" [routerLink]="'/dashboard/achievements/edit/' + a._id">
+              <div class="flex p-10 c-pointer" *ngIf="!mobileQuery.matches" (click)="visitDetails(a._id);">
                 <img alt="missing logo" class="achievement-thumbnail"
                 [defaultImage]="image.defaultUrl"
                 [lazyLoad]="a.thumbnail || image.defaultUrl"
@@ -106,7 +106,7 @@
               </div>
 
               <!-- achievement description -->
-              <div class="col p-10 flex-container v-center h-left c-pointer" [routerLink]="'/dashboard/achievements/edit/' + a._id" [ngClass]="!mobileQuery.matches ? '' : 'w100'">
+              <div class="col p-10 flex-container v-center h-left c-pointer" (click)="visitDetails(a._id);" [ngClass]="!mobileQuery.matches ? '' : 'w100'">
                 <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <h3 class="t-red font-16"> {{ a?.title | titlecase }} </h3> </div>
                 <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <span class="font-Montserrat font-12"> {{ a?.description }} </span> </div>
               </div>

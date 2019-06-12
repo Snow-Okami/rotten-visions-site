@@ -1,3 +1,133 @@
-<p>
-  edit-achievement works!
-</p>
+<div class="content-wrapper">
+  <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
+
+    <div class="row">
+      <div class="col w100">
+        
+        <form #achievementFormElement (ngSubmit)="editOrCreate($event);" [formGroup]="achievementForm">
+
+          <!-- Enter or Select post details row -->
+          <div class="row">
+
+            <!-- Post details section column -->
+            <div class="col w60">
+              <!-- 
+              Email input field with Regular Expression updated validation checking.
+              -->
+              <div class="row">
+                <div class="row">
+                  <h2 class="heading c-red"> Enter achievement details </h2>
+                </div>
+
+                <!-- Title input text row -->
+                <div class="row">
+                  <mat-form-field class="contact-input" appearance="outline">
+                    <mat-label> Enter achievement title </mat-label>
+                    <input matInput placeholder="eg.: Shot on head" autocomplete="off" formControlName="title" required>
+                    <mat-error *ngIf="achievementForm.controls.title.hasError('invalid_characters')">
+                      Minimum 1 word & no space at the begining.
+                    </mat-error>
+                    <mat-error *ngIf="achievementForm.controls.title.hasError('required')">
+                      Title is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <!-- Description text area row -->
+                <div class="row">
+                  <mat-form-field class="contact-input textarea" appearance="outline">
+                    <mat-label> Enter achievement description </mat-label>
+                    <textarea [style.minHeight.px]="!mobileQuery.matches ? 200 : 90" matInput #message matTextareaAutosize minlength="10" maxlength="32768" placeholder="eg.: Kill atleast 2 opponent..." required formControlName="description"></textarea>
+                    <mat-hint align="start" *ngIf="!mobileQuery.matches"><strong>Don't disclose personal info</strong> </mat-hint>
+                    <mat-hint align="start" *ngIf="mobileQuery.matches"><strong>It's public</strong> </mat-hint>
+                    <mat-hint align="end">{{message.value.length}} / 32768</mat-hint>
+                    <mat-error *ngIf="achievementForm.controls.description.hasError('minlength')">
+                      Minimum 10 characters.
+                    </mat-error>
+                    <mat-error *ngIf="achievementForm.controls.description.hasError('invalid_description') && !achievementForm.controls.description.hasError('minlength')">
+                      Invalid character at the begining. Minimum 1 word.
+                    </mat-error>
+                    <mat-error *ngIf="achievementForm.controls.description.hasError('required')">
+                      Description is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col w40">
+              <div class="m-l-50">
+  
+                <div class="row">
+  
+                  <!-- Image heading container -->
+                  <div class="row">
+                    <h2 class="heading c-red"> {{ mobileQuery.matches ? 'Click to add image here' : 'Drag & drop image here' }} </h2>
+                  </div>
+  
+                  <!-- Image Container -->
+                  <div class="row">
+                    <div class="drop-image-cover">
+                      <input type="file" class="drop-file" #dropFile (change)="showImage($event)" [ngClass]="{'hidden': !hideImage}">
+                      <img src="" alt="Image preview..." #dropImage [ngClass]="{'hidden': hideImage}" class="drop-image">
+                      <img src="/assets/logo/close.png" alt="Missing close!" class="drop-image-close" [ngClass]="{'hidden': hideImage}" (click)="removeImage()">
+                    </div>
+                  </div>
+
+                  <!-- Image requirement description row -->
+                  <div class="row">
+                    <h2 class="heading c-red"> Notes </h2>
+                    <div class="row">
+                      <ul class="default">
+                        <li> Choose 16:9 image dimention for best view </li>
+                        <li> Maximum file size is 5.0MB </li>
+                        <li> No image will be shown when not uploaded </li>
+                      </ul>
+                    </div>
+                  </div>
+  
+                </div>
+  
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <!-- Publish or Save button column for mobile and desktop -->
+            <div class="col w100 inline">
+
+              <!-- Publish or Save button column for desktop -->
+              <div class="col inline" *ngIf="!mobileQuery.matches" [ngClass]="{'right': mobileQuery.matches}">
+                <button [disabled]="disableClick" mat-raised-button type="submit" color="primary"> Create </button>
+              </div>
+
+              <!-- Back button column for desktop or mobile -->
+              <div class="col inline" [ngClass]="{'right': mobileQuery.matches}">
+                <div class="m-l-10 force">
+
+                  <button [disabled]="disableClick" mat-stroked-button type="button" color="primary" (click)="this.page.back();">
+                    <mat-icon aria-label="Example icon-button with a heart icon"> chevron_left </mat-icon>
+                  </button>
+
+                </div>
+              </div>
+
+              <!-- Publish or Save button column for mobile -->
+              <div class="col inline" *ngIf="mobileQuery.matches" [ngClass]="{'right': mobileQuery.matches}">
+                <button [disabled]="disableClick" mat-raised-button type="submit" color="primary"> Create </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</div>
