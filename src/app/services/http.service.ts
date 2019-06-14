@@ -230,7 +230,7 @@ export class HttpService {
   }
 
   updateUsersInAchievement(param: any, data: any): Observable<HttpResponse<any>> {
-    let url = this.apiurl + '/updateUsersInAchievement/' + param.id;
+    let url = this.apiurl + '/updateUsersInAchievement/' + param._id;
 
     return this.http.put<any>(url, data, this.option({ 'Content-Type':  'application/json' })).pipe(
       tap(message => message),
@@ -239,7 +239,7 @@ export class HttpService {
   }
 
   deleteUserFromAchievement(param: any, data: any): Observable<HttpResponse<any>> {
-    let url = this.apiurl + '/deleteUserFromAchievement/' + param.id;
+    let url = this.apiurl + '/deleteUserFromAchievement/' + param._id;
 
     return this.http.put<any>(url, data, this.option({ 'Content-Type':  'application/json' })).pipe(
       tap(message => message),

@@ -55,7 +55,7 @@ export class AchievementsComponent implements OnInit {
   @ViewChild('achvUpFormElem') achvUpFormElem: ElementRef;
 
   public achvUpForm = new FormGroup({
-    id: new FormControl({ value: '', disabled: false }, [ Validators.required ]),
+    _id: new FormControl({ value: '', disabled: false }, [ Validators.required ]),
     email: new FormControl({ value: '', disabled: false }, [ Validators.required ])
   });
 
@@ -128,9 +128,9 @@ export class AchievementsComponent implements OnInit {
     let r: any = await this.http.achievement(this.achvUpForm.value).toPromise();
     if(r.message.type === 'error') { this.resetForm(false); this.progressBar.classList.add('hidden'); this.action.openSnackBarComponent(r.message.text, 'error'); return; }
 
-    let a: any = _.find(this.achievements, {_id: this.achvUpForm.value.id});
+    let a: any = _.find(this.achievements, {_id: this.achvUpForm.value._id});
     a.users = r.data.users;
-    this.achvUpForm.setValue({id: '', email: ''});
+    this.achvUpForm.setValue({_id: '', email: ''});
 
     this.resetForm(false);
     this.progressBar.classList.add('hidden'); 
@@ -157,9 +157,9 @@ export class AchievementsComponent implements OnInit {
     let r: any = await this.http.achievement(this.achvUpForm.value).toPromise();
     if(r.message.type === 'error') { this.resetForm(false); this.progressBar.classList.add('hidden'); this.action.openSnackBarComponent(r.message.text, 'error'); return; }
 
-    let a: any = _.find(this.achievements, {_id: this.achvUpForm.value.id});
+    let a: any = _.find(this.achievements, {_id: this.achvUpForm.value._id});
     a.users = r.data.users;
-    this.achvUpForm.setValue({id: '', email: ''});
+    this.achvUpForm.setValue({_id: '', email: ''});
 
     this.resetForm(false);
     this.progressBar.classList.add('hidden'); 
