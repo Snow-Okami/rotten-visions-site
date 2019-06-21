@@ -7,6 +7,19 @@ const routes: Routes = [
   {
     path: '',
     component: NewsComponent
+  },
+  {
+    path: 'create',
+    loadChildren: '../create-news/create-news.module#CreateNewsModule'
+  },
+  {
+    path: 'edit/:_id',
+    loadChildren: '../edit-news/edit-news.module#EditNewsModule'
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: '/dashboard/news'
   }
 ];
 

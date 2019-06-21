@@ -1,3 +1,46 @@
-<p>
-  news works!
-</p>
+<div class="content-wrapper">
+  <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
+
+    <!-- Create Post Button -->
+    <button *ngIf="isAdmin" (click)="visitCreate()" mat-fab class="b-r-btn" matTooltip="Create New" matTooltipPosition="before">
+      <mat-icon aria-label="Create new news icon">add</mat-icon>
+    </button>
+
+    <!-- ALL POSTS APPEARS HERE -->
+    <div class="row">
+      <div class="col w70">
+        <div class="news-tab"> ALL NEWS </div>
+        <mat-divider></mat-divider>
+
+        <!-- Repeat should be here -->
+        <ul [@openClose]="news.length ? 'closed' : 'open'">
+          <li class="row pg-bg">
+            <div class="col w100">
+              <p class="t-al-center"> {{updateText}} </p>
+            </div>
+          </li>
+          <li class="row" *ngIf="loadingBar">
+            <div class="col w100">
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </div>
+          </li>
+        </ul>
+
+        <ul [@openClose]="!news.length ? 'closed' : 'open'">
+          <li class="col flex-container w100" *ngFor="let n of news; index as i;">
+            <div class="wrap flex-container">
+
+              <!-- achievement description -->
+              <div class="col p-t-10 p-b-10 flex-container v-center h-left c-pointer" (click)="visitDetails(n._id);" [ngClass]="!mobileQuery.matches ? '' : 'w100'">
+                <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <h3 class="t-red font-16"> {{ n?.title | titlecase }} </h3> </div>
+                <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <span class="font-Montserrat font-12"> {{ n?.content }} </span> </div>
+              </div>
+
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>

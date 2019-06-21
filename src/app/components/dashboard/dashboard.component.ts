@@ -25,7 +25,8 @@ export class DashboardComponent {
     { nav: 'Achievements', url: '/dashboard/achievements' },
     { nav: 'Games', url: '/dashboard/games' },
     { nav: 'Messages', url: '/dashboard/messages' },
-    { nav: 'Updates', url: '/dashboard/updates' }
+    { nav: 'Updates', url: '/dashboard/updates' },
+    { nav: 'News', url: '/dashboard/news' }
   ];
   private _mobileQueryListener: () => void;
 
