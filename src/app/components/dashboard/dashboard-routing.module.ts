@@ -33,6 +33,10 @@ const routes: Routes = [
         loadChildren: '../messages/messages.module#MessagesModule'
       },
       {
+        path: 'news',
+        loadChildren: '../news/news.module#NewsModule'
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: '/dashboard/updates'
