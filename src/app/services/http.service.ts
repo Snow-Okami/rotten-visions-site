@@ -305,6 +305,15 @@ export class HttpService {
     );
   }
 
+  createNews(data: any): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/news';
+
+    return this.http.post<any>(url, data, this.option({ 'Content-Type':  'application/json' })).pipe(
+      tap(message => message),
+      catchError(this.handleError('create news', {}))
+    );
+  }
+
   news(): Observable<HttpResponse<any>> {
     let url = this.apiurl + '/allnews';
 

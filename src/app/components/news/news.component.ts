@@ -104,7 +104,12 @@ export class NewsComponent implements OnInit {
   }
 
   visitCreate() {
+    /**
+     * @description Show Progress Bar When Page is Loading.
+     */
+    this.progressBar.classList.remove('hidden');
 
+    this.router.navigate(['/dashboard/news/create']);
   }
 
   visitDetails(_id: number) {
