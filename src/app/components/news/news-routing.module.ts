@@ -13,6 +13,10 @@ const routes: Routes = [
     loadChildren: '../create-news/create-news.module#CreateNewsModule'
   },
   {
+    path: 'view/:_id',
+    loadChildren: '../view-news/view-news.module#ViewNewsModule'
+  },
+  {
     path: 'edit/:_id',
     loadChildren: '../edit-news/edit-news.module#EditNewsModule'
   },

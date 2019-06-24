@@ -10,6 +10,7 @@ import {
   transition,
   // ...
 } from '@angular/animations';
+
 import * as _ from 'lodash';
 
 import { ActionsService } from '../../services/actions.service';
@@ -99,7 +100,8 @@ export class NewsComponent implements OnInit {
     this.progressBar.classList.add('hidden');
 
     r = await this.http.news().toPromise();
-    this.news = r['data'];
+    this.news = _.map(r['data'], (d) => { d.content = d.content.length > 800 ? d.content.slice(0, 800) + '...' : d.content; return d; });
+
     this.loadingBar = false;
   }
 
@@ -118,7 +120,7 @@ export class NewsComponent implements OnInit {
      */
     this.progressBar.classList.remove('hidden');
 
-    this.router.navigate([`/dashboard/news/edit/${_id}`]);
+    this.router.navigate([`/dashboard/news/view/${_id}`]);
   }
 
 }
