@@ -59,6 +59,9 @@ export class NewsComponent implements OnInit {
 
   public news: any = [];
 
+  public imgHeight: any;
+  public window: any;
+
   constructor(
     public store: StoreService,
     public action: ActionsService,
@@ -75,12 +78,15 @@ export class NewsComponent implements OnInit {
   private _mobileQueryListener: () => void;
 
   ngOnInit() {
+    this.window = window;
     this.progressBar = document.getElementsByClassName('progressbar')[0];
   }
 
   async ngAfterContentInit() {}
 
   async ngAfterViewInit() {
+    this.imgHeight = this.mobileQuery.matches ? ((this.window.innerWidth - 32) / 16) * 9 : '198';
+
     this.user = this.store.user.data;
     let r: any;
 

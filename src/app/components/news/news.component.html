@@ -28,13 +28,13 @@
 
         <ul [@openClose]="!news.length ? 'closed' : 'open'">
           <li class="col flex-container w100" *ngFor="let n of news; index as i;">
-            <div class="wrap flex-container">
+            <div class="wrap flex-container o-flow-hidden" [style.height.px]="imgHeight">
 
               <!-- achievement description -->
-              <div class="col p-t-10 p-b-10 flex-container v-center h-left c-pointer" (click)="visitDetails(n._id);" [ngClass]="!mobileQuery.matches ? '' : 'w100'">
-                <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <h3 class="t-red font-16"> {{ n?.title | titlecase }} </h3> </div>
+              <div class="col p-t-10 p-b-10 flex-container h-left c-pointer" (click)="visitDetails(n._id);" [ngClass]="!mobileQuery.matches ? '' : 'w100'">
+                <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <div class="row"> <h3 class="c-red font-25"> {{ n?.title | titlecase }} </h3> </div> </div>
                 <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'">
-                  <span [innerHTML]="n?.content" class="writable-update font-Montserrat font-12"></span>
+                  <div class="row"> <span [innerHTML]="n?.content" class="writable-update font-Montserrat"></span> </div>
                 </div>
               </div>
 
@@ -45,6 +45,9 @@
                 </button>
               </div>
 
+            </div>
+            <div class="wrap flex-container">
+              <mat-divider class="w100"></mat-divider>
             </div>
           </li>
         </ul>
