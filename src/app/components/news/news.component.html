@@ -28,7 +28,7 @@
 
         <ul [@openClose]="!news.length ? 'closed' : 'open'">
           <li class="col flex-container w100" *ngFor="let n of news; index as i;">
-            <div class="wrap flex-container o-flow-hidden" [style.height.px]="imgHeight">
+            <div class="wrap flex-container" > <!--  class="o-flow-hidden" [style.height.px]="imgHeight" -->
 
               <!-- achievement description -->
               <div class="col p-t-10 p-b-10 flex-container h-left c-pointer" (click)="visitDetails(n._id);" [ngClass]="!mobileQuery.matches ? '' : 'w100'">
