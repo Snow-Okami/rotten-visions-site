@@ -322,4 +322,13 @@ export class HttpService {
       catchError(this.handleError('news', {}))
     );
   }
+
+  newsDetails(param: any): Observable<HttpResponse<any>> {
+    let url = this.apiurl + '/news/' + param._id;
+
+    return this.http.get<any>(url, this.option({ 'Content-Type':  'application/json' })).pipe(
+      tap(message => message),
+      catchError(this.handleError('news', {}))
+    );
+  }
 }

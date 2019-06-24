@@ -1,3 +1,57 @@
-<p>
-  view-news works!
-</p>
+<div class="content-wrapper" [ngClass]="{'hidden': hiddenContent}">
+
+  <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
+
+    <!-- Edit news button -->
+    <button *ngIf="isAdmin" mat-fab class="b-r-btn" matTooltip="Edit news" matTooltipPosition="before" (click)="editThisUpdate(news?._id);">
+      <mat-icon aria-label="Update the news icon">edit</mat-icon>
+    </button>
+
+    <!-- Back to news -->
+    <button mat-fab class="b-l-btn" matTooltip="Back to news" matTooltipPosition="before" (click)="backToNews();">
+      <mat-icon aria-label="Back to all news">arrow_back_ios</mat-icon>
+    </button>
+
+    <div class="row">
+
+      <div class="col w60 m-b-30" [ngClass]="{'mobile': mobileQuery.matches}">
+
+        <div class="image-wrapper" [ngClass]="{'p-15': !mobileQuery.matches}">
+          <div class="row">
+        
+            <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
+          
+              <div class="image-title p-b-10">
+              
+                <div class="row">
+                  <div class="title font-30"> {{news?.title || 'Loading title...'}} </div>
+                </div>
+                <div class="date p-b-6 p-t-6 font-12"> Posted on: {{news?.createdAt | date}} </div>
+                <!-- <div class="tag p-b-10 p-t-10">
+                  <div class="col inline tag-item m-r-5 p-t-3 p-b-3 p-l-5 p-r-5 font-10" *ngFor="let t of post?.tags"> {{t}} </div>
+                </div> -->
+    
+              </div>
+                    
+            </div>
+      
+          </div>
+    
+        </div>
+
+        <div class="desc-wrapper" [ngClass]="{'p-15': !mobileQuery.matches}">
+          <div class="row">
+    
+            <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
+              <span [innerHTML]="news?.content" class="writable-update font-light font-18"></span>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

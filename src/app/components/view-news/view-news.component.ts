@@ -10,6 +10,8 @@ import { ActionsService } from '../../services/actions.service';
 import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
 
+import * as _ from 'lodash';
+
 let that: any;
 
 @Component({
@@ -26,17 +28,78 @@ export class ViewNewsComponent implements OnInit {
   public loadingBar: boolean = true;
   private progressBar: Element;
 
-  constructor() {}
+  public user: User;
+
+  public isAdmin: boolean = false;
+
+  public news: any;
+
+  public mobileQuery: MediaQueryList;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    public media: MediaMatcher,
+    private http: HttpService,
+    public store: StoreService
+  ) {
+    this.mobileQuery = media.matchMedia('(max-width: 770px)');
+    // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+
+  private _mobileQueryListener: () => void;
 
   ngOnInit() {
     this.progressBar = document.getElementsByClassName('progressbar')[0];
   }
 
   async ngAfterViewInit() {
+
+  }
+
+  async ngAfterContentInit() {
+    this.user = this.store.user.data;
+    let r: any;
+
+    if(!this.store.user.synced) {
+      let email = atob(this.store.getCookie('ps-u-a-p'));
+      r = await this.http.user(email).toPromise();
+      if(r['message']['type'] !== 'error') { this.user = r['data']; }
+    }
+
+    if(this.user.capability === 2) {
+      this.isAdmin = true;
+    }
+
+        /**
+     * @description reroute after router param changes.
+     */
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      this.progressBar.classList.remove('hidden');
+      return false;
+    }
+
+    let params = this.route.snapshot.params;
+    r = await this.http.newsDetails(params).toPromise();
+    this.news = r['data'];
     /**
      * @description Hide Progress Bar When Page is Loaded.
      */
     this.progressBar.classList.add('hidden');
+  }
+
+  backToNews() {
+    /**
+     * @description Show Progress Bar When Page is Loading.
+     */
+    this.progressBar.classList.remove('hidden');
+
+    this.router.navigate(['/dashboard/news']);
+  }
+
+  async editThisUpdate(_id: any) {
+
   }
 
 }
