@@ -33,7 +33,9 @@
               <!-- achievement description -->
               <div class="col p-t-10 p-b-10 flex-container v-center h-left c-pointer" (click)="visitDetails(n._id);" [ngClass]="!mobileQuery.matches ? '' : 'w100'">
                 <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <h3 class="t-red font-16"> {{ n?.title | titlecase }} </h3> </div>
-                <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <span class="font-Montserrat font-12"> {{ n?.content }} </span> </div>
+                <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'">
+                  <span [innerHTML]="n?.content" class="writable-update font-Montserrat font-12"></span>
+                </div>
               </div>
 
               <!-- copy achievement id -->
