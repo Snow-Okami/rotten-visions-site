@@ -113,7 +113,12 @@ export class NewsComponent implements OnInit {
   }
 
   visitDetails(_id: number) {
-    console.log('visit detected', _id);
+    /**
+     * @description Show Progress Bar When Page is Loading.
+     */
+    this.progressBar.classList.remove('hidden');
+
+    this.router.navigate([`/dashboard/news/edit/${_id}`]);
   }
 
 }

@@ -36,6 +36,13 @@
                 <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <span class="font-Montserrat font-12"> {{ n?.content }} </span> </div>
               </div>
 
+              <!-- copy achievement id -->
+              <div class="col p-10 flex-container v-center h-left" *ngIf="isAdmin">
+                <button mat-icon-button (click)="action.copyToClipboard(n?._id);" matTooltip="Copy" matTooltipPosition="after">
+                  <mat-icon aria-label="icon-button with a heart icon"> file_copy </mat-icon>
+                </button>
+              </div>
+
             </div>
           </li>
         </ul>
