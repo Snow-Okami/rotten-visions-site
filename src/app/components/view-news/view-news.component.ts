@@ -72,7 +72,7 @@ export class ViewNewsComponent implements OnInit {
       this.isAdmin = true;
     }
 
-        /**
+    /**
      * @description reroute after router param changes.
      */
     this.router.routeReuseStrategy.shouldReuseRoute = () => {
@@ -99,7 +99,12 @@ export class ViewNewsComponent implements OnInit {
   }
 
   async editThisUpdate(_id: any) {
+    /**
+     * @description Show Progress Bar When Page is Loading.
+     */
+    this.progressBar.classList.remove('hidden');
 
+    this.router.navigate([`/dashboard/news/edit/${_id}`]);
   }
 
 }
