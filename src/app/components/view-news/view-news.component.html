@@ -50,6 +50,19 @@
         </div>
       </div>
 
+      <div class="col w40" *ngIf="!mobileQuery.matches">
+        <div class="p-l-30 ">
+  
+          <div class="sticky-item">
+            <perfect-scrollbar #allnews style="position: relative;" [config]="config" [style.height.px]="window?.innerHeight - 100"></perfect-scrollbar>
+          </div>
+        
+          <div class="item-fixer"></div>
+
+        </div>
+
+      </div>
+
     </div>
 
   </div>

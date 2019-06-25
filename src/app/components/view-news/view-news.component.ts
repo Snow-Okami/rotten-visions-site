@@ -36,6 +36,14 @@ export class ViewNewsComponent implements OnInit {
 
   public mobileQuery: MediaQueryList;
 
+  public window: any;
+  private stickyItem: any;
+  private fixerItem: any;
+  private fixerTop: number = 63;
+
+  public config: PerfectScrollbarConfigInterface = { };
+  @ViewChild('allnews') allnews?: PerfectScrollbarComponent;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
