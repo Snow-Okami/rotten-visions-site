@@ -98,8 +98,31 @@ export class EditNewsComponent implements OnInit {
     this.progressBar.classList.add('hidden');
   }
 
-  async editOrCreate(e: CustomEvent) {
-    console.log(e);
+  async editOrCreate(e: Event) {
+    if(this.newsForm.invalid) { this.action.openSnackBarComponent('Invalid form detected!', 'warning'); return; }
+
+    /**
+     * @description Disable buttons, inputs & enable loader.
+     */
+    this.disableClick = true;
+    this.progressBar.classList.remove('hidden');
+
+    let d = this.newsForm.value;
+    // this.resetForm();
+
+    let r: any = await this.http.updateNews(this.route.snapshot.params, d).toPromise();
+    if(r['message']['type'] !== 'error') { this.action.openSnackBarComponent('News updated successfully!', 'success'); }
+    else { this.action.openSnackBarComponent(r['message']['text'], 'error'); }
+
+    this.disableClick = false;
+    this.progressBar.classList.add('hidden');
+  }
+
+  resetForm(): void {
+    /**
+     * @description Set form fields empty.
+     */
+    this.newsFormElement.nativeElement.reset();
   }
 
 }
