@@ -315,7 +315,7 @@ export class HttpService {
   }
 
   news(): Observable<HttpResponse<any>> {
-    let url = this.apiurl + '/allnews';
+    let url = `${this.apiurl}/allnews?sort=-1`;
 
     return this.http.get<any>(url, this.option({ 'Content-Type':  'application/json' })).pipe(
       tap(message => message),

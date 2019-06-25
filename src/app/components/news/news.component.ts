@@ -126,7 +126,7 @@ export class NewsComponent implements OnInit {
      */
     this.progressBar.classList.remove('hidden');
 
-    this.router.navigate([`/dashboard/news/view/${_id}`]);
+    this.router.navigate([`/dashboard/news/view/${_id}`, {}], { queryParams: {} });
   }
 
 }
