@@ -225,11 +225,8 @@ export class UpdatesComponent implements OnInit {
     this.http.posts(option)
     .subscribe(resp => {
       if(resp['message']['type'] !== 'error') {
-        _.forEach(resp['data'], (i) => {
-          i.tags = i.tags ? JSON.parse(i.tags) : [];
-        });
-
-        this.updates = _.concat(this.updates, Object.assign([], resp['data']));
+        _.forEach(resp['data'], (i) => { i.tags = i.tags ? JSON.parse(i.tags) : []; });
+        this.updates = _.uniqBy(_.concat(this.updates, Object.assign([], resp['data'])), '_id');
       } else {
         /**
          * @description When no updates available.
