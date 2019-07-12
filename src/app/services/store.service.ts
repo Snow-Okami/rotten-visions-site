@@ -10,7 +10,7 @@ import { User } from '../interfaces/user';
 export class StoreService {
   private toolbarSource = new BehaviorSubject('');
   public hideMatToolbar = this.toolbarSource.asObservable();
-  
+
   /**
    * @description domain update with production type.
    */

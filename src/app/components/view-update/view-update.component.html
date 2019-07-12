@@ -100,67 +100,30 @@
                 <li class="comment-box p-b-10 p-t-10" *ngFor="let com of post?.comments; index as i;">
   
                   <div class="comment-container">
-                    <div class="user-title p-b-5 p-t-5 font-22"> {{com.createdBy.username | titlecase}} </div>
-                    <div class="comment-time p-b-5 p-t-5 font-12"> {{com.createdAt | date: 'fullDate'}} </div>
-                    <div class="user-comment font-light p-b-5 p-t-5 font-18"> {{com.text}} </div>
-                  </div>
+
+                    <div class="col w20 inline p-t-5 m-w-65px">
+                      <img alt="missing logo" class="reply-icon"
+                        [defaultImage]="'/assets/logo/person.png'"
+                        [lazyLoad]="com.createdBy?.avatar"
+                        [offset]="image.offset">
+                    </div>
+
+                    <div class="col w80 inline">
+                      <div class="user-title p-b-5 p-t-5 font-22"> {{com.createdBy.username | titlecase}} </div>
+                      <div class="comment-time p-b-5 p-t-5 font-12"> {{com.createdAt | date: 'fullDate'}} </div>
+                      <div class="user-comment font-light p-b-5 p-t-5 font-18"> {{com.text}} </div>
+
+                      <ul class="reply-container">
   
-                  <ul class="reply-container">
-  
-                    <li class="p-b-10 p-t-10">
-                      <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8" (click)="alterForm($event, false);"> Reply </div>
-                      <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8"> Share </div>
-                    </li>
-  
-                    <li class="reply-form hidden p-b-10 p-t-10">
-  
-                      <form class="comment-form" [formGroup]="replyF" (ngSubmit)="replyNow($event, replyF, com);">
-  
-                        <mat-form-field class="w100 textarea" appearance="outline">
-                          <mat-label> Leave your reply </mat-label>
-                          <textarea matInput #reply [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="20" maxlength="800" placeholder="eg.: The above comment is ..." formControlName="text"></textarea>
-                          <mat-error *ngIf="replyF.controls.text.hasError('required')">
-                            Reply is required
-                          </mat-error>
-                          <mat-error *ngIf="replyF.controls.text.hasError('minlength')">
-                            Reply must have 20 characters
-                          </mat-error>
-                          <mat-hint align="end">{{reply.value.length}} / 800</mat-hint>
-                        </mat-form-field>
-          
-                        <div class="row">
-                          <button mat-raised-button type="submit" color="primary"> <mat-icon>send</mat-icon> </button>
-                        </div>
-                      </form>
-  
-                    </li>
-  
-                    <li class="reply-box opacity-q75 p-b-5 p-t-5" *ngFor="let rep of com.replies; index as ri;">
-  
-                      <div class="col w20 inline p-t-5 m-w-65px">
-                        <img alt="missing logo" class="reply-icon"
-                          [defaultImage]="'/assets/logo/person.png'"
-                          [lazyLoad]="rep.createdBy?.avatar"
-                          [offset]="image.offset">
-                      </div>
-  
-                      <div class="col w80 inline">
-                        <div class="reply-wrapper">
-                          <div class="user-title p-b-5 p-t-5 font-22"> {{rep.createdBy.username | titlecase}} </div>
-                          <div class="comment-time p-b-5 p-t-5 font-12"> {{rep.createdAt | date: 'fullDate'}} </div>
-                          <div class="user-comment font-light p-b-5 p-t-5 font-18"> {{rep.text}} </div>
-                          <div class="p-b-5 p-t-10">
-                            <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8" (click)="alterForm($event, true);"> Reply </div>
-                            <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8"> Share </div>
-                          </div>
-                        </div>
-                      </div>
-  
-                      <div class="col w100 hidden">
-                        <div class="reply-form p-b-10 p-t-10">
-  
+                        <li class="p-b-10 p-t-10">
+                          <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8" (click)="alterForm($event, false);"> Reply </div>
+                          <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8"> Share </div>
+                        </li>
+      
+                        <li class="reply-form hidden p-b-10 p-t-10">
+      
                           <form class="comment-form" [formGroup]="replyF" (ngSubmit)="replyNow($event, replyF, com);">
-                              
+      
                             <mat-form-field class="w100 textarea" appearance="outline">
                               <mat-label> Leave your reply </mat-label>
                               <textarea matInput #reply [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="20" maxlength="800" placeholder="eg.: The above comment is ..." formControlName="text"></textarea>
@@ -178,12 +141,61 @@
                             </div>
                           </form>
       
-                        </div>
-                      </div>
-  
-                    </li>
-  
-                  </ul>
+                        </li>
+      
+                        <li class="reply-box opacity-q75 p-b-5 p-t-5" *ngFor="let rep of com.replies; index as ri;">
+      
+                          <div class="col w20 inline p-t-5 m-w-65px">
+                            <img alt="missing logo" class="reply-icon"
+                              [defaultImage]="'/assets/logo/person.png'"
+                              [lazyLoad]="rep.createdBy?.avatar"
+                              [offset]="image.offset">
+                          </div>
+      
+                          <div class="col w80 inline">
+                            <div class="reply-wrapper">
+                              <div class="user-title p-b-5 p-t-5 font-22"> {{rep.createdBy.username | titlecase}} </div>
+                              <div class="comment-time p-b-5 p-t-5 font-12"> {{rep.createdAt | date: 'fullDate'}} </div>
+                              <div class="user-comment font-light p-b-5 p-t-5 font-18"> {{rep.text}} </div>
+                              <div class="p-b-5 p-t-10">
+                                <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8" (click)="alterForm($event, true);"> Reply </div>
+                                <div class="col inline pointer font-10 font-f-roboto font-w-400 op-5 p-r-8"> Share </div>
+                              </div>
+                            </div>
+                          </div>
+      
+                          <div class="col w100 hidden">
+                            <div class="reply-form p-b-10 p-t-10">
+      
+                              <form class="comment-form" [formGroup]="replyF" (ngSubmit)="replyNow($event, replyF, com);">
+                                  
+                                <mat-form-field class="w100 textarea" appearance="outline">
+                                  <mat-label> Leave your reply </mat-label>
+                                  <textarea matInput #reply [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="20" maxlength="800" placeholder="eg.: The above comment is ..." formControlName="text"></textarea>
+                                  <mat-error *ngIf="replyF.controls.text.hasError('required')">
+                                    Reply is required
+                                  </mat-error>
+                                  <mat-error *ngIf="replyF.controls.text.hasError('minlength')">
+                                    Reply must have 20 characters
+                                  </mat-error>
+                                  <mat-hint align="end">{{reply.value.length}} / 800</mat-hint>
+                                </mat-form-field>
+                  
+                                <div class="row">
+                                  <button mat-raised-button type="submit" color="primary"> <mat-icon>send</mat-icon> </button>
+                                </div>
+                              </form>
+          
+                            </div>
+                          </div>
+      
+                        </li>
+      
+                      </ul>
+
+                    </div>
+
+                  </div>
   
                   <div class="row">
                     <mat-divider></mat-divider>
