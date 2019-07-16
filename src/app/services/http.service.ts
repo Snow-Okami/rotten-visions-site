@@ -247,6 +247,15 @@ export class HttpService {
     );
   }
 
+  games(): Observable<HttpResponse<any>> {
+    let url = `${this.apiurl}/games?limit=100&skip=0&sort=-1&populate=achievements&select=title,subtitle,achievements,banner`;
+
+    return this.http.get<any>(url, this.option({ 'Content-Type':  'application/json' })).pipe(
+      tap(message => message),
+      catchError(this.handleError('games', {}))
+    );
+  }
+
   /**
    * @description GET response from the server.
    */

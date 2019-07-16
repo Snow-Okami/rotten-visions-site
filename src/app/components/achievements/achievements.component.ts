@@ -63,6 +63,8 @@ export class AchievementsComponent implements OnInit {
 
   public achievements: any = [];
 
+  public games: any = [];
+
   constructor(
     public store: StoreService,
     public action: ActionsService,
@@ -106,8 +108,8 @@ export class AchievementsComponent implements OnInit {
     let cu = await this.http.countUser().toPromise();
     this.totalUser = cu['data'];
 
-    let r = await this.http.achievements().toPromise();
-    this.achievements = r['data'];
+    let g = await this.http.games().toPromise();
+    this.games = g['data'];
     this.loadingBar = false;
   }
 
@@ -128,8 +130,8 @@ export class AchievementsComponent implements OnInit {
     let r: any = await this.http.achievement(this.achvUpForm.value).toPromise();
     if(r.message.type === 'error') { this.resetForm(false); this.progressBar.classList.add('hidden'); this.action.openSnackBarComponent(r.message.text, 'error'); return; }
 
-    let a: any = _.find(this.achievements, {_id: this.achvUpForm.value._id});
-    a.users = r.data.users;
+    // let a: any = _.find(this.achievements, {_id: this.achvUpForm.value._id});
+    // a.users = r.data.users;
     this.achvUpForm.setValue({_id: '', email: ''});
 
     this.resetForm(false);
@@ -157,8 +159,8 @@ export class AchievementsComponent implements OnInit {
     let r: any = await this.http.achievement(this.achvUpForm.value).toPromise();
     if(r.message.type === 'error') { this.resetForm(false); this.progressBar.classList.add('hidden'); this.action.openSnackBarComponent(r.message.text, 'error'); return; }
 
-    let a: any = _.find(this.achievements, {_id: this.achvUpForm.value._id});
-    a.users = r.data.users;
+    // let a: any = _.find(this.achievements, {_id: this.achvUpForm.value._id});
+    // a.users = r.data.users;
     this.achvUpForm.setValue({_id: '', email: ''});
 
     this.resetForm(false);
