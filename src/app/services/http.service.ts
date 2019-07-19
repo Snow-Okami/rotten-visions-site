@@ -247,8 +247,8 @@ export class HttpService {
     );
   }
 
-  games(): Observable<HttpResponse<any>> {
-    let url = `${this.apiurl}/games?limit=100&skip=0&sort=-1&populate=achievements&select=title,subtitle,achievements,banner`;
+  games(query: string): Observable<HttpResponse<any>> {
+    let url = `${this.apiurl}/games${query}`;
 
     return this.http.get<any>(url, this.option({ 'Content-Type':  'application/json' })).pipe(
       tap(message => message),

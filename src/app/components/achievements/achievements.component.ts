@@ -108,7 +108,7 @@ export class AchievementsComponent implements OnInit {
     let cu = await this.http.countUser().toPromise();
     this.totalUser = cu['data'];
 
-    let g = await this.http.games().toPromise();
+    let g = await this.http.games('?limit=100&skip=0&sort=-1&populate=achievements&select=title,subtitle,achievements,banner').toPromise();
     this.games = g['data'];
     this.loadingBar = false;
   }

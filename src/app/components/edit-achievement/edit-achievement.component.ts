@@ -34,6 +34,8 @@ export class EditAchievementComponent implements OnInit {
 
   public isAdmin: boolean = false;
 
+  public games = [];
+
   public achievementForm: FormGroup;
   @ViewChild('achievementFormElement') achievementFormElement: ElementRef
 
@@ -59,6 +61,7 @@ export class EditAchievementComponent implements OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
 
     this.achievementForm = form.group({
+      game: new FormControl({ value: '', disabled: false }, [ Validators.required ]),
       title: new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.title ]),
       description: new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.description ])
     });
@@ -86,11 +89,13 @@ export class EditAchievementComponent implements OnInit {
     if(this.user.capability === 2) { this.isAdmin = true; }
     else { this.router.navigate(['/dashboard/achievements']); return; }
 
-    r = await this.http.achievement(this.route.snapshot.params).toPromise();
+    r = await this.http.games('?limit=100&skip=0&sort=-1&select=title').toPromise();
+    if(r['message']['type'] !== 'error') { this.games = r['data']; }
 
+    r = await this.http.achievement(this.route.snapshot.params).toPromise();
     if(r['message']['type'] == 'error') { this.progressBar.classList.add('hidden'); return; }
 
-    this.achievementForm.setValue(_.pick(r.data, ['title', 'description']));
+    this.achievementForm.setValue(_.pick(r.data, ['game', 'title', 'description']));
     if(r.data.thumbnail !== '') { this.image.nativeElement['src'] = r.data.thumbnail; this.hideImage = false; this.image.nativeElement.addEventListener('load', () => { that.progressBar.classList.add('hidden'); }); }
 
     /**
@@ -157,6 +162,7 @@ export class EditAchievementComponent implements OnInit {
     /**
      * @description REQUIRED FromData Fields.
      */
+    form.append('game', this.achievementForm.value.game);
     form.append('title', this.achievementForm.value.title);
     form.append('description', _.split(_.trim(this.achievementForm.value.description), '\n').join('<br>'));
 

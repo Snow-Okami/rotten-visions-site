@@ -24,6 +24,21 @@
                   <h2 class="heading c-red"> Enter achievement details </h2>
                 </div>
 
+                <!-- Game input selectbox row -->
+                <div class="row">
+                  <mat-form-field class="contact-input" appearance="outline">
+                    <mat-label> Choose game </mat-label>
+                    <mat-select formControlName="game" required>
+                      <mat-option *ngFor="let game of games" [value]="game._id">
+                        {{ game.title }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="achievementForm.controls.game.hasError('required')">
+                      Game is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
                 <!-- Title input text row -->
                 <div class="row">
                   <mat-form-field class="contact-input" appearance="outline">
