@@ -30,11 +30,11 @@ import { ConfirmComponent } from '../../components/dialogs/confirm/confirm.compo
 /**
  * @description domain update with production type.
  */
-const apiurl = environment.production ? 'https://psynapsus.herokuapp.com' : 'http://localhost:5000';
+const apiurl = environment.production ? 'https://psynapsus.appspot.com' : 'http://localhost:5000';
 /**
- * @description Select domain available only on Heroku.
+ * @description Select domain available only on Google Cloud.
  */
-// const apiurl = 'https://psynapsus.herokuapp.com';
+// const apiurl = 'https://psynapsus.appspot.com';
 const config: SocketIoConfig = { url: apiurl, options: {} };
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
