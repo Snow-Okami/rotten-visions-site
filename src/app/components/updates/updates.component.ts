@@ -45,6 +45,9 @@ export class UpdatesComponent {
   @ViewChild('loadScroll') loadScroll: any;
   @ViewChild('fixedBottom') fixedBottom: any;
 
+  public imgHeight: any;
+  public window: any;
+
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
@@ -61,6 +64,7 @@ export class UpdatesComponent {
   }
 
   ngOnInit() {
+    this.window = window;
     this.store.currentMessage.subscribe(text => this.searchText = text);
     
     /**
@@ -73,9 +77,24 @@ export class UpdatesComponent {
   ngAfterViewInit() {
     document.getElementsByClassName('route-progress-bar')[0].classList.add('hidden');
     window.addEventListener('scroll', this.onScrollDown, false);
+    /**
+     * @description Added window resize event.
+     */
+    this.window.addEventListener('resize', this.isResizing);
+    /**
+     * @description Set custom image height
+     */
+    this.imgHeight = this.mobileQuery.matches ? ((this.window.innerWidth - 32) / 16) * 9 : '198';
   }
 
   private _mobileQueryListener: () => void;
+
+  isResizing(e: any) {
+    /**
+     * @description Set custom image height
+     */
+    that.imgHeight = that.mobileQuery.matches ? ((that.window.innerWidth - 32) / 16) * 9 : '198';
+  }
 
   /**
    * @description Detect scroll direction. Returns true if down or false.
@@ -167,6 +186,7 @@ export class UpdatesComponent {
 
   ngOnDestroy() {
     window.removeEventListener('scroll', that.onScrollDown);
+    this.window.removeEventListener('resize', this.isResizing);
   }
 
   showRouteProgress(e: any) {

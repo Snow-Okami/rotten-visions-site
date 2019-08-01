@@ -20,28 +20,29 @@
     <ul class="default" [@openClose]="!postList.length ? 'closed' : 'open'">
       <li *ngFor="let post of postList | updatefilter: searchText">
         <div class="row chat-view-wrapper" [routerLink]="['/updates/view/' + post.id]" (click)="showRouteProgress($event)">
-          <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w40': true}">
+          <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w40': true}" *ngIf="post.image.length">
             <div class="image-wrapper">
               <div class="row">
                 <img [ngClass]="{'mobile': mobileQuery.matches, 'post-image': true}"
                   [defaultImage]="image.defaultImage"
                   [lazyLoad]="post.image"
                   [offset]="image.offset"
-                  alt="missing image">
+                  alt="missing image"
+                  [style.height.px]="imgHeight">
               </div>
             </div>
           </div>
-          <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w60': true}">
+          <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true}" class="{{ !post.image.length ? 'w100' : 'w60' }}">
             <div class="wrapper">
               <div class="row">
                 <p class="col title"> {{ post.title }} </p>
               </div>
               <div class="row">
                 <!-- {{ post.tags }} -->
-                <p class="col"> {{ post?.comments.length }} comments </p>
+                <p class="col"> {{ post?.comments.length }} {{ post?.comments.length > 1 ? 'comments' : 'comment' }} </p>
               </div>
               <div class="row">
-                <p class="col"> {{ post?.description | trimword: 150 }} </p>
+                <span class="col" [innerHTML]="fixPostLen(post?.description, 150)" class="writable-update"></span>
               </div>
             </div>
           </div>
