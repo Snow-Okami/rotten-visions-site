@@ -28,7 +28,7 @@
 }
 
 mat-toolbar-row {
-  height: 130px;
+  height: 64px;
 }
 
 mat-toolbar-row.mobile {
