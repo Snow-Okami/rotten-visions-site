@@ -13,7 +13,8 @@ export class HttpService {
   /**
    * @description domain update with production type.
    */
-  private apiurl = environment.production ? 'https://psynapsus.appspot.com/api/v1' : 'http://localhost:5000/api/v1';
+  // private apiurl = environment.production ? 'https://psynapsus.appspot.com/api/v1' : 'http://localhost:5000/api/v1';
+  private apiurl = environment.production ? 'https://psynapsus.herokuapp.com/api/v1' : 'http://localhost:5000/api/v1';
   /**
    * @description Select domain available only on Google Cloud.
    */
