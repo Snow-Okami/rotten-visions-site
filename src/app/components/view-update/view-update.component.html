@@ -77,12 +77,12 @@
       
                   <mat-form-field class="w100 textarea" appearance="outline">
                     <mat-label> Leave your comment </mat-label>
-                    <textarea matInput #comment [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="100" maxlength="800" placeholder="eg.: The above post is ..." formControlName="text"></textarea>
+                    <textarea matInput #comment [matTextareaAutosize]="true" [matAutosizeMaxRows]="10" minlength="20" maxlength="800" placeholder="eg.: The above post is ..." formControlName="text"></textarea>
                     <mat-error *ngIf="commentF.controls.text.hasError('required')">
                       Comment is required
                     </mat-error>
                     <mat-error *ngIf="commentF.controls.text.hasError('minlength')">
-                      Comment must have 100 characters
+                      Comment must have 20 characters
                     </mat-error>
                     <mat-hint align="end">{{comment.value.length}} / 800</mat-hint>
                   </mat-form-field>
