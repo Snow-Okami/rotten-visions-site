@@ -102,6 +102,9 @@ export class AchievementsComponent implements OnInit {
     if(this.user.capability === 2) {
       this.isAdmin = true;
     }
+
+    let ac = await this.http.achievements(`?users=${this.store.user.data._id}`).toPromise();
+    console.log('achievements', ac, this.store.user);
   }
 
   async ngAfterViewInit() {
@@ -110,6 +113,7 @@ export class AchievementsComponent implements OnInit {
 
     let g = await this.http.games('?limit=100&skip=0&sort=-1&populate=achievements&select=title,subtitle,achievements,banner').toPromise();
     this.games = g['data'];
+
     this.loadingBar = false;
   }
 
