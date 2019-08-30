@@ -1,7 +1,12 @@
 <div class="content-wrapper">
   <div [ngClass]="{'body': true, 'mobile': mobileQuery.matches}">
 
-    <!-- Create Achievement Button -->
+    <!-- View Own Achievements Button -->
+    <button mat-fab class="t-r-btn" matTooltip="View achievement" matTooltipPosition="before" aria-label="icon-button with an emoji_people icon">
+      <mat-icon aria-label="View own achievements">emoji_people</mat-icon>
+    </button>
+
+    <!-- Create Achievements Button -->
     <button *ngIf="isAdmin" mat-fab class="b-r-btn" matTooltip="Create achievement" matTooltipPosition="before" aria-label="icon-button with an add icon" (click)="visitCreate();">
       <mat-icon aria-label="Create new post icon">add</mat-icon>
     </button>

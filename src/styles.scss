@@ -1049,3 +1049,19 @@ span.writable-update {
     right: 25px;
   }
 }
+
+.t {
+  &-l-btn {
+    position: fixed !important;
+    z-index: 1;
+    top: 80px;
+    left: 25px;
+  }
+
+  &-r-btn {
+    position: fixed !important;
+    z-index: 1;
+    top: 80px;
+    right: 25px;
+  }
+}
