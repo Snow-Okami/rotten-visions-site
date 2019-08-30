@@ -178,6 +178,15 @@ export class AchievementsComponent implements OnInit {
     this.action.openSnackBarComponent('Achievement updated successfully!', 'success');
   }
 
+  viewOwn() {
+    /**
+     * @description Show Progress Bar When Page is Loading.
+     */
+    this.progressBar.classList.remove('hidden');
+
+    this.router.navigate(['/dashboard/achievements/view-own']);
+  }
+
   visitCreate() {
     /**
      * @description Show Progress Bar When Page is Loading.

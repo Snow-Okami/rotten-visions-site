@@ -9,6 +9,10 @@ const routes: Routes = [
     component: AchievementsComponent
   },
   {
+    path: 'view-own',
+    loadChildren: '../view-own-achievements/view-own-achievements.module#ViewOwnAchievementsModule'
+  },
+  {
     path: 'create',
     loadChildren: '../create-achievement/create-achievement.module#CreateAchievementModule'
   },
