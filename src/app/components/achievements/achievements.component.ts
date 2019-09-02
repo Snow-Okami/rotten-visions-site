@@ -103,8 +103,8 @@ export class AchievementsComponent implements OnInit {
       this.isAdmin = true;
     }
 
-    let ac = await this.http.achievements(`?users=${this.store.user.data._id}`).toPromise();
-    console.log('achievements', ac, this.store.user);
+    // let ac = await this.http.achievements(`?users=${this.store.user.data._id}`).toPromise();
+    // console.log('achievements', ac, this.store.user);
   }
 
   async ngAfterViewInit() {
