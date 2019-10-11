@@ -8,6 +8,8 @@ import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
 import { ValidatorsService } from '../../services/validators.service';
 
+import { environment } from '../../../environments/environment';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -36,9 +38,9 @@ export class LoginComponent {
   public firstName = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.name ]);
   public lastName = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.name ]);
   public username = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.username ]);
-  public email = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.email ]);
+  public email = new FormControl({ value: environment.production ? '' : 'abhisek.dutta.507@gmail.com', disabled: false }, [ Validators.required, this.regx.email ]);
   public confirmEmail = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.email ]);
-  public password = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.password ]);
+  public password = new FormControl({ value: environment.production ? '' : '123456', disabled: false }, [ Validators.required, this.regx.password ]);
   public confirmPassword = new FormControl({ value: '', disabled: false }, [ Validators.required, this.regx.password ]);
   public capability = new FormControl({ value: '', disabled: false }, [ Validators.required ]);
   /**

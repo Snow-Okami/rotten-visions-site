@@ -1,6 +1,7 @@
 import { Component, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
+import * as _ from 'lodash';
 
 import { User } from '../../interfaces/user';
 
@@ -28,6 +29,8 @@ export class ViewOwnAchievementsComponent {
   public mobileQuery: MediaQueryList;
   public hiddenContent: boolean = true;
   private _mobileQueryListener: () => void;
+
+  public achievements: any;
 
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
@@ -73,8 +76,18 @@ export class ViewOwnAchievementsComponent {
       this.isAdmin = true;
     }
 
-    let ac = await this.http.achievements(`?users=${this.store.user.data._id}`).toPromise();
-    console.log('achievements', ac);
+    const populate = JSON.stringify([
+      {path: 'users'},
+      {path: 'game', select: ['title', 'subtitle']}
+    ]);
+
+    let ac: any = await this.http.achievements(`?users=${this.store.user.data._id}&populate=${populate}`).toPromise();
+    this.achievements = _.groupBy(ac.data, 'game')
+    
+    /**
+     * @description COMMENTED TEXT
+     */
+    console.log('achievements', this.achievements);
   }
 
 }
