@@ -29,7 +29,7 @@ div, span {
   letter-spacing: 1px;
 }
 
-.container a, .container p {
+.container a:not(.op-1), .container p:not(.op-1) {
   opacity: 0.6;
 }
 
