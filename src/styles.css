@@ -189,3 +189,11 @@ perfect-scrollbar > .ps.ps--scrolling-y > .ps__rail-y {
 .text-center {
   text-align: center;
 }
+
+.mat-hint {
+  font-size: 12px;
+}
+
+.mat-error {
+  font-size: 12px;
+}
