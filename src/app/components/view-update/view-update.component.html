@@ -81,6 +81,8 @@
                   
                   <mat-icon matSuffix class="mat-error" *ngIf="senderEmail.comment.hasError"> error_outline </mat-icon>
                   <mat-icon matSuffix class="green-done" *ngIf="!senderEmail.comment.hasError"> done </mat-icon>
+
+                  <mat-hint>Psynapsus registered email</mat-hint>
                   
                   <mat-error *ngIf="commentF.controls.createdBy.hasError('required')">
                     Email is required
