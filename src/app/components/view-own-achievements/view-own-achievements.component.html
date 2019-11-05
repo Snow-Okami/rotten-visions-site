@@ -15,33 +15,45 @@
         <mat-accordion>
 
           <ul>
-            <li>
+            <li *ngFor="let item of achievements">
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
                   <mat-panel-title>
-                    Self aware panel
+                    {{ item?.game }}
                   </mat-panel-title>
                   <!-- <mat-panel-description>
                     game description
                   </mat-panel-description> -->
                 </mat-expansion-panel-header>
 
-                <p>I'm visible because I am open</p>
+                <ul>
+                  <li *ngFor="let ach of item?.data">
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          {{ ach?.title }}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          {{ ach?.description }}
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+      
+                      <p>Details will appear soon ...</p>
+                    </mat-expansion-panel>
+                  </li>
+                </ul>
               </mat-expansion-panel>
             </li>
 
-            <li>
+            <li *ngIf="!achievements.length">
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
                   <mat-panel-title>
-                    Self aware panel
+                    Loading achievements ...
                   </mat-panel-title>
-                  <!-- <mat-panel-description>
-                    game description
-                  </mat-panel-description> -->
                 </mat-expansion-panel-header>
 
-                <p>I'm visible because I am open</p>
+                <!-- <p>I'm visible because I am open</p> -->
               </mat-expansion-panel>
             </li>
           </ul>

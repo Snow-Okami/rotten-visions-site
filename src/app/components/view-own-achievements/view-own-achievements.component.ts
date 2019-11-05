@@ -30,7 +30,7 @@ export class ViewOwnAchievementsComponent {
   public hiddenContent: boolean = true;
   private _mobileQueryListener: () => void;
 
-  public achievements: any;
+  public achievements: Array<any>;
 
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
@@ -44,6 +44,8 @@ export class ViewOwnAchievementsComponent {
     this.mobileQuery = media.matchMedia('(max-width: 800px)');
     // this._mobileQueryListener = () => this.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    
+    this.achievements = [];
 
     that = this;
   }
@@ -76,14 +78,10 @@ export class ViewOwnAchievementsComponent {
       this.isAdmin = true;
     }
 
-    const populate = JSON.stringify([
-      {path: 'users'},
-      {path: 'game', select: ['title', 'subtitle']}
-    ]);
+    const populate = JSON.stringify({'game': 'title,subtitle'});
 
-    let ac: any = await this.http.achievements(`?users=${this.store.user.data._id}&populate=${populate}`).toPromise();
-    this.achievements = _.groupBy(ac.data, 'game')
-    
+    let ac: any = await this.http.achievements(`?users=${this.store.user.data._id}&populate=${populate}&select=game,title,description&group=true`).toPromise();
+    this.achievements = ac.data;
     /**
      * @description COMMENTED TEXT
      */
