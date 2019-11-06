@@ -102,3 +102,7 @@ p.title {
 .chat-view-wrapper:focus {
   outline: none;
 }
+
+.p-t-15.imp {
+  padding-top: 15px !important;
+}

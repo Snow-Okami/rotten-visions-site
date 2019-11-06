@@ -22,10 +22,10 @@
       <mat-nav-list>
 
         <!-- Router Links Should Stay Here -->
-        <div *ngIf="!mobileQuery.matches" class="logo-wrapper text-center" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="snav.toggle();showRouteProgress($event)">
+        <div *ngIf="!mobileQuery.matches" class="logo-wrapper text-center" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="snav.toggle();showRouteProgress($event)">
           <img src="/assets/logo/final-logo.png" alt="Rotten Visions Logo" class="site-logo">
         </div>
-        <a mat-list-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="mobileQuery.matches" (click)="snav.toggle();showRouteProgress($event);">Home</a>
+        <a mat-list-item routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="mobileQuery.matches" (click)="snav.toggle();showRouteProgress($event);">Home</a>
         <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="snav.toggle();showRouteProgress($event);">About</a>
         <a mat-list-item routerLink="/projects" routerLinkActive="active" (click)="snav.toggle();showRouteProgress($event);">Projects</a>
         <a mat-list-item routerLink="/updates" routerLinkActive="active" (click)="snav.toggle();showRouteProgress($event);">Updates</a>
