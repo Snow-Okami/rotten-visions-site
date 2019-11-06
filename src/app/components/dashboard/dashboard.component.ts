@@ -83,25 +83,27 @@ export class DashboardComponent {
   handleSearchbar() {
     if(!this.pmselem) { return; }
 
-    this.enableSearch
-    ? tween({
-      from: { x: this.searchElem.nativeElement.clientWidth, scale: 0 },
-      to: { x: 0, scale: 1 },
-      ease: easing.anticipate,
-      duration: 500
-    }).start({
-      update: (v: any) => this.pmselem.set(v),
-      complete: () => {}
-    })
-    : tween({
-      from: { x: 0, scale: this.pmselem.get('x') > 1 ? 0 : 1 },
-      to: { x: this.searchElem.nativeElement.clientWidth, scale: 0 },
-      ease: easing.anticipate,
-      duration: 500
-    }).start({
-      update: (v: any) => this.pmselem.set(v),
-      complete: () => {}
-    });
+    if(this.enableSearch) {
+      tween({
+        from: { x: this.searchElem.nativeElement.clientWidth, scale: 0 },
+        to: { x: 0, scale: 1 },
+        ease: easing.anticipate,
+        duration: 500,
+      }).start({
+        update: (v: any) => this.pmselem.set(v),
+        complete: () => {},
+      });
+    } else {
+      tween({
+        from: { x: 0, scale: this.pmselem.get('x') > 1 ? 0 : 1 },
+        to: { x: this.searchElem.nativeElement.clientWidth, scale: 0 },
+        ease: easing.anticipate,
+        duration: 500,
+      }).start({
+        update: (v: any) => this.pmselem.set(v),
+        complete: () => {},
+      });
+    }
   }
 
 }
