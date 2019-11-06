@@ -1,7 +1,8 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { tween, styler, easing } from 'popmotion';
 
 import { StoreService } from '../../services/store.service';
 
@@ -15,6 +16,11 @@ export class DashboardComponent {
   public mobileQuery: MediaQueryList;
   public searchText: string = '';
 
+  public enableSearch: boolean;
+
+  @ViewChild('searchElem') searchElem: ElementRef;
+  private pmselem: any;
+
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
@@ -25,6 +31,8 @@ export class DashboardComponent {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+
+    this.enableSearch = false;
   }
 
   ngOnInit() {
@@ -41,7 +49,10 @@ export class DashboardComponent {
 
   ngAfterContentChecked() {}
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    this.pmselem = styler(this.searchElem.nativeElement);
+    this.handleSearchbar();
+  }
 
   ngAfterViewChecked() {}
 
@@ -53,6 +64,9 @@ export class DashboardComponent {
    */
   routeChange(c: any) {
     document.title = c.title ? c.title : 'Rotten Visions';
+    this.enableSearch = c.title === 'Rotten Visions | Updates';
+
+    this.handleSearchbar();
   }
 
   showRouteProgress(e: any) {
@@ -64,6 +78,30 @@ export class DashboardComponent {
 
   search() {
     this.store.changeMessage(this.searchText);
+  }
+
+  handleSearchbar() {
+    if(!this.pmselem) { return; }
+
+    this.enableSearch
+    ? tween({
+      from: { x: this.searchElem.nativeElement.clientWidth, scale: 0 },
+      to: { x: 0, scale: 1 },
+      ease: easing.anticipate,
+      duration: 500
+    }).start({
+      update: (v: any) => this.pmselem.set(v),
+      complete: () => {}
+    })
+    : tween({
+      from: { x: 0, scale: this.pmselem.get('x') > 1 ? 0 : 1 },
+      to: { x: this.searchElem.nativeElement.clientWidth, scale: 0 },
+      ease: easing.anticipate,
+      duration: 500
+    }).start({
+      update: (v: any) => this.pmselem.set(v),
+      complete: () => {}
+    });
   }
 
 }
