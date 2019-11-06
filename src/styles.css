@@ -197,3 +197,7 @@ perfect-scrollbar > .ps.ps--scrolling-y > .ps__rail-y {
 .mat-error {
   font-size: 12px;
 }
+
+.p-t-15 {
+  padding-top: 15px;
+}
