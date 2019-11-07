@@ -50,6 +50,7 @@ export class DashboardComponent {
   ngAfterContentChecked() {}
 
   ngAfterViewInit() {
+    console.log('view init detected', this.pmselem);
     this.pmselem = styler(this.searchElem.nativeElement);
     this.handleSearchbar();
   }
@@ -65,6 +66,8 @@ export class DashboardComponent {
   routeChange(c: any) {
     document.title = c.title ? c.title : 'Rotten Visions';
     this.enableSearch = c.title === 'Rotten Visions | Updates';
+
+    console.log('route change detected', c);
 
     this.handleSearchbar();
   }
@@ -93,6 +96,8 @@ export class DashboardComponent {
     };
 
     if(this.enableSearch) {
+      console.log(this.pmselem.get('x'), 'if');
+
       pos = {
         from: { x: this.searchElem.nativeElement.clientWidth, scale: 0 },
         to: { x: 0, scale: 1 },
@@ -108,6 +113,8 @@ export class DashboardComponent {
         complete: () => {},
       });
     } else if(this.pmselem.get('x') < 1) {
+      console.log(this.pmselem.get('x'), 'else');
+
       pos = {
         from: { x: 0, scale: 1 },
         to: { x: this.searchElem.nativeElement.clientWidth, scale: 0 },
