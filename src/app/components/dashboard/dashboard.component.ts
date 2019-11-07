@@ -83,20 +83,39 @@ export class DashboardComponent {
   handleSearchbar() {
     if(!this.pmselem) { return; }
 
+    let pos: any = {
+      from: {
+        x: 0, scale: 0
+      },
+      to: {
+        x: 0, scale: 0
+      }
+    };
+
     if(this.enableSearch) {
-      tween({
+      pos = {
         from: { x: this.searchElem.nativeElement.clientWidth, scale: 0 },
         to: { x: 0, scale: 1 },
+      }
+
+      tween({
+        from: pos.from,
+        to: pos.to,
         ease: easing.anticipate,
         duration: 500,
       }).start({
         update: (v: any) => this.pmselem.set(v),
         complete: () => {},
       });
-    } else {
-      tween({
-        from: { x: 0, scale: this.pmselem.get('x') > 1 ? 0 : 1 },
+    } else if(this.pmselem.get('x') < 1) {
+      pos = {
+        from: { x: 0, scale: 1 },
         to: { x: this.searchElem.nativeElement.clientWidth, scale: 0 },
+      };
+
+      tween({
+        from: pos.from,
+        to: pos.to,
         ease: easing.anticipate,
         duration: 500,
       }).start({
