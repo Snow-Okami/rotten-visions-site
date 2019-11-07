@@ -45,6 +45,8 @@ mat-toolbar-row.mobile {
   display: flex;
   justify-content: flex-end;
   width: -webkit-fill-available;
+
+  /* transform: translateX(247.879px) scale(0.000488281) translateZ(0px); */
 }
 
 .search-holder input {

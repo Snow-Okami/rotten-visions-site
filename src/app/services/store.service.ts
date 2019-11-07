@@ -9,6 +9,15 @@ export class StoreService {
   private messageSource = new BehaviorSubject('');
   public currentMessage = this.messageSource.asObservable();
 
+  public searchElemConfig: any = {
+    pos: {
+      from: { x: 0, scale: 0 },
+      to: { x: 0, scale: 1 },
+    },
+    open: true,
+    initialized: false
+  };
+
   constructor(
     private snackBar: MatSnackBar
   ) { }

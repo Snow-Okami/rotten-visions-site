@@ -50,8 +50,8 @@ export class DashboardComponent {
   ngAfterContentChecked() {}
 
   ngAfterViewInit() {
-    console.log('view init detected', this.pmselem);
     this.pmselem = styler(this.searchElem.nativeElement);
+    this.pmselem.set({ scale: 0 }),
     this.handleSearchbar();
   }
 
@@ -66,9 +66,6 @@ export class DashboardComponent {
   routeChange(c: any) {
     document.title = c.title ? c.title : 'Rotten Visions';
     this.enableSearch = c.title === 'Rotten Visions | Updates';
-
-    console.log('route change detected', c);
-
     this.handleSearchbar();
   }
 
@@ -86,48 +83,35 @@ export class DashboardComponent {
   handleSearchbar() {
     if(!this.pmselem) { return; }
 
-    let pos: any = {
-      from: {
-        x: 0, scale: 0
-      },
-      to: {
-        x: 0, scale: 0
-      }
-    };
-
     if(this.enableSearch) {
-      console.log(this.pmselem.get('x'), 'if');
-
-      pos = {
+      this.store.searchElemConfig.pos = {
         from: { x: this.searchElem.nativeElement.clientWidth, scale: 0 },
         to: { x: 0, scale: 1 },
       }
 
       tween({
-        from: pos.from,
-        to: pos.to,
+        from: this.store.searchElemConfig.pos.from,
+        to: this.store.searchElemConfig.pos.to,
         ease: easing.anticipate,
         duration: 500,
       }).start({
         update: (v: any) => this.pmselem.set(v),
-        complete: () => {},
+        complete: () => { this.store.searchElemConfig.initialized = this.store.searchElemConfig.open = true; },
       });
-    } else if(this.pmselem.get('x') < 1) {
-      console.log(this.pmselem.get('x'), 'else');
-
-      pos = {
+    } else if(this.pmselem.get('x') < 1 && this.store.searchElemConfig.open) {
+      this.store.searchElemConfig.pos = {
         from: { x: 0, scale: 1 },
         to: { x: this.searchElem.nativeElement.clientWidth, scale: 0 },
       };
 
       tween({
-        from: pos.from,
-        to: pos.to,
+        from: this.store.searchElemConfig.pos.from,
+        to: this.store.searchElemConfig.pos.to,
         ease: easing.anticipate,
         duration: 500,
       }).start({
         update: (v: any) => this.pmselem.set(v),
-        complete: () => {},
+        complete: () => { this.store.searchElemConfig.initialized = true; this.store.searchElemConfig.open = false; },
       });
     }
   }
