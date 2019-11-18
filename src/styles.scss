@@ -170,10 +170,6 @@ body.mobile-view {
 .col {
   display: inline-block;
   vertical-align: top;
-
-  &.slider {
-    // display: inline;
-  }
 }
 
 .col.v-al-b {
@@ -276,6 +272,12 @@ body.mobile-view {
       align-items: center;
     }
   }
+}
+
+.slider {
+  white-space: nowrap;
+  overflow-x: scroll;
+  // padding: 15px 0px;
 }
 
 .wrapper {
