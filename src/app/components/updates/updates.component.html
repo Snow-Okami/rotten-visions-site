@@ -21,6 +21,17 @@
           </li>
         </ul>
 
+        <ul class="row">
+          <li class="col slider" *ngFor="let update of [1, 2, 3]">
+            <img alt="missing image!" [ngClass]="{'post-image': true}"
+              [defaultImage]="image.defaultImage"
+              [lazyLoad]="'https://res.cloudinary.com/imagebag/image/upload/v1571998577/v4qn0sfiywon8tugj63k.jpg'"
+              [offset]="image.offset"
+              [style.height.px]="200"
+            >
+          </li>
+        </ul>
+
       </div>
     </div>
 

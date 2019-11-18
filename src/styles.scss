@@ -170,6 +170,10 @@ body.mobile-view {
 .col {
   display: inline-block;
   vertical-align: top;
+
+  &.slider {
+    // display: inline;
+  }
 }
 
 .col.v-al-b {
