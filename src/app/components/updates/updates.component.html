@@ -9,7 +9,7 @@
     <!-- LATEST POSTS APPEARS HERE -->
     <div class="row">
       <div class="col w70">
-        <div class="update-tab"> LATEST UPDATES </div>
+        <div class="update-tab"> POPULAR UPDATES </div>
         <mat-divider></mat-divider>
 
         <!-- Repeat should be here -->
@@ -38,7 +38,7 @@
             </div>
           </li>
         </ul>
-        
+
         <ul [@openClose]="!updates.length ? 'closed' : 'open'">
           <li class="row" *ngFor="let update of updates">
 
