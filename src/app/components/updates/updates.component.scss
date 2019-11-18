@@ -64,3 +64,12 @@
 .update-con-wrapper {
   cursor: pointer;
 }
+
+.text-wrapper {
+  position: absolute;
+  bottom: 4px;
+  min-width: 100%;
+  box-sizing: border-box;
+  /* opacity: 0.6; */
+  background: #383838b5;
+}

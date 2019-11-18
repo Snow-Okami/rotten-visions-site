@@ -14,7 +14,7 @@
 
         <!-- Repeat should be here -->
         <ul>
-          <li class="row pg-bg" *ngIf="!recent.length">
+          <li class="row pg-bg" *ngIf="false && !recent.length">
             <div class="col w100">
               <p class="t-al-center"> {{updateText}} </p>
             </div>
@@ -22,13 +22,23 @@
         </ul>
 
         <ul class="row slider">
-          <li class="col inline" *ngFor="let update of [1, 2, 3]">
+          <li class="col inline p-l-5 p-r-5 pos-r" *ngFor="let update of [1, 2, 3]">
             <img alt="missing image!" [ngClass]="{'post-image': true}"
               [defaultImage]="image.defaultImage"
               [lazyLoad]="'https://res.cloudinary.com/imagebag/image/upload/v1571896694/tjhzib6wc16ijier6kfq.png'"
               [offset]="image.offset"
               [style.height.px]="imgHeight"
             >
+
+            <div class="text-wrapper">
+              <div class="row">
+                <p> Heading...</p>
+              </div>
+
+              <div class="row">
+                <span> Description... </span>
+              </div>
+            </div>            
           </li>
         </ul>
 
