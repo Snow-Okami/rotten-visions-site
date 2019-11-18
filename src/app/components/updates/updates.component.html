@@ -22,7 +22,7 @@
         </ul>
 
         <ul class="row slider">
-          <li class="col inline p-l-5 p-r-5 pos-r" *ngFor="let update of [1, 2, 3]">
+          <li class="col inline p-l-5 p-r-5 pos-r" *ngFor="let update of [1, 2, 3]" [style.height.px]="imgHeight">
             <img alt="missing image!" [ngClass]="{'post-image': true}"
               [defaultImage]="image.defaultImage"
               [lazyLoad]="'https://res.cloudinary.com/imagebag/image/upload/v1571896694/tjhzib6wc16ijier6kfq.png'"
