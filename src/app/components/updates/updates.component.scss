@@ -66,8 +66,7 @@
 }
 
 .text-wrapper {
-  position: absolute;
-  bottom: 4px;
+  transform: translateY(-74px);
   min-width: 100%;
   box-sizing: border-box;
   /* opacity: 0.6; */
