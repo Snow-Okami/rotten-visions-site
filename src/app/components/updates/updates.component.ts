@@ -218,11 +218,26 @@ export class UpdatesComponent implements OnInit {
     /**
      * @description SET UP skip, limit & sort options here.
      */
-    let option = {
+    let option1 = {
+      sort: JSON.stringify({
+        views: -1
+      }),
+      skip: 0,
+      limit: 5,
+      select: 'image,title,description,id,views'
+    };
+    this.http.popularPosts(option1)
+    .subscribe(resp => {
+      console.log(resp);
+    });
+
+    /**
+     * @description SET UP skip, limit & sort options here.
+     */
+    let option2 = {
       skip: this.updates.length
     };
-
-    this.http.posts(option)
+    this.http.posts(option2)
     .subscribe(resp => {
       if(resp['message']['type'] !== 'error') {
         _.forEach(resp['data'], (i) => { i.tags = i.tags ? JSON.parse(i.tags) : []; });
@@ -239,7 +254,7 @@ export class UpdatesComponent implements OnInit {
        */
       this.loadingBar = false;
 
-      if(option.skip) {
+      if(option2.skip) {
         this.setScroll();
       }
     });

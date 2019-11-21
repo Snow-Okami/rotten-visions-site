@@ -163,6 +163,18 @@ export class HttpService {
     );
   }
 
+  /**
+   * @description GET posts with Limitation.
+   */
+  popularPosts(option: any): Observable<HttpResponse<any>> {
+    let url = `${this.apiurl}/postspopular?sort=${option.sort}&skip=${option.skip}&limit=${option.limit}&select=${option.select}`;
+
+    return this.http.get<any>(url, this.option({ 'Content-Type':  'application/json' })).pipe(
+      tap(message => message),
+      catchError(this.handleError('posts', {}))
+    );
+  }
+
     /**
    * @description GET posts with Limitation.
    */
