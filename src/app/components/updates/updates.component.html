@@ -22,21 +22,25 @@
         </ul>
 
         <ul class="row slider">
-          <li class="col inline p-l-5 p-r-5 pos-r" *ngFor="let update of [1, 2, 3]" [style.height.px]="imgHeight">
+          <li class="col inline p-l-5 p-r-20 pos-r" *ngFor="let update of recent" [style.height.px]="imgHeight" (mouseenter)="animateToExpandDetails($event);" (mouseleave)="animateToCollapseDetails($event);">
             <img alt="missing image!" [ngClass]="{'post-image': true}"
               [defaultImage]="image.defaultImage"
-              [lazyLoad]="'https://res.cloudinary.com/imagebag/image/upload/v1571896694/tjhzib6wc16ijier6kfq.png'"
+              [lazyLoad]="update.image"
               [offset]="image.offset"
               [style.height.px]="imgHeight"
             >
 
-            <div class="text-wrapper">
+            <div class="text-wrapper c-pointer p-l-5 p-r-5" [style.height.px]="imgHeight" (click)="viewThisUpdate(update.id);">
               <div class="row">
-                <p> Heading...</p>
+                <p> Details </p>
               </div>
 
               <div class="row">
-                <span> Description... </span>
+                <p class="title"> {{update.title | trimword: 20}} </p>
+              </div>
+
+              <div class="row o-flow-hidden">
+                <span [innerHTML]="fixPostLen(update?.description, 40)" class="writable-update"></span>
               </div>
             </div>            
           </li>

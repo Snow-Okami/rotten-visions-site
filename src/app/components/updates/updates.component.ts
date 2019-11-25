@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
+import { tween, styler, easing } from 'popmotion';
 import * as _ from 'lodash';
 import {
   trigger,
@@ -13,6 +14,7 @@ import {
 } from '@angular/animations';
 
 import { User } from '../../interfaces/user';
+import { JSEvent } from '../../interfaces/event';
 
 import { HttpService } from '../../services/http.service';
 import { StoreService } from '../../services/store.service';
@@ -172,6 +174,36 @@ export class UpdatesComponent implements OnInit {
     this.router.navigate(['/dashboard/updates/view/' + id]);
   }
 
+  animateToExpandDetails(e: JSEvent) {
+    let pmitem: any = styler(e.target.querySelector('.text-wrapper'));
+    let start: number = -41, end: number = - start - this.imgHeight;
+
+    tween({
+      from: { y: start, scale: 1 },
+      to: { y: end, scale: 1 },
+      ease: easing.anticipate,
+      duration: 500
+    }).start({
+      update: (v: any) => pmitem.set(v),
+      complete: () => {}
+    });
+  }
+
+  animateToCollapseDetails(e: JSEvent) {
+    let pmitem: any = styler(e.target.querySelector('.text-wrapper'));
+    let start: number = -41, end: number = - start - this.imgHeight;
+
+    tween({
+      from: { y: end, scale: 1 },
+      to: { y: start, scale: 1 },
+      ease: easing.anticipate,
+      duration: 500
+    }).start({
+      update: (v: any) => pmitem.set(v),
+      complete: () => {}
+    });
+  }
+
   isResizing(e: any) {
     /**
      * @description Set custom image height
@@ -218,18 +250,20 @@ export class UpdatesComponent implements OnInit {
     /**
      * @description SET UP skip, limit & sort options here.
      */
-    let option1 = {
-      sort: JSON.stringify({
-        views: -1
-      }),
-      skip: 0,
-      limit: 5,
-      select: 'image,title,description,id,views'
-    };
-    this.http.popularPosts(option1)
-    .subscribe(resp => {
-      console.log(resp);
-    });
+    if(!this.recent.length) {
+      let option1 = {
+        sort: JSON.stringify({
+          views: -1
+        }),
+        skip: 0,
+        limit: 5,
+        select: 'image,title,description,id,views'
+      };
+      this.http.popularPosts(option1)
+      .subscribe((resp: any) => {
+        this.recent = resp.data;  
+      });
+    }
 
     /**
      * @description SET UP skip, limit & sort options here.

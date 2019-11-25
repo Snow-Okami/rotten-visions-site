@@ -9,6 +9,12 @@
   background: #212121;
 }
 
+.slider li {
+  max-width: 352px;
+  overflow: hidden;
+  // box-sizing: border-box;
+}
+
 .post-image {
   max-width: 352px;
 
@@ -66,11 +72,13 @@
 }
 
 .text-wrapper {
-  transform: translateY(-74px);
+  // transform: translateY(-74px);
+  transform: translateY(-41px);
+
   min-width: 100%;
   box-sizing: border-box;
   /* opacity: 0.6; */
-  background: #383838b5;
+  background: #212121e0;
 }
 
 /* width */
