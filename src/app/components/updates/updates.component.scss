@@ -71,8 +71,17 @@
   cursor: pointer;
 }
 
+.mobile {
+  .details-heading {
+    display: none;
+  }
+
+  .text-wrapper {
+    transform: translateY(-90px);
+  }
+}
+
 .text-wrapper {
-  // transform: translateY(-74px);
   transform: translateY(-41px);
 
   min-width: 100%;

@@ -175,6 +175,8 @@ export class UpdatesComponent implements OnInit {
   }
 
   animateToExpandDetails(e: JSEvent) {
+    if(this.mobileQuery.matches) {return;}
+
     let pmitem: any = styler(e.target.querySelector('.text-wrapper'));
     let start: number = -41, end: number = - start - this.imgHeight;
 
@@ -190,6 +192,8 @@ export class UpdatesComponent implements OnInit {
   }
 
   animateToCollapseDetails(e: JSEvent) {
+    if(this.mobileQuery.matches) {return;}
+
     let pmitem: any = styler(e.target.querySelector('.text-wrapper'));
     let start: number = -41, end: number = - start - this.imgHeight;
 
