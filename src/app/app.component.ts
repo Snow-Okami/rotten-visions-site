@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
+import { SwUpdate } from '@angular/service-worker';
 import * as _ from 'lodash';
 
+import { ActionsService } from './services/actions.service';
 import { StoreService } from './services/store.service';
 import { environment } from '../environments/environment';
 
@@ -12,18 +14,26 @@ let that: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  public update: boolean = false;
   private preloadImages = {
     cache: []
   };
   public url = environment.production ? 'https://psynapsus.appspot.com/embed/rottenvisions-bgv.html' : 'http://localhost:5000/embed/rottenvisions-bgv.html';
   constructor(
-    public store: StoreService
+    private action: ActionsService,
+    public store: StoreService,
+    public appUpdate: SwUpdate
   ) {
     that = this;
     this.cacheImages();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.appUpdate.available.subscribe(e => {
+      that.update = true;
+      this.action.openSnackBarComponent('App has an update!', '');
+    });
+  }
 
   ngOnDestroy() {}
 
@@ -62,6 +72,12 @@ export class AppComponent {
         image.src = url;
         this.preloadImages.cache.push(image);
       });
+    }
+  }
+
+  updateApplication() {
+    if(environment.production) {
+      this.appUpdate.activateUpdate().then(()=>{navigator.serviceWorker.getRegistration().then((sw)=>{sw.unregister();document.location.reload();});});
     }
   }
 

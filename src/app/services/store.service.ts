@@ -18,6 +18,8 @@ export class StoreService {
     initialized: false
   };
 
+  public snackBarRef: any;
+
   constructor(
     private snackBar: MatSnackBar
   ) { }

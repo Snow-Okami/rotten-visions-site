@@ -1,0 +1,19 @@
+.customSnack.warning {
+  color: #f9a825;
+}
+
+.customSnack.success {
+  color: #388e3c;
+}
+
+.customSnack.error {
+  color: #d32f2f;
+}
+
+.close {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
