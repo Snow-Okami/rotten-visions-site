@@ -12,6 +12,20 @@
     <div class="row">
       <div class="col w100">
 
+        <!-- Repeat should be here -->
+        <ul [@openClose]="achievements.length ? 'closed' : 'open'">
+          <li class="row pg-bg">
+            <div class="col w100">
+              <p class="t-al-center"> Loading all achievements... </p>
+            </div>
+          </li>
+          <li class="row">
+            <div class="col w100">
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </div>
+          </li>
+        </ul>
+
         <ul>
           <li *ngFor="let g of achievements" class="p-b-50">
 
@@ -45,60 +59,6 @@
           </li>
         </ul>
 
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col w100">
-
-        <mat-accordion>
-
-          <ul>
-            <li *ngFor="let item of achievements">
-              <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    {{ item?.game }}
-                  </mat-panel-title>
-                  <!-- <mat-panel-description>
-                    game description
-                  </mat-panel-description> -->
-                </mat-expansion-panel-header>
-
-                <ul>
-                  <li *ngFor="let ach of item?.data">
-                    <mat-expansion-panel>
-                      <mat-expansion-panel-header>
-                        <mat-panel-title>
-                          {{ ach?.title | titlecase }}
-                        </mat-panel-title>
-                        <mat-panel-description>
-                          {{ ach?.description }}
-                        </mat-panel-description>
-                      </mat-expansion-panel-header>
-
-                      <p>Details will appear soon ...</p>
-                    </mat-expansion-panel>
-                  </li>
-                </ul>
-              </mat-expansion-panel>
-            </li>
-
-            <li *ngIf="!achievements.length">
-              <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Loading achievements ...
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-
-                <!-- <p>I'm visible because I am open</p> -->
-              </mat-expansion-panel>
-            </li>
-          </ul>
-
-        </mat-accordion>
-            
       </div>
     </div>
 

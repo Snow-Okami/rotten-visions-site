@@ -1,6 +1,14 @@
 import { Component, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
 import * as _ from 'lodash';
 
 import { User } from '../../interfaces/user';
@@ -14,7 +22,16 @@ let that: any;
 @Component({
   selector: 'app-view-own-achievements',
   templateUrl: './view-own-achievements.component.html',
-  styleUrls: ['./view-own-achievements.component.scss']
+  styleUrls: ['./view-own-achievements.component.scss'],
+  animations: [
+    trigger('openClose', [
+      // ...
+      state('open', style({ overflow: 'hidden' })),
+      state('closed', style({ height: '0px', overflow: 'hidden' })),
+      transition('open => closed', [ animate('0.4s') ]),
+      transition('closed => open', [ animate('0.7s') ]),
+    ])
+  ]
 })
 export class ViewOwnAchievementsComponent {
   /**
@@ -86,7 +103,7 @@ export class ViewOwnAchievementsComponent {
 
     const populate = JSON.stringify({'game': 'title,subtitle'});
 
-    let ac: any = await this.http.achievements(`?users=${this.store.user.data._id}&populate=${populate}&select=game,title,description&group=true`).toPromise();
+    let ac: any = await this.http.achievements(`?users=${this.store.user.data._id}&populate=${populate}&select=game,title,description,thumbnail&group=true`).toPromise();
     this.achievements = ac.data;
     /**
      * @description COMMENTED TEXT
