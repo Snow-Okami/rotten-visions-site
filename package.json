@@ -34,7 +34,6 @@
     "ngx-socket-io": "^2.1.1",
     "popmotion": "^8.6.10",
     "rxjs": "~6.3.3",
-    "swiper": "^5.2.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },

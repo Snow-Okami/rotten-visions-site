@@ -12,6 +12,7 @@ import {
   transition,
   // ...
 } from '@angular/animations';
+import Swiper from 'swiper';
 
 import { User } from '../../interfaces/user';
 import { JSEvent } from '../../interfaces/event';
@@ -265,7 +266,9 @@ export class UpdatesComponent implements OnInit {
       };
       this.http.popularPosts(option1)
       .subscribe((resp: any) => {
-        this.recent = resp.data;  
+        this.recent = resp.data;
+
+        // this.initSlider();
       });
     }
 
@@ -334,6 +337,10 @@ export class UpdatesComponent implements OnInit {
   fixPostLen(value: any, args: any) {
     let v = value.length > args ? value.slice(0, args) + '...' : value;
     return v;
+  }
+
+  initSlider() {
+    
   }
 
 }

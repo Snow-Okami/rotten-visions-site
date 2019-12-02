@@ -21,6 +21,10 @@
           </li>
         </ul>
 
+        <div class="row">
+          
+        </div>
+
         <ul class="row slider">
           <li class="col inline p-l-5 p-r-20 pos-r" *ngFor="let update of recent" [style.height.px]="imgHeight" (mouseenter)="animateToExpandDetails($event);" (mouseleave)="animateToCollapseDetails($event);">
             <img alt="missing image!" [ngClass]="{'post-image': true}"
