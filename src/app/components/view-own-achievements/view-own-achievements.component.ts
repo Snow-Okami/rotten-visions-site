@@ -32,6 +32,12 @@ export class ViewOwnAchievementsComponent {
 
   public achievements: Array<any>;
 
+  public image = {
+    defaultUrl: '/assets/logo/game-controller.png',
+    default: '/assets/logo/person.png',
+    offset: 100
+  };
+
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,

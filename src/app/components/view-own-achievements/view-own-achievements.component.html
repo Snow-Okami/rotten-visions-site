@@ -12,6 +12,45 @@
     <div class="row">
       <div class="col w100">
 
+        <ul>
+          <li *ngFor="let g of achievements" class="p-b-50">
+
+            <div class="dark-tab"> {{g?.game}} </div>
+            <mat-divider></mat-divider>
+
+            <ul>
+              <li class="col flex-container w100" *ngFor="let a of g.data; index as i;">
+                <div class="wrap flex-container">
+
+                  <!-- achievement thumbnail -->
+                  <div class="flex p-10 c-pointer" *ngIf="!mobileQuery.matches">
+                    <img alt="missing logo" class="achievement-thumbnail"
+                    [defaultImage]="image.defaultUrl"
+                    [lazyLoad]="a.thumbnail || image.defaultUrl"
+                    [offset]="image.offset">
+                  </div>
+
+                  <!-- achievement description -->
+                  <div class="col p-10 flex-container v-center h-left c-pointer" [ngClass]="!mobileQuery.matches ? '' : 'w100'">
+                    <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <h3 class="t-red font-16"> {{ a?.title | titlecase }} </h3> </div>
+                    <div class="flex" [ngClass]="!mobileQuery.matches ? 'w500px' : 'w100'"> <span class="font-Montserrat font-12"> {{ a?.description }} </span> </div>
+                  </div>
+
+                </div>
+                
+                <div class="flex"> <mat-divider></mat-divider> </div>
+              </li>
+            </ul>
+
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col w100">
+
         <mat-accordion>
 
           <ul>
