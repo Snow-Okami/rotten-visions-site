@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 import { MaterialModule } from '../../modules/material/material.module';
+import { NgbootstrapModule } from '../../modules/ngbootstrap/ngbootstrap.module';
 import { SharedModule } from '../../modules/shared/shared.module';
 
 import { UpdatesRoutingModule } from './updates-routing.module';
@@ -17,7 +18,7 @@ import { UpdatesComponent } from './updates.component';
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
     MaterialModule, LazyLoadImageModule, SharedModule,
-    UpdatesRoutingModule
+    UpdatesRoutingModule, NgbootstrapModule
   ]
 })
 export class UpdatesModule { }

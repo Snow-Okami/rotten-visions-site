@@ -12,7 +12,7 @@ import {
   transition,
   // ...
 } from '@angular/animations';
-import Swiper from 'swiper';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { User } from '../../interfaces/user';
 import { JSEvent } from '../../interfaces/event';
@@ -34,6 +34,9 @@ let that: any;
       transition('open => closed', [ animate('0.4s') ]),
       transition('closed => open', [ animate('0.7s') ]),
     ])
+  ],
+  providers: [
+    NgbCarouselConfig
   ]
 })
 export class UpdatesComponent implements OnInit {
@@ -87,8 +90,15 @@ export class UpdatesComponent implements OnInit {
     private router: Router,
     private http: HttpService,
     private store: StoreService,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    public config: NgbCarouselConfig
   ) {
+    // customize default values of carousels used by this component tree
+    config.interval = 10000;
+    config.wrap = false;
+    config.keyboard = false;
+    config.pauseOnHover = false;
+
     this.mobileQuery = media.matchMedia('(max-width: 840px)');
     // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
