@@ -197,6 +197,7 @@ export class AchievementsComponent implements OnInit {
   }
 
   visitDetails(_id: number) {
+    if(this.store.user.data.capability < 2) { return; }
     /**
      * @description Show Progress Bar When Page is Loading.
      */
