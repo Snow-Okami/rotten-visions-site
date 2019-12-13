@@ -1,14 +1,10 @@
-# Angular quick start
+# Rottenvision
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.12.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Live server
-
-Visit `https://practical-benz-6bc9a1.netlify.com/`. Application is deployed here.
 
 ## Code scaffolding
 
@@ -29,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Run production build locally
+
+Run `http-server -p 4004 -c-1 dist/rottenvision` from project terminal.

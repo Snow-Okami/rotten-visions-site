@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material';
 
 import { SnackbarComponent } from '../components/snackbar/snackbar.component';
 
-import { StoreService } from '../services/store.service';
+import { StoreService } from './store.service';
 
 @Injectable({
   providedIn: 'root'

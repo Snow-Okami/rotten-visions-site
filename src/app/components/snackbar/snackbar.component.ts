@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_SNACK_BAR_DATA } from '@angular/material';
 
 import { StoreService } from '../../services/store.service';
@@ -6,9 +6,9 @@ import { StoreService } from '../../services/store.service';
 @Component({
   selector: 'app-snackbar',
   templateUrl: './snackbar.component.html',
-  styleUrls: ['./snackbar.component.css']
+  styleUrls: ['./snackbar.component.scss']
 })
-export class SnackbarComponent {
+export class SnackbarComponent implements OnInit {
   public centered = true;
   public disabled = false;
   public unbounded = false;
@@ -27,6 +27,4 @@ export class SnackbarComponent {
   close() {
     this.store.snackBarRef.dismiss();
   }
-
 }
-

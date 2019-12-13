@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
@@ -8,12 +8,12 @@ import { RegxFormService } from '../../services/regx-form.service';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css']
+  styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent {
-  public title = 'Rotten Visions | Contact';
+export class ContactComponent implements OnInit {
+  public title = 'Rottenvision | Contact';
   public mobileQuery: MediaQueryList;
-  @ViewChild('form') form: any;
+  @ViewChild('form', { static: false }) form: any;
 
   /**
    * @description Contact form fields

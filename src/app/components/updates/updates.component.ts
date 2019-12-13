@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import * as _ from 'lodash';
 
@@ -14,12 +14,12 @@ import {
   // ...
 } from '@angular/animations';
 
-let that;
+let that: any;
 
 @Component({
   selector: 'app-updates',
   templateUrl: './updates.component.html',
-  styleUrls: ['./updates.component.css'],
+  styleUrls: ['./updates.component.scss'],
   animations: [
     trigger('openClose', [
       // ...
@@ -30,8 +30,9 @@ let that;
     ])
   ]
 })
-export class UpdatesComponent {
-  public title = 'Rotten Visions | Updates';
+export class UpdatesComponent implements OnInit {
+
+  public title = 'Rottenvision | Updates';
   public mobileQuery: MediaQueryList;
   private lastScrollTop = 0;
   private postLimit = 3;
@@ -42,8 +43,8 @@ export class UpdatesComponent {
   public postList = [];
   public searchText = '';
   public progressBar = true;
-  @ViewChild('loadScroll') loadScroll: any;
-  @ViewChild('fixedBottom') fixedBottom: any;
+  @ViewChild('loadScroll', { static: false }) loadScroll: any;
+  @ViewChild('fixedBottom', { static: false }) fixedBottom: any;
 
   public imgHeight: any;
   public window: any;
@@ -51,7 +52,7 @@ export class UpdatesComponent {
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    private store: StoreService,
+    public store: StoreService,
     private http: HttpService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -59,9 +60,9 @@ export class UpdatesComponent {
     this.mobileQuery.addListener(this._mobileQueryListener);
 
     that = this;
-
-    // this.postList = Object.assign([], this.array);
   }
+
+  private _mobileQueryListener: () => void;
 
   ngOnInit() {
     this.window = window;
@@ -71,6 +72,7 @@ export class UpdatesComponent {
      * @description SHOW Progress bar and load Updates.
      */
     this.progressBar = true;
+
     this.loadMore();
   }
 
@@ -86,8 +88,6 @@ export class UpdatesComponent {
      */
     this.imgHeight = this.mobileQuery.matches ? ((this.window.innerWidth - 32) / 16) * 9 : '198';
   }
-
-  private _mobileQueryListener: () => void;
 
   isResizing(e: any) {
     /**
@@ -202,4 +202,3 @@ export class UpdatesComponent {
   }
 
 }
-

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import * as _ from 'lodash';
-
 import { HttpService } from './http.service';
 
 let that: any;

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -16,12 +16,12 @@ let that: any;
 @Component({
   selector: 'app-view-update',
   templateUrl: './view-update.component.html',
-  styleUrls: ['./view-update.component.css']
+  styleUrls: ['./view-update.component.scss']
 })
-export class ViewUpdateComponent {
-  public title = 'Rotten Visions | Update Details';
+export class ViewUpdateComponent implements OnInit {
+  public title = 'Rottenvision | Update Details';
   
-  @ViewChild('comment') commentFNative: any;
+  @ViewChild('comment', { static: false }) commentFNative: any;
 
   public mobileQuery: MediaQueryList;
   public progressBar = true;
@@ -32,7 +32,7 @@ export class ViewUpdateComponent {
     defaultHeight: 0
   };
 
-  @ViewChild('postImage') postImage: ElementRef;
+  @ViewChild('postImage', { static: false }) postImage: ElementRef;
 
   public post: any = {
     image: '',
@@ -47,7 +47,7 @@ export class ViewUpdateComponent {
   private fixerTop: number = 129;
 
   public config: PerfectScrollbarConfigInterface = { };
-  @ViewChild('posts') posts?: PerfectScrollbarComponent;
+  @ViewChild('posts', { static: false }) posts?: PerfectScrollbarComponent;
 
   public newsletterform: FormGroup;
   public commentF: FormGroup;
@@ -210,7 +210,7 @@ export class ViewUpdateComponent {
     this.senderEmail.comment.hasError = r['message']['type'] === 'error';
     this.senderEmail.comment.data = this.senderEmail.comment.hasError ? {} : r['data'];
 
-    console.log(this.senderEmail.comment);
+    // console.log(this.senderEmail.comment);
   }
 
   async replyHasEmail(e: Event) {
@@ -226,6 +226,11 @@ export class ViewUpdateComponent {
   }
 
   stickItem(sY: number) {
+    /**
+     * @description exit from the codes if window not found
+     */
+    if(!sY && !that.window) { return; }
+
     let wST = sY || that.window.scrollY;
     let pos = that.stickyItem.getBoundingClientRect();
     let sST = pos.top;

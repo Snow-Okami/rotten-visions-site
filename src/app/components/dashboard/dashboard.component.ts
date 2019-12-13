@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -9,16 +9,16 @@ import { StoreService } from '../../services/store.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent {
-  public title: string = 'Rotten-Visions';
+export class DashboardComponent implements OnInit {
+  public title: string = 'Rottenvision';
   public mobileQuery: MediaQueryList;
   public searchText: string = '';
 
   public enableSearch: boolean;
 
-  @ViewChild('searchElem') searchElem: ElementRef;
+  @ViewChild('searchElem', { static: false }) searchElem: ElementRef;
   private pmselem: any;
 
   constructor(
@@ -64,8 +64,8 @@ export class DashboardComponent {
    * @param c is the child route component. All available variables and funtions will be returned.
    */
   routeChange(c: any) {
-    document.title = c.title ? c.title : 'Rotten Visions';
-    this.enableSearch = c.title === 'Rotten Visions | Updates';
+    document.title = c.title ? c.title : 'Rottenvision';
+    this.enableSearch = c.title === 'Rottenvision | Updates';
     this.handleSearchbar();
   }
 

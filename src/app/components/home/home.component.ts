@@ -1,14 +1,14 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   public mobileQuery: MediaQueryList;
-  public title = 'Rotten Visions | Home';
+  public title = 'Rottenvision | Home';
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -23,5 +23,4 @@ export class HomeComponent {
   }
 
   private _mobileQueryListener: () => void;
-
 }

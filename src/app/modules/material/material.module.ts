@@ -27,7 +27,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRippleModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+
 @NgModule({
+  declarations: [],
   imports: [
     CommonModule,
     MatCardModule,
@@ -76,7 +78,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatProgressBarModule,
     MatSnackBarModule,
     MatRippleModule
-  ],
-  declarations: []
+  ]
 })
 export class MaterialModule { }
