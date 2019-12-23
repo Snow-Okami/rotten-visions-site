@@ -143,6 +143,10 @@
                     <p class="title"> {{ update.title | trimword: 20 }} </p>
                   </div>
 
+                  <div class="row" (click)="viewThisUpdate(update.id);">
+                    <div class="date font-12"> Posted on: {{update.createdAt | date}} </div>
+                  </div>
+
                   <!-- POST DESCRIPTION Should Stay Here -->
                   <div class="row" (click)="viewThisUpdate(update.id);">
                     <span [innerHTML]="fixPostLen(update?.description, 150)" class="writable-update"></span>
