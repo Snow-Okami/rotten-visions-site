@@ -16,7 +16,7 @@ export class FooterComponent implements OnInit {
   /**
    * @description version is the app version.
    */
-  public version: string = '1.3.6';
+  public version: string = '1.3.7';
   public update: boolean = false;
 
   constructor(
@@ -32,6 +32,8 @@ export class FooterComponent implements OnInit {
   updateApplication() {
     if(environment.production) {
       this.appUpdate.activateUpdate().then(()=>{navigator.serviceWorker.getRegistration().then((sw)=>{sw.unregister();document.location.reload();});});
+    } else {
+      this.action.openSnackBarComponent('Please try this on production!', '');
     }
   }
 
