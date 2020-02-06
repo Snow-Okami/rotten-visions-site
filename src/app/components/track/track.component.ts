@@ -18,9 +18,10 @@ import { User } from '../../interfaces/user';
   styleUrls: ['./track.component.scss'],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
+      // state('expanded', style({height: '*'})),
+      // transition('expanded <=> collapsed', animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
     ]),
     trigger('openClose', [
       // ...

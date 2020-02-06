@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "startdev": "ng serve --port 4004"
+    "dev": "ng serve --port 4004"
   },
   "private": true,
   "dependencies": {
