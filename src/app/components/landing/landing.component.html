@@ -36,6 +36,16 @@
                   </ul>
                 </div>
             </div>
+
+            <div>
+              <h2 class="heading"> Upload image </h2>
+              <div class="row">
+                <ul class="default">
+                  <li> <input type="file" #dropFile (change)="showImage($event)" placeholder="choose a file">  </li>
+                  <li> <button (click)="onUpload()">Upload</button> </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 

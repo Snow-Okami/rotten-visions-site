@@ -81,7 +81,7 @@
               </div>
 
               <div class="row o-flow-hidden">
-                <span [innerHTML]="fixPostLen(update?.description, 40)" class="writable-update"></span>
+                <span [innerHTML]="fixPostLen(update?.description | safe, 40)" class="writable-update"></span>
               </div>
             </div>            
           </li>
@@ -149,7 +149,7 @@
 
                   <!-- POST DESCRIPTION Should Stay Here -->
                   <div class="row" (click)="viewThisUpdate(update.id);">
-                    <span [innerHTML]="fixPostLen(update?.description, 150)" class="writable-update"></span>
+                    <span [innerHTML]="fixPostLen(update?.description | safe, 150)" class="writable-update"></span>
                   </div>
 
                 </div>

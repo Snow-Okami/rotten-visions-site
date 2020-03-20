@@ -56,7 +56,7 @@
           <div class="row">
     
             <div [ngClass]="{'mobile': mobileQuery.matches, 'col': true, 'w100': true}">
-              <span [innerHTML]="post?.description" class="writable-update font-light font-18"></span>
+              <span [innerHTML]="post?.description | safe" class="writable-update font-light font-18"></span>
             </div>
     
           </div>

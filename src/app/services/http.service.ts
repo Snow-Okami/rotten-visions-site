@@ -13,11 +13,11 @@ export class HttpService {
   /**
    * @description domain update with production type.
    */
-  private apiurl = environment.production ? 'https://psynapsus.appspot.com/api/v1' : 'http://localhost:5000/api/v1';
+  // private apiurl = environment.production ? 'https://psynapsus.appspot.com/api/v1' : 'http://localhost:5000/api/v1';
   /**
    * @description Select domain available only on Google Cloud.
    */
-  // private apiurl = 'https://psynapsus.appspot.com/api/v1';
+  private apiurl = 'https://psynapsus.appspot.com/api/v1';
 
   constructor(
     private http: HttpClient,
@@ -359,6 +359,16 @@ export class HttpService {
     return this.http.put<any>(url, data, this.option({ 'Content-Type':  'application/json' })).pipe(
       tap(message => message),
       catchError(this.handleError('news', {}))
+    );
+  }
+
+  uploadMedia(data: any): Observable<HttpResponse<any>> {
+    let url = 'http://localhost:5000/api/v1/uploadmedia';
+    // let url = 'https://nodeapis101.herokuapp.com/api/v1/uploadmedia';
+
+    return this.http.post<any>(url, data, this.option({ 'enctype': 'multipart/form-data' })).pipe(
+      tap(message => message),
+      catchError(this.handleError('update user', {}))
     );
   }
 }

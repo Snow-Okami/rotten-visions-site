@@ -1,5 +1,6 @@
 import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { HttpService } from '../../services/http.service';
 
 @Component({
   selector: 'app-landing',
@@ -20,9 +21,12 @@ export class LandingComponent {
    */
   public login = true;
 
+  @ViewChild('dropFile') file: any;
+
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
     public media: MediaMatcher,
+    private http: HttpService,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 849px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -38,5 +42,23 @@ export class LandingComponent {
   }
 
   private _mobileQueryListener: () => void;
+
+  showImage(event: any): void {
+    let file = this.file.nativeElement;
+    let reader  = new FileReader();
+
+    if (file['files'][0]) {
+      reader.readAsDataURL(file['files'][0]);
+    }
+  }
+
+  async onUpload() {
+    let f = new FormData();
+    f.append('media', this.file.nativeElement['files'][0]);
+
+    let a = await this.http.uploadMedia(f).toPromise();
+
+    console.log('FILE UPLOAD RESPONSE', a);
+  }
 
 }
