@@ -234,7 +234,7 @@
   
                         <div class="col" [ngClass]="{'w60': p?.image, 'w100': !p?.image}">
                           <div class="row p-0"> <div class="title font-16 c-red"> {{p.title}} </div> </div>
-                          <div class="row p-0"> <span class="desc-sm writable-update font-light font-13" [innerHTML]="p.description"> </span> </div>
+                          <div class="row p-0"> <span class="desc-sm writable-update font-light font-13" [innerHTML]="p.description | safe"> </span> </div>
                         </div>
                       </div>
     
