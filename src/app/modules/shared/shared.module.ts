@@ -10,6 +10,7 @@ import { SnackbarComponent } from '../../components/snackbar/snackbar.component'
 
 import { UpdatefilterPipe } from '../../pipes/updatefilter.pipe';
 import { TrimwordPipe } from '../../pipes/trimword.pipe';
+import { SafePipe } from '../../pipes/safe.pipe';
 
 /**
  * @description Perfect scroll bar settings.
@@ -25,7 +26,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   declarations: [
     SnackbarComponent,
     UpdatefilterPipe,
-    TrimwordPipe
+    TrimwordPipe,
+    SafePipe
   ],
   imports: [
     FormsModule,
@@ -43,6 +45,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
     UpdatefilterPipe,
     TrimwordPipe,
+    SafePipe,
 
     PerfectScrollbarModule
   ]

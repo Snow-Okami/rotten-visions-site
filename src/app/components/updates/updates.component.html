@@ -42,7 +42,7 @@
                 <p class="col"> {{ post?.comments.length }} {{ post?.comments.length > 1 ? 'comments' : 'comment' }} </p>
               </div>
               <div class="row">
-                <span class="col" [innerHTML]="fixPostLen(post?.description, 150)" class="writable-update"></span>
+                <span class="col" [innerHTML]="fixPostLen(post?.description, 150) | safe" class="writable-update"></span>
               </div>
             </div>
           </div>
